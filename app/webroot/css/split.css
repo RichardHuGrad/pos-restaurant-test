@@ -1,0 +1,32 @@
+/* split.ctp Css */
+.order-status{
+	padding: 5px 8px;
+    background: #c30e23;
+    border: 1px solid #c30e23;
+    border-radius: 0px;
+    font-size: 15px;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+.split-p-order{border-bottom: 2px solid #c30e23;}
+.split-p-table{display: block;margin-top: 10px;}
+#avg-split{
+	margin: 0 auto;
+    display: block;
+}
+
+#add-person,#delete-person{
+	width: 50%;
+	margin-bottom: 15px;
+    white-space: inherit;
+    display: inline;
+    vertical-align: baseline;
+    max-width: 220px;
+}
+#add-person{float: right;}
+#delete-person{margin-bottom: 25px !important;}
+#print-original-bill { margin-right: 20px; }
+
+#dangerous-notice { text-align: center; background: yellow; font-size: 18px; line-height: 20px;}

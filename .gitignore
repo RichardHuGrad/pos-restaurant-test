@@ -1,0 +1,17 @@
+/app/tmp
+/manager/tmp
+/manager/webroot/img/cache
+/cook/tmp
+
+app/tmp
+manager/tmp
+manager/webroot/img/cache
+cook/tmp
+
+/app/tmp/*
+/manager/tmp/*
+/manager/webroot/img/cache/*
+/cook/tmp/*
+/.buildpath
+/.project
+/.settings/

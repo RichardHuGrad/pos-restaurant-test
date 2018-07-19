@@ -1,0 +1,94 @@
+#input-keypad input[type="radio"] {
+	/*display: none;*/
+}
+#input-keypad{width: 400px;margin:0 auto;text-align: center;}
+#input-keypad #input-key-list li{
+	float: left;
+	text-align: center;
+	border-top: 1px solid #ccc;
+	color: #696969;
+	font-size: 30px;
+    font-weight: 600;
+    line-height: 70px;
+    width: 33.33%;
+    border-left: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    cursor: pointer;
+    background: #f7f7f7;
+}
+#input-keypad #input-key-list li:hover{
+	background: #ccc;
+	color: #c30e23;
+}
+#input-keypad #input-key-screen-wrapper{
+	border-radius: 17px;
+	width: 100%;
+	max-width: 400px;
+	border: solid 1px rgba(142,142,142,.9);
+	margin-bottom: 15px;
+	height: 336px;
+}
+
+
+#input-keypad #input-screen{
+	width: 100%;
+	border-radius: 17px 17px 0 0;
+	text-align: center;
+	height: 50px;
+	border: solid 1px rgba(142,142,142,.9);
+	font-size: 24px;
+	background: #e0e0e0;
+} 
+
+#input-keypad label img{
+	/*background-color: red;*/
+}
+
+#input-key-list #input-clear{
+	border-bottom-left-radius: 15px;
+	color: #c30e23!important;
+	font-size: 20px !important;
+}
+#input-key-list #input-enter{
+	border-bottom-right-radius: 15px;
+	/* color: #337ab7!important; */
+	color: blue!important;
+	font-size: 24px !important;
+	font-weight: bold !important;
+}
+
+#input-placeholder .p-method>.p-pay{margin-right: 15px;}
+#input-placeholder .pp-card{margin-right: 15px;}
+.p-method input[type=radio]{display: none !important;}
+.p-method input[type=radio]:checked{color:red !important;}
+
+.p-method>label{
+	border:1px solid #337ab7;
+	border-radius: 4px;
+	cursor: pointer;
+	padding:8px 12px;
+	background: #91c0e7;
+	color: #fff;
+	width: 150px;
+	height: 50px;
+	text-align: center;
+}
+
+input[type=radio]:checked + label {
+	background: #337ab7;
+}
+input[name="pay"] + label img,input[name="tip"] + label img{
+	border:1px solid #337ab7;
+	background: #91c0e7;
+	color: #fff;
+}
+
+input[name="pay"]:checked + label img,input[name="tip"]:checked + label img{
+	background: #337ab7;
+}
+
+input[type=radio] {
+	display: none;
+}
+
+/*input[type=radio]:checked + {background: #333 !important;}*/
