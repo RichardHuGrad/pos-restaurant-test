@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>历史订单</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/jianpan.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- 头部 -->
+      <div class="header">
+        <!-- logo -->
+        <img src="images/logo.png" alt="logo" class="logo" />
+        <!-- 导航 -->
+        <ul class="nav">
+          <li><a href="index.html" class="nav-a">主页</a></li>
+          <li class="barnav">
+            <a href="javascript:;" class="nav-a">语言</a>
+            <ul style="display: none;">
+              <li><a href="javascript:;">English</a></li>
+              <li><a href="javascript:;">中文</a></li>
+            </ul>
+          </li>
+          <li><a href="javascript:;" class="nav-a">会员</a></li>
+          <li><a href="paidui.html" class="nav-a">排队</a></li>
+          <li><a href="quhao.html" class="nav-a">取号</a></li>
+        </ul>
+        <img src="images/nav.png" class="smalllogo" alt="pad菜单" />
+        <!-- 登录按钮 -->
+        <div class="login_right">
+          <button type="button" name="button">登出</button>
+          <span>管理员</span>
+        </div>
+      </div>
+      <!-- 主体 -->
+      <div class="page8-content">
+        <div class="page8-top">
+          <h4>堂食订单  桌 #3  历史订单</h4>
+        </div>
+        <div class="page8-bot">
+          <table>
+            <thead>
+              <tr>
+                <th class="w1">时间</th>
+                <th class="w2">订单号</th>
+                <th class="w3">小计</th>
+                <th class="w3">税（13%）</th>
+                <th class="w3">总计</th>
+                <th class="w4">
+                  <a href="javascript:;" class="tLeft"><img src="images/icon-16.png" /></a>
+                  <span>1</span>
+                  <a href="javascript:;" class="tRight"><img src="images/icon-17.png" /></a>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="w1">2018/05/17  17:15:46</td>
+                <td class="w2">D51805170002</td>
+                <td class="w3">25.98</td>
+                <td class="w3">3.38</td>
+                <td class="w3">00</td>
+                <td class="w4"><a href="javascript:;">查看详情</a></td>
+              </tr>
+              <tr>
+                <td class="w1">2018/05/17  17:15:46</td>
+                <td class="w2">D51805170002</td>
+                <td class="w3">25.98</td>
+                <td class="w3">3.38</td>
+                <td class="w3">00</td>
+                <td class="w4"><a href="javascript:;">查看详情</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- 虚拟键盘 -->
+    <div class="key">
+      <img src="images/icon-14.png" alt="关闭虚拟键盘" class="key_img" />
+      <ul id="keyboard">
+        <li class="esc">Esc</li>
+        <li class="symbol"><span class="off">1</span><span class="on">!</span></li>
+
+        <li class="symbol"><span class="off">2</span><span class="on">@</span></li>
+
+        <li class="symbol"><span class="off">3</span><span class="on">#</span></li>
+
+        <li class="symbol"><span class="off">4</span><span class="on">$</span></li>
+
+        <li class="symbol"><span class="off">5</span><span class="on">%</span></li>
+
+        <li class="symbol"><span class="off">6</span><span class="on">^</span></li>
+
+        <li class="symbol"><span class="off">7</span><span class="on">&amp;</span></li>
+
+        <li class="symbol"><span class="off">8</span><span class="on">*</span></li>
+
+        <li class="symbol"><span class="off">9</span><span class="on">(</span></li>
+
+        <li class="symbol"><span class="off">0</span><span class="on">)</span></li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="delete lastitem">Delete</li>
+
+        <li class="tab no"></li>
+
+        <li class="letter">Q</li>
+
+        <li class="letter">W</li>
+
+        <li class="letter">E</li>
+
+        <li class="letter">R</li>
+
+        <li class="letter">T</li>
+
+        <li class="letter">Y</li>
+
+        <li class="letter">U</li>
+
+        <li class="letter">I</li>
+
+        <li class="letter">O</li>
+
+        <li class="letter">P</li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="symbol lastitem"><span class="off">\</span><span class="on">|</span></li>
+
+        <li class="capslock no"></li>
+
+        <li class="letter">A</li>
+
+        <li class="letter">S</li>
+
+        <li class="letter">D</li>
+
+        <li class="letter">F</li>
+
+        <li class="letter">G</li>
+
+        <li class="letter">H</li>
+
+        <li class="letter">J</li>
+
+        <li class="letter">K</li>
+
+        <li class="letter">L</li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="return lastitem">Enter</li>
+
+        <li class="left-shift">SHIFT</li>
+
+        <li class="letter">Z</li>
+
+        <li class="letter">X</li>
+
+        <li class="letter">C</li>
+
+        <li class="letter">V</li>
+
+        <li class="letter">B</li>
+
+        <li class="letter">N</li>
+
+        <li class="letter">M</li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="right-shift no"></li>
+
+        <li class="no b1"></li>
+
+        <li class="no b2"></li>
+
+        <li class="no b3"></li>
+
+        <li class="no b4"></li>
+
+        <li class="space lastitem">&nbsp;</li>
+
+        <li class="no b5"></li>
+
+        <li class="no b5"></li>
+
+        <li class=" b6"></li>
+      </ul>
+    </div>
+
+    <!-- 管理员密码 -->
+    <div id="admin">
+      <p>密码解锁</p>
+      <input type="text" name="" id="write" class="adminInp" placeholder="请输入密码解锁" />
+      <div class="admin-btn">
+        <button type="button" class="a_no">取消</button>
+        <button type="button" class="a_yes">输入</button>
+      </div>
+    </div>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/keyboard.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+      // nav
+      $(".barnav").hover(function(){
+        $(this).find("ul").slideDown();
+      },function(){
+        $(this).find("ul").slideUp();
+      });
+      $(".barnav").on("click",function(){
+        var ulD = $(this).find("ul").css("display");
+        if(ulD == "none"){
+          $(this).find("ul").slideDown();
+        }else{
+          $(this).find("ul").slideUp();
+        }
+      });
+      // content
+      var winH = $(window).height() - 100, //100是导航
+          winH1 = $(window).height() - 190,
+          winW = $(window).width();//可是宽度
+      $(".content").css("height",winH+"px");
+      if(winW > 768){
+        $(".page8-bot").css("height",winH1+"px");
+      }else{
+        // $(".page8-bot").css("height","410px");
+      }
+
+      // 管理员密码
+      $(".login_right span").on("click",function(){
+        $("#admin").show();
+      });
+      $(".a_no").on("click",function(){
+        $("#admin").hide();
+        $(".key").hide();
+      });
+      $(".a_yes").on("click",function(){
+        $(".key").show();
+      });
+      $(".key_img").on("click",function(){
+        $(".key").hide();
+      });
+      // 回车,跳转到管理员界面      
+      $(".return").on("click",function(){
+        var aVal = $("#write").val();
+        if(aVal == 1){//如果取到的键值是回车
+          window.location.href="admin.html";         
+        }else{
+          alert("解锁密码错误！");
+        }
+      });
+      window.document.onkeydown= function(evt){
+       evt = window.event || evt;
+       var aVal = $("#write").val();
+       if(evt.keyCode == 13 && aVal == 1){//如果取到的键值是回车
+          window.location.href="admin.html";         
+       }else if(evt.keyCode == 13 && aVal != 1){
+          alert("解锁密码错误！");
+       }
+      }
+      
+    });
+    </script>
+  </body>
+</html>

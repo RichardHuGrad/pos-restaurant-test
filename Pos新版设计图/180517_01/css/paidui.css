@@ -1,0 +1,949 @@
+/* reset
+-----------------------------------------------------------------*/
+@font-face
+{
+   font-family: 'Nobel-Book';
+   src:url('../font/冬青黑体W3.otf');
+   font-weight: normal;
+   font-style: normal;
+}
+@font-face
+{
+   font-family: 'Nobel-GBW6';
+   src:url('../font/HiraginoSansGBW6.TTF');
+   font-weight: normal;
+   font-style: normal;
+}
+@font-face
+{
+   font-family: 'Nobel-FZLTXHK';
+   src:url('../font/FZLTXHK.TTF');
+   font-weight: normal;
+   font-style: normal;
+}
+@font-face
+{
+   font-family: 'Nobel-FZLTZHK';
+   src:url('../font/FZLTZHK.TTF');
+   font-weight: normal;
+   font-style: normal;
+}
+@font-face
+{
+   font-family: 'Nobel-FZLTTHK';
+   src:url('../font/FZLTTHK.TTF');
+   font-weight: normal;
+   font-style: normal;
+}
+html,body {
+    /* min-width: 1200px;
+    margin: auto; */
+    color:#333;
+    position: relative;height: 100%;
+    background: #26dfff url(../images/bg-01.png) no-repeat left bottom;
+    background-size: 100%;
+    font:12px 微软雅黑;
+}
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+form,
+fieldset,
+legend,
+input,
+button,
+textarea,
+p,
+blockquote,
+th,
+td {
+    margin: 0;
+    padding: 0;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+fieldset {
+    border:none;
+    }
+img {
+    border:none;
+    }
+ul,li,dd,dl,dt {
+    list-style:none;
+    }
+a {
+    text-decoration:none;
+    color:#333;
+  -webkit-tap-highlight-color: transparent;
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+    }
+  a:active,a:visited,a:link,a:hover{
+    border: 0;
+    border-color: inherit;
+    text-decoration:none;
+    cursor: pointer;
+  }
+  a:focus{
+    outline: none;
+    -moz-outline-style:none;
+  }
+
+.container{
+  position: relative;
+  width: 100%;
+  margin: auto;
+  overflow: hidden;
+}
+.logo1{
+  position: absolute;
+  left: 65px;
+  top: 37px;
+  height: 51px;
+}
+/* 中英文转换 */
+.english{
+  position: absolute;
+  right: 55px;
+  top: 35px;
+  width: 238px;
+  height: 55px;
+  background: #01cdf0;
+  border: 1px #01cdf0 solid;
+  border-radius: 100px;
+  color: #fff;
+  line-height: 55px;
+  text-align: center;
+  font-size: 24px;
+  outline: none;
+  font-family: Nobel-Book;
+  cursor: pointer;
+}
+.login-align{
+  width: 100%;
+}
+.lock{
+  position: absolute;
+  right: 315px;
+  top: 35px;
+  width: 55px;
+  height: 55px;
+  background:#01cdf0 url(../images/icon-03.png) no-repeat center;
+  border: 1px #01cdf0 solid;
+  border-radius: 100px;
+  color: #fff;
+  line-height: 55px;
+  text-align: center;
+  font-size: 24px;
+  outline: none;
+  font-family: Nobel-Book;
+  cursor: pointer;
+}
+.lock-div{
+  position: absolute;
+  right: 169px;
+  top: 100px;
+  width: 347px;
+  height: 65px;
+  background: url(../images/bg-02.png) no-repeat ;
+  background-size: 100%;
+}
+  .lock-div input{
+    float: left;
+    width: 70%;
+    height: 40px;
+    margin: 18px 5% 0;
+    border: 0;
+    outline: none;
+    font-size: 21px;
+    font-family: Nobel-Book;
+    color: #848484;
+  }
+  .lock-div img{
+    float: right;
+    display: block;
+    width: 22px;
+    margin-top: 26px;
+    margin-right: 5%;
+    cursor: pointer;
+  }
+/* logo */
+.left{
+  float: left;
+  width: 50%;
+  vertical-align: middle;
+}
+  .left-align{
+    width: 65%;
+    margin-left: 28%;
+    text-align: left;
+  }
+    .left-align span{
+      font-size: 2rem;
+      font-family: Nobel-FZLTXHK;
+      color: #fff;
+      line-height: 55px;
+    }
+    .left-align h3{
+      font-size: 4rem;
+      font-family: Nobel-FZLTTHK;
+      color: #fff;
+          font-weight: normal;
+    }
+    .left-align hr{
+      height: 1px;
+      border: 0;
+      background: #e4fbff;
+    }
+/* 登录 */
+.right{
+  float: left;
+  width: 50%;
+}
+  .right-align{
+    width: 65%;
+    margin-left: 7%;
+    text-align: left;
+    border-radius: 10px;
+  }
+    .right-content{
+      width: 100%;
+      /* padding: 0 4%; */
+      overflow: hidden;
+    }
+      .right-align h6{
+        width: 100%;
+        margin-top: 15%;
+        padding: 5% 0;
+        background: #fff;
+        font-size: 2rem;
+        font-family: Nobel-Book;
+        color: #000;
+        text-align: center;
+        border-bottom: 1px #ebebeb solid;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+      }
+      .right-content form{
+        background: #fff;
+        overflow: hidden;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+      }
+      .r-name{
+        width: 85%;
+        margin: 7% 4% 15px;
+        padding: 4% 3%;
+        border: 1px #4ee0ff solid;
+        text-align: center;
+        font-size: 30px;
+        color: #c9c9c9;
+        line-height: 30px;
+        font-family: Nobel-Book;
+        outline: none;
+        border-radius: 6px;
+      }
+      .r-tel,.r-number{
+        width: 85%;
+        margin: 0  4% 15px;
+        padding: 4% 3%;
+        background: #f7f7f7;
+        border: 1px #f7f7f7 solid;
+        text-align: center;
+        font-size: 30px;
+        color: #545454;
+        line-height: 30px;
+        font-family: Nobel-Book;
+        outline: none;
+        border-radius: 6px;
+      }
+      .r-btn{
+        width: 100%;
+        padding: 6% 0;
+        margin-top: 20px;
+        background: #00cdef;
+        color: #fff;
+        border: 0;
+        font-size: 3rem;
+        font-family: Nobel-GBW6;
+        text-align: center;
+        outline: none;
+        cursor: pointer;
+      }
+      .right-content p{
+        padding: 7% 0 0;
+        text-align: center;
+        color: #fff;
+        font-size: 2rem;
+        font-family: Nobel-FZLTTHK;
+      }
+
+/*取号*/
+.content .right{
+  width: 30%;
+  background:#26dfff url(../images/bg-06.jpg) no-repeat center bottom;
+  background-size: 86%;
+}
+  .right1 .right-align{
+    width: 86%;
+    margin-top: -22%;
+  }
+
+  .right1 .r-btn{
+    padding: 4% 0;
+        margin-top: 8%;
+  }
+  .right1 .right-align h6{
+    padding: 6% 0;
+    margin-top: 0;
+  }
+  .right1 .r-name{
+    margin-top: 10%;
+  }
+
+  .content .paidui-right{
+    float: right;
+    width: 70%;
+    background: #fff;
+  }
+
+  .paidui-top,.paidui-bot{
+    width: 94%;
+    padding: 30px 3%;
+    overflow: hidden;
+    border-bottom: 1px solid #f1f1f1;
+  }
+    .paidui-top h4,.paidui-bot h4{
+      font-size: 2rem;
+      font-family: Nobel-Book;
+      line-height: 50px;
+    }
+    .rili{
+      float: left;
+      width: 240px;
+      border:0;
+      outline: none;
+      background: #00cdef;
+      color: #fff;
+      font-size: 18px;
+      font-family: Nobel-Book;
+      line-height: 55px;
+      border-radius: 5px; 
+    }
+    .paidi-seach{
+      float: left;
+      width: 660px;
+      padding: 0 15px;
+      margin-left: 17px;
+      border: 1px solid #00cdef;
+      height: 53px;
+      font-size: 21px;
+      font-family: Nobel-Book;
+      color: #848484;
+      outline: none;
+    }
+      .pai-close{
+        display: block;
+        position: absolute;
+        left: 910px;
+        top: 15px;
+        width: 25px;
+      }
+
+  .paidui-bot .table{
+    width: 100%;
+    overflow: hidden;
+  }
+    .paidui-bot .table li{
+      width: 100%;
+      overflow: hidden;
+    }
+      .thead{
+        margin-bottom: 7px;
+        padding: 30px 0;
+        background: #eaeaea;
+        color: #000;
+        line-height: 26px;
+        font-size: 21px;
+        font-family: Nobel-Book;
+        text-align: left;
+        border-radius: 10px;
+        word-break: break-all;
+      }
+        .table div{
+          float: left;
+        }
+        .table div.p0{
+          width: 8%;
+          color: #eaeaea;
+        }
+        .table div.p1{
+          width: 13%;
+        }
+        .table div.p2{
+          width: 19%;
+        }
+        .table div.p3{
+          width: 9%;
+        }
+        .table div.p4{
+          width: 50%;
+        }
+
+      .paidui-bot .table .tbody{
+        width: 99.5%;
+        padding: 4px 0;
+        border: 1px #ccc dashed;
+        color: #000;
+        line-height: 80px;
+        font-size: 21px;
+        font-family: Nobel-Book;
+        text-align: left;
+        border-radius: 50px;
+        margin-top: 7px;
+      }
+        .paidui-bot .table .tbody div{
+          margin: 0 auto;
+        }
+        .tbody span{
+          display: block;
+          width: 50px;
+          height: 50px;
+          margin: 15px auto;
+          background: #00cdef;
+          color: #fff;
+          font-size: 21px;
+          font-family: Nobel-GBW6;
+          line-height: 50px;
+          border-radius: 5px;
+          text-align: center;
+        }
+        .p4{
+          padding-right: 1%;
+        }
+        .p4 a{
+          float: right;
+          display: block;
+          width: 80px;
+          height: 80px;
+          margin-right: 6px;
+        }
+        .pai01{
+          background: url(../images/i01.png) no-repeat center;
+          background-size: 100%;
+        }
+        .pai02{
+          background: url(../images/i02.png) no-repeat center;
+          background-size: 100%;
+        }
+        .pai03{
+          background: url(../images/i03.png) no-repeat center;
+          background-size: 100%;
+        }
+        .pai04{
+          background: url(../images/i04.png) no-repeat center;
+          background-size: 100%;
+        }
+        .pai05{
+          background: url(../images/i05.png) no-repeat center;
+          background-size: 100%;
+        }
+        .pai06{
+          background: url(../images/i06.png) no-repeat center;
+          background-size: 100%;
+        }
+
+/*管理员密码*/
+#admin{
+  display: none;
+  position: fixed;
+  right: 13%;
+  top: 100px;
+  width: 372px;
+/*  height: 238px;*/  
+  background: #fff;
+  border-radius: 5px;
+  z-index: 30;
+  box-shadow: 0px 0px 6px #000;
+}
+#admin.adminCss{
+  left: 50%;
+  top: 35%;
+  width: 372px;
+  margin-left: -286px;
+}
+  #admin p{
+    padding-left: 150px;
+    background: url(../images/icon-11.png) no-repeat 103px center;
+    font-size: 24px;
+    font-family: Nobel-Book;
+    color: #00cdef;
+    line-height: 80px;
+  }
+  #admin input{
+    width: 92%;
+    height: 55px;
+    margin: 0 2%;
+    padding: 0 2%;
+    border: 0;
+    text-align: center;
+    border-radius: 5px;
+    background: #f7f7f7;
+    color:#848484;
+    font-size: 21px;
+    font-family: Nobel-Book;
+    line-height: 55px;
+    outline: none;
+  }
+    .a_no{
+      float: left;
+      width: 100px;
+      height: 50px;
+      margin: 30px 0 15px 2%;
+      background: #405a8e;
+      border: 0;
+      outline: none;
+      text-align: center;
+      line-height: 50px;
+      color: #fff;
+      font-size: 18px;
+      font-family: Nobel-GBW6;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .a_yes{
+      float: right;
+      width: 100px;
+      height: 50px;
+      margin: 30px 2% 15px 0;
+      background: #c42248;
+      border: 0;
+      outline: none;
+      text-align: center;
+      line-height: 50px;
+      color: #fff;
+      font-size: 18px;
+      font-family: Nobel-GBW6;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+
+
+
+
+  .am-form{
+    position: relative;
+  }
+    .am-vertical-align {
+    	font-size: 0
+    }
+
+    .am-vertical-align:before {
+    	content: '';
+    	display: inline-block;
+    	height: 100%;
+    	vertical-align: middle
+    }
+
+    .am-vertical-align-bottom, .am-vertical-align-middle {
+    	display: inline-block;
+    	font-size: 1.6rem;
+    	max-width: 100%
+    }
+
+    .am-vertical-align-middle {
+    	vertical-align: middle
+    }
+
+    .am-vertical-align-bottom {
+    	vertical-align: bottom
+    }
+
+    .am-responsive-width {
+    	-webkit-box-sizing: border-box;
+    	box-sizing: border-box;
+    	max-width: 100%;
+    	height: auto
+    }
+
+.am-datepicker {
+  display: none;
+  border:1px solid #00cdef;
+  border-radius: 5px;
+  background: #fff;
+/*  -webkit-box-shadow: 0 0 10px #ccc;
+  box-shadow: 0 0 10px #ccc;*/
+  padding-bottom: 10px;
+  margin-top: 10px;
+  width: 367px;
+  color: #555
+}
+
+.am-datepicker table {
+  width: 100%
+}
+
+.am-datepicker tr.am-datepicker-header {
+  font-size: 1.6rem;
+  font-family: Nobel-FZLTXHK;
+  color: #fff;
+  background: #00cdef
+}
+
+.am-datepicker td, .am-datepicker th {
+  text-align: center;
+  font-weight: 400;
+  cursor: pointer
+}
+
+.am-datepicker th {
+  height: 48px
+}
+
+.am-datepicker td {
+  font-size: 1.4rem
+}
+
+.am-datepicker td.am-datepicker-day {
+  height: 34px;
+  width: 34px
+}
+
+.am-datepicker td.am-datepicker-day:hover {
+  background: #F0F0F0;
+  height: 34px;
+  width: 34px
+}
+
+.am-datepicker td.am-datepicker-day.am-disabled {
+  cursor: no-drop;
+  color: #999;
+  background: #fafafa
+}
+
+.am-datepicker td.am-datepicker-new, .am-datepicker td.am-datepicker-old {
+  color: #89d7ff
+}
+
+.am-datepicker td.am-active, .am-datepicker td.am-active:hover {
+  border-radius: 0;
+  color: #fff;
+  background: #01cdf0
+}
+
+.am-datepicker td span {
+  display: block;
+  width: 79.33px;
+  height: 40px;
+  line-height: 40px;
+  float: left;
+  cursor: pointer
+}
+
+.am-datepicker td span:hover {
+  background: #F0F0F0
+}
+
+.am-datepicker td span.am-active {
+  color: #0084c7;
+  background: #F0F0F0
+}
+
+.am-datepicker td span.am-disabled {
+  cursor: no-drop;
+  color: #999;
+  background: #fafafa
+}
+
+.am-datepicker-next-icon:hover, .am-datepicker-prev-icon:hover, .am-datepicker-select:hover {
+  background: rgba(154,217,248,.5);
+  color: #0c80ba
+}
+
+.am-datepicker td span.am-datepicker-old {
+  color: #89d7ff
+}
+
+.am-datepicker .am-datepicker-dow {
+  height: 40px;
+  color: #0c80ba
+}
+
+.am-datepicker-caret, .am-datepicker-up .am-datepicker-caret {
+  width: 0;
+  height: 0;
+  border-right: 7px solid transparent;
+  border-left: 7px solid transparent;
+  vertical-align: middle
+}
+
+.am-datepicker-caret {
+  display: none!important;
+  display: inline-block;
+  border-bottom: 7px solid #3bb4f2;
+  border-top: 0 dotted;
+  transform: rotate(360deg);
+  position: absolute;
+  top: -7px;
+  left: 6px
+}
+
+.am-datepicker-right .am-datepicker-caret {
+  left: auto;
+  right: 7px
+}
+
+.am-datepicker-up .am-datepicker-caret {
+  top: auto;
+  bottom: -7px;
+  display: inline-block;
+  border-top: 7px solid #fff;
+  border-bottom: 0 dotted;
+  -webkit-transform: rotate(360deg);
+  -ms-transform: rotate(360deg);
+  transform: rotate(360deg)
+}
+
+.am-datepicker-next-icon:before, .am-datepicker-prev-icon:before {
+  display: inline-block;
+  text-rendering: auto;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-transform: translate(0, 0);
+  -ms-transform: translate(0, 0)
+}
+
+.am-datepicker-select {
+  height: 34px;
+  line-height: 34px;
+  text-align: center;
+  -webkit-transition: background-color .3s ease-out;
+  transition: background-color .3s ease-out
+}
+
+.am-datepicker-next, .am-datepicker-prev {
+  width: 34px;
+  height: 34px
+}
+
+.am-datepicker-next-icon, .am-datepicker-prev-icon {
+  width: 34px;
+  height: 34px;
+  line-height: 34px;
+  display: inline-block;
+  -webkit-transition: background-color .3s ease-out;
+  transition: background-color .3s ease-out
+}
+.am-datepicker-prev-icon,.am-datepicker-prev-icon:hover{
+  background: url(../images/icon-18.png) no-repeat center 10px;
+}
+.am-datepicker-next-icon,.am-datepicker-next-icon:hover{
+  background: url(../images/icon-19.png) no-repeat center 10px;
+}
+
+.am-datepicker-prev-icon:before {
+  font: normal normal normal 1.6rem/1 FontAwesome, sans-serif;
+  font-size: inherit;
+  -webkit-font-smoothing: antialiased;
+  transform: translate(0, 0);
+  content: ""
+}
+
+.am-accordion-default .am-accordion-title:before, .am-datepicker-next-icon:before {
+  font: normal normal normal 1.6rem/1 FontAwesome, sans-serif
+}
+
+.am-datepicker-next-icon:before {
+  font-size: inherit;
+  -webkit-font-smoothing: antialiased;
+  transform: translate(0, 0);
+  content: "";
+}
+
+.am-datepicker-dropdown {
+  position: absolute;
+  z-index: 1120
+}
+
+
+
+@media only screen and (max-width:1600px){
+  .left-align h3{
+    font-size: 3rem;
+  }
+  .right-content p{
+    font-size: 20px;
+  }
+  .right-align form input{
+    font-size: 25px;
+    padding: 3% 3%;
+  }
+  .left-align h3{
+    font-size: 3.5rem;
+  }
+}
+@media only screen and (max-width:1440px){
+  .p4 a{
+    width: 70px;
+    height: 70px;
+        margin-top: 5px;
+  }
+  .paidi-seach{
+    width: 560px;
+  }
+  .pai-close{
+    left: 810px;
+  }
+}
+@media only screen and (max-width:1395px){
+  .tbody span{
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+  }
+  .paidui-bot .table .tbody {
+    line-height: 70px;
+    font-size: 18px;
+  }
+  .p4 a {
+    width: 64px;
+    height: 64px;
+    margin-top: 3px;
+  }
+}
+@media only screen and (max-width:1300px){
+  .table div.p3 {
+    width: 6%;
+  }
+  .table div.p4 {
+    width: 53%;
+  }
+  .paidi-seach{
+    width: 500px;
+  }
+  .pai-close{
+    left: 750px;
+  }
+}
+@media only screen and (max-width:1210px){
+  .p4 a {
+    width: 60px;
+    height: 60px;
+    margin-top: 5px;
+  }
+  .paidi-seach{
+    width: 400px;
+  }
+  .pai-close{
+    left: 650px;
+  }
+}
+@media only screen and (max-width:1024px){
+  .paidui-top, .paidui-bot {
+    width: 98%;
+    padding: 20px 1%;
+  }
+  .paidi-seach{
+    width: 300px;
+  }
+  .pai-close{
+    left: 550px;
+  }
+  .thead {
+    padding: 20px 0;
+  }
+  .tbody span {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+  }
+  .paidui-bot .table .tbody {
+      line-height: 60px;
+      font-size: 15px;
+  }
+  .table div.p3 {
+    width: 9%;
+  }
+  .table div.p2 {
+    width: 20%;
+  }
+  .table div.p4 {
+    width: 49%;
+  }
+  .p4 a {
+      width: 50px;
+      height: 50px;
+  }
+  .container .header .nav li.active a.nav-a{
+     padding: 0 5px;
+     margin-left: 0; 
+  }
+  .login{
+    width: 40%;
+  }
+  .keyboard{
+    height: 5rem;
+  }
+  .english{
+    width: 178px;
+    height: 45px;
+    top: 3%;
+    right: 3%;
+    line-height: 45px;
+    font-size: 22px;
+  }
+  .lock{
+    height: 45px;
+    width: 45px;
+    top: 3%;
+    right: 23%;
+  }
+  .logo1{
+    position: absolute;
+    left: 4%;
+    top: 3.5%;
+    height: 41px;
+  }
+  .lock-div {
+    right: 8.5%;
+    top: 74px;
+  }
+  .left-align,.right-align {
+    width: 86%;
+    margin-left: 7%;
+  }
+  .r-btn{
+    padding: 4% 0;
+  }
+
+}
+@media only screen and (max-width:768px){
+  .login{
+    width: 60%;
+  }
+  .left-align h3,.right-align form input,.right-align form button{
+    font-size: 2rem;
+  }
+  .lock{
+    right:29%;
+  }
+  .lock-div {
+    right: 9.5%;
+    top: 83px;
+  }
+}

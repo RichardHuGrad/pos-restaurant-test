@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>Eatopia</title>
+    <link rel="stylesheet" href="css/login.css" />
+</head>
+  <body>
+    <!-- 中英文转换 -->
+    <button type="button" class="english" name="button">EN/中文</button>
+    <!-- logo -->
+    <div class="am-vertical-align logo" style="height: 100%;">
+      <div class="am-vertical-align-middle login-align">
+          <img src="images/logo.png" alt="logo">
+      </div>
+    </div>
+    <!-- 登录 -->
+    <div class="am-vertical-align login" style="height: 100%;">
+      <div class="am-vertical-align-middle login-align">
+          <h3>Eatopia POS系统 登录</h3>
+          <div class="formkey">
+          	<input type="text" value="" class="keyboard" placeholder="请输入账号" />
+            <!-- 左侧数字 -->
+            <ul class="num_left">
+              <li class="num">1</li>
+              <li class="num">2</li>
+              <li class="num">3</li>
+              <li class="num">4</li>
+              <li class="num">5</li>
+              <li class="num">6</li>
+              <li class="num">7</li>
+              <li class="num">8</li>
+              <li class="num">9</li>
+              <li class="empty">清空</li>
+              <li class="num">0</li>
+              <li class="retreat">后退</li>
+            </ul>
+            <!-- 右侧操作 -->
+            <div class="num_right">
+              <a href="javascript:;" class="sign">签到<br />签退</a>
+              <a href="javascript:;" class="loginA">登录<br />POS</a>
+            </div>
+          </div>
+      </div>
+    </div>
+    <!-- 签到弹出层 -->
+    <div id="sign">
+      <p>签到成功</p>
+      <button type="button" >确定</button>
+    </div>
+
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/amazeui.min.js"></script>
+    <script type="text/javascript">
+      $(function(){
+        var liW = parseFloat($(".num_left li").width()) ,
+            liW1 = parseFloat($(".num_left li").width()*2 + 7),
+            liW2 = parseInt((liW1 - 80)/2);
+        $(".num_left li").css({"height":liW+"px","line-height":liW+"px"});
+        $(".num_right a").css({"padding-top":liW2+"px","padding-bottom":liW2+"px"});
+
+        // 输入密码
+        $(".num_left li.num").on("click",function(){
+          var inputVal = $(".keyboard").val(),
+              $_this = $(this).html();
+          $(".keyboard").val(inputVal+$_this);
+        });
+        // 清空
+        $(".empty").on("click",function(){
+          $(".keyboard").val("");
+        });
+        // 后退
+        $(".retreat").on("click",function(){
+          var leng = $(".keyboard").val().toString(),valIn = "";
+          valIn = leng.substring(0,leng.length-1);
+          $(".keyboard").val(valIn);
+        });
+        // 签到
+        $(".sign").on("click",function(){
+          $("#sign").show();
+        });
+        $("#sign button").on("click",function(){
+          $("#sign").hide();
+        });
+        // 登录
+        $(".loginA").on("click",function(){
+          var a = $(".keyboard").val();
+          if(a != ""){
+            window.location.href = "index.html";
+          }else{
+            alert("请输入正确的登录密码！");
+          }
+        });
+      })
+    </script>
+  </body>
+</html>

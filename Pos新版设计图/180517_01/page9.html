@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>订单分页</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/jianpan.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- 头部 -->
+      <div class="header">
+        <!-- logo -->
+        <img src="images/logo.png" alt="logo" class="logo" />
+        <!-- 导航 -->
+        <ul class="nav">
+          <li><a href="index.html" class="nav-a">主页</a></li>
+          <li class="barnav">
+            <a href="javascript:;" class="nav-a">语言</a>
+            <ul style="display: none;">
+              <li><a href="javascript:;">English</a></li>
+              <li><a href="javascript:;">中文</a></li>
+            </ul>
+          </li>
+          <li><a href="javascript:;" class="nav-a">会员</a></li>
+          <li><a href="paidui.html" class="nav-a">排队</a></li>
+          <li><a href="quhao.html" class="nav-a">取号</a></li>
+        </ul>
+        <img src="images/nav.png" class="smalllogo" alt="pad菜单" />
+        <!-- 登录按钮 -->
+        <div class="login_right">
+          <button type="button" name="button">登出</button>
+          <span>管理员</span>
+        </div>
+      </div>
+      <!-- 主体 -->
+      <div class="page2-content payment">
+        <div class="page2-left page9">
+          <div class="page2-top">
+            <h4>堂食订单 订单号 #D31803211631,  桌 #3</h4>
+            <button type="button" name="button">换桌</button>
+          </div>
+          <div class="page2-left-c">
+            <!-- 右侧菜品选择 -->
+            <div class="page2-tavright">
+              <!-- 内容 -->
+              <div class="pay-left">
+                <div class="pay-title">Order Summary 订单摘要</div>
+                <ul class="right-list">
+                  <!-- 背景色 class="rig-act" -->
+                  <li>
+                    <a href="javascript:;">
+                      <div class="list-left">
+                        <h4>宋嫂牛肉面 </h4>
+                        <p>Option: 中辣；少麻；去葱；加卤蛋；加面；加肉；改米线；多花生</p>
+                      </div>
+                      <div class="list-center">
+                        12.99 <span>(15%off)</span>
+                      </div>
+                      <div class="list-right">1</div>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="javascript:;">
+                      <div class="list-left">
+                        <h4>宋嫂牛肉面 </h4>
+                        <p>Option: 中辣；少麻；去葱；加卤蛋；加面；加肉；改米线；多花生</p>
+                      </div>
+                      <div class="list-center">
+                        12.99 <span>(15%off)</span>
+                      </div>
+                      <div class="list-right">1</div>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="javascript:;">
+                      <div class="list-left">
+                        <h4>宋嫂牛肉面 </h4>
+                        <p>Option: 中辣；少麻；去葱；加卤蛋；加面；加肉；改米线；多花生</p>
+                      </div>
+                      <div class="list-center">
+                        12.99 <span>(15%off)</span>
+                      </div>
+                      <div class="list-right">1</div>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="pay-cen">
+                <div class="pay-input">
+                  <label>小计</label>
+                  <input type="texy" name="" placeholder="$72.94">
+                </div>
+                <div class="pay-input">
+                  <label>税(13%)</label>
+                  <input type="texy" name="" placeholder="$72.94">
+                </div>
+                <div class="pay-input">
+                  <label>折扣(13%)</label>
+                  <input type="texy" name="" placeholder="$72.94">
+                </div>
+                <div class="pay-input">
+                  <label>折后价</label>
+                  <input type="texy" name="" placeholder="$72.94">
+                </div>
+                <div class="pay-input">
+                  <label>总计：</label>
+                  <input type="texy" name="" placeholder="$72.94">
+                </div>
+                <div class="pay-input">
+                  <label>已收到</label>
+                  <input type="texy" name="" placeholder="$72.94">
+                </div>
+                <div class="pay-input-more">
+                  <input type="texy" name="" placeholder="$72.94">
+                  <label>会员:</label>
+                  <input type="texy" name="" placeholder="$72.94">
+                  <label>卡:</label>
+                  <input type="texy" name="" placeholder="$72.94">
+                  <label>现金:</label>
+                </div>
+                <div class="pay-input">
+                  <label>找零：</label>
+                  <input type="texy" name="" placeholder="$72.94">
+                </div>
+                <div class="pay-input">
+                  <label>小费：</label>
+                  <input type="texy" name="" placeholder="$72.94">
+                </div>
+
+                <div class="r-c-bot">
+                  <h5>状态</h5>
+                  <!-- color1未支付，color2已付款，color3已打单 -->
+                  <p><span class="color2"></span>未支付</p>
+                </div>
+              </div>
+              <div class="pay-right">
+                <div class="right-tab1">
+                  <button type="button" name="button" class="pay06">弹回订单</button>
+                  <button type="button" name="button" class="pay02">保存修改</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 管理员虚拟键盘 -->
+    <div class="key" id="admin_key">
+      <img src="images/icon-14.png" alt="关闭虚拟键盘" class="key_img" />
+      <ul id="keyboard">
+        <li class="esc">Esc</li>
+        <li class="symbol"><span class="off">1</span><span class="on">!</span></li>
+
+        <li class="symbol"><span class="off">2</span><span class="on">@</span></li>
+
+        <li class="symbol"><span class="off">3</span><span class="on">#</span></li>
+
+        <li class="symbol"><span class="off">4</span><span class="on">$</span></li>
+
+        <li class="symbol"><span class="off">5</span><span class="on">%</span></li>
+
+        <li class="symbol"><span class="off">6</span><span class="on">^</span></li>
+
+        <li class="symbol"><span class="off">7</span><span class="on">&amp;</span></li>
+
+        <li class="symbol"><span class="off">8</span><span class="on">*</span></li>
+
+        <li class="symbol"><span class="off">9</span><span class="on">(</span></li>
+
+        <li class="symbol"><span class="off">0</span><span class="on">)</span></li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="delete lastitem">Delete</li>
+
+        <li class="tab no"></li>
+
+        <li class="letter">Q</li>
+
+        <li class="letter">W</li>
+
+        <li class="letter">E</li>
+
+        <li class="letter">R</li>
+
+        <li class="letter">T</li>
+
+        <li class="letter">Y</li>
+
+        <li class="letter">U</li>
+
+        <li class="letter">I</li>
+
+        <li class="letter">O</li>
+
+        <li class="letter">P</li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="symbol lastitem"><span class="off">\</span><span class="on">|</span></li>
+
+        <li class="capslock no"></li>
+
+        <li class="letter">A</li>
+
+        <li class="letter">S</li>
+
+        <li class="letter">D</li>
+
+        <li class="letter">F</li>
+
+        <li class="letter">G</li>
+
+        <li class="letter">H</li>
+
+        <li class="letter">J</li>
+
+        <li class="letter">K</li>
+
+        <li class="letter">L</li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="return lastitem">Enter</li>
+
+        <li class="left-shift">SHIFT</li>
+
+        <li class="letter">Z</li>
+
+        <li class="letter">X</li>
+
+        <li class="letter">C</li>
+
+        <li class="letter">V</li>
+
+        <li class="letter">B</li>
+
+        <li class="letter">N</li>
+
+        <li class="letter">M</li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="right-shift no"></li>
+
+        <li class="no b1"></li>
+
+        <li class="no b2"></li>
+
+        <li class="no b3"></li>
+
+        <li class="no b4"></li>
+
+        <li class="space lastitem">&nbsp;</li>
+
+        <li class="no b5"></li>
+
+        <li class="no b5"></li>
+
+        <li class=" b6"></li>
+      </ul>
+    </div>
+    <!-- 管理员密码 -->
+    <div id="admin">
+      <p>密码解锁</p>
+      <input type="text" name="" id="write" class="adminInp" placeholder="请输入密码解锁" />
+      <div class="admin-btn">
+        <button type="button" class="a_no">取消</button>
+        <button type="button" class="a_yes">输入</button>
+      </div>
+    </div>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/keyboard.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+      // nav
+      $(".barnav").hover(function(){
+        $(this).find("ul").slideDown();
+      },function(){
+        $(this).find("ul").slideUp();
+      });
+      $(".barnav").on("click",function(){
+        var ulD = $(this).find("ul").css("display");
+        if(ulD == "none"){
+          $(this).find("ul").slideDown();
+        }else{
+          $(this).find("ul").slideUp();
+        }
+      });
+      // content
+      var winH = $(window).height() - 100, //100是导航
+          winH1 = $(window).height() - 190,
+          winW = $(window).width();//可是宽度
+      $(".content").css("height",winH+"px");
+      // if(winW > 768){
+        $(".page2-left,.page2-right").css("height",winH+"px");
+        $(".page2-left-c").css("height",winH1+"px");
+      // }else{
+      //   $(".page2-left").css({"height":"500px"});
+      //   $(".page2-left-c").css("height","410px");
+      // }
+
+      // 菜单向下滑动
+      $(".tab-bot").on("click",function(){
+        var scroll = $(".page2-tabnav").scrollTop() + 70;
+        console.log(scroll);
+        $(".page2-tabnav").scrollTop(scroll);
+      });
+      $(".page2-tabnav li").on("click",function(){
+        var index = $(this).data("index");
+        $(".tabright").hide();
+        $(".tab"+index).show();
+        $(this).addClass("tab-active");
+        $(this).siblings().removeClass("tab-active");
+      });
+      // 去除搜索框中的内容
+      $(".tab-close").on("click",function(){
+        $(".tab-input").val("");
+      });
+      // 管理员密码
+      $(".login_right span").on("click",function(){
+        $("#admin").show();
+      });
+      $(".a_no").on("click",function(){
+        $("#admin").hide();
+        $("#admin_key").hide();
+        $("#write").val("");
+      });
+      $(".a_yes").on("click",function(){
+        $("#admin_key").show();
+      });
+      $(".key_img").on("click",function(){
+        $(this).parents(".key").hide();
+      });
+      // 回车,跳转到管理员界面      
+      $("#admin_key .return").on("click",function(){
+        var aVal = $("#write").val();
+        if(aVal == 1){//如果取到的键值是回车
+          window.location.href="admin.html";         
+        }else{
+          alert("解锁密码错误！");
+        }
+      });
+      window.document.onkeydown= function(evt){
+       evt = window.event || evt;
+       var aVal = $("#write").val();
+       if(evt.keyCode == 13){//如果取到的键值是回车
+        if(aVal == 1){         
+          window.location.href="admin.html";         
+        }else if(aVal != "" && aVal != 1){
+          alert("解锁密码错误！");
+        }
+       }
+     }
+      var liW = parseFloat($(".payment .num_left li").width()) ,
+          liW1 = parseFloat($(".payment .num_left li").width()*2 + 7),
+          liW2 = parseInt((liW1 - 80)/2);
+      $(".payment .num_left li").css({"height":liW+"px","line-height":liW+"px"});
+      $(".payment .num_right a").css({"padding-top":liW2+"px","padding-bottom":liW2+"px"});
+
+      // 输入密码
+      $(".payment .num_left li.num").on("click",function(){
+        var inputVal = $(".payment .keyboard").val(),
+            $_this = $(this).html();
+        $(".keyboard").val(inputVal+$_this);
+      });
+      // 清空
+      $(".payment .empty").on("click",function(){
+        $(".payment .keyboard").val("");
+      });
+      // 后退
+      $(".payment .retreat").on("click",function(){
+        var leng = $(".payment .keyboard").val().toString(),valIn = "";
+        valIn = leng.substring(0,leng.length-1);
+        $(".payment .keyboard").val(valIn);
+      });
+      // 默认
+      $(".payde").on("click",function(){
+        // 365为现有的默认金额
+        $(".payment .keyboard").val(365);
+      });
+      // 关闭ipad付款块
+      $(".pay_close").on("click",function(){
+        $('.payment .page2-right').hide();
+      });
+      $(".pay_play").on("click",function(){
+        $('.payment .page2-right').css("z-index","20");
+      });
+    });
+    </script>
+  </body>
+</html>

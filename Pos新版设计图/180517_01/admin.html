@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>查看销售额</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+<!--       <div class="lock-div">
+        <input type="text" name="" value="" placeholder="请输入密码解锁" />
+        <img src="images/icon-08.png" alt="关闭密码解锁" />
+      </div> -->
+      <!-- 头部 -->
+      <div class="header">
+        <!-- logo -->
+        <img src="images/logo.png" alt="logo" class="logo" />
+        <!-- 导航 -->
+        <ul class="nav">
+          <li><a href="index.html" class="nav-a">主页</a></li>
+          <li class="barnav">
+            <a href="javascript:;" class="nav-a">语言</a>
+            <ul style="display: none;">
+              <li><a href="javascript:;">English</a></li>
+              <li><a href="javascript:;">中文</a></li>
+            </ul>
+          </li>
+          <li><a href="javascript:;" class="nav-a">会员</a></li>
+          <li><a href="paidui.html" class="nav-a">排队</a></li>
+          <li><a href="quhao.html" class="nav-a">取号</a></li>
+        </ul>
+        <img src="images/nav.png" class="smalllogo" alt="pad菜单" />
+        <!-- 登录按钮 -->
+        <div class="login_right">
+          <button type="button" name="button">登出</button>
+          <span class="active">管理员</span>
+        </div>
+      </div>
+      <div class="content" style="background: #ededed;">
+        <div class="admin-top">
+          <div class="admin-left">
+            <div class="seach-left">
+              <h3>时段设置</h3>
+              <div class="seach-content">
+                <div class="sTop">
+                  <span>1</span>   
+                  <small>开始时间</small>
+                  <form class="seach-form">
+                    <input type="text" class="time" value="9:00" />
+                    <select class="time1">
+                      <option>AM</option>
+                      <option>PM</option>
+                    </select>
+                    <i></i><!--背景竖条-->
+                    <select class="time2">
+                      <option>昨天</option>
+                      <option>今天</option>
+                      <option>明天</option>
+                    </select>
+                  </form> 
+                  <small> - 结束时间</small>  
+                  <form class="seach-form">
+                    <input type="text" class="time" value="9:00" />
+                    <select class="time1">
+                      <option>AM</option>
+                      <option>PM</option>
+                    </select>
+                    <i></i><!--背景竖条-->
+                    <select class="time2">
+                      <option>昨天</option>
+                      <option>今天</option>
+                      <option>明天</option>
+                    </select>
+                  </form>              
+                </div>
+                <div class="sBot">
+                  <span>2</span>                   
+                  <small>开始时间</small>
+                  <form class="seach-form">
+                    <input type="text" class="time" value="9:00" />
+                    <select class="time1">
+                      <option>AM</option>
+                      <option>PM</option>
+                    </select>
+                    <i></i><!--背景竖条-->
+                    <select class="time2">
+                      <option>昨天</option>
+                      <option>今天</option>
+                      <option>明天</option>
+                    </select>
+                  </form> 
+                  <small> - 结束时间</small>  
+                  <form class="seach-form">
+                    <input type="text" class="time" value="9:00" />
+                    <select class="time1">
+                      <option>AM</option>
+                      <option>PM</option>
+                    </select>
+                    <i></i><!--背景竖条-->
+                    <select class="time2">
+                      <option>昨天</option>
+                      <option>今天</option>
+                      <option>明天</option>
+                    </select>
+                  </form>                 
+                </div>
+              </div>
+            </div>
+            <div class="seach-right">
+              <button type="button" name="button" class="seach01">收起设置栏</button>
+              <button type="button" name="button" class="seach02">+ 新增筛选条件</button>
+              <button type="button" name="button" class="seach03">保存</button>
+            </div>
+          </div>
+          <div class="admin-right">
+            <a href="javascript:;" alt="打印销售量"><img src="images/x04.png" alt=""> </a>
+            <a href="admin2.html" alt="查看销售量"><img src="images/x03.png" alt=""> </a>
+            <a href="javascript:;" alt="打印销售额"><img src="images/x02.png" alt=""> </a>
+            <a href="admin.html" alt="查看销售额"><img src="images/x01.png" alt=""> </a>
+          </div>
+        </div>
+        <div class="admin-bot">
+            <!-- 左侧菜单 -->
+            <ul class="admin-tabnav">
+              <li class="admin tab-active" data-index="1"><a href="javascript:;">今天</a> </li>
+              <li class="admin" data-index="2"><a href="javascript:;">昨天</a> </li>
+              <li class="period" data-index="3"><a href="javascript:;">Period</a> </li>
+            </ul>
+            <!-- 右侧 -->
+            <div class="adminTab aTab01">
+              <ul class="a1">
+                <li>实收现金</li>
+                <li>实收卡类</li>
+                <li>卡付小费</li>
+                <li class="line">Default tips by card</li>
+                <li class="line">Default tips by cash</li>
+                <li>税</li>
+                <li>总计</li>
+                <li>实收总计</li>
+              </ul>
+              <div class="a2">
+                <div class="a-top a2-top">
+                  <p><span>Today</span>2018/05/08 9:00 AM</p>
+                  <p><span>Today</span>2018/05/08 9:00 AM</p>
+                </div>
+                <ul>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                </ul>
+              </div>
+              <div class="a2">
+                <div class="a-top">
+                  <p><span>Period</span>2018/05/08 12:00 AM</p>
+                  <p><span>Period</span>2018/05/08 2:00 PM</p>
+                </div>
+                <ul>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                </ul>
+              </div>
+              <div class="a2">
+                <div class="a-top">
+                  <p><span>Period</span>2018/05/08 5:00 AM</p>
+                  <p><span>Period</span>2018/05/08 10:00 AM</p>
+                </div>
+                <ul>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                </ul>
+              </div>
+              <div class="a2">
+                <div class="a-top">
+                  <p><span>Period</span>2018/05/08 6:00 AM</p>
+                  <p><span>Period</span>2018/05/08 10:00 AM</p>
+                </div>
+                <ul>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                </ul>
+              </div>             
+            </div>
+            <div class="adminTab aTab02">
+              <ul class="a1">
+                <li>实收现金</li>
+                <li>实收卡类</li>
+                <li>卡付小费</li>
+                <li class="line">Default tips by card</li>
+                <li class="line">Default tips by cash</li>
+                <li>税</li>
+                <li>总计</li>
+                <li>实收总计</li>
+              </ul>
+              <div class="a2">
+                <div class="a-top a2-top">
+                  <p><span>Today</span>2018/05/08 9:00 AM</p>
+                  <p><span>Today</span>2018/05/08 9:00 AM</p>
+                </div>
+                <ul>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                </ul>
+              </div>
+              <div class="a2">
+                <div class="a-top">
+                  <p><span>Period</span>2018/05/08 12:00 AM</p>
+                  <p><span>Period</span>2018/05/08 2:00 PM</p>
+                </div>
+                <ul>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                </ul>
+              </div>
+              <div class="a2">
+                <div class="a-top">
+                  <p><span>Period</span>2018/05/08 5:00 AM</p>
+                  <p><span>Period</span>2018/05/08 10:00 AM</p>
+                </div>
+                <ul>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                </ul>
+              </div>
+              <div class="a2">
+                <div class="a-top">
+                  <p><span>Period</span>2018/05/08 6:00 AM</p>
+                  <p><span>Period</span>2018/05/08 10:00 AM</p>
+                </div>
+                <ul>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                </ul>
+              </div>             
+            </div>
+            <div class="adminTab aTab03">
+              <ul class="a1">
+                <li>实收现金</li>
+                <li>实收卡类</li>
+                <li>卡付小费</li>
+                <li class="line">Default tips by card</li>
+                <li class="line">Default tips by cash</li>
+                <li>税</li>
+                <li>总计</li>
+                <li>实收总计</li>
+              </ul>
+              <div class="a2">
+                <div class="a-top a2-top">
+                  <p><span>Today</span>2018/05/08 9:00 AM</p>
+                  <p><span>Today</span>2018/05/08 9:00 AM</p>
+                </div>
+                <ul>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                </ul>
+              </div>
+              <div class="a2">
+                <div class="a-top">
+                  <p><span>Period</span>2018/05/08 12:00 AM</p>
+                  <p><span>Period</span>2018/05/08 2:00 PM</p>
+                </div>
+                <ul>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                </ul>
+              </div>
+              <div class="a2">
+                <div class="a-top">
+                  <p><span>Period</span>2018/05/08 5:00 AM</p>
+                  <p><span>Period</span>2018/05/08 10:00 AM</p>
+                </div>
+                <ul>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                </ul>
+              </div>
+              <div class="a2">
+                <div class="a-top">
+                  <p><span>Period</span>2018/05/08 6:00 AM</p>
+                  <p><span>Period</span>2018/05/08 10:00 AM</p>
+                </div>
+                <ul>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                  <li>0.00</li>
+                </ul>
+              </div>             
+            </div>
+        </div>
+      </div>
+    </div>
+    <!-- 往期搜索 -->
+    <div class="rili-div">
+      <div class="rili-inp">
+        <input type="text" class="r1" value="" placeholder="2018/05/01">
+        <img src="images/icon-08.png" alt="清空日期">
+      </div>
+      <div class="rili-inp">
+        <input type="text" class="r2" value="" placeholder="2018/05/14">
+        <img src="images/icon-08.png" alt="清空日期">
+      </div>
+    </div>
+
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+      // nav
+      $(".barnav").hover(function(){
+        $(this).find("ul").slideDown();
+      },function(){
+        $(this).find("ul").slideUp();
+      });
+      $(".barnav").on("click",function(){
+        var ulD = $(this).find("ul").css("display");
+        if(ulD == "none"){
+          $(this).find("ul").slideDown();
+        }else{
+          $(this).find("ul").slideUp();
+        }
+      });
+      // content
+      var winH = $(window).height() - 100, //100是导航
+          winH1 = $(window).height() - 317,//100是导航，217是上部分
+          winH2 = $(window).height() - 277,//100是导航，177是1024可视宽度上部分
+          winW = $(window).width();
+      $(".content").css("height",winH+"px");
+      if(winW < 1025){
+        $(".admin-bot").css("height",winH2+"px");
+      }else if(winW > 1025){
+        $(".admin-bot").css("height","100%");
+      }
+
+      $(".lock-div img").on("click",function(){
+        $(".lock-div").slideUp();
+      });
+      // 查询
+      $(".admin-tabnav li.admin").on("click",function(){
+        var index = $(this).data("index");
+        $(".adminTab").hide();
+        $(".aTab0"+index).show();
+        $(this).addClass("tab-active");
+        $(this).siblings().removeClass("tab-active");
+      });
+      $(".period").on("click",function(){
+        $(".rili-div").slideToggle();
+      });
+      window.document.onkeydown= function(evt){
+         evt = window.event || evt;
+         var v1 = $(".r1").val(),
+             v2 = $(".r2").val();
+         if(evt.keyCode == 13){//如果取到的键值是回车
+          if(v1 != "" && v2 != ""){
+            $(".adminTab").hide();
+            $(".aTab03").show();         
+            $(".period").addClass("tab-active");
+            $(".admin").removeClass("tab-active");  
+            $(".rili-div").slideToggle();          
+          }else{
+            alert("请输入正确的日期格式！");
+          }
+         }
+      }
+      // 清空日期
+      $(".rili-inp img").on("click",function(){
+        $(this).prev().val("");
+      });
+      // 收起设置栏
+      $(".seach01").on("click",function(){
+        var winH4 = $(window).height() - 242;
+        if($(this).hasClass("bbt")){
+          $(this).removeClass("bbt").html("收起设置栏");
+          $(".seach02,.seach03,.seach-content").show();
+          $(".seach-left h3").removeClass("l");
+          $(".admin-bot").css("height",winH3+"px");
+        }else{
+          $(this).addClass("bbt").html("展开设置栏");
+          $(".seach02,.seach03,.seach-content").hide();
+          $(".seach-left h3").addClass("l");
+          $(".admin-bot").css("height",winH4+"px");
+       }
+      });
+    });
+    </script>
+  </body>
+</html>

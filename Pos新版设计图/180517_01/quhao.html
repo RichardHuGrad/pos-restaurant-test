@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>Eatopia排队系统</title>
+    <link rel="stylesheet" href="css/paidui.css" />
+    <link rel="stylesheet" href="css/jianpan.css" />
+</head>
+  <body>
+    <!-- logo -->
+    <img src="images/logo_1.png" alt="logo" class="logo1">
+    <!-- 中英文转换 -->
+    <button type="button" class="english" name="button">EN/中文</button>
+    <button type="button" class="lock" name="button"></button>
+<!--     <div class="lock-div">
+      <input type="text" name="" value="" placeholder="请输入密码解锁" />
+      <img src="images/icon-08.png" alt="关闭密码解锁" />
+    </div> -->
+    <!-- logo -->
+    <div class="am-vertical-align left" style="height: 100%;">
+      <div class="am-vertical-align-middle left-align">
+        <span>店铺信息</span>
+        <h3>欢迎来到</h3>
+        <h3>嘿小面(north york店)</h3>
+        <hr>
+        <span>现在时间</span>
+        <h3>2018年 05 月 08 日</h3>
+        <h3>PM 2:52</h3>
+        <hr>
+        <span>排队状态</span>
+        <h3>在您前面还有12桌</h3>
+        <h3>请您耐心等待</h3>
+      </div>
+    </div>
+    <!-- 登录 -->
+    <div class="am-vertical-align right" style="height: 100%;">
+      <div class="am-vertical-align-middle right-align">
+        <div class="right-content">
+          <h6>添加排队信息</h6>
+          <form class="">
+            <input type="text" class="r-name" value="" placeholder="请输入您的姓名" />
+            <input type="tel" class="r-tel" value="" placeholder="请输入您的联系电话" />
+            <input type="text" class="r-number" value="" placeholder="请输入您的就餐人数" />
+            <button type="button" class="r-btn" name="button">排队取号</button>
+          </form>
+          <p>排号即将到位，我们会提前短信通知到您的手机</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 管理员,虚拟键盘 -->
+    <div class="key" id="key_admin">
+      <img src="images/icon-14.png" alt="关闭虚拟键盘" class="key_img" />
+      <ul id="keyboard">
+        <li class="esc">Esc</li>
+        <li class="symbol"><span class="off">1</span><span class="on">!</span></li>
+
+        <li class="symbol"><span class="off">2</span><span class="on">@</span></li>
+
+        <li class="symbol"><span class="off">3</span><span class="on">#</span></li>
+
+        <li class="symbol"><span class="off">4</span><span class="on">$</span></li>
+
+        <li class="symbol"><span class="off">5</span><span class="on">%</span></li>
+
+        <li class="symbol"><span class="off">6</span><span class="on">^</span></li>
+
+        <li class="symbol"><span class="off">7</span><span class="on">&amp;</span></li>
+
+        <li class="symbol"><span class="off">8</span><span class="on">*</span></li>
+
+        <li class="symbol"><span class="off">9</span><span class="on">(</span></li>
+
+        <li class="symbol"><span class="off">0</span><span class="on">)</span></li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="delete lastitem">Delete</li>
+
+        <li class="tab no"></li>
+
+        <li class="letter">Q</li>
+
+        <li class="letter">W</li>
+
+        <li class="letter">E</li>
+
+        <li class="letter">R</li>
+
+        <li class="letter">T</li>
+
+        <li class="letter">Y</li>
+
+        <li class="letter">U</li>
+
+        <li class="letter">I</li>
+
+        <li class="letter">O</li>
+
+        <li class="letter">P</li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="symbol lastitem"><span class="off">\</span><span class="on">|</span></li>
+
+        <li class="capslock no"></li>
+
+        <li class="letter">A</li>
+
+        <li class="letter">S</li>
+
+        <li class="letter">D</li>
+
+        <li class="letter">F</li>
+
+        <li class="letter">G</li>
+
+        <li class="letter">H</li>
+
+        <li class="letter">J</li>
+
+        <li class="letter">K</li>
+
+        <li class="letter">L</li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="return lastitem">Enter</li>
+
+        <li class="left-shift">SHIFT</li>
+
+        <li class="letter">Z</li>
+
+        <li class="letter">X</li>
+
+        <li class="letter">C</li>
+
+        <li class="letter">V</li>
+
+        <li class="letter">B</li>
+
+        <li class="letter">N</li>
+
+        <li class="letter">M</li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="right-shift no"></li>
+
+        <li class="no b1"></li>
+
+        <li class="no b2"></li>
+
+        <li class="no b3"></li>
+
+        <li class="no b4"></li>
+
+        <li class="space lastitem">&nbsp;</li>
+
+        <li class="no b5"></li>
+
+        <li class="no b5"></li>
+
+        <li class="no b6"></li>
+      </ul>
+    </div>
+
+    <!-- 管理员密码 -->
+    <div id="admin">
+      <p>密码解锁</p>
+      <input type="text" name="" id="write" class="adminInp" placeholder="请输入密码解锁" />
+      <div class="admin-btn">
+        <button type="button" class="a_no">取消</button>
+        <button type="button" class="a_yes">输入</button>
+      </div>
+    </div>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/amazeui.min.js"></script>
+    <script type="text/javascript" src="js/keyboard.js"></script>
+    <script type="text/javascript">
+      $(function(){
+        var liW = parseFloat($(".num_left li").width()) ,
+            liW1 = parseFloat($(".num_left li").width()*2 + 7),
+            liW2 = parseInt((liW1 - 80)/2);
+        $(".num_left li").css({"height":liW+"px","line-height":liW+"px"});
+        $(".num_right a").css({"padding-top":liW2+"px","padding-bottom":liW2+"px"});
+
+        $(".lock").on("click",function(){
+          $(".lock-div").slideToggle();
+        });
+        $(".lock-div img").on("click",function(){
+          $(".lock-div").slideUp();
+        });
+
+        // 管理员密码
+        $(".lock").on("click",function(){
+          $("#admin").show();
+        });
+        $(".a_no").on("click",function(){
+          $("#admin").hide();
+          $(".key").hide();
+        });
+        $(".a_yes").on("click",function(){
+          $(".key").show();
+        });
+        $(".key_img").on("click",function(){
+          $(".key").hide();
+        });
+        // 回车,跳转到管理员界面      
+        $(".return").on("click",function(){
+          hrefG();
+        });
+        window.document.onkeydown= function(evt){
+         evt = window.event || evt;
+         if(evt.keyCode == 13){//如果取到的键值是回车
+          hrefG();
+         }
+        }
+        function hrefG(){
+          var aVal = $("#write").val();
+          // 1是管理员解锁密码
+          if(aVal == 1){ 
+            // 跳转管理员界面
+            window.location.href="admin.html";         
+          }else{
+            alert("解锁密码错误！");
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

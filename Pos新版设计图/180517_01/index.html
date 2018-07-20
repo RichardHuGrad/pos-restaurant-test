@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>主页</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/jianpan.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- 头部 -->
+      <div class="header">
+        <!-- logo -->
+        <img src="images/logo.png" alt="logo" class="logo" />
+        <!-- 导航 -->
+        <ul class="nav">
+          <li><a href="index.html" class="nav-a">主页</a></li>
+          <li class="barnav">
+            <a href="javascript:;" class="nav-a">语言</a>
+            <ul style="display: none;">
+              <li><a href="javascript:;">English</a></li>
+              <li><a href="javascript:;">中文</a></li>
+            </ul>
+          </li>
+          <li><a href="javascript:;" class="nav-a member">会员</a></li>
+          <li><a href="paidui.html" class="nav-a">排队</a></li>
+          <li><a href="quhao.html" class="nav-a">取号</a></li>
+        </ul>
+        <img src="images/nav.png" class="smalllogo" alt="pad菜单" />
+        <!-- 登录按钮 -->
+        <div class="login_right">
+          <button type="button" name="button">登出</button>
+          <span>管理员</span>
+        </div>
+      </div>
+      <!-- 主体 -->
+      <div class="content">
+        <div class="content_left">
+          <div class="c_area">
+            <!-- 提示 -->
+            <div class="prompt c1">
+              <span>错误：请重新选择</span>
+              <img src="images/icon-02.png" alt="关闭提示" />
+            </div>
+            <!-- 占桌情况 -->
+            <div class="sit">
+              <!-- li的class为sit_no是未支付，sit_yes是已付款，
+                       sit_dan是已打单, sit_kong是空桌 -->
+              <!-- 未加class的li是空白 -->
+              <ul class="sit_left">
+                <li class="sit_kong">
+                  <div class="sit-title"><span>$</span>0.00</div>
+                  <div class="sit-time">
+                    <!-- 占桌时间 -->
+                    <span>00:00</span>
+                    <p><small>No.</small><b>01</b></p>
+                  </div>
+                </li>
+                <li class="sit_no">
+                  <div class="sit-title"><span>$</span>69.12</div>
+                  <div class="sit-time">
+                    <!-- 占桌时间 -->
+                    <span>16:30</span>
+                    <p><small>No.</small><b>02</b></p>
+                  </div>
+                </li>
+                <li class="sit_yes">
+                  <div class="sit-title"><span>$</span>0.00</div>
+                  <div class="sit-time">
+                    <!-- 占桌时间 -->
+                    <span>00:00</span>
+                    <p><small>No.</small><b>03</b></p>
+                  </div>
+                </li>
+                <li class="sit_kong">
+                  <div class="sit-title"><span>$</span>69.12</div>
+                  <div class="sit-time">
+                    <!-- 占桌时间 -->
+                    <span>16:30</span>
+                    <p><small>No.</small><b>04</b></p>
+                  </div>
+                </li>
+                <li class="sit_kong">
+                  <div class="sit-title"><span>$</span>0.00</div>
+                  <div class="sit-time">
+                    <!-- 占桌时间 -->
+                    <span>00:00</span>
+                    <p><small>No.</small><b>05</b></p>
+                  </div>
+                </li>
+                <li class="sit_kong">
+                  <div class="sit-title"><span>$</span>69.12</div>
+                  <div class="sit-time">
+                    <!-- 占桌时间 -->
+                    <span>16:30</span>
+                    <p><small>No.</small><b>06</b></p>
+                  </div>
+                </li>
+                <li class="sit_yes">
+                  <div class="sit-title"><span>$</span>12.98</div>
+                  <div class="sit-time">
+                    <!-- 占桌时间 -->
+                    <span>17:00</span>
+                    <p><small>No.</small><b>07</b></p>
+                  </div>
+                </li>
+                <li class="sit_kong">
+                  <div class="sit-title"><span>$</span>00.00</div>
+                  <div class="sit-time">
+                    <!-- 占桌时间 -->
+                    <span>00:00</span>
+                    <p><small>No.</small><b>08</b></p>
+                  </div>
+                </li>
+                <li class="sit_no">
+                  <div class="sit-title"><span>$</span>10.00</div>
+                  <div class="sit-time">
+                    <!-- 占桌时间 -->
+                    <span>17:10</span>
+                    <p><small>No.</small><b>09</b></p>
+                  </div>
+                </li>
+                <li class="sit_kong">
+                  <div class="sit-title"><span>$</span>69.12</div>
+                  <div class="sit-time">
+                    <!-- 占桌时间 -->
+                    <span>16:30</span>
+                    <p><small>No.</small><b>10</b></p>
+                  </div>
+                </li>
+                <li class="sit_kong">
+                  <div class="sit-title"><span>$</span>10.00</div>
+                  <div class="sit-time">
+                    <!-- 占桌时间 -->
+                    <span>17:10</span>
+                    <p><small>No.</small><b>11</b></p>
+                  </div>
+                </li>
+                <li class="sit_kong">
+                  <div class="sit-title"><span>$</span>69.12</div>
+                  <div class="sit-time">
+                    <!-- 占桌时间 -->
+                    <span>16:30</span>
+                    <p><small>No.</small><b>12</b></p>
+                  </div>
+                </li>
+                <li class="sit_dan">
+                  <div class="sit-title"><span>$</span>10.00</div>
+                  <div class="sit-time">
+                    <!-- 占桌时间 -->
+                    <span>17:10</span>
+                    <p><small>No.</small><b>13</b></p>
+                  </div>
+                </li>
+                <li class="sit_kong">
+                  <div class="sit-title"><span>$</span>69.12</div>
+                  <div class="sit-time">
+                    <!-- 占桌时间 -->
+                    <span>16:30</span>
+                    <p><small>No.</small><b>14</b></p>
+                  </div>
+                </li>
+                <li class="sit_dan">
+                  <div class="sit-title"><span>$</span>10.00</div>
+                  <div class="sit-time">
+                    <!-- 占桌时间 -->
+                    <span>17:10</span>
+                    <p><small>No.</small><b>15</b></p>
+                  </div>
+                </li>
+                <li class="sit_kong">
+                  <div class="sit-title"><span>$</span>69.12</div>
+                  <div class="sit-time">
+                    <!-- 占桌时间 -->
+                    <span>16:30</span>
+                    <p><small>No.</small><b>16</b></p>
+                  </div>
+                </li>
+                <li class="sit_kong">
+                  <div class="sit-title"><span>$</span>69.12</div>
+                  <div class="sit-time">
+                    <!-- 占桌时间 -->
+                    <span>16:30</span>
+                    <p><small>No.</small><b>17</b></p>
+                  </div>
+                </li>
+                <li class="sit_kong">
+                  <div class="sit-title"><span>$</span>69.12</div>
+                  <div class="sit-time">
+                    <!-- 占桌时间 -->
+                    <span>16:30</span>
+                    <p><small>No.</small><b>18</b></p>
+                  </div>
+                </li>
+                <li></li>
+                <li></li>
+                <li class="sit_dan">
+                  <div class="sit-title"><span>$</span>10.00</div>
+                  <div class="sit-time">
+                    <!-- 占桌时间 -->
+                    <span>17:10</span>
+                    <p><small>No.</small><b>15</b></p>
+                  </div>
+                </li>
+                <li class="sit_kong">
+                  <div class="sit-title"><span>$</span>69.12</div>
+                  <div class="sit-time">
+                    <!-- 占桌时间 -->
+                    <span>16:30</span>
+                    <p><small>No.</small><b>16</b></p>
+                  </div>
+                </li>
+                <li class="sit_kong">
+                  <div class="sit-title"><span>$</span>69.12</div>
+                  <div class="sit-time">
+                    <!-- 占桌时间 -->
+                    <span>16:30</span>
+                    <p><small>No.</small><b>17</b></p>
+                  </div>
+                </li>
+                <li class="sit_kong">
+                  <div class="sit-title"><span>$</span>69.12</div>
+                  <div class="sit-time">
+                    <!-- 占桌时间 -->
+                    <span>16:30</span>
+                    <p><small>No.</small><b>18</b></p>
+                  </div>
+                </li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li class="sit_kong">
+                  <div class="sit-title"><span>$</span>69.12</div>
+                  <div class="sit-time">
+                    <!-- 占桌时间 -->
+                    <span>16:30</span>
+                    <p><small>No.</small><b>17</b></p>
+                  </div>
+                </li>
+                <li class="sit_kong">
+                  <div class="sit-title"><span>$</span>69.12</div>
+                  <div class="sit-time">
+                    <!-- 占桌时间 -->
+                    <span>16:30</span>
+                    <p><small>No.</small><b>18</b></p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- 状态 -->
+           <div class="static">
+             <h4>状态栏</h4>
+             <ul>
+               <li><span></span>空桌</li>
+               <li><span></span>未支付</li>
+               <li><span></span>已付款</li>
+               <li><span></span>已打单</li>
+             </ul>
+             <p>现在时间 2018/04/20  19:00</p>
+           </div>
+        </div>
+
+        <!-- 右侧外卖送餐 -->
+        <div class="content_right">
+          <div class="c_right_title">
+            <img src="images/icon-02.png" alt="关闭外卖" class="wclose" />
+            <div class="p"><small>外卖送餐</small><span>2</span></div>
+            <ul class="order">
+              <li>
+                <h4>01</h4>
+                <div class="order_content">
+                  <div class="order_left">
+                    <p>T11804201124</p>
+                    <p>$ 12.22</p>
+                  </div>
+                  <div class="order_right">17:00</div>
+                </div>
+              </li>
+              <li>
+                <h4>02</h4>
+                <div class="order_content">
+                  <div class="order_left">
+                    <p>T11804201124</p>
+                    <p>$ 12.22</p>
+                  </div>
+                  <div class="order_right">17:00</div>
+                </div>
+              </li>
+              <li class="order_no">
+                <h4>03</h4>
+                <div class="order_content">
+                  <div class="order_left">
+                    <p>T11804201124</p>
+                    <p>$ 12.22</p>
+                  </div>
+                  <div class="order_right">17:00</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 外卖按钮 -->
+    <button type="button" name="button" class="wbtn">外卖送餐</button>
+
+
+    <!-- 管理员,虚拟键盘 -->
+    <div class="key" id="key_admin">
+      <img src="images/icon-14.png" alt="关闭虚拟键盘" class="key_img" />
+      <ul id="keyboard">
+        <li class="esc">Esc</li>
+        <li class="symbol"><span class="off">1</span><span class="on">!</span></li>
+
+        <li class="symbol"><span class="off">2</span><span class="on">@</span></li>
+
+        <li class="symbol"><span class="off">3</span><span class="on">#</span></li>
+
+        <li class="symbol"><span class="off">4</span><span class="on">$</span></li>
+
+        <li class="symbol"><span class="off">5</span><span class="on">%</span></li>
+
+        <li class="symbol"><span class="off">6</span><span class="on">^</span></li>
+
+        <li class="symbol"><span class="off">7</span><span class="on">&amp;</span></li>
+
+        <li class="symbol"><span class="off">8</span><span class="on">*</span></li>
+
+        <li class="symbol"><span class="off">9</span><span class="on">(</span></li>
+
+        <li class="symbol"><span class="off">0</span><span class="on">)</span></li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="delete lastitem">Delete</li>
+
+        <li class="tab no"></li>
+
+        <li class="letter">Q</li>
+
+        <li class="letter">W</li>
+
+        <li class="letter">E</li>
+
+        <li class="letter">R</li>
+
+        <li class="letter">T</li>
+
+        <li class="letter">Y</li>
+
+        <li class="letter">U</li>
+
+        <li class="letter">I</li>
+
+        <li class="letter">O</li>
+
+        <li class="letter">P</li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="symbol lastitem"><span class="off">\</span><span class="on">|</span></li>
+
+        <li class="capslock no"></li>
+
+        <li class="letter">A</li>
+
+        <li class="letter">S</li>
+
+        <li class="letter">D</li>
+
+        <li class="letter">F</li>
+
+        <li class="letter">G</li>
+
+        <li class="letter">H</li>
+
+        <li class="letter">J</li>
+
+        <li class="letter">K</li>
+
+        <li class="letter">L</li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="return lastitem">Enter</li>
+
+        <li class="left-shift">SHIFT</li>
+
+        <li class="letter">Z</li>
+
+        <li class="letter">X</li>
+
+        <li class="letter">C</li>
+
+        <li class="letter">V</li>
+
+        <li class="letter">B</li>
+
+        <li class="letter">N</li>
+
+        <li class="letter">M</li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="right-shift no"></li>
+
+        <li class="no b1"></li>
+
+        <li class="no b2"></li>
+
+        <li class="no b3"></li>
+
+        <li class="no b4"></li>
+
+        <li class="space lastitem">&nbsp;</li>
+
+        <li class="no b5"></li>
+
+        <li class="no b5"></li>
+
+        <li class="no b6"></li>
+      </ul>
+    </div>
+
+    <!-- 管理员密码 -->
+    <div id="admin">
+      <p>密码解锁</p>
+      <input type="text" name="" id="write" class="adminInp" placeholder="请输入密码解锁" />
+      <div class="admin-btn">
+        <button type="button" class="a_no">取消</button>
+        <button type="button" class="a_yes">输入</button>
+      </div>
+    </div>
+    <!-- 弹出层 -->
+    <div class="model model1">
+      <div class="model-title">堂食 NO.01</div>
+      <img src="images/icon-06.png" alt="关闭弹出层" class="model-close" />
+      <ul class="model-content">
+        <li>
+          <a href="page1.html">
+            <div class="model-img"></div>
+            <span>订单</span>
+          </a>
+        </li>
+        <li>
+          <a href="page2.html">
+            <div class="model-img"></div>
+            <span>付款</span>
+          </a>
+        </li>
+        <li class="model-nav3">
+          <a href="javascript:;">
+            <div class="model-img"></div>
+            <span>换桌</span>
+          </a>
+        </li>
+        <li class="model-nav4">
+          <a href="javascript:;">
+            <div class="model-img"></div>
+            <span>变空桌</span>
+          </a>
+        </li>
+        <li class="model-nav5">
+          <a href="javascript:;">
+            <div class="model-img"></div>
+            <span>合单</span>
+          </a>
+        </li>
+        <li>
+          <a href="page6.html">
+            <div class="model-img"></div>
+            <span>分单</span>
+          </a>
+        </li>
+        <li>
+          <a href="page7.html">
+            <div class="model-img"></div>
+            <span>历史订单</span>
+          </a>
+        </li>
+        <li>
+          <a href="javascript:;">
+            <div class="model-img"></div>
+            <span>打印账单</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <!-- 弹出层，变更 -->
+    <div class="model model2">
+      <div class="model-title">堂食 NO.01 变更为</div>
+      <img src="images/icon-06.png" alt="关闭弹出层" class="model-close" />
+      <div class="model2-content">
+        <input type="text" name="" placeholder="堂食" class="model-input" />
+        <ul class="tang1">
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+        </ul>
+        <input type="text" name="" placeholder="外卖" class="model-input" />
+        <ul class="tang2">
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+        </ul>
+        <input type="text" name="" placeholder="送餐" class="model-input" />
+        <ul class="tang3">
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+        </ul>
+      </div>
+    </div>
+    <!-- 弹出层，合单 -->
+    <div class="model model3">
+      <div class="model-title">堂食 NO.01 合并为</div>
+      <img src="images/icon-06.png" alt="关闭弹出层" class="model-close" />
+      <div class="model3-content">
+        <input type="text" name="" placeholder="堂食" class="model-input" />
+        <ul class="tang1">
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">02</a></li>
+          <li><a href="javascript:;">03</a></li>
+          <li><a href="javascript:;">04</a></li>
+          <li><a href="javascript:;">05</a></li>
+          <li><a href="javascript:;">06</a></li>
+          <li><a href="javascript:;">07</a></li>
+          <li><a href="javascript:;">08</a></li>
+          <li><a href="javascript:;">09</a></li>
+          <li><a href="javascript:;">10</a></li>
+          <li><a href="javascript:;">11</a></li>
+          <li><a href="javascript:;">12</a></li>
+          <li><a href="javascript:;">13</a></li>
+          <li><a href="javascript:;">14</a></li>
+          <li><a href="javascript:;">15</a></li>
+          <li><a href="javascript:;">16</a></li>
+          <li><a href="javascript:;">17</a></li>
+        </ul>
+      </div>
+      <button type="button" class="model3_btn">确认合并</button>
+    </div>
+    <!-- 弹出层，会员 -->
+    <div id="member">
+      <div class="member-top">
+        <button type="button" class="member-btn">新&nbsp;增</button>
+        <h2>会员列表</h2>
+        <img src="images/icon-06.png" alt="关闭弹出层" class="member-close" />
+      </div>
+      <div class="member-bot">
+        <input type="text" name="" class="member-input" placeholder="搜索卡号/ID/姓名/电话" />
+        <p>
+          <span>Card Number</span>
+          <span>ID</span>
+          <span>Amount</span>
+        </p>
+        <ul class="memberLi">
+          <li>
+            <a href="javascript:;">
+              <span>10001</span>
+              <span>ABC123</span>
+              <span>$558</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;">
+              <span>10002</span>
+              <span>ABC123</span>
+              <span>$558</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;">
+              <span>10003</span>
+              <span>ABC123</span>
+              <span>$558</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <!-- 新增会员 -->
+      <div class="add_member">
+        <div class="member-top">
+          <img src="images/icon-07.png" alt="关闭新增会员" class="member-close1" />
+          <h2>添加新会员</h2>
+        </div>
+        <div class="member-center"><b>会员ID</b>ABC123</div>
+        <div class="add_bot">
+          <label>Card Number</label>
+          <input type="text" name="" placeholder="请添加备注信息" />
+          <label>Name</label>
+          <input type="text" name="" placeholder="请添加备注信息" />
+          <label>Phone Number</label>
+          <input type="text" name="" placeholder="请添加备注信息" />
+          <label>Note</label>
+          <input type="text" name="" placeholder="请添加备注信息" />
+        </div>
+        <button type="button" class="add_btn">保存信息</button>
+      </div>
+      <!-- 会员详情 -->
+      <div class="xiang_member">
+        <div class="member-top">
+          <img src="images/icon-07.png" alt="关闭会员详情" class="member-close2" />
+          <h2>会员页面</h2>
+          <button type="button" class="member-btn1">信息修改</button>
+        </div>
+        <div class="member-bot">
+          <p>
+            <span>Card Number</span>
+            <span>ID</span>
+            <span>Amount</span>
+          </p>
+          <p class="p_color">
+            <span>10001</span>
+            <span>ABC123</span>
+            <span>Nan</span>
+          </p>
+          <p class="p_span">
+            <span>Phone</span>
+            <span>Note</span>
+          </p>
+          <p class="p_color p_span">
+            <span>647-123-4567</span>
+            <span>聚餐 家庭 面食 少盐</span>
+          </p>
+          <div class="p_back">
+            <p class="p_color p_span">
+              <span>单号：D51710171215</span>
+              <span>2017/12/2 15:58</span>
+            </p>
+            <p class="p_color p_span">
+              <span>账单金额<small>$44.5</small></span>
+              <span>支付：<small>$50</small></span>
+            </p>
+            <p class="p_color p_span">
+              <span>账单金额<small>$449</small></span>
+              <span></span>
+            </p>
+          </div>
+          <div class="p_back">
+            <p class="p_color p_span">
+              <span>单号：D51710171215</span>
+              <span>2017/12/2 15:58</span>
+            </p>
+            <p class="p_color p_span">
+              <span>账单金额<small>$44.5</small></span>
+              <span>支付：<small>$50</small></span>
+            </p>
+            <p class="p_color p_span">
+              <span>账单金额<small>$449</small></span>
+              <span></span>
+            </p>
+          </div>
+          <div class="p_back">
+            <p class="p_color">
+              <span>总消费<small>$449</small></span>
+              <span>总充值<small>$449</small></span>
+              <span>账户余额<small>$449</small></span>
+            </p>
+          </div>
+        </div>
+        <div class="x_btn">
+          <button type="button" class="xiang_btnL">会员充值</button>
+          <button type="button" class="xiang_btnR">查看充值记录</button>        
+        </div>
+      </div>
+      <!-- 充值记录 -->
+      <div class="chong_member">
+        <div class="member-top">
+          <img src="images/icon-07.png" alt="关闭新增会员" class="member-close3" />
+          <h2>会员充值历史记录</h2>
+          <img src="images/icon-06.png" alt="关闭弹出层" class="member-close4" />
+        </div>
+        <div class="member-bot">
+          <p>
+            <span>充值时间</span>
+            <span>充值余额</span>
+            <span>类型</span>
+          </p>
+          <ul class="memberLi">
+            <li>
+              <a href="javascript:;">
+                <span>2018/05/08</span>
+                <span>$558</span>
+                <span>现金</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- 弹出层，会员充值 -->
+    <div id="member_C">
+      <div class="c_member">
+        <div class="member-top">
+          <img src="images/icon-07.png" alt="关闭会员详情" class="member-close5">
+          <h2>会员充值页面</h2>
+        </div>
+        <div class="member-bot">
+          <label>充值信息</label>
+          <p>
+            <span>Card Number</span>
+            <span>ID</span>
+            <span>Amount</span>
+          </p>
+          <p class="p_color">
+            <span>10001</span>
+            <span>ABC123</span>
+            <span>Nan</span>
+          </p>
+        </div>
+        <ul class="payM">
+          <li class="active-li">
+            <a href="javascript:;"><img src="images/btn05.png"></a>
+          </li>
+          <li>
+            <a href="javascript:;"><img src="images/btn06.png"></a>
+          </li>
+          <li>
+            <a href="javascript:;"><img src="images/btn07.png"></a>
+          </li>
+        </ul>
+        <button type="button" class="c_btn">确认充值</button>
+      </div>
+      <div class="r_member">
+        <div class="formkey">
+          <input type="text" value="" class="keyboard" placeholder="0.00">
+          <!-- 左侧数字 -->
+          <ul class="num_left">
+            <li class="num" style="height: 112px; line-height: 112px;">1</li>
+            <li class="num" style="height: 112px; line-height: 112px;">2</li>
+            <li class="num" style="height: 112px; line-height: 112px;">3</li>
+            <li class="num" style="height: 112px; line-height: 112px;">4</li>
+            <li class="num" style="height: 112px; line-height: 112px;">5</li>
+            <li class="num" style="height: 112px; line-height: 112px;">6</li>
+            <li class="num" style="height: 112px; line-height: 112px;">7</li>
+            <li class="num" style="height: 112px; line-height: 112px;">8</li>
+            <li class="num" style="height: 112px; line-height: 112px;">9</li>
+            <li class="empty" style="height: 112px; line-height: 112px;">清空</li>
+            <li class="num" style="height: 112px; line-height: 112px;">0</li>
+            <li class="retreat" style="height: 112px; line-height: 112px;">后退</li>
+          </ul>
+          <!-- 右侧操作 -->
+          <div class="num_right">
+            <a href="javascript:;" class="payde" style="padding-top: 75px; padding-bottom: 75px;">默认<br>金额</a>
+            <a href="javascript:;" class="paymo" style="padding-top: 75px; padding-bottom: 75px;">输入</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 充值成功 -->
+    <div id="mer">
+      <p>充值已成功!</p>
+      <div class="p_back">
+        <span>充值金额<small>$44.5</small></span>
+        <span>账户余额<small>$44.5</small></span>
+      </div>
+    </div>
+    <!-- 充值未成功 -->
+    <div id="mer1">
+      <p>余额不足!</p>
+      <div class="p_back">
+        <span>应付金额<small>$44.5</small></span>
+        <span>账户余额<small>$44.5</small></span>
+      </div>
+    </div>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/keyboard.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+      // nav
+      $(".barnav").hover(function(){
+        $(this).find("ul").slideDown();
+      },function(){
+        $(this).find("ul").slideUp();
+      });
+      $(".barnav").on("click",function(){
+        var ulD = $(this).find("ul").css("display");
+        if(ulD == "none"){
+          $(this).find("ul").slideDown();
+        }else{
+          $(this).find("ul").slideUp();
+        }
+      });
+      // content
+      var winH = $(window).height() - 100, //100是导航
+          winH1 = $(window).height() - 155 -22;//100是导航，55是状态栏 22是上padding
+      $(".content").css("height",winH+"px");
+      $(".c_area").css("height",winH1+"px");
+
+      $(".wbtn").on("click",function(){
+        $(".content_right").animate({width:"40%"});
+      });
+      $(".wclose").on("click",function(){
+        $(".content_right").animate({width:"0"});
+      });
+
+      $(".prompt img").on("click",function(){
+        $(this).parent().css("display","none");
+      });
+      // 弹出层
+      $(".model-close").on("click",function(){
+        $(this).parents(".model").hide();
+      });
+      var $_this;
+      $(".sit_no,.sit_yes,.sit_dan,.sit_kong").on("click",function(){
+        $_this = $(this);
+        $(".model1").show();
+      });
+      // 变更
+      $(".model-nav3").on("click",function(){
+        // $(".model1").hide();
+        $(".model2").show();
+      });
+      // 管理员密码
+      $(".login_right span").on("click",function(){
+        $("#admin").show();
+      });
+      $(".a_no").on("click",function(){
+        $("#admin").hide();
+        $(".key").hide();
+      });
+      $(".a_yes").on("click",function(){
+        $(".key").show();
+      });
+      $(".key_img").on("click",function(){
+        $(".key").hide();
+      });
+      // 变空桌
+      $(".model-nav4").on("click",function(){
+        $(".model").hide();
+        $("#admin").addClass("adminCss").show();
+      });
+      // 回车,跳转到管理员界面      
+      $(".return").on("click",function(){
+        hrefG();
+      });
+      window.document.onkeydown= function(evt){
+       evt = window.event || evt;
+       if(evt.keyCode == 13){//如果取到的键值是回车
+        hrefG();
+       }
+      }
+      function hrefG(){
+        var aVal = $("#write").val(),
+            adminCss = $("#admin").attr("class");
+        // 1是管理员解锁密码
+        if(aVal == 1 && adminCss == null){ 
+          // 跳转管理员界面
+          window.location.href="admin.html";         
+        }else if(aVal == 1 && adminCss == "adminCss"){
+          // 变空桌
+          alert("成功变空桌！");
+          $("#admin,.key").hide();
+          $("#write").val("");
+          // 改变点击的li的class变成空桌的class名
+          $_this.attr("class","sit_kong");
+        }else{
+          alert("解锁密码错误！");
+        }
+      }
+      // 会员
+      $(".member").on("click",function(){
+        $("#member").show();
+      });
+      $(".member-close,.member-close4").on("click",function(){
+        $("#member").hide();
+        $(".chong_member,.xiang_member").animate({width:'0'},200);
+      });
+      // 新增会员
+      $(".member-btn").on("click",function(){
+        $(".add_member").animate({width:'100%'},300);
+      });
+      $(".member-close1").on("click",function(){
+        $(".add_member").animate({width:'0'},200);
+      });
+      // 会员详情页
+      $(".memberLi li").on("click",function(){
+        $(".xiang_member").animate({width:'100%'},300);
+      });
+      $(".member-close2").on("click",function(){
+        $(".xiang_member").animate({width:'0'},200);
+      });
+      // 充值记录
+      $(".xiang_btnR").on("click",function(){
+        $(".chong_member").animate({width:'100%'},200);
+      });
+      $(".member-close3").on("click",function(){
+        $(".chong_member").animate({width:'0'},200);
+      });
+      var liW = parseFloat($(".r_member .num_left li").width()) ,
+          liW1 = parseFloat($(".r_member .num_left li").width()*2 + 7),
+          liW2 = parseInt((liW1 - 80)/2);
+      $(".r_member .num_left li").css({"height":liW+"px","line-height":liW+"px"});
+      $(".r_member .num_right a").css({"padding-top":liW2+"px","padding-bottom":liW2+"px"});
+
+      // 输入密码
+      $(".r_member .num_left li.num").on("click",function(){
+        var inputVal = $(".r_member .keyboard").val(),
+            $_this = $(this).html();
+        $(".r_member .keyboard").val(inputVal+$_this);
+      });
+      // 清空
+      $(".r_member .empty").on("click",function(){
+        $(".r_member .keyboard").val("");
+      });
+      // 后退
+      $(".r_member .retreat").on("click",function(){
+        var leng = $(".r_member .keyboard").val().toString(),valIn = "";
+        valIn = leng.substring(0,leng.length-1);
+        $(".r_member .keyboard").val(valIn);
+      });
+      // 默认
+      $(".r_member .payde").on("click",function(){
+        // 365为现有的默认金额
+        $(".r_member .keyboard").val(365);
+      });
+      // 会员充值
+      $(".xiang_btnL").on("click",function(){
+        var winW = $(window).width();
+        if(winW > 768){
+          $("#member_C").animate({width:'1000px'},200);
+        }else{
+          $("#member_C").animate({width:'760px',marginLeft:'-380px'},200);
+          $(".c_member").css("width","380px");
+          $(".r_member").css("width","320px");
+        }
+      });
+      $(".member-close5").on("click",function(){
+        $("#member_C").animate({width:'0'},200);
+      });
+      // 充值情况
+      $(".c_btn").on("click",function(){
+        $("#mer").fadeIn();
+        setTimeout(function(){
+          $("#mer").fadeOut(1000);
+        },1500);
+      });
+      // 合并
+      $(".model-nav5").on("click",function(){
+        $(".model3").show();
+      });
+      $(".model3 li").on("click",function(){
+        $(this).toggleClass("hover");
+      });
+      $(".model3_btn").on("click",function(){
+        var claB = $(".hover").length;
+        if(claB > 1){
+          window.location.href = "page5.html";
+        }
+      });
+    });
+    </script>
+  </body>
+</html>
