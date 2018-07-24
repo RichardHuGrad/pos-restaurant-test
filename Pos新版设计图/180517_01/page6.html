@@ -373,7 +373,7 @@
             <div class="login-align">
                 <h4>请选择付款方式</h4>
                 <ul class="payF">
-                  <li class="active-li">
+                  <li class="active">
                     <a href="javascript:;"><img src="images/btn02.png"></a>
                   </li>
                   <li>
@@ -810,6 +810,10 @@
         $(".page6-list1").hide();
         $(".lis0"+i).show();
       });
+       //付款方式
+      $(".payF li").click(function(){
+      	$(this).addClass("active").siblings().removeClass("active");
+      })
     });
     </script>
   </body>

@@ -988,6 +988,9 @@
       $(".member-close5").on("click",function(){
         $("#member_C").animate({width:'0'},200);
       });
+      $(".payM li").click(function(){
+      	$(this).addClass("active-li").siblings().removeClass('active-li');
+      })
       // 充值情况
       $(".c_btn").on("click",function(){
         $("#mer").fadeIn();

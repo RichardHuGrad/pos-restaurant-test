@@ -1,6 +1,6 @@
 /* reset
 -----------------------------------------------------------------*/
-@font-face
+/*@font-face
 {
    font-family: 'Nobel-Book';
    src:url('../font/冬青黑体W3.otf');
@@ -27,7 +27,7 @@
    src:url('../font/FZLTZHK.TTF');
    font-weight: normal;
    font-style: normal;
-}
+}*/
 html,body {
      min-width: 768px;
     margin: auto; 
@@ -143,7 +143,7 @@ a {
        color: #fff;
        font-size: 36px;
        line-height: 1;
-       font-family: Nobel-Book;
+       /*font-family: Nobel-Book;*/
      }
      .container .header .nav li.barnav a.nav-a{
        background: url(../images/nav-01.png) no-repeat 115px 29px;
@@ -214,7 +214,7 @@ a {
       line-height: 60px;
       cursor: pointer;
       border-radius: 7%;
-      font-family: Nobel-GBW6;
+      /*font-family: Nobel-GBW6;*/
     }
     .login_right span{
       display: block;
@@ -224,7 +224,7 @@ a {
       color: #fff;
       line-height: 100px;
       font-size: 3rem;
-      font-family: Nobel-Book;
+      /*font-family: Nobel-Book;*/
       cursor: pointer;
     }
     .login_right span.active{
@@ -281,7 +281,7 @@ a {
           width: auto;
           font-size: 30px;
           line-height: 31px;
-          font-family: Nobel-FZLTZHK;
+          /*font-family: Nobel-FZLTZHK;*/
         }
         .c_right_title .p span{
           display: block;
@@ -293,7 +293,7 @@ a {
           padding: 0 8px;
           border-radius: 15px;
           font-size: 21px;
-          font-family: Nobel-GBW6;
+          /*font-family: Nobel-GBW6;*/
         }
 
   .order{
@@ -336,7 +336,7 @@ a {
         font-size: 24px;
         font-size: 2rem;
         color: #000;
-        font-family: Nobel-Book;
+        /*font-family: Nobel-Book;*/
         font-weight: normal;
         border-right: 1px #d3d3d3 solid;
       }
@@ -352,13 +352,13 @@ a {
             line-height: 35px;
             font-size: 18px;
             color: #000;
-            font-family: Nobel-Book;
+            /*font-family: Nobel-Book;*/
           }
           .order_content p:last-child{
             line-height: 35px;
             font-size: 24px;
             color: #00cdef;
-            font-family: Nobel-GBW6;
+            /*font-family: Nobel-GBW6;*/
             text-align: left;
           }
         .order_content .order_right{
@@ -366,7 +366,7 @@ a {
           line-height: 70px;
           font-size: 18px;
           color: #000;
-          font-family: Nobel-Book;
+          /*font-family: Nobel-Book;*/
         }
       .order li.order_no h4,.order_no .order_content p,.order_no .order_content .order_right{
         color: #8e8e8e;
@@ -384,7 +384,7 @@ a {
   padding: 5px 0;
   text-align: center;
   font-size: 23px;
-  font-family: Nobel-FZLTZHK;
+  /*font-family: Nobel-FZLTZHK;*/
   cursor: pointer;
 }
 
@@ -437,7 +437,7 @@ a {
         line-height: 70px;
         font-size: 24px;
         font-size: 2rem;
-        font-family: Nobel-GBW6;
+        /*font-family: Nobel-GBW6;*/
       }
       .prompt img{
         display: block;
@@ -503,7 +503,7 @@ a {
           color: #8e8e8e;
           font-size: 19px;
           line-height: 30px;
-          font-family: Nobel-GBW6;
+          /*font-family: Nobel-GBW6;*/
         }
         .sit li.sit_no .sit-title,.sit li.sit_yes .sit-title,.sit li.sit_dan .sit-title{
           color: #fff;
@@ -529,7 +529,7 @@ a {
             font-size: 14px;
             color: #4f4f4f;
             border-radius: 5px;
-            font-family: Nobel-Book;
+            /*font-family: Nobel-Book;*/
           }
           .sit-time p{
             float: left;
@@ -549,7 +549,7 @@ a {
               margin-right: 2px;
               line-height: 28px;
               font-size: 11px;
-              font-family: Nobel-GBW6;
+              /*font-family: Nobel-GBW6;*/
             }
             .sit-time p b{
               float: left;
@@ -559,7 +559,7 @@ a {
               font-size: 2rem;
               line-height: 28px;
               font-weight: normal;
-              font-family: Nobel-GBW6;
+              /*font-family: Nobel-GBW6;*/
           }
 
 
@@ -800,10 +800,16 @@ a {
         padding: 15px 2%;
         margin-right: 1%;
         margin-top: 1%;
-        background: #fff;
+        background-color: #fff;
         overflow: hidden;
         border-radius: 10px;
       }
+       .tabright li.select{
+       	background-image: url(../images/yes.png);
+       	background-repeat: no-repeat;
+       	background-position: right bottom;
+       	background-size: 28px; 
+       }
         .tabright li a{
           display: block;
           width: 100%;
@@ -937,7 +943,18 @@ a {
       border-top: 1px solid #cfcfcf;
       overflow: hidden;
     }
-    .right-list li.rig-act,.right-list li:hover,.right-list li:hover a .list-left h4,.right-list li:hover a .list-left p,.right-list li:hover a .list-center,.right-list li:hover a .list-right{
+    .right-list li.rig-act,
+    .right-list li.select .rig-act,
+    .right-list li:hover,
+    .right-list li.select,
+    .right-list li.select a .list-left h4,
+    .right-list li:hover a .list-left h4,
+    .right-list li.select a .list-left p,
+    .right-list li:hover a .list-left p,
+    .right-list li.select a .list-center,
+    .right-list li:hover a .list-center,
+    .right-list li.select a .list-right
+    .right-list li:hover a .list-right{
       background: #405a8e;
       color: #fff;
     }
@@ -1049,6 +1066,7 @@ a.add_zhe{
       font-size: 18px;
       font-family: Nobel-Book;
       color: #000;
+      margin-right: 1%;
     }
     .add-right button{
       float: left;
@@ -1595,10 +1613,11 @@ a.add_zhe{
       }
       .payment .add-right button{
         font-size: 16px;
-        padding: 0 0.5%;
+        padding: 0 1%;
         margin:10px 0.5%;
         height: 40px;
         line-height: 40px;
+        cursor: pointer;
       }
       .payment .pay-title2 button{
         font-size: 14px;
@@ -1712,7 +1731,7 @@ a.add_zhe{
       background: #c42248;
     }
     .pay02{
-      background: #f79826;
+      background: #ffd03b;
     }
     .pay03{
       background: #405a8e;
@@ -1829,14 +1848,15 @@ a.add_zhe{
       width: 32%;
       margin-right: 1%;
       overflow: hidden;
+      background: #fff;
+        border-radius: 8px;
     }
       .payF li a{
         display: block;
         width: 100%;
-        background: #fff;
-        border-radius: 5px;
+        
       }
-      .payF li.active-li a{
+      .payF li.active{
         background: #ffd03b
       }
       .payF li img{
@@ -1917,12 +1937,15 @@ a.add_zhe{
   }
     .page8-bot table{
       width: 100%;
-      margin: 20px 0;
-      padding-bottom: 35px;
-      border-radius: 5px;
+      border-radius: 5px 5px 0 0;
       overflow: hidden; 
-      border: 1px #f1f1f1 solid;
-          border-collapse: unset;
+      
+    }
+    .page8-bot table+table{
+    	border: 1px #f1f1f1 solid;
+      border-collapse: unset;
+      padding: 15px 15px 50px;
+      border-radius: 0 0 5px 5px ;
     }
       .page8-bot table tbody{
         padding: 10px 1%;
@@ -2730,7 +2753,8 @@ a.add_zhe{
       border: 1px #ebebeb solid;
       box-sizing:border-box;
     }
-    .payM li.active-li a {
+    .payM li.active-li a,
+    .payM li:hover a{
       background: #ffd03b;
     }
     .payM li img {
@@ -3077,6 +3101,9 @@ a.add_zhe{
   width: 40%;
   float: left;
 }
+.payment .page9 .pay-right button.pay02{
+  background: #f79826;
+}
 .page9 .right-tab1{
   position: absolute;
   bottom: 0;
@@ -3107,16 +3134,18 @@ a.add_zhe{
   .pay-input input,.pay-input-more input{
     float: right;
     display: block;
-    width: 58%;
+    width: 56%;
     height: 50px;
-    padding: 0 1%;
+    padding: 0 2%;
     line-height: 50px;
     background: #f7f7f7;
     border: 0;
     outline: none;
     border-radius: 5px;
     font-size: 21px;
-    font-family: Nobel-Book;
+    /*font-family: Nobel-Book;
+    text-align: center;*/
+    color: #000000;
   }
 .page9 .r-c-bot{
   border-top: 1px #eaeaea solid;
@@ -3126,9 +3155,11 @@ a.add_zhe{
   color: #727272;
   font-size:19px;
   float: right;
+  margin-right: 5px;
 }
 .pay-input-more input{
   width: 80px;
+  margin-right: 15px;
   color: #727272;
 }
 

@@ -66,7 +66,7 @@
               <img src="images/icon-08.png" alt="去除搜索内容" class="tab-close" />
               <!-- 内容 -->
               <ul class="tabright tab1">
-                <li>
+                <li class="select">
                   <a href="javascript:;">
                     <p title="A1 宋嫂牛肉面">A1 宋嫂牛肉面</p>
                     <span>$ 12.99</span>
@@ -213,13 +213,13 @@
                 <li class="right-active">
                   <a href="javascript:;">订单列表</a>
                 </li>
-                <li>
+                <li class="totalSelection">
                   <a href="javascript:;">全选</a>
                 </li>
-                <li>
+                <li class="reverseSelection">
                   <a href="javascript:;">反选</a>
                 </li>
-                <li>
+                <li class="cancel">
                   <a href="javascript:;">取消选择</a>
                 </li>
                 <li>
@@ -700,6 +700,32 @@
         $(this).addClass("tab-active");
         $(this).siblings().removeClass("tab-active");
       });
+      //判断哪个菜品被选中
+      $(".tabright li").click(function(){
+      	
+      	if($(this).hasClass("select")){
+      		$(this).removeClass("select");
+      	}else{
+      		$(this).addClass("select");
+      	}
+      })
+      //右侧已选菜品选中操作
+      $(".right-list li").click(function(){
+      		$(this).addClass("select");
+      })
+      //取消选择的菜品(后期会根据上边是否是切换进一步修改，目前只是暂时的效果；全选反选亦是)
+      $(".cancel").click(function(){
+      	$(".right-list li").removeClass("select");
+      })
+      //全选
+      $(".totalSelection").click(function(){
+      	
+      })
+      //反选
+      $(".reverseSelection").click(function(){
+      	
+      })
+      
       // 去除搜索框中的内容
       $(".tab-close").on("click",function(){
         $(".tab-input").val("");

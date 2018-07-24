@@ -98,7 +98,7 @@ a {
   text-align: center;
   font-size: 24px;
   outline: none;
-  font-family: Nobel-Book;
+  /*font-family: Nobel-Book;*/
 
 }
 .login-align{
@@ -153,7 +153,7 @@ a {
       border: 1px #fff solid;
       border-radius: 70px;
       outline: none;
-      font-family: Nobel-Book;
+      /*font-family: Nobel-Book;*/
     }
     .num_left{
       float: left;
