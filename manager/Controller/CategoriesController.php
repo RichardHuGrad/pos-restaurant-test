@@ -5,7 +5,7 @@
  */
 class CategoriesController extends AppController {
 
-    public $uses = array('Category', 'CategoryLocale', 'Language');
+    public $uses = array('Category', 'CategoryLocale', 'Language','Printer');
     public $components = array('Session', 'Paginator');
 
     /**
@@ -105,7 +105,16 @@ class CategoriesController extends AppController {
         $this->layout = LAYOUT_ADMIN;
         $id = base64_decode($id);
         $languages = $this->Language->find('list', array('fields' => array('lang_code', 'language'), 'conditions' => array('status' => 'A')));
-
+        $printers = $this->Printer->find('all');//all printers
+        
+        // foreach($printers as $k=>$v){
+        //     unset($printers[$k]['printer_ID']);
+        //     unset($printers[$k]['type']);
+        //     unset($printers[$k]['num']);
+        //     unset($printers[$k]['admin_id']);
+        // }
+        // var_dump($printers);
+        // die;
         if (!empty($this->request->data)) {
 
             $this->Category->set($this->request->data);
@@ -125,6 +134,7 @@ class CategoriesController extends AppController {
                     }
                 }
             }
+           
             ###### custom validation end for CategoryLocale name ########
 
             if ($this->Category->validates() && $this->CategoryLocale->validates()) {
@@ -151,7 +161,6 @@ class CategoriesController extends AppController {
                 }
             }
         }
-
         $remote_id = 0;
         if('' != $id){
 
@@ -170,12 +179,13 @@ class CategoriesController extends AppController {
                         'id' => $d['id']
                     );
                 }
+  // var_dump($result_data);die;
                 $result_data = array_merge($result_data, $tmp);
+
                 $this->request->data = $result_data;
             }
-
         }
-        $this->set(compact('id', 'remote_id', 'languages'));
+        $this->set(compact('id', 'remote_id', 'languages','printers'));
     }
 
     /**
