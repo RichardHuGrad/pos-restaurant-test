@@ -650,8 +650,17 @@ a {
   }
     .page2-top{
       padding: 20px 5%;
-      overflow: hidden;
+      position: relative;
     }
+    .page2-top:after{
+    	content: '';
+    	display: block;
+    	clear:both;
+    }
+    .page2-top .lock-div{
+	top: 70px;
+	display: none;
+}
       .page2-top h4{
         float: left;
         width: auto;
@@ -885,6 +894,7 @@ a {
     width: 100%;
     overflow: hidden;
     background: #eaeaea;
+    box-sizing: border-box;
   }
     .right-top li{
       float: left;
@@ -896,20 +906,23 @@ a {
       text-align: center;
       display: table-cell;
       vertical-align: inherit;
-      border-left: 1px #b5b5b5 solid;
-      border-right: 1px #b5b5b5 solid;
-      border-bottom: 2px #b5b5b5 solid;
+      border-bottom: 1px #b5b5b5 solid;
       line-height: 55px;
+	  box-sizing: border-box;
+    }
+    .right-top li+li{
+    	border-left: 1px #b5b5b5 solid;
+    }
+    .right-top li:first-child{
+    	width: 24%;
     }
     .right-top li.right-active{
-      width: 21.9%;
-      border-left: 0;
       background: #fff;
       border-bottom: 2px #eaeaea dashed;
             font-family: Nobel-GBW6;
     }
     .right-top li:nth-child(4){
-      width: 11%;
+      width: 16%;
       padding: 21px 2.5% 20px;
       line-height: 27px;
     }
@@ -945,17 +958,17 @@ a {
     }
     .right-list li.rig-act,
     .right-list li.select .rig-act,
-    .right-list li:hover,
+   /* .right-list li:hover,*/
     .right-list li.select,
     .right-list li.select a .list-left h4,
-    .right-list li:hover a .list-left h4,
+/*    .right-list li:hover a .list-left h4,*/
     .right-list li.select a .list-left p,
-    .right-list li:hover a .list-left p,
+/*    .right-list li:hover a .list-left p,*/
     .right-list li.select a .list-center,
-    .right-list li:hover a .list-center,
+    /*.right-list li:hover a .list-center,*/
     .right-list li.select a .list-right
-    .right-list li:hover a .list-right{
-      background: #405a8e;
+    /*.right-list li:hover a .list-right*/{
+      background: #405a8e !important;
       color: #fff;
     }
     .right-list li:first-child{
@@ -1109,6 +1122,7 @@ a.add_zhe{
   .rightBtn02{
     background: #00cdef;
   }
+
 
 /* 管理员 */
 .lock-div{
@@ -3162,6 +3176,146 @@ a.add_zhe{
   margin-right: 15px;
   color: #727272;
 }
+/*改数量*/
+#changeNum{
+    position: fixed;
+    right: 36%;
+    top: 42%;
+    width: 372px;
+    background: #fff;
+    border-radius: 5px;
+    z-index: 30;
+    box-shadow: 0px 0px 6px #000;
+    display: none;
+}
+#changeNum .txt{
+    text-align: center;
+    font-size: 24px;
+    font-family: Nobel-Book;
+    color: #00cdef;
+    line-height: 80px;
+}
+#changeNum .changeInp{
+	width: 92%;
+    height: 55px;
+    margin: 0 2%;
+    padding: 0 2%;
+    border: 0;
+    text-align: center;
+    border-radius: 5px;
+    background: #f7f7f7;
+    color: #848484;
+    font-size: 21px;
+    font-family: Nobel-Book;
+    line-height: 55px;
+    outline: none;
+}
+#changeNum .changeBtn{
+	width: 100%;
+	overflow: hidden;
+}
+#changeNum .cancel{
+    float: left;
+    width: 100px;
+    height: 50px;
+    margin: 30px 0 15px 2%;
+    background: #405a8e;
+    border: 0;
+    outline: none;
+    text-align: center;
+    line-height: 50px;
+    color: #fff;
+    font-size: 18px;
+    font-family: Nobel-GBW6;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#changeNum .save{
+    float: right;
+    width: 100px;
+    height: 50px;
+    margin: 30px 2% 15px 0;
+    background: #c42248;
+    border: 0;
+    outline: none;
+    text-align: center;
+    line-height: 50px;
+    color: #fff;
+    font-size: 18px;
+    font-family: Nobel-GBW6;
+    border-radius: 5px;
+    cursor: pointer;
+}
+/*改价格*/
+#changePrice{
+    position: fixed;
+    right: 36%;
+    top: 17%;
+    width: 372px;
+    background: #fff;
+    border-radius: 5px;
+    z-index: 30;
+    box-shadow: 0px 0px 6px #000;
+    display: none;
+}
+#changePrice .txt{
+    text-align: center;
+    font-size: 24px;
+    font-family: Nobel-Book;
+    color: #00cdef;
+    line-height: 80px;
+}
+#changePrice .changeInp{
+	width: 92%;
+    height: 55px;
+    margin: 0 2%;
+    padding: 0 2%;
+    border: 0;
+    text-align: center;
+    border-radius: 5px;
+    background: #f7f7f7;
+    color: #848484;
+    font-size: 21px;
+    font-family: Nobel-Book;
+    line-height: 55px;
+    outline: none;
+}
+#changePrice .changeBtn{
+	width: 100%;
+	overflow: hidden;
+}
+#changePrice .cancel{
+    float: left;
+    width: 100px;
+    height: 50px;
+    margin: 30px 0 15px 2%;
+    background: #405a8e;
+    border: 0;
+    outline: none;
+    text-align: center;
+    line-height: 50px;
+    color: #fff;
+    font-size: 18px;
+    font-family: Nobel-GBW6;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#changePrice .save{
+    float: right;
+    width: 100px;
+    height: 50px;
+    margin: 30px 2% 15px 0;
+    background: #c42248;
+    border: 0;
+    outline: none;
+    text-align: center;
+    line-height: 50px;
+    color: #fff;
+    font-size: 18px;
+    font-family: Nobel-GBW6;
+    border-radius: 5px;
+    cursor: pointer;
+}
 
 
 
@@ -3245,7 +3399,7 @@ a.add_zhe{
 }
 @media only screen and (max-width:1421px){
   .right-top li.right-active{
-    width: 21.5%;
+    /*width: 21.5%;*/
   }
   .container .header .nav li a{
     padding: 0;
@@ -3472,7 +3626,7 @@ a.add_zhe{
   }
   .right-top li{
     font-size: 14px;
-    width: 14.5%;
+    /*width: 14.5%;*/
   }
   .right-list li a .list-left h4 {
     font-size: 18px;
