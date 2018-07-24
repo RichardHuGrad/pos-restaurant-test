@@ -107,13 +107,13 @@ class CategoriesController extends AppController {
         $languages = $this->Language->find('list', array('fields' => array('lang_code', 'language'), 'conditions' => array('status' => 'A')));
         $printers = $this->Printer->find('all');//all printers
         
-        // foreach($printers as $k=>$v){
-        //     unset($printers[$k]['printer_ID']);
-        //     unset($printers[$k]['type']);
-        //     unset($printers[$k]['num']);
-        //     unset($printers[$k]['admin_id']);
-        // }
-        // var_dump($printers);
+        $pri = array();
+        foreach($printers as $k=>&$v){
+// print_r($v);
+            $pri[$v['Printer']['id']] = $v['Printer']['name'];
+
+        }
+        // var_dump($pri);
         // die;
         if (!empty($this->request->data)) {
 
@@ -185,7 +185,7 @@ class CategoriesController extends AppController {
                 $this->request->data = $result_data;
             }
         }
-        $this->set(compact('id', 'remote_id', 'languages','printers'));
+        $this->set(compact('id', 'remote_id', 'languages','pri'));
     }
 
     /**
