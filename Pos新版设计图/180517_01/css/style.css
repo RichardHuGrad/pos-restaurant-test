@@ -1,6 +1,6 @@
 /* reset
 -----------------------------------------------------------------*/
-@font-face
+/*@font-face
 {
    font-family: 'Nobel-Book';
    src:url('../font/冬青黑体W3.otf');
@@ -27,7 +27,7 @@
    src:url('../font/FZLTZHK.TTF');
    font-weight: normal;
    font-style: normal;
-}
+}*/
 html,body {
      min-width: 768px;
     margin: auto; 
