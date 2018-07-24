@@ -1,6 +1,6 @@
 /* reset
 -----------------------------------------------------------------*/
-/*@font-face
+@font-face
 {
    font-family: 'Nobel-Book';
    src:url('../font/冬青黑体W3.otf');
@@ -13,7 +13,7 @@
    src:url('../font/HiraginoSansGBW6.TTF');
    font-weight: normal;
    font-style: normal;
-}*/
+}
 
 html,body {
     /* min-width: 1200px;
@@ -105,7 +105,7 @@ a {
   text-align: center;
   font-size: 24px;
   outline: none;
-  /*font-family: Nobel-Book;*/
+  font-family: Nobel-Book;
   cursor: pointer;
 }
 .login-align{
@@ -142,7 +142,7 @@ a {
     padding-left: 150px;
     background: url(../images/icon-10.png) no-repeat 103px center;
     font-size: 24px;
-    /*font-family: Nobel-GBW6;*/
+    font-family: Nobel-GBW6;
     color: #00cdef;
     line-height: 130px;
   }
@@ -157,7 +157,7 @@ a {
     box-shadow: none;
     outline: none;
     font-size: 24px;
-    /*font-family: Nobel-GBW6;*/
+    font-family: Nobel-GBW6;
     cursor: pointer;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
@@ -172,7 +172,7 @@ a {
       color: #fff;
       font-size: 2.25rem;
       font-weight: bold;
-      /*font-family: Nobel-GBW6;*/
+      font-family: Nobel-GBW6;
     }
     /* formkey */
     .formkey{
@@ -192,7 +192,7 @@ a {
         border-radius: 70px;
         font-size: 27px;
         outline: none;
-        /*font-family: Nobel-Book;*/
+        font-family: Nobel-Book;
     }
     .num_left{
       float: left;
@@ -217,7 +217,7 @@ a {
         font-size: 36px;
         font-size: 3rem;
         cursor: pointer;
-        /*font-family: Nobel-GBW6;*/
+        font-family: Nobel-GBW6;
       }
       .num_left li:nth-child(3n+3){
         margin-right: 0;
@@ -256,7 +256,7 @@ a {
       background: #c42248;
       color: #fff;
       text-align: center;
-      /*font-family: Nobel-GBW6;*/
+      font-family: Nobel-GBW6;
     }
     .num_right a:first-child{
       background: #ffd03b;

@@ -1,6 +1,6 @@
 /* reset
 -----------------------------------------------------------------*/
-/*@font-face
+@font-face
 {
    font-family: 'Nobel-Book';
    src:url('../font/冬青黑体W3.otf');
@@ -27,7 +27,7 @@
    src:url('../font/FZLTZHK.TTF');
    font-weight: normal;
    font-style: normal;
-}*/
+}
 html,body {
      min-width: 768px;
     margin: auto; 
@@ -143,7 +143,7 @@ a {
        color: #fff;
        font-size: 36px;
        line-height: 1;
-       /*font-family: Nobel-Book;*/
+       font-family: Nobel-Book;
      }
      .container .header .nav li.barnav a.nav-a{
        background: url(../images/nav-01.png) no-repeat 115px 29px;
@@ -281,7 +281,7 @@ a {
           width: auto;
           font-size: 30px;
           line-height: 31px;
-          /*font-family: Nobel-FZLTZHK;*/
+          font-family: Nobel-FZLTZHK;
         }
         .c_right_title .p span{
           display: block;
@@ -336,7 +336,7 @@ a {
         font-size: 24px;
         font-size: 2rem;
         color: #000;
-        /*font-family: Nobel-Book;*/
+        font-family: Nobel-Book;
         font-weight: normal;
         border-right: 1px #d3d3d3 solid;
       }
@@ -352,13 +352,13 @@ a {
             line-height: 35px;
             font-size: 18px;
             color: #000;
-            /*font-family: Nobel-Book;*/
+            font-family: Nobel-Book;
           }
           .order_content p:last-child{
             line-height: 35px;
             font-size: 24px;
             color: #00cdef;
-            /*font-family: Nobel-GBW6;*/
+            font-family: Nobel-GBW6;
             text-align: left;
           }
         .order_content .order_right{
@@ -366,7 +366,7 @@ a {
           line-height: 70px;
           font-size: 18px;
           color: #000;
-          /*font-family: Nobel-Book;*/
+          font-family: Nobel-Book;
         }
       .order li.order_no h4,.order_no .order_content p,.order_no .order_content .order_right{
         color: #8e8e8e;
@@ -384,7 +384,7 @@ a {
   padding: 5px 0;
   text-align: center;
   font-size: 23px;
-  /*font-family: Nobel-FZLTZHK;*/
+  font-family: Nobel-FZLTZHK;
   cursor: pointer;
 }
 
@@ -503,7 +503,7 @@ a {
           color: #8e8e8e;
           font-size: 19px;
           line-height: 30px;
-          /*font-family: Nobel-GBW6;*/
+          font-family: Nobel-GBW6;
         }
         .sit li.sit_no .sit-title,.sit li.sit_yes .sit-title,.sit li.sit_dan .sit-title{
           color: #fff;
@@ -529,7 +529,7 @@ a {
             font-size: 14px;
             color: #4f4f4f;
             border-radius: 5px;
-            /*font-family: Nobel-Book;*/
+            font-family: Nobel-Book;
           }
           .sit-time p{
             float: left;
@@ -549,7 +549,7 @@ a {
               margin-right: 2px;
               line-height: 28px;
               font-size: 11px;
-              /*font-family: Nobel-GBW6;*/
+              font-family: Nobel-GBW6;
             }
             .sit-time p b{
               float: left;
@@ -559,7 +559,7 @@ a {
               font-size: 2rem;
               line-height: 28px;
               font-weight: normal;
-              /*font-family: Nobel-GBW6;*/
+              font-family: Nobel-GBW6;
           }
 
 
