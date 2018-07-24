@@ -222,16 +222,17 @@
                 <li class="cancel">
                   <a href="javascript:;">取消选择</a>
                 </li>
-                <li>
+                <li class="not_yet">
                   <a href="javascript:;">未送厨</a>
                 </li>
-                <li>
+                <li class="already">
                   <a href="javascript:;">已送厨</a>
                 </li>
               </ul>
               <ul class="right-list">
-                <!-- 背景色 class="rig-act" -->
-                <li>
+                <!-- 背景色 class="rig-act" data-state="1" 表示已送厨-->
+               
+                <li data-state="1">
                   <a href="javascript:;">
                     <div class="list-left">
                       <h4>宋嫂牛肉面 </h4>
@@ -243,7 +244,7 @@
                     <div class="list-right">1</div>
                   </a>
                 </li>
-                <li>
+                <li data-state="1">
                   <a href="javascript:;">
                     <div class="list-left">
                       <h4>宋嫂牛肉面 </h4>
@@ -255,7 +256,7 @@
                     <div class="list-right">1</div>
                   </a>
                 </li>
-                <li>
+                <li data-state="0">
                   <a href="javascript:;">
                     <div class="list-left">
                       <h4>宋嫂牛肉面 </h4>
@@ -266,44 +267,8 @@
                     </div>
                     <div class="list-right">1</div>
                   </a>
-                </li>
-                <li>
-                  <a href="javascript:;">
-                    <div class="list-left">
-                      <h4>宋嫂牛肉面 </h4>
-                      <p>Option: 中辣；少麻；去葱；加卤蛋；加面；加肉；改米线；多花生</p>
-                    </div>
-                    <div class="list-center">
-                      12.99 <span>(15%off)</span>
-                    </div>
-                    <div class="list-right">1</div>
-                  </a>
-                </li>
-                <li>
-                  <a href="javascript:;">
-                    <div class="list-left">
-                      <h4>宋嫂牛肉面 </h4>
-                      <p>Option: 中辣；少麻；去葱；加卤蛋；加面；加肉；改米线；多花生</p>
-                    </div>
-                    <div class="list-center">
-                      12.99 <span>(15%off)</span>
-                    </div>
-                    <div class="list-right">1</div>
-                  </a>
-                </li>
-                <li>
-                  <a href="javascript:;">
-                    <div class="list-left">
-                      <h4>宋嫂牛肉面 </h4>
-                      <p>Option: 中辣；少麻；去葱；加卤蛋；加面；加肉；改米线；多花生</p>
-                    </div>
-                    <div class="list-center">
-                      12.99 <span>(15%off)</span>
-                    </div>
-                    <div class="list-right">1</div>
-                  </a>
-                </li>
-                <li>
+                </li>               
+                <li data-state="1">
                   <a href="javascript:;">
                     <div class="list-left">
                       <h4>宋嫂牛肉面 </h4>
@@ -719,10 +684,23 @@
       })
       //全选
       $(".totalSelection").click(function(){
+      	$(".right-list li").addClass("select");
       	
       })
-      //反选
+      //反选()
       $(".reverseSelection").click(function(){
+      	var selected = 'select';//选中状态
+  
+      	$(".right-list li").each(function(){
+					var state = $(this).attr("class");
+      		if(selected == state){
+      		
+	      		$(".right-list li").addClass("select");
+	      		$(this).removeClass("select");
+      		}
+      	})
+      	
+      	
       	
       })
       
