@@ -54,12 +54,12 @@ $option_status = array('A' => 'Active', 'I' => 'Inactive');
                                 
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Receipt Printer</label>
+                                        <label class="control-label">Default Printer</label>
                                         <?php 
 
                                         $printer = array(
                                             'K'=>'Kitchen',
-                                            'C'=>'Cashier'
+                                            'C'=>'厨房以'
                                             );
                                         echo $this->Form->input('printer', array('options' => $printer, 'class' => 'form-control', 'empty' => "Select Printer", 'label' => false, 'div' => false)); ?>
                                     </div>
@@ -79,12 +79,6 @@ $option_status = array('A' => 'Active', 'I' => 'Inactive');
                                     </div>
                                 </div>
                                 
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Order</label>
-                                        <?php echo $this->Form->input('orderby', array('type' =>'text', 'class' => 'form-control', 'label' => false, 'div' => false, 'required' => false)); ?>
-                                    </div>
-                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
