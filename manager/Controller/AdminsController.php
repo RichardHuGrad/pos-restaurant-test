@@ -1,10 +1,10 @@
-<?php
+ <?php
 /**
  * Class AdminsController
  */
 class AdminsController extends AppController {
 
-    public $uses = array('Admin');
+    public $uses = array('Admin','Printer');
     public $components = array('Paginator');
 
     /**
@@ -254,6 +254,9 @@ class AdminsController extends AppController {
         }
 
         if (!empty($this->request->data)) {
+            $printer['printer'] = $this->request->data['printer'];
+            unset($this->request->data['printer']);
+
             $this->Admin->set($this->request->data);
             if ($this->Admin->validates()) {
 
@@ -269,9 +272,34 @@ class AdminsController extends AppController {
                 $this->request->data['Admin']['table_size'] = implode(",", $this->request->data['Admin']['table_size']);
                 $this->request->data['Admin']['takeout_table_size'] = implode(",", $this->request->data['Admin']['takeout_table_size']);
                 $this->request->data['Admin']['waiting_table_size'] = implode(",", $this->request->data['Admin']['waiting_table_size']);
-                
+               
                 if ($this->Admin->save($this->request->data, $validate = false)) {
+                    // var_dump($printer);exit;
+                    // $cc = '-';
+                     // echo "<pre>";
+                    // print_r($printer);
+                    for($i = 0;$i<count($printer['printer']['num']);$i++){
+                        $save_p = array();
+                        $save_p['Printer']['admin_id'] = $this->request->data['Admin']['id'];
+                        $save_p['Printer']['num'] = $printer['printer']['num'][$i];
+                        $save_p['Printer']['name'] = $printer['printer']['name'][$i];
+                        $save_p['Printer']['printer_ID'] = $printer['printer']['printer_ID'][$i];
+                        $save_p['Printer']['type'] = $printer['printer']['type'][$i];
+                        if(isset($printer['printer']['id'][$i])){
+                            // echo 1;
+                            $save_p['Printer']['id'] = $printer['printer']['id'][$i];
 
+                        }else{
+                            $save_p['Printer']['id'] = null;
+                        }
+                        // print_r($save_p);
+                        $ccc = $this->Printer->save($save_p, $validate = false);
+                       
+                        // print_r($ccc);
+                        
+                        // echo "<br/>";
+                    }
+                    // exit;
                     if($id == $this->Session->read('Admin.id')){
                         $this->Session->write('Admin.firstname', $this->request->data['Admin']['firstname']);
                         $this->Session->write('Admin.lastname', $this->request->data['Admin']['lastname']);
@@ -298,6 +326,10 @@ class AdminsController extends AppController {
 
         if('' != $id){
             $user_data = $this->Admin->find('first', array('conditions' => array('Admin.id' => $id)));
+            $printer_data = $this->Printer->find('all', array('conditions' => array('Printer.admin_id' => $id)));
+            // foreach ($printer_data as $key => $value) {
+            //     # code...
+            // }
             if(empty($user_data)){
                 $this->Session->setFlash('Invalid Request', 'error');
                 $this->redirect(array('plugin' => false, 'controller' => 'admins', 'action' => 'users', 'admin' => true));
@@ -305,7 +337,12 @@ class AdminsController extends AppController {
 
             if (empty($this->request->data)) {
                 $this->request->data = $user_data;
+                $this->request->data['Printer'] = $printer_data;
             }
+            // echo "<pre>";
+            // echo $id;
+            // print_r($this->request->data);exit;
+
         }
 
         $this->set(compact('id'));
