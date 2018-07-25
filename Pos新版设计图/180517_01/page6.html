@@ -48,7 +48,7 @@
               <!-- 内容 -->
               <div class="pay-left page6-pay">
                 <div class="pay-title pa1">Order Summary 订单摘要</div>
-                <ul class="right-list page6-list">
+                <ul class="menu right-list page6-list">
                   <!-- 背景色 class="rig-act" -->
                   <li>
                     <a href="javascript:;">
@@ -96,11 +96,10 @@
                   </div>
                 </div>
                 <ul class="pay-ul-left"> 
-                  <li class="noto-act" data-i="1">01</li>
-                  <li data-i="2">02</li>
+                  <!--<li class="noto-act" data-i="1">01</li>
+                  <li data-i="2">02</li>-->
                 </ul>
-                <ul class="right-list page6-list1 lis01">
-                  <!-- 背景色 class="rig-act" -->
+                <!--<ul class="menu11 right-list page6-list1 lis01">                
                   <li>
                     <a href="javascript:;">
                       <div class="list-left">
@@ -113,6 +112,20 @@
                       <div class="list-right">1</div>
                     </a>
                   </li>
+                </ul>-->
+                <!--<ul class="menu11 right-list page6-list1 lis02">
+                  <li>
+                    <a href="javascript:;">
+                      <div class="list-left">
+                        <h4>宋嫂牛肉面 </h4>
+                        <p>Option: 中辣；少麻；去葱；加卤蛋；加面；加肉；改米线；多花生</p>
+                      </div>
+                      <div class="list-center">
+                        12.99 <span>(15%off)</span>
+                      </div>
+                      <div class="list-right">1</div>
+                    </a>
+                  </li>            
                   <li>
                     <a href="javascript:;">
                       <div class="list-left">
@@ -125,82 +138,7 @@
                       <div class="list-right">1</div>
                     </a>
                   </li>
-                  <li>
-                    <a href="javascript:;">
-                      <div class="list-left">
-                        <h4>宋嫂牛肉面 </h4>
-                        <p>Option: 中辣；少麻；去葱；加卤蛋；加面；加肉；改米线；多花生</p>
-                      </div>
-                      <div class="list-center">
-                        12.99 <span>(15%off)</span>
-                      </div>
-                      <div class="list-right">1</div>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="javascript:;">
-                      <div class="list-left">
-                        <h4>宋嫂牛肉面 </h4>
-                        <p>Option: 中辣；少麻；去葱；加卤蛋；加面；加肉；改米线；多花生</p>
-                      </div>
-                      <div class="list-center">
-                        12.99 <span>(15%off)</span>
-                      </div>
-                      <div class="list-right">1</div>
-                    </a>
-                  </li>
-                </ul>
-                <ul class="right-list page6-list1 lis02">
-                  <!-- 背景色 class="rig-act" -->
-                  <li>
-                    <a href="javascript:;">
-                      <div class="list-left">
-                        <h4>宋嫂牛肉面 </h4>
-                        <p>Option: 中辣；少麻；去葱；加卤蛋；加面；加肉；改米线；多花生</p>
-                      </div>
-                      <div class="list-center">
-                        12.99 <span>(15%off)</span>
-                      </div>
-                      <div class="list-right">1</div>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="javascript:;">
-                      <div class="list-left">
-                        <h4>宋嫂牛肉面 </h4>
-                        <p>Option: 中辣；少麻；去葱；加卤蛋；加面；加肉；改米线；多花生</p>
-                      </div>
-                      <div class="list-center">
-                        12.99 <span>(15%off)</span>
-                      </div>
-                      <div class="list-right">1</div>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="javascript:;">
-                      <div class="list-left">
-                        <h4>宋嫂牛肉面 </h4>
-                        <p>Option: 中辣；少麻；去葱；加卤蛋；加面；加肉；改米线；多花生</p>
-                      </div>
-                      <div class="list-center">
-                        12.99 <span>(15%off)</span>
-                      </div>
-                      <div class="list-right">1</div>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="javascript:;">
-                      <div class="list-left">
-                        <h4>宋嫂牛肉面 </h4>
-                        <p>Option: 中辣；少麻；去葱；加卤蛋；加面；加肉；改米线；多花生</p>
-                      </div>
-                      <div class="list-center">
-                        12.99 <span>(15%off)</span>
-                      </div>
-                      <div class="list-right">1</div>
-                    </a>
-                  </li>
-                </ul>
+                </ul>-->
               </div>
               <div class="pay-right  page6-pay">
                 <div class="notop">
@@ -793,47 +731,46 @@
       $(".pay_play").on("click",function(){
         $('.payment .page2-right').css("z-index","20");
       });
-      // 桌号账单
-      $(".notop .pay-ul li").on("click",function(){
-        var i = $(this).data("i");
-        $(this).addClass("noto-act");
-        $(this).siblings().removeClass("noto-act");
-        $(".pay-right-c").hide();
-        $(".not0"+i).show();
-      });
-      // 左边账单
-      $(".pay-ul-left li").on("click",function(){
-        var i = $(this).data("i");
-        $(this).addClass("noto-act");
-        $(this).siblings().removeClass("noto-act");
-        $(".page6-list1").hide();
-        $(".lis0"+i).show();
-      });
+   
        //付款方式
       $(".payF li").click(function(){
       	$(this).addClass("active").siblings().removeClass("active");
       })
       //添加折扣
-      $(".add_zhe").click(function(){
-      	$(".add-content").slideToggle();
+      $(".add_zhe").live("click",function(){
+      	$(this).next(".add-content").slideToggle();
       })
+      
+      
       //分单
-      var html1;
-      var html2;
+      var html1,html2;
+      var bill1,bill2;
       var i=0;
+      var meal;//餐品
+      var order = "D31710311432";//订单号
+			var percentage = 10;//折扣百分比
+      var smallPlan=0, discount=0,rmb=0,tax=0,total=0,received=0,cash=0,card=0,member=0,surplus=0,tip=0;
+      //小计/折扣/折后价/税/总计/已收到/现金/卡/会员/剩余/小费
+      //加号点击
       $(".addMember").click(function(){
+      	$(".pay-ul li").eq(0).addClass("noto-act").siblings().removeClass();
+     	  $(".pay-ul-left li").eq(0).addClass("noto-act").siblings().removeClass();
       	i=i+1;
+      	//左边切换
+      	bill1 = "<li data-i="+i+">0"+i+"</li>";
+      	$(".pay-left").find(".pay-ul-left").append(bill1);
+      	//右边切换
       	html1 = "<li data-i="+i+">顾客.0"+i+"</li>";
       	$(".notop").find(".pay-ul").append(html1);
-      	
-      	html2+="<div class='pay-right-c not0"+i+"'>";
+      	//右边生成
+      	html2="<div class='pay-right-c not0"+i+"'>";
       	html2+="<div class='r-c-top'>";
       	html2+="<div class='c-top-left'>";
       	html2+="<ul class='contL'>";
       	html2+="<li>订单号</li><li>小计</li><li>折扣</li><li>折后价</li><li>税(13%):</li><li>总计:</li>";
         html2+="</ul>";
         html2+="<ul class='contR'>";
-        html2+="<li>D31710311432</li><li>$73.94</li><li>$11.09*15%</li><li>$62.85</li><li>$9.61</li><li>$83.55</li>";
+        html2+="<li>"+order+"-"+i+"</li><li>$"+smallPlan+"</li><li>$"+discount+"*"+percentage+"%</li><li>$"+rmb+"</li><li>$"+tax+"</li><li>$"+total+"</li>";
         html2+="</ul>";
         html2+="</div>";
         html2+="<div class='right-tab'>";
@@ -853,20 +790,51 @@
         html2+="</div>";
         html2+="</div>";
         html2+="<div class='r-c-center'>";
-        html2+="<ul class='cenL'><li>已收到:</li><li class='cen-col'>现金：$00.00</li><li>剩余:</li><li>小费:</li></ul>";
-        html2+="<ul class='cenC'><li>$62.85</li><li class='cen-col'>卡：$00.00</li><li>$9.61</li><li>$83.55</li></ul>";
-        html2+="<ul class='cenR'><li></li><li class='cen-col'>会员：$00.00</li><li></li><li></li></ul>";
+        html2+="<ul class='cenL'><li>已收到:</li><li class='cen-col'>现金：$"+cash+"</li><li>剩余:</li><li>小费:</li></ul>";
+        html2+="<ul class='cenC'><li>$"+received+"</li><li class='cen-col'>卡：$"+card+"</li><li>$"+surplus+"</li><li>$"+tip+"</li></ul>";
+        html2+="<ul class='cenR'><li></li><li class='cen-col'>会员：$"+member+"</li><li></li><li></li></ul>";
         html2+="</div>";
         html2+="<div class='r-c-bot'><h5>状态</h5><p><span class='color1'></span>未支付</p></div>";
-        html2+="</div>";
-        
+        html2+="</div>";    
         $(".notop").find(".right-con").before(html2);
-
+				//左边生成
+				bill2="<ul class='right-list page6-list1 lis0"+i+"'>";
+				//bill2+="<li>"+meal+"</li>";
+      	bill2+="</ul>";
+				$(".pay-left").append(bill2);
+      })
+      //减号点击
+      $(".reduceMember").click(function(){
+      	$(".pay-ul li").eq(-1).remove();
+      	$(".pay-ul-left li").eq(-1).remove();
+       	$(".pay-left .right-list").eq(-1).remove();
+      	$(".notop").find(".right-con").prev().remove();
       })
       
+//    $(".menu li").live("click",function(){
+//    	meal = $(this).html();
+//    	alert(meal)
+//    })//点击上边菜品生成到下边
+//    $(".menu11 li").live("click",function(){
+//    	
+//    })//点击下边菜品还原到上边
       
-      
-      
+      // 左边账单
+      $(".pay-ul-left li").live("click",function(){
+        var i = $(this).data("i");
+        $(this).addClass("noto-act");
+        $(this).siblings().removeClass("noto-act");
+        $(".page6-list1").hide();
+        $(".lis0"+i).show();
+      });
+      // 桌号账单
+      $(".notop .pay-ul li").live("click",function(){
+        var i = $(this).data("i");
+        $(this).addClass("noto-act");
+        $(this).siblings().removeClass("noto-act");
+        $(".pay-right-c").hide();
+        $(".not0"+i).show();
+      });
     });
     </script>
   </body>

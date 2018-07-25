@@ -1594,7 +1594,7 @@ a.add_zhe{
       border-top-right-radius: 10px;
       cursor: pointer;
     }
-    .pay-ul li.noto-act,.pay-ul li:first-child{
+    .pay-ul li.noto-act{
       background: #fff;
     }
   .pay-right-c{
@@ -1607,7 +1607,8 @@ a.add_zhe{
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
   }
-  .not02,.not03{
+  .not02,.not03,.not04,.not05,.not06,.not07,.not08,.not09,.not010,
+  .lis02,.lis03,.lis04,.lis05,.lis06,.lis07,.lis08,.lis09,.lis010{
     display: none;
   }
     .payment .right-tab{
