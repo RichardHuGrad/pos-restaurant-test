@@ -50,18 +50,13 @@ $option_status = array('A' => 'Active', 'I' => 'Inactive');
 
                                 <?php } ?>
 
-                                
-                                
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Default Printer</label>
-                                        <?php 
 
-                                        $printer = array(
-                                            'K'=>'Kitchen',
-                                            'C'=>'厨房以'
-                                            );
-                                        echo $this->Form->input('printer', array('options' => $printer, 'class' => 'form-control', 'empty' => "Select Printer", 'label' => false, 'div' => false)); ?>
+                                        <?php 
+                                       echo $this->Form->input('printer', array('options' => $pri, 'class' => 'form-control', 'empty' => "Select Printer", 'label' => false, 'div' => false));
+                                         ?>
                                     </div>
                                 </div>
                                 
