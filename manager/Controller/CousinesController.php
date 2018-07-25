@@ -5,7 +5,7 @@
  */
 class CousinesController extends AppController {
 
-    public $uses = array('Cousine', 'CousineLocal', 'Language','Extrascategory');
+    public $uses = array('Cousine', 'CousineLocal', 'Language','Extrascategory','Printer');
     public $components = array('Session', 'Paginator');
 
     /**
@@ -22,7 +22,7 @@ class CousinesController extends AppController {
      * @return mixed
      */
     public function admin_index(){
-
+        
         $this->layout = LAYOUT_ADMIN;
         $limit = DEFAULT_PAGE_SIZE;
         $order = 'eng_name ASC';
@@ -121,6 +121,14 @@ class CousinesController extends AppController {
         $this->layout = LAYOUT_ADMIN;
         $id = base64_decode($id);
         $languages = $this->Language->find('list', array('fields' => array('lang_code', 'language'), 'conditions' => array('status' => 'A')));
+        $printers = $this->Printer->find('all');//all printers
+        
+        $pri = array();
+        foreach($printers as $k=>&$v){
+
+            $pri[$v['Printer']['id']] = $v['Printer']['name'];
+
+        }
 
         if($id) {
             $result_data = $this->Cousine->find('first', array('conditions' => array('Cousine.id' => $id)));
@@ -167,8 +175,12 @@ class CousinesController extends AppController {
         
         $remote_id = @$result_data['Cousine']['remote_id'];
         if (!empty($this->request->data)) {
-
-            $this->Cousine->set($this->request->data);
+            $data11=$this->request->data;
+            // echo "<pre>";
+            $data11['Cousine']['printer']=implode(",",$data11['Cousine']['printer']);
+            $data11['Cousine']['comb_num']=implode("",$data11['Cousine']['comb_num']);
+            // print_r($data11);exit;
+            $this->Cousine->set($data11);
 
             ###### custom validation start for CousineLocal name ########
             if('' != $id){
@@ -190,12 +202,12 @@ class CousinesController extends AppController {
             if ($this->Cousine->validates() && $this->CousineLocal->validates()) {
                 
                 $is_error_image = 0;
-                if (isset($this->request->data['Cousine']['image']['name']) && $this->request->data['Cousine']['image']['name'] != "") {
+                if (isset($data11['Cousine']['image']['name']) && $data11['Cousine']['image']['name'] != "") {
 
                     @unlink(COUSINE_UPLOAD_PATH.'thumbnail/' . @$result_data['Cousine']['image']);
                     $is_image_uploaded = 1;
                     $allowed_extension = array('jpg', 'jpeg', 'png', 'gif');
-                    $extension = pathinfo($this->request->data['Cousine']['image']['name'], PATHINFO_EXTENSION);
+                    $extension = pathinfo($data11['Cousine']['image']['name'], PATHINFO_EXTENSION);
                     $extension = strtolower($extension);
                     if (!in_array($extension, $allowed_extension)) {
                         $is_error_image = 1;
@@ -203,20 +215,20 @@ class CousinesController extends AppController {
                     } else {
                         $is_error_image = 0;
                         $product_pic = time() . "_cousine." . $extension;
-                        if (move_uploaded_file($this->request->data['Cousine']['image']['tmp_name'], COUSINE_UPLOAD_PATH . $product_pic)) {
+                        if (move_uploaded_file($data11['Cousine']['image']['tmp_name'], COUSINE_UPLOAD_PATH . $product_pic)) {
                             $this->resize($product_pic, 400, COUSINE_UPLOAD_PATH);
-                            $this->request->data['Cousine']['image'] = $product_pic;
+                            $data11['Cousine']['image'] = $product_pic;
                             unlink(COUSINE_UPLOAD_PATH . $product_pic);
                         }
                     }
                 } else {
-                    $this->request->data['Cousine']['image'] = @$result_data['Cousine']['image'];
+                    $data11['Cousine']['image'] = @$result_data['Cousine']['image'];
                 }
 
-                if ($this->Cousine->save($this->request->data, $validate = false)) {
+                if ($this->Cousine->save($data11, $validate = false)) {
 
                     $last_id = $this->Cousine->id;
-
+                    // print_r($last_id);exit;
                     foreach ($this->data['CousineLocal'] as $lang_code => $val){
 
                         $locale_data['CousineLocal'] = array(
@@ -242,7 +254,7 @@ class CousinesController extends AppController {
 
         if('' != $id){
 
-           if (empty($this->request->data)) {
+           if (empty($data11)) {
                 $tmp = array();
                 foreach ($result_data['CousineLocal'] as $d){
                     $tmp['CousineLocal'][$d['lang_code']] = array(
@@ -255,7 +267,7 @@ class CousinesController extends AppController {
             }
 
         }
-        $this->set(compact('id', 'languages', 'categories', 'restaurants', 'cashiers','option_comb','remote_id'));
+        $this->set(compact('id', 'languages', 'categories', 'restaurants', 'cashiers','option_comb','remote_id','pri'));
     }
 
     /**
@@ -330,9 +342,6 @@ class CousinesController extends AppController {
         $this->redirect(array('plugin' => false, 'controller' => 'cousines', 'action' => 'add_edit', 'admin' => true, $this->params['named']['id']));
 
     }
-
-
-
 
 
     public function admin_get_cashiers() {
