@@ -43,7 +43,7 @@
             <button type="button" name="button" class="newPhone">添加外卖手机号码</button>
             <!-- 外卖手机号 -->
 				    <div class="lock-div">
-					    <input type="text" name="" value="" placeholder="请输入手机号">
+					    <input type="text" name="" value="" placeholder="请输入手机号" id="phone">
 					    <img src="images/icon-08.png" alt="关闭" class="closeBox">
 					  </div>
           </div>
@@ -801,12 +801,14 @@
      $(".newPhone").click(function(){
      	$(this).next(".lock-div").fadeIn();
      })
-      	$(".closeBox").click(function(){
+     $(".closeBox").click(function(){
      	$(this).parents(".lock-div").fadeOut();
      })
-      	
       
-      
+      //添加折扣
+      $(".add_zhe").click(function(){
+      	$(".add-content").slideToggle();
+      })
       // 去除搜索框中的内容
       $(".tab-close").on("click",function(){
         $(".tab-input").val("");

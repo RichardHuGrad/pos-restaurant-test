@@ -1031,11 +1031,12 @@ a.add_zhe{
   color: #000;
   font-size: 18px;
   font-family: Nobel-Book;
-  border-bottom: 1px #e6e6e6 dashed;
 }
   .add-content{
     width: 100%;
     overflow: hidden;
+    display: none;
+    border-top: 1px #e6e6e6 dashed;
   }
     .add-content ul{
       float: left;
@@ -1079,7 +1080,7 @@ a.add_zhe{
       font-size: 18px;
       font-family: Nobel-Book;
       color: #000;
-      margin-right: 1%;
+      margin-right: 2%;
     }
     .add-right button{
       float: left;
@@ -1593,7 +1594,7 @@ a.add_zhe{
       border-top-right-radius: 10px;
       cursor: pointer;
     }
-    .pay-ul li.noto-act{
+    .pay-ul li.noto-act,.pay-ul li:first-child{
       background: #fff;
     }
   .pay-right-c{

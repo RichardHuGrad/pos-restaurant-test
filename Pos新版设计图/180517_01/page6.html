@@ -90,9 +90,9 @@
                 <div class="pay-title2">
                   <div class="add-right">
                     <span>Split Details 分单明细</span>
-                    <button type="button" name="button">-</button>
-                    <button type="button" name="button">+</button>
-                    <button type="button" name="button">平均<br />分单</button>
+                    <button type="button" name="button" title="删除人员" class="reduceMember">-</button>
+                    <button type="button" name="button" title="增加人员" class="addMember">+</button>
+                    <button type="button" name="button" class="average">平均<br />分单</button>
                   </div>
                 </div>
                 <ul class="pay-ul-left"> 
@@ -205,10 +205,11 @@
               <div class="pay-right  page6-pay">
                 <div class="notop">
                   <ul class="pay-ul"> 
-                    <li class="noto-act" data-i="1">顾客.01</li>
-                    <li data-i="2">顾客.02</li>
+                    <!--<li class="noto-act" data-i="1">顾客.01</li>
+                    <li data-i="2">顾客.02</li>-->
                   </ul>
-                  <div class="pay-right-c not01">
+                  <!--//color1未支付，color2已付款，color3已打单-->
+                  <!--<div class="pay-right-c not01">
                     <div class="r-c-top">
                       <div class="c-top-left">
                         <ul class="contL">
@@ -275,12 +276,11 @@
                         </ul>
                     </div>
                     <div class="r-c-bot">
-                      <h5>状态</h5>
-                      <!-- color1未支付，color2已付款，color3已打单 -->
+                      <h5>状态</h5>                  
                       <p><span class="color1"></span>未支付</p>
                     </div>
-                  </div>
-                  <div class="pay-right-c not02">
+                  </div>-->
+                  <!--<div class="pay-right-c not02">
                     <div class="r-c-top">
                       <div class="c-top-left">
                         <ul class="contL">
@@ -348,10 +348,9 @@
                     </div>
                     <div class="r-c-bot">
                       <h5>状态</h5>
-                      <!-- color1未支付，color2已付款，color3已打单 -->
                       <p><span class="color1"></span>未支付</p>
                     </div>
-                  </div>
+                  </div>-->
 
                   <div class="right-con">
                     <div class="right-tab1">
@@ -814,6 +813,60 @@
       $(".payF li").click(function(){
       	$(this).addClass("active").siblings().removeClass("active");
       })
+      //添加折扣
+      $(".add_zhe").click(function(){
+      	$(".add-content").slideToggle();
+      })
+      //分单
+      var html1;
+      var html2;
+      var i=0;
+      $(".addMember").click(function(){
+      	i=i+1;
+      	html1 = "<li data-i="+i+">顾客.0"+i+"</li>";
+      	$(".notop").find(".pay-ul").append(html1);
+      	
+      	html2+="<div class='pay-right-c not0"+i+"'>";
+      	html2+="<div class='r-c-top'>";
+      	html2+="<div class='c-top-left'>";
+      	html2+="<ul class='contL'>";
+      	html2+="<li>订单号</li><li>小计</li><li>折扣</li><li>折后价</li><li>税(13%):</li><li>总计:</li>";
+        html2+="</ul>";
+        html2+="<ul class='contR'>";
+        html2+="<li>D31710311432</li><li>$73.94</li><li>$11.09*15%</li><li>$62.85</li><li>$9.61</li><li>$83.55</li>";
+        html2+="</ul>";
+        html2+="</div>";
+        html2+="<div class='right-tab'>";
+        html2+="<a href='javascript:;' class='add_zhe'>加入折扣</a>";
+        html2+="<div class='add-content'>";
+        html2+="<ul class='add-ul'>";
+        html2+="<li><span>固定折扣</span><input type='text'></li>";
+        html2+="<li><span>%折扣</span><input type='text'></li>";
+        html2+="<li><span>优惠码</span><input type='text'></li>";
+        html2+="</ul>";
+        html2+="<div class='add-right'>";
+        html2+="<span>折扣快捷按钮</span>";
+        html2+="<button type='button' name='button'>15%</button>";
+        html2+="<button type='button' name='button'>20%</button>";
+        html2+="<button type='button' name='button'>25%</button>";
+        html2+="</div>";
+        html2+="</div>";
+        html2+="</div>";
+        html2+="<div class='r-c-center'>";
+        html2+="<ul class='cenL'><li>已收到:</li><li class='cen-col'>现金：$00.00</li><li>剩余:</li><li>小费:</li></ul>";
+        html2+="<ul class='cenC'><li>$62.85</li><li class='cen-col'>卡：$00.00</li><li>$9.61</li><li>$83.55</li></ul>";
+        html2+="<ul class='cenR'><li></li><li class='cen-col'>会员：$00.00</li><li></li><li></li></ul>";
+        html2+="</div>";
+        html2+="<div class='r-c-bot'><h5>状态</h5><p><span class='color1'></span>未支付</p></div>";
+        html2+="</div>";
+        
+        $(".notop").find(".right-con").before(html2);
+
+      })
+      
+      
+      
+      
     });
     </script>
   </body>
