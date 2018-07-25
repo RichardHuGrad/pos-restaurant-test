@@ -605,6 +605,27 @@
         <li class=" b6"></li>
       </ul>
     </div>
+    
+    <!--平均分单-->
+    <div id="average">
+    	<div class="add_member">
+        <div class="member-top">
+          <img src="images/icon-06.png" alt="关闭新增会员" class="member-close1">
+          <h2>分单计算</h2>
+        </div>
+        <div class="add_bot">
+          <label>总金额</label>
+          <input type="text" name="" placeholder="$0.00">
+          <label>人数</label>
+          <input type="text" name="" placeholder="">
+          <label>人均金额</label>
+          <input type="text" name="" placeholder="$0.00">
+          
+        </div>
+        <button type="button" class="add_btn">计算</button>
+      </div>
+    </div>
+    
     <!-- 管理员密码 -->
     <div id="admin">
       <p>密码解锁</p>
@@ -617,6 +638,12 @@
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/keyboard.js"></script>
     <script type="text/javascript">
+    	$(".member-close1").on("click",function(){
+        $("#average").fadeOut();
+      });
+      $(".average").on("click",function(){
+        $("#average").fadeIn();
+      });
     $(document).ready(function(){
       // nav
       $(".barnav").hover(function(){
@@ -810,6 +837,14 @@
        	$(".pay-left .right-list").eq(-1).remove();
       	$(".notop").find(".right-con").prev().remove();
       })
+      
+      
+      //平均分单
+      $(".average").click(function(){
+      	
+      })
+      
+      
       
 //    $(".menu li").live("click",function(){
 //    	meal = $(this).html();
