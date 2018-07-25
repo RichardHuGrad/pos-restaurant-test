@@ -117,7 +117,11 @@ class CategoriesController extends AppController {
         // die;
         if (!empty($this->request->data)) {
 
-            $this->Category->set($this->request->data);
+            $data1=$this->request->data;
+            // var_dump($data1);
+            // unset($data1["Category"]['id']);
+            // var_dump($data1);die;
+            $this->Category->set($data1);
 
             ###### custom validation start for CategoryLocale name ########
             if('' != $id){
@@ -136,11 +140,12 @@ class CategoriesController extends AppController {
             }
            
             ###### custom validation end for CategoryLocale name ########
-
+            // var_dump($this->request->data);die;
             if ($this->Category->validates() && $this->CategoryLocale->validates()) {
-                if ($this->Category->save($this->request->data, $validate = false)) {
+                if ($this->Category->save($data1, $validate = false)) {
 
                     $last_id = $this->Category->id;
+                    // var_dump($last_id);die;
                     foreach ($this->data['CategoryLocale'] as $lang_code => $val){
 
                         $locale_data['CategoryLocale'] = array(
@@ -149,9 +154,9 @@ class CategoriesController extends AppController {
                             'name' => $val['name'],
                             'lang_code' => $lang_code
                         );
+
                         $this->CategoryLocale->save($locale_data, $validate = false);
                     }
-
                     if('' == $id){
                         $this->Session->setFlash('Category has been added successfully', 'success');
                     }else{
@@ -179,7 +184,7 @@ class CategoriesController extends AppController {
                         'id' => $d['id']
                     );
                 }
-  // var_dump($result_data);die;
+  // var_dump($tmp);die;
                 $result_data = array_merge($result_data, $tmp);
 
                 $this->request->data = $result_data;
