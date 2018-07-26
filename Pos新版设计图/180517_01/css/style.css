@@ -1006,6 +1006,10 @@ a {
           color: #000;
           text-align: right;
         }
+        .right-list li a .list-center .pri{
+        	font-style:normal;
+        	font-size: inherit;
+        }
           .right-list li a .list-center span{
             font-size: 14px;
             font-family: Nobel-Book;

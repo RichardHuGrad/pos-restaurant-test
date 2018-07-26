@@ -57,7 +57,19 @@
                         <p>Option: 中辣；少麻；去葱；加卤蛋；加面；加肉；改米线；多花生</p>
                       </div>
                       <div class="list-center">
-                        12.99 <span>(15%off)</span>
+                        <i class="pri">12</i> <span>(15%off)</span>
+                      </div>
+                      <div class="list-right">2</div>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="javascript:;">
+                      <div class="list-left">
+                        <h4>宋嫂牛肉面 </h4>
+                        <p>Option: 中辣；少麻；去葱；加卤蛋；加面；加肉；改米线；多花生</p>
+                      </div>
+                      <div class="list-center">
+                        <i class="pri">10</i> <span>(15%off)</span>
                       </div>
                       <div class="list-right">1</div>
                     </a>
@@ -69,19 +81,7 @@
                         <p>Option: 中辣；少麻；去葱；加卤蛋；加面；加肉；改米线；多花生</p>
                       </div>
                       <div class="list-center">
-                        12.99 <span>(15%off)</span>
-                      </div>
-                      <div class="list-right">1</div>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="javascript:;">
-                      <div class="list-left">
-                        <h4>宋嫂牛肉面 </h4>
-                        <p>Option: 中辣；少麻；去葱；加卤蛋；加面；加肉；改米线；多花生</p>
-                      </div>
-                      <div class="list-center">
-                        12.99 <span>(15%off)</span>
+                        <i class="pri">15.5</i> <span>(15%off)</span>
                       </div>
                       <div class="list-right">1</div>
                     </a>
@@ -615,17 +615,17 @@
         </div>
         <div class="add_bot">
           <label>总金额</label>
-          <input type="text" name="" placeholder="$0.00">
+          <input type="text" name="" placeholder="$0.00" id="total">
           <label>人数</label>
-          <input type="text" name="" placeholder="">
+          <input type="text" name="" placeholder="" id="calculation">
           <label>人均金额</label>
-          <input type="text" name="" placeholder="$0.00">
+          <input type="text" name="" placeholder="$0.00" id="perCapita">
           
         </div>
-        <button type="button" class="add_btn">计算</button>
+        <!--<button type="button" class="add_btn">计算</button>-->
       </div>
     </div>
-    
+
     <!-- 管理员密码 -->
     <div id="admin">
       <p>密码解锁</p>
@@ -638,12 +638,39 @@
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/keyboard.js"></script>
     <script type="text/javascript">
+    	//平均价格
+    	var totalMoney = 0;//菜品总额
+    	var unitPrice;//单价
+    	var n;//数量
+    	var totalQuantity = $(".pri").length;//取所有菜品的类别的个数
+    	  	
+    	for(var m=0;m<totalQuantity;m++){
+    		$(".pri").eq(m).each(function(){
+	    		unitPrice = parseFloat($(this).text());
+	    		n = parseInt($(this).parents(".list-center").next(".list-right").text());
+	    		unitPrice = unitPrice*n;
+	    		
+	    	})  
+	    	totalMoney=unitPrice+totalMoney;
+    	}
+    	//alert(totalMoney);
+    	$("#total").val(totalMoney);//加载显示总金额
+    	$("#calculation").bind('input propertychange', function() {//人数绑定改变事件
+    		
+    		var calculation = parseInt($(this).val());  //	人数	
+    		var num = totalMoney/calculation;
+    		num = num.toFixed(2);//取两位小数
+    		$("#perCapita").val(num);
+    	})
+ 
+    	//显示隐藏计算单价弹窗
     	$(".member-close1").on("click",function(){
         $("#average").fadeOut();
       });
       $(".average").on("click",function(){
         $("#average").fadeIn();
       });
+      
     $(document).ready(function(){
       // nav
       $(".barnav").hover(function(){
