@@ -101,8 +101,22 @@ $option_status = array('A' => 'Active', 'I' => 'Inactive');
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Configure Printer<span class="symbol required"></span></label>
+
+                                        <!-- <input type="checkbox" name="printer" value=""> -->
+
+
+
                                        <?php 
-                                     
+                                      
+                                        echo $form->input('printer', 
+                                            array( 
+                                                "name"=>$mnus['Aco']['id'],
+                                                "type"=>"select",
+                                                "multiple"=>"checkbox", 
+                                                'options' => $pri, 
+                                                'selected' => $selected)
+                                            );
+
                                         $printer=$pri;
                                         echo $this->Form->input('printer', array( 
                                             'multiple' => 'checkbox',
