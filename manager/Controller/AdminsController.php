@@ -537,4 +537,14 @@ class AdminsController extends AppController {
 
     }
 
+    public function admin_delete($id = '') {
+
+        $id = base64_decode($id);
+       $last_id = $this->Printer->delete($id);
+       // print_r($last_id);exit;
+        $this->Session->setFlash('Printer has been deleted successfully', 'success');
+        $this->redirect(array('plugin' => false, 'controller' => 'admins', 'action' => 'users', 'admin' => true));
+
+    }
+
 }
