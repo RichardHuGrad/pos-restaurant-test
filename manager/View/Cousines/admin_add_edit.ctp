@@ -102,17 +102,17 @@ $option_status = array('A' => 'Active', 'I' => 'Inactive');
                                     <div class="form-group">
                                         <label class="control-label">Configure Printer<span class="symbol required"></span></label>
                                        <?php 
-
-                                       echo $this->Form->input('printer', array( 
+                                     
+                                        $printer=$pri;
+                                        echo $this->Form->input('printer', array( 
                                             'multiple' => 'checkbox',
                                             'separator'=> '</div><div class="checkbox">',
-                                            'before' => '<div class="checkbox">',
-                                            'after' => '</div>',
+                                            //'before' => '<div class="checkbox">',
+                                            //'after'  => '</div>',
                                             'div' => false, 
-                                            'options' =>  $pri,
+                                            'options' =>  $printer,
                                             'label' => false,
                                             "legend" => false,
-                                             
                                            ), array('class'=>'validate[minCheckbox[1]] checkbox')
                                         );   
                                        ?>
