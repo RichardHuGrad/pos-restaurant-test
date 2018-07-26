@@ -328,8 +328,12 @@ $(document).ready(function() {
             
                                             <div class="col-md-2">
                                                 <div class="form-group">
-                                                
-                                                    <input name="" id="delete" value="删除" class="form-control complete" required="required" type="button">
+                                                <?php echo $this->Html->link('<div style="color:#aaa;width:50px;height:30px;line-height:30px;border-radius: 2px;border:1px solid #aaa;font-size: 14px;">删除</div>',
+                                                            array('plugin' => false, 'controller' => 'admins', 'action' => 'delete',  base64_encode($this->request->data['Printer'][$i]['Printer']['id']), 'admin' => true),
+                                                            array('class' => 'btn btn-transparent btn-xs', 'title' => 'Click here to delete printer', "onclick"=>"return confirm('Are you sure you want to delete this printer?')", 'escape' => false)
+                                                        ); ?>
+                                                 
+                                                    <!-- <input name="delete" id="delete" value="删除" class="form-control complete" required="required" type="button"> -->
                                                 </div>
                                             </div>
                                             <?php }?>
