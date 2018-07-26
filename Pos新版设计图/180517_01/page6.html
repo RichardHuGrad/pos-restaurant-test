@@ -803,8 +803,9 @@
       var meal;//餐品
       var order = "D31710311432";//订单号
 			var percentage = 10;//折扣百分比
-      var smallPlan=0, discount=0,rmb=0,tax=0,total=0,received=0,cash=0,card=0,member=0,surplus=0,tip=0;
+      var smallPlan=0, discount=0,rmb=0,tax=13,total=0,received=0,cash=0,card=0,member=0,surplus=0,tip=0;
       //小计/折扣/折后价/税/总计/已收到/现金/卡/会员/剩余/小费
+     
       //加号点击
       $(".addMember").click(function(){
       	$(".pay-ul li").eq(0).addClass("noto-act").siblings().removeClass();
@@ -821,10 +822,10 @@
       	html2+="<div class='r-c-top'>";
       	html2+="<div class='c-top-left'>";
       	html2+="<ul class='contL'>";
-      	html2+="<li>订单号</li><li>小计</li><li>折扣</li><li>折后价</li><li>税(13%):</li><li>总计:</li>";
+      	html2+="<li>订单号</li><li>小计</li><li>折扣</li><li>折后价</li><li>税("+tax+"%):</li><li>总计:</li>";
         html2+="</ul>";
         html2+="<ul class='contR'>";
-        html2+="<li>"+order+"-"+i+"</li><li>$"+smallPlan+"</li><li>$"+discount+"*"+percentage+"%</li><li>$"+rmb+"</li><li>$"+tax+"</li><li>$"+total+"</li>";
+        html2+="<li>"+order+"-"+i+"</li><li>$<span class='txt1'>"+0+"</span></li><li>$<span class='txt2'>"+0+"</span>*"+percentage+"%</li><li>$<span class='txt3'>"+0+"</span></li><li>$<span class='txt4'>"+0+"</span></li><li>$<span class='txt5'>"+0+"</span></li>";
         html2+="</ul>";
         html2+="</div>";
         html2+="<div class='right-tab'>";
@@ -844,16 +845,17 @@
         html2+="</div>";
         html2+="</div>";
         html2+="<div class='r-c-center'>";
-        html2+="<ul class='cenL'><li>已收到:</li><li class='cen-col'>现金：$"+cash+"</li><li>剩余:</li><li>小费:</li></ul>";
-        html2+="<ul class='cenC'><li>$"+received+"</li><li class='cen-col'>卡：$"+card+"</li><li>$"+surplus+"</li><li>$"+tip+"</li></ul>";
-        html2+="<ul class='cenR'><li></li><li class='cen-col'>会员：$"+member+"</li><li></li><li></li></ul>";
+        html2+="<ul class='cenL'><li>已收到:</li><li class='cen-col'>现金：$"+0+"</li><li>剩余:</li><li>小费:</li></ul>";
+        html2+="<ul class='cenC'><li>$"+0+"</li><li class='cen-col'>卡：$"+0+"</li><li>$"+0+"</li><li>$"+0+"</li></ul>";
+        html2+="<ul class='cenR'><li></li><li class='cen-col'>会员：$"+0+"</li><li></li><li></li></ul>";
         html2+="</div>";
         html2+="<div class='r-c-bot'><h5>状态</h5><p><span class='color1'></span>未支付</p></div>";
         html2+="</div>";    
         $(".notop").find(".right-con").before(html2);
+        
+        
 				//左边生成
 				bill2="<ul class='right-list page6-list1 lis0"+i+"'>";
-				//bill2+="<li>"+meal+"</li>";
       	bill2+="</ul>";
 				$(".pay-left").append(bill2);
       })
@@ -864,22 +866,64 @@
        	$(".pay-left .right-list").eq(-1).remove();
       	$(".notop").find(".right-con").prev().remove();
       })
-      
-      
-      //平均分单
-      $(".average").click(function(){
+      //点击上边菜品生成到下边
+      $(".menu li").live("click",function(){
+      	meal = $(this).html();
+      	var li = $(this);
+      	$(".page6-list1").each(function(){
+      		if($(this).css("display")=="block"){
+	      		$(this).append("<li>"+meal+"</li>");	
+	      		li.remove();	
+	      	}
+      	})
       	
+      	//生成右边价格
+      	smallPlan = parseFloat($(this).find(".pri").text());//点击对应菜品的价格
+      	n = parseInt($(this).find(".list-right").text());//对应数量
+      	smallPlan = smallPlan*n;//单品总价
+      	discount = parseFloat(smallPlan*percentage/100); 
+      	discount = discount.toFixed(2);
+      	rmb = smallPlan-discount;//总价减去折扣价格
+      	tax = tax/100;
+      	tax = tax.toFixed(2);
+      	total = rmb+tax;
+      	received = 100;
+      	cash = 000000;
+      	card = 000000;
+      	member = 000000;
+      	surplus = received-total;//找零
+      	tip = 000000;
+      	$(".pay-right-c").each(function(){
+      		if($(this).css("display")=="block"){
+      			var txt1 = parseInt($(this).find(".txt1").text());
+      			txt1+=smallPlan;
+      			$(this).find(".txt1").text(txt1);//小计
+      			var txt2 = txt1;
+      			$(this).find(".txt2").text(txt1);//折扣
+      			var txt3 = parseFloat($(this).find(".txt3").text());
+      			txt3+=rmb;
+      			$(this).find(".txt3").text(txt3);//折后价
+      			var txt4 = txt3*tax;
+      			txt4.toFixed(2);
+      			alert(txt4)
+      			$(this).find(".txt4").text(txt4);//税
+      		}
+      	})
+      	
+      	
+      })
+      //点击下边菜品还原到上边
+      $(".page6-list1 li").live("click",function(){
+      	meal = $(this).html();
+      	$(".menu").each(function(){    		
+	      	$(this).append("<li>"+meal+"</li>");	 
+      	})
+      	$(this).remove();
       })
       
       
       
-//    $(".menu li").live("click",function(){
-//    	meal = $(this).html();
-//    	alert(meal)
-//    })//点击上边菜品生成到下边
-//    $(".menu11 li").live("click",function(){
-//    	
-//    })//点击下边菜品还原到上边
+      
       
       // 左边账单
       $(".pay-ul-left li").live("click",function(){
