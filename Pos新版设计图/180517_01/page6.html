@@ -845,9 +845,9 @@
         html2+="</div>";
         html2+="</div>";
         html2+="<div class='r-c-center'>";
-        html2+="<ul class='cenL'><li>已收到:</li><li class='cen-col'>现金：$"+0+"</li><li>剩余:</li><li>小费:</li></ul>";
-        html2+="<ul class='cenC'><li>$"+0+"</li><li class='cen-col'>卡：$"+0+"</li><li>$"+0+"</li><li>$"+0+"</li></ul>";
-        html2+="<ul class='cenR'><li></li><li class='cen-col'>会员：$"+0+"</li><li></li><li></li></ul>";
+        html2+="<ul class='cenL'><li>已收到:</li><li class='cen-col'>现金：$<span class='cash'>"+0+"</span></li><li>剩余:</li><li>小费:</li></ul>";
+        html2+="<ul class='cenC'><li>$<span class='received'>"+0+"</span></li><li class='cen-col'>卡：$<span class='card'>"+0+"</span></li><li>$<span class='surplus'>"+0+"</span></li><li>$<span class='txt6'>"+0+"</span></li></ul>";
+        html2+="<ul class='cenR'><li></li><li class='cen-col'>会员：$<span class='member'>"+0+"</span></li><li></li><li></li></ul>";
         html2+="</div>";
         html2+="<div class='r-c-bot'><h5>状态</h5><p><span class='color1'></span>未支付</p></div>";
         html2+="</div>";    
@@ -906,6 +906,10 @@
       			txt4 += txt3*tax/100;   			
       			txt4 = txt4.toFixed(2);
       			$(this).find(".txt4").text(txt4);//税
+      			var txt5 = 0;
+      			txt5 = parseFloat(txt3)+parseFloat(txt4);  
+      			txt5 = txt5.toFixed(2);
+      			$(this).find(".txt5").text(txt5);//税
       		}
       	})
       	
