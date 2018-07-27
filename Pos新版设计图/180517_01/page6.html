@@ -666,6 +666,7 @@
     	//显示隐藏计算单价弹窗
     	$(".member-close1").on("click",function(){
         $("#average").fadeOut();
+        $("#calculation").val('');$("#perCapita").val('');
       });
       $(".average").on("click",function(){
         $("#average").fadeIn();
@@ -965,7 +966,9 @@
       
       //减号点击
       $(".reduceMember").click(function(){
-      	
+      	if($(".page6-list1").length==0){
+      		alert("请先添加分单人员！");
+      	}
       })
       
       
