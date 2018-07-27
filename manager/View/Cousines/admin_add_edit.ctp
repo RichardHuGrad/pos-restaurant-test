@@ -101,21 +101,12 @@ $option_status = array('A' => 'Active', 'I' => 'Inactive');
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Configure Printer<span class="symbol required"></span></label>
-                                       <?php 
-                                      
-                                        
-                                        if($select1){
-                                             echo $this->Form->input('printer', array('type'=>'checkbox', 'label'=>'菜品默认打印机', 'checked'=>''));
-                                            
-                                        }else{
-
-                                             echo $this->Form->input('printer', array('type'=>'checkbox', 'label'=>'菜品默认打印机', 'checked'=>'checked'));
-                                        }
-                                        $printer=$pri;
+                                        <?php  
+                                            $printer=$pri;
                                             echo $this->Form->input('printer', array( 
                                                 'multiple' => 'checkbox',
                                                 'separator'=> '</div><div class="checkbox">',
-                                                'before' => '<div class="checkbox">',
+                                                'before' => '<div class="checkbox" style="margin-left:20px;">',
                                                 'after'  => '</div>',
                                                 'div' => false, 
                                                 'options' =>  $printer,
@@ -124,7 +115,7 @@ $option_status = array('A' => 'Active', 'I' => 'Inactive');
                                                 'selected' => $select1
                                                ), array('class'=>'validate[minCheckbox[1]] checkbox')
                                             );   
-                                       ?>
+                                        ?>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
