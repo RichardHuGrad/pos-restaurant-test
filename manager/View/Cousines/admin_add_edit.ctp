@@ -101,34 +101,29 @@ $option_status = array('A' => 'Active', 'I' => 'Inactive');
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Configure Printer<span class="symbol required"></span></label>
-
-                                        <!-- <input type="checkbox" name="printer" value=""> -->
-
-
-
                                        <?php 
                                       
-                                        echo $form->input('printer', 
-                                            array( 
-                                                "name"=>$mnus['Aco']['id'],
-                                                "type"=>"select",
-                                                "multiple"=>"checkbox", 
-                                                'options' => $pri, 
-                                                'selected' => $selected)
-                                            );
+                                        
+                                        if($select1){
+                                             echo $this->Form->input('printer', array('type'=>'checkbox', 'label'=>'菜品默认打印机', 'checked'=>''));
+                                            
+                                        }else{
 
+                                             echo $this->Form->input('printer', array('type'=>'checkbox', 'label'=>'菜品默认打印机', 'checked'=>'checked'));
+                                        }
                                         $printer=$pri;
-                                        echo $this->Form->input('printer', array( 
-                                            'multiple' => 'checkbox',
-                                            'separator'=> '</div><div class="checkbox">',
-                                            //'before' => '<div class="checkbox">',
-                                            //'after'  => '</div>',
-                                            'div' => false, 
-                                            'options' =>  $printer,
-                                            'label' => false,
-                                            "legend" => false,
-                                           ), array('class'=>'validate[minCheckbox[1]] checkbox')
-                                        );   
+                                            echo $this->Form->input('printer', array( 
+                                                'multiple' => 'checkbox',
+                                                'separator'=> '</div><div class="checkbox">',
+                                                'before' => '<div class="checkbox">',
+                                                'after'  => '</div>',
+                                                'div' => false, 
+                                                'options' =>  $printer,
+                                                'label' => false,
+                                                "legend" => false,
+                                                'selected' => $select1
+                                               ), array('class'=>'validate[minCheckbox[1]] checkbox')
+                                            );   
                                        ?>
                                     </div>
                                 </div>
