@@ -879,16 +879,16 @@
       	discount = discount.toFixed(2);
       	rmb = smallPlan-discount;//总价减去折扣价格    	
       	//alert(tax)
-      	total = rmb+tax;
-      	received = 000000;
-      	cash = 000000;
-      	card = 000000;
-      	member = 000000;
-      	surplus = received-total;//找零
-      	tip = 000000;
+//    	total = rmb+tax;
+//    	received = 000000;
+//    	cash = 000000;
+//    	card = 000000;
+//    	member = 000000;
+//    	surplus = received-total;//找零
+//    	tip = 000000;
       	$(".pay-right-c").each(function(){
       		if($(this).css("display")=="block"){
-      			var txt1 = parseInt($(this).find(".txt1").text());
+      			var txt1 = parseFloat($(this).find(".txt1").text());
       			txt1+=smallPlan;
       			$(this).find(".txt1").text(txt1);//小计
       			var txt2 = txt1;
@@ -922,36 +922,41 @@
       	smallPlan = parseFloat($(this).find(".pri").text());//点击对应菜品的价格
       	n = parseInt($(this).find(".list-right").text());//对应数量
       	smallPlan = smallPlan*n;//单品总价
-      	discount = parseFloat(smallPlan*percentage/100); 
+      	discount = parseFloat(smallPlan*percentage/100); //折扣
       	discount = discount.toFixed(2);
       	rmb = smallPlan-discount;//总价减去折扣价格    	
       	//alert(tax)
-      	total = rmb+tax;
-      	received = 000000;
-      	cash = 000000;
-      	card = 000000;
-      	member = 000000;
-      	surplus = received-total;//找零
-      	tip = 000000;
+//    	total = rmb+tax;
+//    	received = 000000;
+//    	cash = 000000;
+//    	card = 000000;
+//    	member = 000000;
+//    	surplus = received-total;//找零
+//    	tip = 000000;
       	$(".pay-right-c").each(function(){
       		if($(this).css("display")=="block"){
-      			var txt1 = parseInt($(this).find(".txt1").text());
+      			var txt1 = parseFloat($(this).find(".txt1").text());
+      			//console.log(txt1)
       			txt1-=smallPlan;
       			$(this).find(".txt1").text(txt1);//小计
       			var txt2 = txt1;
       			$(this).find(".txt2").text(txt1);//折扣
+      			//console.log(txt2)
       			var txt3 = parseFloat($(this).find(".txt3").text());
       			txt3-=rmb;
       			txt3 = txt3.toFixed(2);
       			$(this).find(".txt3").text(txt3);//折后价
-      			var txt4 = 0;
-      			txt4 -= txt3*tax/100;   			
+      			//console.log(txt3)
+      			var txt4 = $(this).find(".txt4").text();
+      			txt4 = txt3*tax/100;   			
       			txt4 = txt4.toFixed(2);
       			$(this).find(".txt4").text(txt4);//税
+      			//console.log(txt4)
       			var txt5 = 0;
-      			txt5 = parseFloat(txt3)-parseFloat(txt4);  
+      			txt5 = parseFloat(txt3)+parseFloat(txt4);  
       			txt5 = txt5.toFixed(2);
       			$(this).find(".txt5").text(txt5);//总计
+      			//console.log(txt5)
       		}
       	})
       	
