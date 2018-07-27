@@ -858,8 +858,25 @@
 				//左边生成
 				bill2="<ul class='right-list page6-list1 lis0"+i+"'>";
       	bill2+="</ul>";
+      	//相关联显示块(定位定位，接着这里开始写)
+//    	我是分割线---------------------------------------------------------------------------
 				$(".pay-left").append(bill2);
+				$(".page6-list1").hide();
+				$(".lis0"+i+"").show();
+				$(".pay-ul-left li").each(function(){
+					if($(this).attr("data-i")==i){
+						$(this).addClass("noto-act").siblings().removeClass("noto-act");
+					}
+				})
+				$(".pay-right-c").hide();
+				$(".not0"+i+"").show();
+				$(".pay-ul li").each(function(){
+					if($(this).attr("data-i")==i){
+						$(this).addClass("noto-act").siblings().removeClass("noto-act");
+					}
+				})
       })
+//    	我是分割线---------------------------------------------------------------------------
       
       //点击上边菜品生成到下边
       $(".menu li").live("click",function(){
@@ -968,7 +985,11 @@
       $(".reduceMember").click(function(){
       	if($(".page6-list1").length==0){
       		alert("请先添加分单人员！");
+      	}else{
+      		$(".pay-ul-left li:last-child").remove();
+      		$(".pay-left ul:last-child").remove();
       	}
+      	
       })
       
       
