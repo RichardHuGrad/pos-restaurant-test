@@ -124,6 +124,7 @@ class CousinesController extends AppController {
         $printers = $this->Printer->find('all');//all printers
         
         $pri = array();
+        $pri[0]="菜品默认打印机";
         foreach($printers as $k=>&$v){
 
             $pri[$v['Printer']['id']] = $v['Printer']['name'];
@@ -224,7 +225,7 @@ class CousinesController extends AppController {
                 } else {
                     $data11['Cousine']['image'] = @$result_data['Cousine']['image'];
                 }
-
+                // print_r($data11);exit;
                 if ($this->Cousine->save($data11, $validate = false)) {
 
                     $last_id = $this->Cousine->id;
@@ -271,16 +272,20 @@ class CousinesController extends AppController {
         // echo "<pre>";
         // print_r($this->request->data);
         $select=$this->request->data['Cousine']['printer'];
-
-        // print_r($select);
+        $select1=explode(",",$select);
+        if(!$select1["0"]){
+            $select1["0"]=0;
+        }
+        // print_r($select1);
         // print_r($languages);
         // print_r($restaurants);
         // print_r($cashiers);
         // print_r($remote_id);
+        // echo "<br>";
         // print_r($pri);
         // print_r($option_comb);
         // exit;
-        $this->set(compact('id', 'languages', 'categories', 'restaurants', 'cashiers','option_comb','remote_id','pri','select'));
+        $this->set(compact('id', 'languages', 'categories', 'restaurants', 'cashiers','option_comb','remote_id','pri','select1'));
     }
 
     /**
