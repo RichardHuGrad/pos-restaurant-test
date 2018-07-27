@@ -883,9 +883,8 @@
       	smallPlan = smallPlan*n;//单品总价
       	discount = parseFloat(smallPlan*percentage/100); 
       	discount = discount.toFixed(2);
-      	rmb = smallPlan-discount;//总价减去折扣价格
-      	tax = tax/100;
-      	tax = tax.toFixed(2);
+      	rmb = smallPlan-discount;//总价减去折扣价格    	
+      	//alert(tax)
       	total = rmb+tax;
       	received = 100;
       	cash = 000000;
@@ -903,9 +902,9 @@
       			var txt3 = parseFloat($(this).find(".txt3").text());
       			txt3+=rmb;
       			$(this).find(".txt3").text(txt3);//折后价
-      			var txt4 = txt3*tax;
-      			txt4.toFixed(2);
-      			alert(txt4)
+      			var txt4 = 0;
+      			txt4 += txt3*tax/100;   			
+      			txt4 = txt4.toFixed(2);
       			$(this).find(".txt4").text(txt4);//税
       		}
       	})
