@@ -177,9 +177,9 @@ class CousinesController extends AppController {
         if (!empty($this->request->data)) {
             $data11=$this->request->data;
             // echo "<pre>";
+            // print_r($data11);exit;
             $data11['Cousine']['printer']=implode(",",$data11['Cousine']['printer']);
             $data11['Cousine']['comb_num']=implode("",$data11['Cousine']['comb_num']);
-            // print_r($data11);exit;
             $this->Cousine->set($data11);
 
             ###### custom validation start for CousineLocal name ########
@@ -250,6 +250,7 @@ class CousinesController extends AppController {
             }
             $new_data = $this->Cousine->find('first', array('conditions' => array('Cousine.id' => $id)));
             $remote_id = $new_data['Cousine']['remote_id'];
+            // var_dump($remote_id);exit;
         }
 
         if('' != $id){
@@ -267,7 +268,19 @@ class CousinesController extends AppController {
             }
 
         }
-        $this->set(compact('id', 'languages', 'categories', 'restaurants', 'cashiers','option_comb','remote_id','pri'));
+        // echo "<pre>";
+        // print_r($this->request->data);
+        $select=$this->request->data['Cousine']['printer'];
+
+        // print_r($select);
+        // print_r($languages);
+        // print_r($restaurants);
+        // print_r($cashiers);
+        // print_r($remote_id);
+        // print_r($pri);
+        // print_r($option_comb);
+        // exit;
+        $this->set(compact('id', 'languages', 'categories', 'restaurants', 'cashiers','option_comb','remote_id','pri','select'));
     }
 
     /**
