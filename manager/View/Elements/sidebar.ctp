@@ -98,7 +98,7 @@
                                 <i class="fa fa-money"></i>
                             </div>
                             <div class="item-inner">
-                                <span class="title">Manager Management</span>
+                                <span class="title">Users</span>
                             </div>
                         </div>
                     </a>
@@ -217,12 +217,23 @@
                                 <i class="fa fa-user"></i>
                             </div>
                             <div class="item-inner">
-                                <span class="title">Attendance Reports</span>
+                                <span class="title">Hours Summar</span>
                             </div>
                         </div>
                     </a>
                 </li>
-
+                <li class="<?php echo (isset($tab_open) && $tab_open == 'attendances') ? 'active open' : '' ?>">
+                    <a href="<?php echo $this->Html->url(array('plugin' => false,'controller' => 'attendances','action' => 'index', 'admin' => 'true')); ?>">
+                        <div class="item-content">
+                            <div class="item-media">
+                                <i class="fa fa-user"></i>
+                            </div>
+                            <div class="item-inner">
+                                <span class="title">Shift Detail</span>
+                            </div>
+                        </div>
+                    </a>
+                </li>
                 <li class="<?php echo (isset($tab_open) && $tab_open == 'Logs') ? 'active open' : '' ?>">
                     <a href="<?php echo $this->Html->url(array('plugin' => false,'controller' => 'logs','action' => 'index', 'admin' => 'true')); ?>">
                         <div class="item-content">
