@@ -56,6 +56,14 @@ if($this->Session->check('cashier_search')){
                                     );
                                  ?>
                             </div>
+                            <div class="row pull-right">
+                                <?php
+                                    echo $this->Html->link('Discount <i class="fa fa-plus"></i>',
+                                        array('plugin' => false, 'controller' => 'promocodes', 'action' => 'add_edit', 'admin' => true),
+                                        array('class' => 'btn btn-green', 'escape' => false)
+                                    );
+                                 ?>
+                            </div>
                         </div>                        
                     </div>
                 </section>
