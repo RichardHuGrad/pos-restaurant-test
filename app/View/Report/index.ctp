@@ -59,7 +59,7 @@
 
 <script id="amount-info" type="text/template">
     <div class="">
-        <li class="col-md-6 col-sm-6 col-xs-6" style="background-color:#E0E0E0;">{5}</li>
+   <!--      <li class="col-md-6 col-sm-6 col-xs-6" style="background-color:#E0E0E0;">{5}</li>
         <li class="col-md-6 col-sm-6 col-xs-6 tax" style="background-color:#E0E0E0;">{6}</li>
         <li class="col-md-6 col-sm-6 col-xs-6"><?php echo __('Received Cash'); ?></li> <li class="col-md-6 col-sm-6 col-xs-6">{3}</li>
         <li class="col-md-6 col-sm-6 col-xs-6"><?php echo __('Received Card'); ?></li> <li class="col-md-6 col-sm-6 col-xs-6">{4}</li>
@@ -71,7 +71,7 @@
         <li class="col-md-6 col-sm-6 col-xs-6"><?php echo __('Tax'); ?></li> <li class="col-md-6 col-sm-6 col-xs-6">{0}</li>
         <li class="col-md-6 col-sm-6 col-xs-6"><?php echo __('Total'); ?></li> <li class="col-md-6 col-sm-6 col-xs-6">{1}</li>
         <li class="col-md-6 col-sm-6 col-xs-6"><?php echo __('Received Total'); ?></li> <li class="col-md-6 col-sm-6 col-xs-6">{2}</li>
-    </div>
+    </div> -->
 </script>
 <script id="item-info" type="text/template">
   <div class="">
@@ -237,7 +237,7 @@ $('button[name="view-items"]').on('click', function(e) {
             );
         }
     });
-});
+}); 
 
 $('button[name="print-items"]').on('click', function(e) {
 

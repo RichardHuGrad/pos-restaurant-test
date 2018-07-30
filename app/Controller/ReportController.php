@@ -31,13 +31,16 @@ class ReportController extends AppController {
             
             $timeArray = $this->Time->getTimelineArray($type,$from_date,$to_date);        	  
             $dailyAmount = $this->Order->getDailyOrderInfo($timeArray);
+            // echo "<pre>";
+            // print_r($dailyAmount);exit;
             return json_encode($dailyAmount);
             
         } else {
-        	  $timeArray = $this->Time->getTimelineArray($type);
+        	$timeArray = $this->Time->getTimelineArray($type);
             $dailyAmount = $this->Order->getDailyOrderInfo($timeArray);
             $dailyAmountTotal = $this->Order->getDailyOrderInfo(array(reset($timeArray), end($timeArray)));
-
+            // echo "<pre>";
+            // print_r($dailyAmountTotal);exit;
             return json_encode(array_merge($dailyAmount, $dailyAmountTotal));
         }
        
@@ -56,7 +59,8 @@ class ReportController extends AppController {
 
         // $dailyAmount = $this->Order->getDailyOrderInfo(array($tm11, $tm17, $tm23, $tm04));
         $dailyItems = $this->OrderItem->getDailyItemCount(array(reset($timeArray), end($timeArray)));
-
+        // echo "<pre>";
+        // print_r($dailyItems);exit;
         return json_encode($dailyItems);
     }
 
