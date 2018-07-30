@@ -671,7 +671,7 @@
       $(".average").on("click",function(){
         $("#average").fadeIn();
       });
-      
+ //    	我是分割线---------------------------------------------------------------------------     
     $(document).ready(function(){
       // nav
       $(".barnav").hover(function(){
@@ -775,10 +775,10 @@
         $(".payment .keyboard").val(valIn);
       });
       // 默认
-      $(".payde").on("click",function(){
-        // 365为现有的默认金额
-        $(".payment .keyboard").val(365);
-      });
+//    $(".payde").on("click",function(){
+//      // 365为现有的默认金额
+//      $(".payment .keyboard").val(365);
+//    });
       // 关闭ipad付款块
       $(".pay_close").on("click",function(){
         $('.payment .page2-right').hide();
@@ -796,7 +796,7 @@
       	$(this).next(".add-content").slideToggle();
       })
       
-      
+//    	我是分割线---------------------------------------------------------------------------      
       //分单
       var html1,html2;
       var bill1,bill2;
@@ -811,7 +811,8 @@
       $(".addMember").click(function(){
       	$(".pay-ul li").eq(0).addClass("noto-act").siblings().removeClass();
      	  $(".pay-ul-left li").eq(0).addClass("noto-act").siblings().removeClass();
-      	i=i+1;
+      	var len = $(".pay-ul li").length;
+      	i=len+1;
       	//左边切换
       	bill1 = "<li data-i="+i+">0"+i+"</li>";
       	$(".pay-left").find(".pay-ul-left").append(bill1);
@@ -858,8 +859,7 @@
 				//左边生成
 				bill2="<ul class='right-list page6-list1 lis0"+i+"'>";
       	bill2+="</ul>";
-      	//相关联显示块(定位定位，接着这里开始写)
-//    	我是分割线---------------------------------------------------------------------------
+      	//相关联显示块
 				$(".pay-left").append(bill2);
 				$(".page6-list1").hide();
 				$(".lis0"+i+"").show();
@@ -979,20 +979,32 @@
       	})
       	
       })
-      
-      
+//    	我是分割线---------------------------------------------------------------------------      
       //减号点击
       $(".reduceMember").click(function(){
-      	if($(".page6-list1").length==0){
+      	//删除子菜单恢复菜品到主菜单
+//    	if($(".page6-list1").css("display")=="block"){
+//    		var submenu = $(".page6-list1").html();
+//	      	$(".menu").each(function(){    		
+//		      	$(this).append("<li>"+meal+"</li>");	 
+//	      	})
+//	      	$(".page6-list1").remove();
+//    	}   	
+      	//判断子菜单是否为空
+  			if($(".page6-list1").length==0){
       		alert("请先添加分单人员！");
-      	}else{
-      		$(".pay-ul-left li:last-child").remove();
-      		$(".pay-left ul:last-child").remove();
       	}
+      	$(".pay-ul-left li:first-child").addClass("noto-act").siblings().removeClass("noto-act");//给第一个序号添加样式
+	      $(".pay-ul-left li:last-child").remove();//移除左侧子菜单对应的序号      	
+	      $(".pay-ul li:first-child").addClass("noto-act").siblings().removeClass("noto-act");//给第一个序号添加样式
+	      $(".pay-ul li:last-child").remove();//移除右侧子菜单对应的序号      	
       	
+      	$(".pay-left .page6-list1:nth-child(5)").show();//显示第一个子菜单
+      	$(".pay-left .page6-list1:last-child").remove();//移除左侧子菜单对应的菜单块
+      	$(".notop").find("div").eq(0).show();//显示第一个子菜单
+      	$(".notop").find(".right-con").prev(".pay-right-c").remove();//移除右侧子菜单对应的菜单块
       })
-      
-      
+//    	我是分割线---------------------------------------------------------------------------      
       // 左边账单
       $(".pay-ul-left li").live("click",function(){
         var i = $(this).data("i");
@@ -1028,6 +1040,7 @@
         })
       });
     });
+
     </script>
   </body>
 </html>
