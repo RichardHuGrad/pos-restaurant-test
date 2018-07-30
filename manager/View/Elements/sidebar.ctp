@@ -210,7 +210,7 @@
                     </a>
                 </li -->
 
-                <li class="<?php echo (isset($tab_open) && $tab_open == 'attendances') ? 'active open' : '' ?>">
+                <li class="<?php echo (isset($tab_open) && $tab_open == 'hours') ? 'active open' : '' ?>">
                     <a href="<?php echo $this->Html->url(array('plugin' => false,'controller' => 'attendances','action' => 'index', 'admin' => 'true')); ?>">
                         <div class="item-content">
                             <div class="item-media">
