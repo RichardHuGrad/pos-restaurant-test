@@ -1702,6 +1702,9 @@ a.add_zhe{
           line-height: 30px;
           height: 30px;
           color: #000;
+          overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
         }
         .r-c-center li.cen-col{
           color: #727272;
