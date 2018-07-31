@@ -271,7 +271,7 @@ a {
       }
       .c_right_title .p{
         width: 180px;
-        margin: 11% auto 16%;
+        margin: 11% 0 7%;
         color: #fff;
         overflow: hidden;
       }
@@ -295,17 +295,63 @@ a {
           font-size: 21px;
           /*font-family: Nobel-GBW6;*/
         }
-
-  .order{
+.fullOrder{
+	width: 100%;
+	overflow: hidden;
+}
+.fullOrder .img{
+	display: block;
+	width: 40px;
+	height: 40px;
+	border-radius: 3px;
+	overflow: hidden;
+	float: left;
+}
+.fullOrder ul{
+	color: #7a7a7a;
+	font-size: 18px;
+	margin-left: 50px;
+	text-align: left;
+}
+.fullOrder ul li{
+	display: inline-block;
+	line-height: 40px;
+	padding: 0 10px;
+	text-align: left;
+	position: relative;
+	cursor: pointer;
+}
+.fullOrder ul li.on{
+	color: #ffffff;
+}
+.fullOrder ul li+li:after{
+	content: '/';
+	display:block;
+	position: absolute;
+	color: #7a7a7a;
+	left: -3px;
+	top: 0;
+}
+.ulBox{
     position: absolute;
     left: 0;
     right: 0;
-    top: 16%;
+    top: 18%;
     bottom: 7%;
     z-index: 10;
-    padding: 0 5%;
-    overflow: hidden;
+    
+    
+  }
+  .order{
+  	max-width: 100%;
+  	height: 100%;
+  	overflow: hidden;
     overflow-y: scroll;
+    padding: 0 5%;
+    display: none;
+  }
+  .ulBox .order:first-child{
+  	display: block;
   }
   .order::-webkit-scrollbar-track {
       /* -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.3); */
@@ -398,10 +444,10 @@ a {
     overflow: hidden;
   }
     .c_area{
-      /*width: 90%;
-      padding: 22px 7.5% 0 2.5%;*/
-      width: 97%;
-      padding: 22px 1.5% 0;
+      width: 90%;
+      padding: 22px 7.5% 0 2.5%;
+      /*width: 97%;
+      padding: 22px 1.5% 0;*/
       background: #fff;
       overflow: hidden;
       overflow-y: scroll;
