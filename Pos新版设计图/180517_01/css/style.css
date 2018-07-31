@@ -398,6 +398,8 @@ a {
     overflow: hidden;
   }
     .c_area{
+      /*width: 90%;
+      padding: 22px 7.5% 0 2.5%;*/
       width: 97%;
       padding: 22px 1.5% 0;
       background: #fff;
