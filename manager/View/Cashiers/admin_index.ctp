@@ -62,7 +62,7 @@ if($this->Session->check('cashier_search')){
                 <section id="page-title">
                     <div class="row">
                         <div class="col-sm-12 col-md-12">
-                            <h1 class="mainTitle pull-left">Employees List</h1>
+                            <h1 class="mainTitle pull-left">Users</h1>
                             <div class="row pull-right">
                                 <?php
                                     echo $this->Html->link('Add Cashier <i class="fa fa-plus"></i>',
