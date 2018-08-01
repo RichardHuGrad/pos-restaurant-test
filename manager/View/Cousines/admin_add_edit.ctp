@@ -98,7 +98,7 @@ $option_status = array('A' => 'Active', 'I' => 'Inactive');
                                         ?>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <!-- <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Configure Printer<span class="symbol required"></span></label>
                                         <?php  
@@ -116,7 +116,7 @@ $option_status = array('A' => 'Active', 'I' => 'Inactive');
                                                ), array('class'=>'validate[minCheckbox[1]] checkbox')
                                             );   
                                         ?>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -187,6 +187,19 @@ $option_status = array('A' => 'Active', 'I' => 'Inactive');
                                 
 
                             </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div>
+
+                                    <?php echo $this->Html->link('<div style="color:#aaa;width:150px;height:30px;line-height:30px;border-radius: 2px;border:1px solid #aaa;font-size: 14px;">Configure Printer</div>',
+                                                            array('plugin' => false, 'controller' => '', 'action' => '', 'admin' => true),
+                                                            array('class' => 'btn btn-transparent btn-xs', 'title' => 'Click here to delete printer', 'escape' => false)
+                                                        ); ?>
+                                      
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div>
