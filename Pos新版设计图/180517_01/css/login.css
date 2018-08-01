@@ -1,6 +1,6 @@
 /* reset
 -----------------------------------------------------------------*/
-@font-face
+/*@font-face
 {
    font-family: 'Nobel-Book';
    src:url('../font/冬青黑体W3.otf');
@@ -13,7 +13,7 @@
    src:url('../font/HiraginoSansGBW6.TTF');
    font-weight: normal;
    font-style: normal;
-}
+}*/
 
 html,body {
     /* min-width: 1200px;
@@ -114,7 +114,7 @@ a {
 /* logo */
 .logo{
   float: left;
-  width: 35.6%;
+  width: 50%;
   max-width: 684px;
   vertical-align: middle;
 }

@@ -1,6 +1,6 @@
 /* reset
 -----------------------------------------------------------------*/
-@font-face
+/*@font-face
 {
    font-family: 'Nobel-Book';
    src:url('../font/冬青黑体W3.otf');
@@ -34,7 +34,7 @@
    src:url('../font/FZLTTHK.TTF');
    font-weight: normal;
    font-style: normal;
-}
+}*/
 html,body {
     /* min-width: 1200px;
     margin: auto; */
@@ -131,7 +131,7 @@ a {
   text-align: center;
   font-size: 24px;
   outline: none;
-  font-family: Nobel-Book;
+  /*font-family: Nobel-Book;*/
   cursor: pointer;
 }
 .login-align{
@@ -151,7 +151,7 @@ a {
   text-align: center;
   font-size: 24px;
   outline: none;
-  font-family: Nobel-Book;
+  /*font-family: Nobel-Book;*/
   cursor: pointer;
 }
 .lock-div{
@@ -171,7 +171,7 @@ a {
     border: 0;
     outline: none;
     font-size: 21px;
-    font-family: Nobel-Book;
+    /*font-family: Nobel-Book;*/
     color: #848484;
   }
   .lock-div img{
@@ -195,13 +195,13 @@ a {
   }
     .left-align span{
       font-size: 2rem;
-      font-family: Nobel-FZLTXHK;
+      /*font-family: Nobel-FZLTXHK;*/
       color: #fff;
       line-height: 55px;
     }
     .left-align h3{
       font-size: 4rem;
-      font-family: Nobel-FZLTTHK;
+      /*font-family: Nobel-FZLTTHK;*/
       color: #fff;
           font-weight: normal;
     }
@@ -232,7 +232,7 @@ a {
         padding: 5% 0;
         background: #fff;
         font-size: 2rem;
-        font-family: Nobel-Book;
+        /*font-family: Nobel-Book;*/
         color: #000;
         text-align: center;
         border-bottom: 1px #ebebeb solid;
@@ -248,27 +248,27 @@ a {
       .r-name{
         width: 85%;
         margin: 7% 4% 15px;
-        padding: 4% 3%;
+        padding:3%;
         border: 1px #4ee0ff solid;
         text-align: center;
         font-size: 30px;
         color: #c9c9c9;
         line-height: 30px;
-        font-family: Nobel-Book;
+        /*font-family: Nobel-Book;*/
         outline: none;
         border-radius: 6px;
       }
       .r-tel,.r-number{
         width: 85%;
         margin: 0  4% 15px;
-        padding: 4% 3%;
+        padding:3%;
         background: #f7f7f7;
         border: 1px #f7f7f7 solid;
         text-align: center;
         font-size: 30px;
         color: #545454;
         line-height: 30px;
-        font-family: Nobel-Book;
+        /*font-family: Nobel-Book;*/
         outline: none;
         border-radius: 6px;
       }
@@ -280,7 +280,7 @@ a {
         color: #fff;
         border: 0;
         font-size: 3rem;
-        font-family: Nobel-GBW6;
+        /*font-family: Nobel-GBW6;*/
         text-align: center;
         outline: none;
         cursor: pointer;
@@ -290,7 +290,7 @@ a {
         text-align: center;
         color: #fff;
         font-size: 2rem;
-        font-family: Nobel-FZLTTHK;
+        /*font-family: Nobel-FZLTTHK;*/
       }
 
 /*取号*/
@@ -330,7 +330,7 @@ a {
   }
     .paidui-top h4,.paidui-bot h4{
       font-size: 2rem;
-      font-family: Nobel-Book;
+      /*font-family: Nobel-Book;*/
       line-height: 50px;
     }
     .rili{
@@ -341,7 +341,7 @@ a {
       background: #00cdef;
       color: #fff;
       font-size: 18px;
-      font-family: Nobel-Book;
+      /*font-family: Nobel-Book;*/
       line-height: 55px;
       border-radius: 5px; 
     }
@@ -353,7 +353,7 @@ a {
       border: 1px solid #00cdef;
       height: 53px;
       font-size: 21px;
-      font-family: Nobel-Book;
+      /*font-family: Nobel-Book;*/
       color: #848484;
       outline: none;
     }
@@ -380,7 +380,7 @@ a {
         color: #000;
         line-height: 26px;
         font-size: 21px;
-        font-family: Nobel-Book;
+        /*font-family: Nobel-Book;*/
         text-align: left;
         border-radius: 10px;
         word-break: break-all;
@@ -412,7 +412,7 @@ a {
         color: #000;
         line-height: 80px;
         font-size: 21px;
-        font-family: Nobel-Book;
+        /*font-family: Nobel-Book;*/
         text-align: left;
         border-radius: 50px;
         margin-top: 7px;
@@ -422,13 +422,13 @@ a {
         }
         .tbody span{
           display: block;
-          width: 50px;
-          height: 50px;
+          width: 46px;
+          height: 46px;
           margin: 15px auto;
           background: #00cdef;
           color: #fff;
           font-size: 21px;
-          font-family: Nobel-GBW6;
+          /*font-family: Nobel-GBW6;*/
           line-height: 50px;
           border-radius: 5px;
           text-align: center;
@@ -491,7 +491,7 @@ a {
     padding-left: 150px;
     background: url(../images/icon-11.png) no-repeat 103px center;
     font-size: 24px;
-    font-family: Nobel-Book;
+    /*font-family: Nobel-Book;*/
     color: #00cdef;
     line-height: 80px;
   }
@@ -506,7 +506,7 @@ a {
     background: #f7f7f7;
     color:#848484;
     font-size: 21px;
-    font-family: Nobel-Book;
+    /*font-family: Nobel-Book;*/
     line-height: 55px;
     outline: none;
   }
@@ -522,7 +522,7 @@ a {
       line-height: 50px;
       color: #fff;
       font-size: 18px;
-      font-family: Nobel-GBW6;
+      /*font-family: Nobel-GBW6;*/
       border-radius: 5px;
       cursor: pointer;
     }
@@ -538,7 +538,7 @@ a {
       line-height: 50px;
       color: #fff;
       font-size: 18px;
-      font-family: Nobel-GBW6;
+      /*font-family: Nobel-GBW6;*/
       border-radius: 5px;
       cursor: pointer;
     }
@@ -601,7 +601,7 @@ a {
 
 .am-datepicker tr.am-datepicker-header {
   font-size: 1.6rem;
-  font-family: Nobel-FZLTXHK;
+  /*font-family: Nobel-FZLTXHK;*/
   color: #fff;
   background: #00cdef
 }

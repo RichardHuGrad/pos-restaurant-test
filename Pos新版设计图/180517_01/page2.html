@@ -184,7 +184,7 @@
             <div class="login-align">
                 <h4>请选择付款方式</h4>
                 <ul class="payF">
-                  <li class="active-li">
+                  <li class="active">
                     <a href="javascript:;"><img src="images/btn02.png"></a>
                   </li>
                   <li>
@@ -210,7 +210,8 @@
                     <li class="num">9</li>
                     <li class="empty">清空</li>
                     <li class="num">0</li>
-                    <li class="retreat">后退</li>
+                    <!--<li class="retreat">后退</li>-->
+                    <li class="num">.</li>
                   </ul>
                   <!-- 右侧操作 -->
                   <div class="num_right">
@@ -490,6 +491,10 @@
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/keyboard.js"></script>
     <script type="text/javascript">
+    	//添加折扣
+      $(".add_zhe").click(function(){
+      	$(this).next(".add-content").slideToggle();
+      })
     $(document).ready(function(){
       // nav
       $(".barnav").hover(function(){
@@ -604,6 +609,10 @@
       $(".pay_play").on("click",function(){
         $('.payment .page2-right').css("z-index","20");
       });
+      //付款方式
+      $(".payF li").click(function(){
+      	$(this).addClass("active").siblings().removeClass("active");
+      })
     });
     </script>
   </body>

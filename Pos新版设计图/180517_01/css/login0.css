@@ -1,12 +1,12 @@
 /* reset
 -----------------------------------------------------------------*/
-@font-face
+/*@font-face
 {
    font-family: 'Nobel-Book';
    src:url('../font/冬青黑体W3.otf');
    font-weight: normal;
    font-style: normal;
-}
+}*/
 
 html,body {
     /* min-width: 1200px;

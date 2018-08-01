@@ -40,7 +40,12 @@
         <div class="page2-left">
           <div class="page2-top">
             <h4>堂食订单 订单号 #D31803211631,  桌 #3</h4>
-            <button type="button" name="button">添加外卖手机号码</button>
+            <button type="button" name="button" class="newPhone">添加外卖手机号码</button>
+            <!-- 外卖手机号 -->
+				    <div class="lock-div">
+					    <input type="text" name="" value="" placeholder="请输入手机号" id="phone">
+					    <img src="images/icon-08.png" alt="关闭" class="closeBox">
+					  </div>
           </div>
           <div class="page2-left-c">
             <!-- 左侧菜单 -->
@@ -66,7 +71,7 @@
               <img src="images/icon-08.png" alt="去除搜索内容" class="tab-close" />
               <!-- 内容 -->
               <ul class="tabright tab1">
-                <li>
+                <li class="select">
                   <a href="javascript:;">
                     <p title="A1 宋嫂牛肉面">A1 宋嫂牛肉面</p>
                     <span>$ 12.99</span>
@@ -210,28 +215,29 @@
           <div class="right-con">
             <div class="right-tab">
               <ul class="right-top">
-                <li class="right-active">
+                <li class="firstLi right-active">
                   <a href="javascript:;">订单列表</a>
                 </li>
-                <li>
+                <li class="totalSelection">
                   <a href="javascript:;">全选</a>
                 </li>
-                <li>
+                <li class="reverseSelection">
                   <a href="javascript:;">反选</a>
                 </li>
-                <li>
+                <li class="cancel">
                   <a href="javascript:;">取消选择</a>
                 </li>
-                <li>
+                <li class="not_yet">
                   <a href="javascript:;">未送厨</a>
                 </li>
-                <li>
+                <li class="already">
                   <a href="javascript:;">已送厨</a>
                 </li>
               </ul>
               <ul class="right-list">
-                <!-- 背景色 class="rig-act" -->
-                <li>
+                <!-- 背景色 class="rig-act" data-state="1" 表示已送厨-->
+               
+                <li data-state="1">
                   <a href="javascript:;">
                     <div class="list-left">
                       <h4>宋嫂牛肉面 </h4>
@@ -243,7 +249,7 @@
                     <div class="list-right">1</div>
                   </a>
                 </li>
-                <li>
+                <li data-state="1">
                   <a href="javascript:;">
                     <div class="list-left">
                       <h4>宋嫂牛肉面 </h4>
@@ -255,7 +261,7 @@
                     <div class="list-right">1</div>
                   </a>
                 </li>
-                <li>
+                <li data-state="0">
                   <a href="javascript:;">
                     <div class="list-left">
                       <h4>宋嫂牛肉面 </h4>
@@ -266,44 +272,8 @@
                     </div>
                     <div class="list-right">1</div>
                   </a>
-                </li>
-                <li>
-                  <a href="javascript:;">
-                    <div class="list-left">
-                      <h4>宋嫂牛肉面 </h4>
-                      <p>Option: 中辣；少麻；去葱；加卤蛋；加面；加肉；改米线；多花生</p>
-                    </div>
-                    <div class="list-center">
-                      12.99 <span>(15%off)</span>
-                    </div>
-                    <div class="list-right">1</div>
-                  </a>
-                </li>
-                <li>
-                  <a href="javascript:;">
-                    <div class="list-left">
-                      <h4>宋嫂牛肉面 </h4>
-                      <p>Option: 中辣；少麻；去葱；加卤蛋；加面；加肉；改米线；多花生</p>
-                    </div>
-                    <div class="list-center">
-                      12.99 <span>(15%off)</span>
-                    </div>
-                    <div class="list-right">1</div>
-                  </a>
-                </li>
-                <li>
-                  <a href="javascript:;">
-                    <div class="list-left">
-                      <h4>宋嫂牛肉面 </h4>
-                      <p>Option: 中辣；少麻；去葱；加卤蛋；加面；加肉；改米线；多花生</p>
-                    </div>
-                    <div class="list-center">
-                      12.99 <span>(15%off)</span>
-                    </div>
-                    <div class="list-right">1</div>
-                  </a>
-                </li>
-                <li>
+                </li>               
+                <li data-state="1">
                   <a href="javascript:;">
                     <div class="list-left">
                       <h4>宋嫂牛肉面 </h4>
@@ -350,6 +320,30 @@
         </div>
       </div>
     </div>
+
+<!--弹层集中-->
+		
+
+		<!-- 产品数量更改 -->
+    <div id="changeNum">
+      <p class="txt">改数量</p>
+      <input type="number" name=""  class="changeInp" placeholder="请输入数量" />
+      <div class="changeBtn">
+        <button type="button" class="cancel">取消</button>
+        <button type="button" class="save">保存</button>
+      </div>
+    </div>
+		
+		<!-- 产品价格更改 -->
+    <div id="changePrice">
+      <p class="txt">改价格</p>
+      <input type="number" name=""  class="changeInp" placeholder="请输入价格" />
+      <div class="changeBtn">
+        <button type="button" class="cancel">取消</button>
+        <button type="button" class="save">保存</button>
+      </div>
+    </div>
+
 
     <!-- 虚拟键盘 -->
     <div class="key">
@@ -508,62 +502,110 @@
           <!-- 内容 -->
           <ul class="tabright chan1">
             <li>
-              <a href="javascript:;">微麻</a>
+            	<label>
+	            	<input type="radio" class="ck" name="ck1"/>
+	              <a href="javascript:;">微麻</a>
+            	</label>
             </li>
             <li>
-              <a href="javascript:;">正常</a>
+            	<label>
+	            	<input type="radio" class="ck" name="ck1"/>
+              	<a href="javascript:;">正常</a>
+              </label>
             </li>
             <li>
-              <a href="javascript:;">多麻</a>
+            	<label>
+	            	<input type="radio" class="ck" name="ck1"/>
+              	<a href="javascript:;">多麻</a>
+              </label>
             </li>
             <li>
-              <a href="javascript:;">去麻</a>
+            	<label>
+	            	<input type="radio" class="ck" name="ck1"/>
+              	<a href="javascript:;">去麻</a>
+              </label>
             </li>
           </ul>
           <ul class="tabright chan2">
             <li>
-              <a href="javascript:;">微辣</a>
+            	<label>
+	            	<input type="radio" class="ck" name="ck2"/>
+              	<a href="javascript:;">微辣</a>
+              </label>
             </li>
             <li>
-              <a href="javascript:;">正常</a>
+            	<label>
+	            	<input type="radio" class="ck" name="ck2"/>
+              	<a href="javascript:;">正常</a>
+              </label>
             </li>
             <li>
-              <a href="javascript:;">多辣</a>
+              <label>
+	            	<input type="radio" class="ck" name="ck2"/>
+              	<a href="javascript:;">多辣</a>
+              </label>
             </li>
             <li>
-              <a href="javascript:;">少辣</a>
+              <label>
+	            	<input type="radio" class="ck" name="ck2"/>
+              	<a href="javascript:;">少辣</a>
+              </label>
             </li>
           </ul>
           <ul class="tabright chan3">
             <li>
-              <a href="javascript:;">多加</a>
+              <label>
+	            	<input type="radio" class="ck" name="ck3"/>
+              	<a href="javascript:;">多加</a>
+              </label>
             </li>
             <li>
-              <a href="javascript:;">少加</a>
+              <label>
+	            	<input type="radio" class="ck" name="ck3"/>
+              	<a href="javascript:;">少加</a>
+              </label>
             </li>
             <li>
-              <a href="javascript:;">不加</a>
+              <label>
+	            	<input type="radio" class="ck" name="ck3"/>
+              	<a href="javascript:;">不加</a>
+              </label>
             </li>
           </ul>
           <ul class="tabright chan4">
             <li>
-              <a href="javascript:;">香菜</a>
+              <label>
+	            	<input type="radio" class="ck" name="ck4"/>
+              	<a href="javascript:;">香菜</a>
+              </label>
             </li>
             <li>
-              <a href="javascript:;">汤</a>
+              <label>
+	            	<input type="radio" class="ck" name="ck4"/>
+              	<a href="javascript:;">汤</a>
+              </label>
             </li>
           </ul>
           <ul class="tabright chan5">
             <li>
-              <a href="javascript:;">金针菇</a>
+              <label>
+	            	<input type="radio" class="ck" name="ck5"/>
+              	<a href="javascript:;">金针菇</a>
+              </label>
             </li>
             <li>
-              <a href="javascript:;">娃娃菜</a>
+              <label>
+	            	<input type="radio" class="ck" name="ck5"/>
+              	<a href="javascript:;">娃娃菜</a>
+              </label>
             </li>
           </ul>
           <ul class="tabright chan6">
             <li>
-              <a href="javascript:;">酸甜</a>
+              <label>
+	            	<input type="radio" class="ck" name="ck6"/>
+              	<a href="javascript:;">酸甜</a>
+              </label>
             </li>
           </ul>
         </div>
@@ -652,6 +694,121 @@
         $(this).addClass("tab-active");
         $(this).siblings().removeClass("tab-active");
       });
+      
+      
+      //菜品数量调整
+      $(".rBtn04").on("click",function(){
+        $("#changeNum").fadeIn();
+      });
+      $("#changeNum .cancel").on("click",function(){
+        $("#changeNum").hide();
+  
+      });
+      //菜品价格调整
+      $(".rBtn05").on("click",function(){
+        $("#changePrice").fadeIn();
+      });
+      $("#changePrice .cancel").on("click",function(){
+        $("#changePrice").hide();
+      });
+      
+      
+      //判断哪个菜品被选中
+      $(".tabright li").click(function(){
+      	
+      	if($(this).hasClass("select")){
+      		$(this).removeClass("select");
+      	}else{
+      		$(this).addClass("select");
+      	}
+      })    
+      //取消选择的菜品
+      $(".cancel").click(function(){
+      	$(".right-list li").removeClass("select");
+      })
+      //订单列表
+      $(".firstLi").click(function(){
+      	$(".right-list li").removeClass("select");
+      	
+      })
+      //全选
+      $(".totalSelection").click(function(){
+      	$(".right-list li").addClass("select");
+      	
+      })
+      //送厨与未送厨背景颜色区分
+      $(function(){
+      	$(".right-list li").each(function(){
+      		var state = $(this).attr("data-state");
+      		if(state==1){
+      			$(this).css('background-color','#f0f0f0');
+      		}
+      	})
+      })
+      //未送厨
+      $(".not_yet").click(function(){
+      	$(".right-list li").each(function(){
+      		var state = $(this).attr("data-state");
+      		if(state==0){
+      			$(this).addClass("select");
+      		}else{
+      			$(this).removeClass("select");
+      		}
+      		
+      	})
+     	
+      })
+      //已送厨
+      $(".already").click(function(){
+      	$(".right-list li").each(function(){
+      		var state = $(this).attr("data-state");
+      		if(state==1){
+      			$(this).addClass("select");
+      		}else{
+      			$(this).removeClass("select");
+      		}
+      		
+      	})
+      })
+      //反选()
+      $(".reverseSelection").click(function(){
+        $(".right-list li").each(function(){
+        	var selected = $(this).attr("class");
+      		if(selected == 'select'){     			      		
+	      		$(this).removeClass("select");
+      		}else if(selected != 'select'){
+      			$(this).addClass("select");
+      		}
+      	})
+      })
+      //右侧已选菜品选中操作
+      $(".right-list li").click(function(){
+      		var selected = $(this).attr("class");
+		  		if(selected =='select'){
+		  			$(this).removeClass("select");
+		
+		  		}else if(selected !='select'){
+		  			$(this).addClass("select");
+		
+		  		}
+      })
+      //类似选项卡样式切换
+      $(".right-top li").click(function(){
+      	$(this).addClass("right-active").siblings().removeClass("right-active");
+      })
+      	
+     //电话号码弹窗
+     $(".newPhone").click(function(){
+     	$(this).next(".lock-div").fadeIn();
+     })
+     $(".closeBox").click(function(){
+     	$(this).parents(".lock-div").fadeOut();
+     })
+      
+      //添加折扣
+      $(".add_zhe").click(function(){
+      	$(".add-content").slideToggle();
+      })
       // 去除搜索框中的内容
       $(".tab-close").on("click",function(){
         $(".tab-input").val("");
