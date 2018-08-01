@@ -270,7 +270,7 @@ $(document).ready(function() {
                                                         echo $this->request->data['Printer'][$i]['Printer']['name'];
                                                     }else{
                                                         echo '';
-                                                    }?>" maxlength=" " class="form-control" required="required" type="text" >                                                    
+                                                    }?>" maxlength=" 20" class="form-control" required="required" type="text" >                                                    
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
@@ -279,7 +279,7 @@ $(document).ready(function() {
                                                         echo $this->request->data['Printer'][$i]['Printer']['printer_ID'];
                                                     }else{
                                                         echo '';
-                                                    }?>" maxlength=" " class="form-control" required="required" type="text">                                                    
+                                                    }?>" maxlength="20 " class="form-control" required="required" type="text">                                                    
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
@@ -288,7 +288,7 @@ $(document).ready(function() {
                                                         echo $this->request->data['Printer'][$i]['Printer']['type'];
                                                     }else{
                                                         echo '账单';
-                                                    }?>" maxlength=" " class="form-control" required="required" type="text" readonly="readonly" >                                                    
+                                                    }?>" maxlength=" 5" class="form-control" required="required" type="text" readonly="readonly" >                                                    
                                                 </div>
                                             </div>
                                         </div>
@@ -328,7 +328,7 @@ $(document).ready(function() {
             
                                             <div class="col-md-2">
                                                 <div class="form-group">
-                                                <?php echo $this->Html->link('<div style="color:#aaa;width:50px;height:30px;line-height:30px;border-radius: 2px;border:1px solid #aaa;font-size: 14px;">删除</div>',
+                                                <?php echo $this->Html->link('<div style="color:#aaa;width:50px;height:30px;line-height:30px;border-radius: 2px;border:1px solid #aaa;font-size: 14px;">delete</div>',
                                                             array('plugin' => false, 'controller' => 'admins', 'action' => 'delete',  base64_encode($this->request->data['Printer'][$i]['Printer']['id']), 'admin' => true),
                                                             array('class' => 'btn btn-transparent btn-xs', 'title' => 'Click here to delete printer', "onclick"=>"return confirm('Are you sure you want to delete this printer?')", 'escape' => false)
                                                         ); ?>
