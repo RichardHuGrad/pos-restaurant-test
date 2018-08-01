@@ -50,7 +50,7 @@ $option_status = array('A' => 'Active', 'I' => 'Inactive');
 
                                 <?php } ?>
 
-                                <div class="col-md-6">
+                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Default Printer</label>
 
@@ -66,13 +66,14 @@ $option_status = array('A' => 'Active', 'I' => 'Inactive');
                                         <?php echo $this->Form->input('status', array('options' => $option_status, 'class' => 'form-control', 'empty' => false, 'label' => false, 'div' => false)); ?>
                                     </div>
                                 </div>
-
+<!-- 
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Server ID</label>
                                         <?php echo $this->Form->input('remote_id', array('type' =>'text', 'class' => 'form-control', 'label' => false, 'div' => false, 'required' => false)); ?>
                                     </div>
-                                </div>
+                                </div> -->
+                               
                                 
                             </div>
                             <div class="row">
