@@ -177,8 +177,6 @@ class CousinesController extends AppController {
         $remote_id = @$result_data['Cousine']['remote_id'];
         if (!empty($this->request->data)) {
             $data11=$this->request->data;
-            // echo "<pre>";
-            // print_r($data11);exit;
             $data11['Cousine']['printer']=implode(",",$data11['Cousine']['printer']);
             $data11['Cousine']['comb_num']=implode("",$data11['Cousine']['comb_num']);
             $this->Cousine->set($data11);
@@ -225,11 +223,9 @@ class CousinesController extends AppController {
                 } else {
                     $data11['Cousine']['image'] = @$result_data['Cousine']['image'];
                 }
-                // print_r($data11);exit;
                 if ($this->Cousine->save($data11, $validate = false)) {
 
                     $last_id = $this->Cousine->id;
-                    // print_r($last_id);exit;
                     foreach ($this->data['CousineLocal'] as $lang_code => $val){
 
                         $locale_data['CousineLocal'] = array(
@@ -251,7 +247,6 @@ class CousinesController extends AppController {
             }
             $new_data = $this->Cousine->find('first', array('conditions' => array('Cousine.id' => $id)));
             $remote_id = $new_data['Cousine']['remote_id'];
-            // var_dump($remote_id);exit;
         }
 
         if('' != $id){
@@ -269,22 +264,12 @@ class CousinesController extends AppController {
             }
 
         }
-        // echo "<pre>";
-        // print_r($this->request->data);
         $select=$this->request->data['Cousine']['printer'];
         $select1=explode(",",$select);
         if(!$select1["0"]){
             $select1["0"]=0;
         }
-        // print_r($select1);
-        // print_r($languages);
-        // print_r($restaurants);
-        // print_r($cashiers);
-        // print_r($remote_id);
-        // echo "<br>";
-        // print_r($pri);
-        // print_r($option_comb);
-        // exit;
+      
         $this->set(compact('id', 'languages', 'categories', 'restaurants', 'cashiers','option_comb','remote_id','pri','select1'));
     }
 
@@ -383,6 +368,144 @@ class CousinesController extends AppController {
             }
             echo $output;
         }
+    }
+
+    public function admin_configure($id = ''){
+        $this->layout = LAYOUT_ADMIN;
+        $id = base64_decode($id);
+        $languages = $this->Language->find('list', array('fields' => array('lang_code', 'language'), 'conditions' => array('status' => 'A')));
+        $printers = $this->Printer->find('all');//all printers
+        
+        $pri = array();
+        $pri[0]="菜品默认打印机";
+        foreach($printers as $k=>&$v){
+
+            $pri[$v['Printer']['id']] = $v['Printer']['name'];
+
+        }
+
+        if($id) {
+            $result_data = $this->Cousine->find('first', array('conditions' => array('Cousine.id' => $id)));
+            if(empty($result_data)){
+                $this->Session->setFlash('Invalid Request !', 'error');
+                $this->redirect(array('plugin' => false, 'controller' => 'cousines', 'action' => 'index', 'admin' => true));
+            }
+        }
+
+        //Modified by Yishou Liao @ Dec 13 2016
+        $comb_detail_tmp = $this->Extrascategory->query("SELECT * FROM extrascategories WHERE status='A' AND extras_num>0");
+        $option_comb = array('0' => 'No comb');
+        foreach ($comb_detail_tmp as $comb) {
+            $option_comb[$comb['extrascategories']['id']] = $comb['extrascategories']['name'] . '(' . $comb['extrascategories']['name_zh'] . ')';
+        }
+        //End @ Dec 13 2016
+        
+        $this->loadModel('CategoryLocale');
+        $categories = $this->CategoryLocale->find('list',
+            array(
+                'fields' => array('CategoryLocale.category_id', 'CategoryLocale.name'),
+                'conditions' => array('CategoryLocale.lang_code' => 'en'),
+                'order' => array('CategoryLocale.name' => 'ASC')
+            )
+        );
+        
+        $this->loadModel('Admin');
+        $restaurants = $this->Admin->find('list',
+            array('fields' => array('Admin.id', 'Admin.restaurant_name'), 'conditions' => array('Admin.status' => 'A', 'Admin.is_super_admin' => 'N'), 'order' => array('Admin.firstname' => 'ASC')));
+
+
+        $this->loadModel('Cashier');
+
+        $is_super_admin = $this->Session->read('Admin.is_super_admin');
+        if('Y' <> $is_super_admin){
+            $cashiers = $this->Cashier->find('list',
+            array('fields' => array('Cashier.id', "Cashier.firstname"), 'conditions' => array('Cashier.status' => 'A', 'Cashier.restaurant_id'=>$this->Session->read('Admin.id')), 'order' => array('Cashier.firstname' => 'ASC')));
+           
+        } else {
+            $cashiers = $this->Cashier->find('list',
+            array('fields' => array('Cashier.id', "Cashier.firstname"), 'conditions' => array('Cashier.status' => 'A', 'Cashier.restaurant_id'=>@$result_data['Cousine']['restaurant_id']), 'order' => array('Cashier.firstname' => 'ASC')));
+
+        }
+        
+        $remote_id = @$result_data['Cousine']['remote_id'];
+        if (!empty($this->request->data)) {
+            $data11=$this->request->data;
+            $data11['Cousine']['printer']=implode(",",$data11['Cousine']['printer']);
+            //$data11['Cousine']['comb_num']=implode("",$data11['Cousine']['comb_num']);
+            $this->Cousine->set($data11);
+
+            ###### custom validation start for CousineLocal name ########
+            if('' != $id){
+                $conditions = array('CousineLocal.parent_id !=' => $id);
+            }
+            
+            ###### custom validation end for CousineLocal name ########
+
+            if ($this->Cousine->validates() && $this->CousineLocal->validates()) {
+                
+                $is_error_image = 0;
+                if (isset($data11['Cousine']['image']['name']) && $data11['Cousine']['image']['name'] != "") {
+
+                    @unlink(COUSINE_UPLOAD_PATH.'thumbnail/' . @$result_data['Cousine']['image']);
+                    $is_image_uploaded = 1;
+                    $allowed_extension = array('jpg', 'jpeg', 'png', 'gif');
+                    $extension = pathinfo($data11['Cousine']['image']['name'], PATHINFO_EXTENSION);
+                    $extension = strtolower($extension);
+                    if (!in_array($extension, $allowed_extension)) {
+                        $is_error_image = 1;
+                        $this->Session->setFlash(__("Uploaded Signature Image should be of " . implode(", ", $allowed_extension) . " type only"), 'error');
+                    } else {
+                        $is_error_image = 0;
+                        $product_pic = time() . "_cousine." . $extension;
+                        if (move_uploaded_file($data11['Cousine']['image']['tmp_name'], COUSINE_UPLOAD_PATH . $product_pic)) {
+                            $this->resize($product_pic, 400, COUSINE_UPLOAD_PATH);
+                            $data11['Cousine']['image'] = $product_pic;
+                            unlink(COUSINE_UPLOAD_PATH . $product_pic);
+                        }
+                    }
+                } else {
+                    $data11['Cousine']['image'] = @$result_data['Cousine']['image'];
+                }
+                if ($this->Cousine->save($data11, $validate = false)) {
+
+                    $last_id = $this->Cousine->id;
+                    
+
+                    if('' == $id){
+                        $this->Session->setFlash('Cousine has been added successfully', 'success');
+                    }else{
+                        $this->Session->setFlash('Cousine has been updated successfully', 'success');
+                    }
+                    $this->redirect(array('plugin' => false, 'controller' => 'cousines', 'action' => 'index', 'admin' => true));
+                }
+            }
+            $new_data = $this->Cousine->find('first', array('conditions' => array('Cousine.id' => $id)));
+            $remote_id = $new_data['Cousine']['remote_id'];
+        }
+
+        if('' != $id){
+
+           if (empty($data11)) {
+                $tmp = array();
+                foreach ($result_data['CousineLocal'] as $d){
+                    $tmp['CousineLocal'][$d['lang_code']] = array(
+                        'name' => $d['name'],
+                        'id' => $d['id']
+                    );
+                }
+                $result_data = array_merge($result_data, $tmp);
+                $this->request->data = $result_data;
+            }
+
+        }
+        $select=$this->request->data['Cousine']['printer'];
+        $select1=explode(",",$select);
+        if(!$select1["0"]){
+            $select1["0"]=0;
+        }
+      
+        $this->set(compact('id', 'languages', 'categories', 'restaurants', 'cashiers','option_comb','remote_id','pri','select1'));
+
     }
 
 }
