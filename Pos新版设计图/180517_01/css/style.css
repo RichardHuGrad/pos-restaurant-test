@@ -336,7 +336,7 @@ a {
     position: absolute;
     left: 0;
     right: 0;
-    top: 18%;
+    top: 19%;
     bottom: 7%;
     z-index: 10;
     
@@ -497,12 +497,12 @@ a {
   /* 占桌情况 */
   .sit{
     width: 100%;
-    max-width: 1175px;
+    overflow: hidden;
     margin-top: 1.3%;
   }
     .sit_left{
       float: left;
-      width: 90%;
+      width: 100%;
       overflow: hidden;
     }
     .sit_center{
@@ -519,20 +519,20 @@ a {
       .sit li{
         position: relative;
         float: left;
-        width: 12.5%;
+        width: 14%;
         height: 104px;
         margin-bottom: 1.3%;
         padding: 8px 0;
         border-radius: 10px;
         background: #fff;
-        margin-left: 1%;
+        margin-left: 2%;
         cursor: pointer;
       }
       .sit li:nth-child(6n+1){
         margin-left: 0;
       }
       .sit li:nth-child(6n+3),.sit li:nth-child(6n+5){
-        margin-left: 11%;
+        margin-left: 5%;
       }
       .sit li.sit_kong{
         background: #eaeaea;
@@ -744,7 +744,8 @@ a {
     left: 1%;
     bottom: 0;
     width: 99%;
-  }
+    background: #fff;
+  } 
     .page2-tabnav{
       position: relative;
       float: left;
@@ -3479,10 +3480,7 @@ a.add_zhe{
   .content_left{
     width: 77%;
   }
-  .sit li:nth-child(6n+3),.sit li:nth-child(6n+5){
-    margin-left: 11%;
-  }
-
+  
   .login_right,.content_right{
     width: 23%;
   }
@@ -3713,6 +3711,28 @@ a.add_zhe{
   }
 }
 @media only screen and (max-width:1024px){
+.page2-left {
+  width: 52%;
+}
+.page2-right {
+  width: 46.5%;
+}
+.page2-tabnav{
+  width: 30%;
+}
+.tab-bot{
+  width: 30%;
+}     
+.page2-tavright{
+  width: 66%;
+}
+.tabright li{
+  width: 45%;
+}
+ 
+	
+	
+	
   .seach-content {
     height: 84px;
   }
@@ -3779,7 +3799,6 @@ a.add_zhe{
     line-height: 65px;
   }
   .sit li{
-    width: 14.5%;
     height: 85px;
   }
   .sit li:nth-child(6n+3),.sit li:nth-child(6n+5){
@@ -4016,9 +4035,7 @@ a.add_zhe{
   .c_right_title .p{
     width: 140px;
   }
-  .sit li{
-    width: 15%;
-  }
+  
   .sit li .sit-title span{
     margin: 0 5px 0 8px;
   }
@@ -4066,9 +4083,9 @@ a.add_zhe{
   .page2-left,.page2-right{
     width: 100%;
   }
-  .right-top li{
+  /*.right-top li{
     width: 15.4%;
-  }
+  }*/
   .page2-top h4, .page2-tabnav li a {
     font-size: 20px;
   }
