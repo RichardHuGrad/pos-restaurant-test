@@ -91,18 +91,31 @@
                 </li>
                 <!-- End -->
                 
-                <li class="<?php echo (isset($tab_open) && $tab_open == 'cashiers') ? 'active open' : '' ?>">
-                    <a href="<?php echo $this->Html->url(array('plugin' => false,'controller' => 'cashiers','action' => 'index', 'admin' => 'true')); ?>">
+                <li class="slide_class <?php echo (isset($tab_open) && in_array($tab_open, array('promocodes', 'specials'))) ? 'active open' : '' ?>">
+                    <a href="javascript:void(0)">
                         <div class="item-content">
                             <div class="item-media">
-                                <i class="fa fa-money"></i>
+                                <i class="fa fa-ticket"></i>
                             </div>
                             <div class="item-inner">
-                                <span class="title">Users</span>
+                                <span class="title">Users</span><i class="icon-arrow"></i>
                             </div>
                         </div>
                     </a>
-                </li>  
+                    <ul class="sub-menu" style="<?php echo (isset($tab_open) && in_array($tab_open, array('cashiers', 'specials'))) ? '' : 'display: none;' ?>">
+                        <li class="<?php echo (isset($tab_open) && $tab_open == 'cashiers') ? 'active' : '' ?>">
+                            <a href="<?php echo $this->Html->url(array('plugin' => false,'controller' => 'cashiers','action' => 'index', 'admin' => true)); ?>">
+                                <span class="title">Users</span>
+                            </a>
+                        </li>
+                        <li class="<?php echo (isset($tab_open) && $tab_open == 'cashiers') ? 'active' : '' ?>">
+                            <a href="<?php echo $this->Html->url(array('plugin' => false,'controller' => 'cashiers','action' => 'index', 'admin' => true)); ?>">
+                                <span class="title">Users Group</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
                
                <!--               
                 <li class="<?php echo (isset($tab_open) && $tab_open == 'cooks') ? 'active open' : '' ?>">
