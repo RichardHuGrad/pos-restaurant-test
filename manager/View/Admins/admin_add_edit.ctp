@@ -320,7 +320,21 @@ $(document).ready(function() {
                                             </div>
                                             <div class="col-md-2">
                                                 <div class="form-group">
-                                                    <input name="printer[type][]" multiple="multiple" value="<?php echo $type = $this->request->data['Printer'][$i]['Printer']['type'] ? $this->request->data['Printer'][$i]['Printer']['type'] : '厨打单'; ?>" maxlength=" " class="form-control" required="required" type="text" readonly="readonly" >                                                    
+                                                 <input name="printer[type][]" multiple="multiple" value="<?php echo $type = $this->request->data['Printer'][$i]['Printer']['type'] ? $this->request->data['Printer'][$i]['Printer']['type'] : '厨打单'; ?>" maxlength=" " class="form-control" required="required" type="text" readonly="readonly" >
+                                             <!-- <?php  
+                                                if($this->request->data['Printer'][$i]['Printer']['type']){ ?>
+                                                   
+ -->
+                                                       
+                                                                                                         
+                                            <!--    <?php 
+                                                     $type=array(
+                                                                "K"=>"送厨",
+                                                                "C"=>"出菜",
+                                                                "B"=>"吧台",
+                                                        );
+                                                        echo $this->Form->input('printer', array('options' => $type, 'class' => 'form-control', 'empty' => "Select Type", 'label' => false, 'div' => false,'required'=>"required" , 'readonly'=>"readonly" ));
+                                                }?>    -->
                                                 </div>
                                             </div>
                                             <?php if($i>1){ ?>
@@ -537,13 +551,13 @@ $(document).ready(function() {
         afterHtml += '</div>';
             afterHtml += '<div class="col-md-2">';
                 afterHtml += '<div class="form-group">';
-                afterHtml += '<input name="printer[type][]" multiple="multiple" value="" maxlength=" " class="form-control" required="required" type="text">';                                                    
+                afterHtml += '<select name="printer[type][]" class="form-control" required="required" ><option value="厨打单">厨打单</option><option value="出菜">出菜</option><option value="吧台">吧台</option></select>';               
                 afterHtml += '</div>';
             afterHtml += '</div>';
             
             afterHtml += '<div class="col-md-2">';
                 afterHtml += '<div class="form-group">';
-                afterHtml += '<input name="" id="delete" value="删除" class="form-control complete" required="required" type="button" >';                                                    
+                afterHtml += '<input name="" id="delete" value="delete" class="form-control complete" required="required" type="button" >';                                                    
                 afterHtml += '</div>';
             afterHtml += '</div>';
         afterHtml += '</div>';
