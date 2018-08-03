@@ -297,7 +297,7 @@
                   </li>
                   <li>
                     <span>%折扣</span>
-                    <input type="text" />
+                    <input type="text" id="txt2"/>
                   </li>
                   <li>
                     <span>优惠码</span>
@@ -306,9 +306,9 @@
                 </ul>
                 <div class="add-right">
                   <span>折扣快捷按钮</span>
-                  <button type="button" name="button">15%</button>
-                  <button type="button" name="button">20%</button>
-                  <button type="button" name="button">25%</button>
+                  <button type="button" name="button" class="butt">15%</button>
+                  <button type="button" name="button" class="butt">20%</button>
+                  <button type="button" name="button" class="butt">25%</button>
                 </div>
               </div>
             </div>
@@ -639,6 +639,14 @@
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/keyboard.js"></script>
     <script type="text/javascript">
+    	//我就在想这里的折扣有什么用，到付款的时候不是有折扣吗
+    	$(".butt").click(function(){
+      	var basic = $(this).text();
+      	basic =parseFloat( basic.substr(0, basic.length - 1));
+      	$("#txt2").val(basic);
+      })
+    	
+    	
     $(document).ready(function(){
       // nav
       $(".barnav").hover(function(){

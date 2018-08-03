@@ -16,8 +16,8 @@
 }*/
 
 html,body {
-    /* min-width: 1200px;
-    margin: auto; */
+     min-width: 768px;
+    margin: auto; 
     color:#333;
     position: relative;height: 100%;
     background: #26dfff url(../images/bg-01.png) no-repeat left bottom;

@@ -143,8 +143,7 @@
               <div class="pay-right  page6-pay">
                 <div class="notop">
                   <ul class="pay-ul"> 
-                    <!--<li class="noto-act" data-i="1">顾客.01</li>
-                    <li data-i="2">顾客.02</li>-->
+                    
                   </ul>
                   <!--//color1未支付，color2已付款，color3已打单-->
                   <!--<div class="pay-right-c not01">
@@ -290,13 +289,7 @@
                     </div>
                   </div>-->
 
-                  <div class="right-con">
-                    <div class="right-tab1">
-                      <button type="button" name="button" class="pay01">确认付款</button>
-                      <button type="button" name="button" class="pay03">打印分单收据</button>
-                      <button type="button" name="button" class="pay02">打印原始收据</button>
-                    </div>
-                  </div>
+                  
                 </div>
               </div>
             </div>
@@ -345,6 +338,13 @@
                     <a href="javascript:;" class="paymo">输入</a>
                   </div>
                 </div>
+                <div class="right-con">
+                    <div class="right-tab1 three">
+                      <button type="button" name="button" class="pay01">确认付款</button>
+                      <button type="button" name="button" class="pay03">打印分单收据</button>
+                      <button type="button" name="button" class="pay02">打印原始收据</button>
+                    </div>
+                  </div>
             </div>
           </div>
 
@@ -853,7 +853,7 @@
         html2+="</div>";
         html2+="<div class='r-c-bot'><h5>状态</h5><p><span class='color1'></span>未支付</p></div>";
         html2+="</div>";    
-        $(".notop").find(".right-con").before(html2);
+        $(".notop").append(html2);
         
         
 				//左边生成

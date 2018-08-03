@@ -30,6 +30,7 @@
 }*/
 html,body {
      min-width: 768px;
+     max-width: 1440px;
     margin: auto; 
     color:#333;
     background: #fff;
@@ -254,9 +255,8 @@ a {
   }
     .c_right_title{
       position: relative;
-      width: 90%;
       height: 100%;
-      margin: 0 5%;
+      padding: 0 10%;
       text-align: center;
       overflow: hidden;
     }
@@ -309,7 +309,7 @@ a {
 }
 .fullOrder ul{
 	color: #7a7a7a;
-	font-size: 18px;
+	font-size: 16px;
 	margin-left: 50px;
 	text-align: left;
 }
@@ -334,20 +334,30 @@ a {
 }
 .ulBox{
     position: absolute;
-    left: 0;
     right: 0;
-    top: 19%;
+    top: 18%;
     bottom: 7%;
     z-index: 10;
-    
+    border-top: 1px solid #ffd03b;
+    left: 0;
     
   }
+.ulBox+.shadow{
+ 	position: absolute;
+ 	width: 100%;
+ 	top: 18%;
+ 	right: 0;
+ 	height: 30px;
+ 	background: url(../images/bg222.png) repeat-x top left;
+ 	z-index: 10;
+    height: 100px;
+ }
   .order{
   	max-width: 100%;
   	height: 100%;
   	overflow: hidden;
     overflow-y: scroll;
-    padding: 0 5%;
+    padding: 0 10%;
     display: none;
   }
   .ulBox .order:first-child{
@@ -689,16 +699,17 @@ a {
   .page2-left{
     position: relative;
     float: left;
-    width: 56%;
-    background: #f7f7f7;
+    width: 50%;
+    background: #ffffff;
     overflow: hidden;
   }
   .payment .page2-left{
     width: 66%;
   }
     .page2-top{
-      padding: 20px 5%;
+      padding: 20px 0 20px 5%;
       position: relative;
+      background: #f7f7f7;
     }
     .page2-top:after{
     	content: '';
@@ -895,7 +906,7 @@ a {
 
 .page2-right{
   float: right;
-  width: 42.5%;
+  width: 48%;
   height: 100%;
   padding-right: 1%;
   overflow-y: scroll;
@@ -914,7 +925,6 @@ a {
     .right-btn .rBtn{
       width: 100%;
       margin-top: 3%;
-      padding-left: 15%;
       border: 0;
       outline: none;
       color: #fff;
@@ -922,7 +932,7 @@ a {
       font-size: 2rem;
       font-family: Nobel-GBW6;
       line-height: 65px;
-      text-align: left;
+      text-align: center;
       border-radius: 4px;
       cursor: pointer;
     }
@@ -935,9 +945,8 @@ a {
   overflow: hidden;
 }
   .right-tab{
-    width: 99.5%;
     margin-top: 1%;
-    border: 1px #ccc solid;
+    border: 1px solid #b5b5b5;
   }
   .right-top{
     width: 100%;
@@ -1074,22 +1083,32 @@ a {
           line-height: 66px;
           text-align: right;
         }
-
+.topOpen{
+	overflow: hidden;
+	width: 100%;
+}
 a.add_zhe{
-  display: block;
-  width: 91%;
+  display: inline-block;
   padding-left: 9%;
-  background: url(../images/icon-05.png) no-repeat 3% 8px;
+  background: url(../images/icon-05.png) no-repeat  8px;
   line-height: 40px;
   color: #000;
   font-size: 18px;
   font-family: Nobel-Book;
 }
+.topOpen .add_shou{
+	color: #c42248;
+	display: inline-block;
+	line-height: 40px;
+    font-size: 18px;
+    float: right;
+    padding-right:5%;
+    display: none;
+}
   .add-content{
     width: 100%;
     overflow: hidden;
     display: none;
-    border-top: 1px #e6e6e6 dashed;
   }
     .add-content ul{
       float: left;
@@ -1111,14 +1130,16 @@ a.add_zhe{
           font-family: Nobel-FZLTXHK;
         }
         .add-content ul li input{
-          width:96%;
-          padding: 0 2%;
+          width:100%;
+          padding: 0 5%;
           background: #eaeaea;
           border: 0;
           outline: none;
           line-height: 30px;
           border-radius: 5px;
           overflow: hidden;
+          border: 1px solid #666;
+          box-sizing: border-box;
         }
   .add-right{
     float: right;
@@ -1146,11 +1167,18 @@ a.add_zhe{
       line-height: 50px;
       border-radius: 5px;
       border: 0;
-      outline: none;
       font-size: 18px;
       font-family: Nobel-GBW6;
     }
-
+.right-tab+.right-tab1 button{
+	width: 32%;
+}
+.right-tab1.three button{
+	width: 30%;
+	word-break: break-all;
+	white-space: pre-wrap;
+	line-height: 30px;
+}
 .right-tab1{
   width: 100%;
   margin-top: 3%;
@@ -1158,9 +1186,8 @@ a.add_zhe{
 }
   .right-tab1 button{
     float: right;
-    width: 30%;
+    width: 48%;
     height:80px;
-    margin-left: 2%;
     border: 0;
     outline: none;
     color: #fff;
@@ -1169,6 +1196,9 @@ a.add_zhe{
     font-family: Nobel-FZLTZHK;
     text-align: center;
     cursor: pointer;
+  }
+  .right-tab1 button+button{
+  	margin-right: 4%;
   }
   .rightBtn01{
     background: #c42248;
@@ -1524,9 +1554,9 @@ a.add_zhe{
 }
 .payment .pay-left{
   float: left;
-  width: 35%;
-  height: 80%;
-  margin: 5% 2%;
+  width: 51%;
+  height: 90%;
+  margin: 3% 3% 0 2%; 
   background: #fff;
   border-radius: 10px;
 }
@@ -1537,7 +1567,8 @@ a.add_zhe{
     font-size: 20px;
     font-family: Nobel-GBW6;
     line-height: 4;
-    text-align: center;
+    /*text-align: center;*/
+   text-indent: 1em;
     color: #000;
     border-bottom: 1px dashed #d8d8d8;
   }
@@ -1624,9 +1655,9 @@ a.add_zhe{
 
 .payment .pay-right{
   float: left;
-  width: 59%;
+  width: 40%;
   max-height: 80%;
-  margin: 5% 0;
+  margin: 3% 0 0;
 }
   .notop{
     width: 100%;
@@ -1640,7 +1671,7 @@ a.add_zhe{
   }
     .pay-ul li{
       float: left;
-      width: 18%;
+      padding: 0 25px;
       height: 40px;
       background: #eaeaea;
       font-size: 20px;
@@ -1655,9 +1686,8 @@ a.add_zhe{
       background: #fff;
     }
   .pay-right-c{
-    width: 96%;
     min-height: 50%;
-    padding: 2% 2% 0;
+    padding: 10px 20px;
     background: #fff;
     overflow: hidden;
     border-top-right-radius: 10px;
@@ -1669,9 +1699,9 @@ a.add_zhe{
     display: none;
   }
     .payment .right-tab{
-      float: right;
-      width: 50%;
       border-radius: 10px;
+      background: #f9f9f9;
+      padding:0 5px;
     }
     .r-c-top{
       width: 100%;
@@ -1683,19 +1713,37 @@ a.add_zhe{
           width: 100%;
           border: 0;
           padding: 5px 0;
+          border-top: 1px #e6e6e6 dashed;
+      }
+      .pay-title2 .add-right{
+      	border: none;
       }
       .payment .add-right button{
         font-size: 16px;
-        padding: 0 1%;
+        padding: 0 2%;
         margin:10px 0.5%;
         height: 40px;
         line-height: 40px;
         cursor: pointer;
       }
+      .application{
+      	background: #c42248;
+  	    font-size: 16px;
+	    padding: 0 5%;
+	    margin: 10px 0.5% 10px 2%;
+	    height: 40px;
+	    line-height: 40px;
+	    cursor: pointer;
+	    float: left;
+	    width: auto;
+	    border-radius: 5px;
+	    color: #fff;
+	    font-style: normal;
+      }
       .payment .pay-title2 button{
         font-size: 14px;
         padding: 0;
-        margin:10px 0.5%;
+        margin:0 0.5%;
         height: 40px;
         width: 40px;
         line-height: 40px;
@@ -1705,14 +1753,21 @@ a.add_zhe{
         padding: 4px 0;
       }
       .payment .add-right span{
-        line-height: 60px;
+        line-height: 1;
+        display: block;
+        line-height: 40px;
+        width: 60%;
+      }
+      .payment .add-right .btn{
+      	display: block;
+      	width: 100%;
+      	overflow: hidden;
       }
       .payment a.add_zhe{
-        padding-left: 15%;
+        padding-left: 12%;
       }
     .c-top-left{
-      float: left;
-      width: 47%;
+      width: 100%;
       overflow: hidden;
     }
       .c-top-left .contL{
@@ -1742,7 +1797,7 @@ a.add_zhe{
     }
       .r-c-center ul{
         float: left;
-        width: 33%;
+        width: 50%;
         text-align: left;
       }
         .r-c-center li{
@@ -1815,7 +1870,7 @@ a.add_zhe{
 
 .payment .login {
     width: 80%;
-    margin: 7% auto;
+    margin: 6% auto 0;
 }
   .payment .login-align {
       width: 100%;
@@ -1836,7 +1891,7 @@ a.add_zhe{
     /* height: 6rem; */
     height: 5rem;
     width: 84%;
-    margin: 15px 0 25px;
+    margin: 15px 0;
     padding: 0 8%;
     border: 0;
     border-radius: 70px;
@@ -1848,7 +1903,7 @@ a.add_zhe{
   }
   .payment .num_left {
     float: left;
-    width: 74%;
+    width: 70%;
     padding: 0;
     margin: 0;
     overflow: hidden;
@@ -1885,7 +1940,7 @@ a.add_zhe{
   }
   .payment .num_right {
       float: right;
-      width: 24.5%;
+      width: 28%;
   }
   .payment .num_right a,.payment  .num_right a:hover, .payment .num_right a:active,.payment  .num_right a:visited,.payment  .num_right a:link {
       display: block;
@@ -1894,7 +1949,7 @@ a.add_zhe{
       /* padding: 95px 0; */
       line-height: 80px;
       font-size: 32px;
-      font-size: 2.7rem;
+      font-size: 2.5rem;
       margin-top: 10px;
       text-align: center;
       -webkit-border-radius: 15px;
@@ -3486,7 +3541,6 @@ a.add_zhe{
   }
   .payment .login {
       width: 86%;
-          margin: 9% auto;
   }
   .pay-h h4.pay-h-t{
     font-size: 1.7rem;
@@ -3640,6 +3694,57 @@ a.add_zhe{
     padding: 8px 0;
   }
 }
+
+@media only screen and (max-width:1280px){
+	.page2-left {
+	  width: 52%;
+	}
+	.page2-right {
+	  width: 46.5%;
+	}
+	.page2-tabnav{
+	  width: 30%;
+	}
+	.tab-bot{
+	  width: 30%;
+	}     
+	.page2-tavright{
+	  width: 66%;
+	}
+	.tabright li{
+	  width: 45%;
+	}
+	.fullOrder .img{
+		width: 30px;
+		height: 30px;
+	}
+	.fullOrder ul {
+	    font-size: 14px;
+	    margin-left: 30px;
+	}
+	.fullOrder ul li {
+	    line-height: 30px;
+	    padding: 0 8px;
+	}
+	.static ul li{
+		font-size: 20px;
+		width: 130px;
+	}
+	.page2-top h4{
+		font-size: 20px;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+		
+}
+
+
 @media only screen and (max-width:1260px){
   .sit_left{
     width: 100%;
@@ -3711,26 +3816,6 @@ a.add_zhe{
   }
 }
 @media only screen and (max-width:1024px){
-.page2-left {
-  width: 52%;
-}
-.page2-right {
-  width: 46.5%;
-}
-.page2-tabnav{
-  width: 30%;
-}
-.tab-bot{
-  width: 30%;
-}     
-.page2-tavright{
-  width: 66%;
-}
-.tabright li{
-  width: 45%;
-}
- 
-	
 	
 	
   .seach-content {

@@ -100,64 +100,73 @@
                           <li>订单号</li>
                           <li>小计</li>
                           <li>折扣</li>
+                        </ul>
+                        <ul class="contR">
+                          <li>D31710311432</li>
+                          <li>$<span id="subtotal">73.94</span></li>
+                          <li>$11.09*15%</li>
+                        </ul>
+                      </div>
+                      <div class="right-tab">
+                      	<div class="topOpen">
+                        	<a href="javascript:;" class="add_zhe">加入折扣</a>
+                        	<a href="javascript:;" class="add_shou"> - 收起</a>
+                       	</div>
+                        <div class="add-content">
+                          <ul class="add-ul">
+                            <li>
+                              <span>固定折扣</span>
+                              <input type="text" id="discount1">
+                            </li>
+                            <li>
+                              <span>%折扣</span>
+                              <input type="text" id="discount2">
+                            </li>
+                            <li>
+                              <span>优惠码</span>
+                              <input type="text" id="discount3">
+                            </li>
+                          </ul>
+                          <div class="add-right">
+                            <span>折扣快捷按钮</span>
+                            <p class="btn">
+	                            <button type="button" name="button" class="butt">15%</button>
+	                            <button type="button" name="button" class="butt">20%</button>
+	                            <button type="button" name="button" class="butt">25%</button>
+	                            <i class="application">应用折扣</i>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="c-top-left">
+                        <ul class="contL">
                           <li>折后价</li>
                           <li>税(13%):</li>
                           <li>总计:</li>
                         </ul>
                         <ul class="contR">
-                          <li>D31710311432</li>
-                          <li>$73.94</li>
-                          <li>$11.09*15%</li>
                           <li>$62.85</li>
                           <li>$9.61</li>
-                          <li>$83.55</li>
+                          <li id="total">$83.55</li>
                         </ul>
-                      </div>
-                      <div class="right-tab">
-                        <a href="javascript:;" class="add_zhe">加入折扣</a>
-                        <div class="add-content">
-                          <ul class="add-ul">
-                            <li>
-                              <span>固定折扣</span>
-                              <input type="text">
-                            </li>
-                            <li>
-                              <span>%折扣</span>
-                              <input type="text">
-                            </li>
-                            <li>
-                              <span>优惠码</span>
-                              <input type="text">
-                            </li>
-                          </ul>
-                          <div class="add-right">
-                            <span>折扣快捷按钮</span>
-                            <button type="button" name="button">15%</button>
-                            <button type="button" name="button">20%</button>
-                            <button type="button" name="button">25%</button>
-                          </div>
-                        </div>
                       </div>
                     </div>
                     <div class="r-c-center">
                         <ul class="cenL">
                           <li>已收到:</li>
                           <li class="cen-col">现金：$00.00</li>
+                          <li class="cen-col">会员：$00.00</li>
                           <li>剩余:</li>
                           <li>小费:</li>
                         </ul>
                         <ul class="cenC">
                           <li>$62.85</li>
                           <li class="cen-col">卡：$00.00</li>
+                          <li class="cen-col"></li>
                           <li>$9.61</li>
                           <li>$83.55</li>
                         </ul>
-                        <ul class="cenR">
-                          <li></li>
-                          <li class="cen-col">会员：$00.00</li>
-                          <li></li>
-                          <li></li>
-                        </ul>
+                        
                     </div>
                     <div class="r-c-bot">
                       <h5>状态</h5>
@@ -165,12 +174,7 @@
                       <p><span class="color1"></span>未支付</p>
                     </div>
                   </div>
-                  <div class="right-con">
-                    <div class="right-tab1">
-                      <button type="button" name="button" class="pay01">确认付款</button>
-                      <button type="button" name="button" class="pay02">打印收据</button>
-                    </div>
-                  </div>
+                  
                 </div>
               </div>
             </div>
@@ -219,6 +223,13 @@
                     <a href="javascript:;" class="paymo">输入</a>
                   </div>
                 </div>
+                
+                <div class="right-con">
+                    <div class="right-tab1">
+                      <button type="button" name="button" class="pay01">确认付款</button>
+                      <button type="button" name="button" class="pay02">打印收据</button>
+                    </div>
+                  </div>
             </div>
           </div>
 
@@ -493,8 +504,47 @@
     <script type="text/javascript">
     	//添加折扣
       $(".add_zhe").click(function(){
-      	$(this).next(".add-content").slideToggle();
+      	$(this).parent(".topOpen").next(".add-content").slideDown();
+      	$(this).parent(".topOpen").find(".add_shou").show();
       })
+       $(".add_shou").click(function(){
+      	$(this).parent(".topOpen").next(".add-content").slideUp();
+      	$(this).hide();
+      })
+      $(".butt").click(function(){
+      	var basic = $(this).text();
+      	basic =parseFloat( basic.substr(0, basic.length - 1));
+      	$("#discount2").val(basic);
+      })
+      
+      
+      //只计算了总价，其他暂时没做
+      $(".application").click(function(){
+      	var txt1 = parseFloat($("#discount1").val());
+      	var txt2 = parseFloat($("#discount2").val());
+      	var txt3 = parseFloat($("#discount3").val());
+      	var subtotal = parseFloat($("#subtotal").text());
+      	var total;
+      	if(!txt1){
+      		total = subtotal - subtotal*txt2/100;
+      		total = total.toFixed(2)
+//    		alert(1)
+      		console.log(total);
+      	}else if(!txt2){
+      		total = subtotal - txt1;
+      		total = total.toFixed(2)
+//    		alert(2)
+      		console.log(total);
+      	}else{
+      		total = subtotal - (subtotal - txt1)*txt2/100;
+      		total = total.toFixed(2)
+//    		alert(3)
+      		console.log(total);
+      	}
+      	$("#total").text(total);
+      })
+      
+      
     $(document).ready(function(){
       // nav
       $(".barnav").hover(function(){
