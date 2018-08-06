@@ -11,7 +11,8 @@ class PrintComponent extends Component {
 	public function __construct() {
         $this->Admin = ClassRegistry::init('Admin');
         $this->PrintPage = ClassRegistry::init('PrintPage');
-  		 $this->Order = ClassRegistry::init('Order');
+       $this->Order = ClassRegistry::init('Order');
+  		 $this->Cousines = ClassRegistry::init('Cousines');
         $this->OrderItem = ClassRegistry::init('OrderItem');
         $this->Category = ClassRegistry::init('Category');
 	}
@@ -151,26 +152,62 @@ class PrintComponent extends Component {
         // get all unprinted items
         $printItems = $this->OrderItem->getUnprintItemsByOrderId($order_id);
 
-        // echo "<pre>";
-        // print_r($printItems);exit;
+        
 
         if (!empty($printItems['K'])) {
 
-            $printerId = $this->PrintPage->getKitchenPrinterId($args['restaurant_id']);//多查询一个打印机id
-            // return $printerId;
+
+            // $printerName = $this->PrintPage->getKitchenPrinterName($args['restaurant_id']);//多查询一个打印机id
+
             $print = new PrintLib();
-            //$print->printKitchenItemDoc($order_no, $table, $type, $printerName, $printItems['K'],true, false,$phone);
             foreach($printItems['K'] as $item){
-              // echo "<pre>";
+              $type=$this->Cousines->getPrinterId($item[0]['item_id']);//查询菜品设定打印机
+              // print_r($type['Cousines']['printer']."123");
+              if($type['Cousines']['printer']!=""){
+   
+                $printerName1=$this->PrintPage->getPrintName($type["Cousines"]['printer']);
+                $printerName=$printerName1["PrintPage"]['name'];
+                // print_r($printerName);
+                $print->printKitchenItemDoc($order_no, $table, $type, $printerName , $item,true, false,$phone);
+              }else{
+                  $printerName1=$this->PrintPage->getPrintName(2);
+                  $printerName=$printerName1["PrintPage"]['name'];
+                $print->printKitchenItemDoc($order_no, $table, $type, $printerName , $item,true, false,$phone);
+              }
+              // return 1;
+            // foreach($printerName as $value){
+
+                
+            //   }
               // return  $item;
-                $print->printKitchenItemDoc($order_no, $table, $type, $printerName, $item,true, false,$phone);
+                // return 1;
             }
-            return 1;
+
         }
+ // if (!empty($printItems['K'])) {
+
+ //            $printerName = $this->Admin->getKitchenPrinterName($args['restaurant_id']);//多查询一个打印机id
+ //            // $printerName = $this->PrintPage->getKitchenPrinterName($args['restaurant_id']);//多查询一个打印机id
+ //            // return $printerName;
+ //            $print = new PrintLib();
+ //            // return $printerName;
+ //            //$print->printKitchenItemDoc($order_no, $table, $type, $printerName, $printItems['K'],true, false,$phone);
+ //            // foreach($printerName as $value){
+ //              // print_r($value);
+ //              foreach($printItems['K'] as $item){
+ //                // print_r($item);
+ //                $print->printKitchenItemDoc($order_no, $table, $type, $printerName, $item,true, false,$phone);
+                
+ //              }
+ //              // return  $item;
+ //                // return 1;
+ //            // }
+
+ //        }
 
         if (!empty($printItems['C'])) {
             $printerName = $this->PrintPage->getServicePrinterName($args['restaurant_id']);
-            return $printerName;
+            // return $printerName;
             $print = new PrintLib();
             foreach($printItems['C'] as $item){
                 $print->printKitchenItemDoc($order_no, $table, $type, $printerName, $item, true, false);
