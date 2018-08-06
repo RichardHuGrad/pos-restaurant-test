@@ -10,7 +10,8 @@ class PrintComponent extends Component {
 
 	public function __construct() {
         $this->Admin = ClassRegistry::init('Admin');
-  		$this->Order = ClassRegistry::init('Order');
+        $this->PrintPage = ClassRegistry::init('PrintPage');
+  		 $this->Order = ClassRegistry::init('Order');
         $this->OrderItem = ClassRegistry::init('OrderItem');
         $this->Category = ClassRegistry::init('Category');
 	}
@@ -114,6 +115,7 @@ class PrintComponent extends Component {
      * Parameters:
      *      $args['restaurant_id']
      *      $args['order_id']
+     *      $args['print_type']
      */
     public function printTokitchen($args) {
 
@@ -149,20 +151,26 @@ class PrintComponent extends Component {
         // get all unprinted items
         $printItems = $this->OrderItem->getUnprintItemsByOrderId($order_id);
 
-        // print_r($printItems);
+        // echo "<pre>";
+        // print_r($printItems);exit;
 
         if (!empty($printItems['K'])) {
 
-            $printerName = $this->Admin->getKitchenPrinterName($args['restaurant_id']);
+            $printerId = $this->PrintPage->getKitchenPrinterId($args['restaurant_id']);//多查询一个打印机id
+            // return $printerId;
             $print = new PrintLib();
             //$print->printKitchenItemDoc($order_no, $table, $type, $printerName, $printItems['K'],true, false,$phone);
             foreach($printItems['K'] as $item){
+              // echo "<pre>";
+              // return  $item;
                 $print->printKitchenItemDoc($order_no, $table, $type, $printerName, $item,true, false,$phone);
             }
+            return 1;
         }
 
         if (!empty($printItems['C'])) {
-            $printerName = $this->Admin->getServicePrinterName($args['restaurant_id']);
+            $printerName = $this->PrintPage->getServicePrinterName($args['restaurant_id']);
+            return $printerName;
             $print = new PrintLib();
             foreach($printItems['C'] as $item){
                 $print->printKitchenItemDoc($order_no, $table, $type, $printerName, $item, true, false);
