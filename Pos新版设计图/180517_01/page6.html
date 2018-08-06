@@ -793,7 +793,17 @@
       })
       //添加折扣
       $(".add_zhe").live("click",function(){
-      	$(this).next(".add-content").slideToggle();
+      	$(this).parents(".topOpen").next(".add-content").slideToggle();
+      	$(this).parent(".topOpen").find(".add_shou").show();
+      })
+       $(".add_shou").live("click",function(){
+      	$(this).parent(".topOpen").next(".add-content").slideUp();
+      	$(this).hide();
+      })
+      $(".butt").live("click",function(){
+      	var basic = $(this).text();
+      	basic =parseFloat( basic.substr(0, basic.length - 1));
+      	$("#discount2").val(basic);
       })
       
 //    	我是分割线---------------------------------------------------------------------------      
@@ -824,35 +834,49 @@
       	html2+="<div class='r-c-top'>";
       	html2+="<div class='c-top-left'>";
       	html2+="<ul class='contL'>";
-      	html2+="<li>订单号</li><li>小计</li><li>折扣</li><li>折后价</li><li>税("+tax+"%):</li><li>总计:</li>";
+      	html2+="<li>订单号</li><li>小计</li><li>折扣</li>";
         html2+="</ul>";
         html2+="<ul class='contR'>";
-        html2+="<li>"+order+"-"+i+"</li><li>$<span class='txt1'>"+0+"</span></li><li>$<span class='txt2'>"+0+"</span>*"+percentage+"%</li><li>$<span class='txt3'>"+0+"</span></li><li>$<span class='txt4'>"+0+"</span></li><li>$<span class='txt5'>"+0+"</span></li>";
+        html2+="<li>"+order+"-"+i+"</li><li>$<span class='txt1'>"+0+"</span></li><li>$<span class='txt2'>"+0+"</span>*"+percentage+"%</li>";
         html2+="</ul>";
         html2+="</div>";
         html2+="<div class='right-tab'>";
+        html2+="<div class='topOpen'>";
         html2+="<a href='javascript:;' class='add_zhe'>加入折扣</a>";
+        html2+="<a href='javascript:;' class='add_shou'> - 收起</a>";
+        html2+="</div>";
         html2+="<div class='add-content'>";
         html2+="<ul class='add-ul'>";
-        html2+="<li><span>固定折扣</span><input type='text'></li>";
-        html2+="<li><span>%折扣</span><input type='text'></li>";
-        html2+="<li><span>优惠码</span><input type='text'></li>";
+        html2+="<li><span>固定折扣</span><input type='text' class='discount1'></li>";
+        html2+="<li><span>%折扣</span><input type='text' class='discount2'></li>";
+        html2+="<li><span>优惠码</span><input type='text' class='discount3'></li>";
         html2+="</ul>";
         html2+="<div class='add-right'>";
         html2+="<span>折扣快捷按钮</span>";
-        html2+="<button type='button' name='button'>15%</button>";
-        html2+="<button type='button' name='button'>20%</button>";
-        html2+="<button type='button' name='button'>25%</button>";
+        html2+="<p class='btn'>";
+        html2+="<button type='button' name='button' class='butt'>15%</button>";
+        html2+="<button type='button' name='button' class='butt'>20%</button>";
+        html2+="<button type='button' name='button' class='butt'>25%</button>";       
+        html2+="<i class='application'>应用折扣</i>";
+        html2+="</p>";
         html2+="</div>";
         html2+="</div>";
         html2+="</div>";
+        html2+="<div class='c-top-left'>";
+      	html2+="<ul class='contL'>";
+      	html2+="<li>折后价</li><li>税("+tax+"%):</li><li>总计:</li>";
+        html2+="</ul>";
+        html2+="<ul class='contR'>";
+        html2+="<li>$<span class='txt3'>"+0+"</span></li><li>$<span class='txt4'>"+0+"</span></li><li>$<span class='txt5'>"+0+"</span></li>";
+        html2+="</ul>";
+        html2+="</div>";
+        html2+="</div>"; 
         html2+="<div class='r-c-center'>";
-        html2+="<ul class='cenL'><li>已收到:</li><li class='cen-col'>现金：$<span class='cash'>"+0+"</span></li><li>剩余:</li><li>小费:</li></ul>";
-        html2+="<ul class='cenC'><li>$<span class='received'>"+0+"</span></li><li class='cen-col'>卡：$<span class='card'>"+0+"</span></li><li>$<span class='surplus'>"+0+"</span></li><li>$<span class='txt6'>"+0+"</span></li></ul>";
-        html2+="<ul class='cenR'><li></li><li class='cen-col'>会员：$<span class='member'>"+0+"</span></li><li></li><li></li></ul>";
+        html2+="<ul class='cenL'><li>已收到:</li><li class='cen-col'>现金：$<span class='cash'>"+0+"</span></li><li class='cen-col'>会员：$<span class='member'>"+0+"</span></li><li>剩余:</li><li>小费:</li></ul>";
+        html2+="<ul class='cenC'><li>$<span class='received'>"+0+"</span></li><li class='cen-col'>卡：$<span class='card'>"+0+"</span></li><li></li><li>$<span class='surplus'>"+0+"</span></li><li>$<span class='txt6'>"+0+"</span></li></ul>";
         html2+="</div>";
         html2+="<div class='r-c-bot'><h5>状态</h5><p><span class='color1'></span>未支付</p></div>";
-        html2+="</div>";    
+           
         $(".notop").append(html2);
         
         

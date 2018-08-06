@@ -57,7 +57,7 @@
                         <p>Option: 中辣；少麻；去葱；加卤蛋；加面；加肉；改米线；多花生</p>
                       </div>
                       <div class="list-center">
-                        12.99 <span>(15%off)</span>
+                        <i class="pri">12.99</i> <span>(15%off)</span>
                       </div>
                       <div class="list-right">1</div>
                     </a>
@@ -69,7 +69,7 @@
                         <p>Option: 中辣；少麻；去葱；加卤蛋；加面；加肉；改米线；多花生</p>
                       </div>
                       <div class="list-center">
-                        12.99 <span>(15%off)</span>
+                        <i class="pri">12.99</i> <span>(15%off)</span>
                       </div>
                       <div class="list-right">1</div>
                     </a>
@@ -81,7 +81,7 @@
                         <p>Option: 中辣；少麻；去葱；加卤蛋；加面；加肉；改米线；多花生</p>
                       </div>
                       <div class="list-center">
-                        12.99 <span>(15%off)</span>
+                        <i class="pri">12.99</i> <span>(15%off)</span>
                       </div>
                       <div class="list-right">1</div>
                     </a>
@@ -103,8 +103,8 @@
                         </ul>
                         <ul class="contR">
                           <li>D31710311432</li>
-                          <li>$<span id="subtotal">73.94</span></li>
-                          <li>$11.09*15%</li>
+                          <li>$<span id="subtotal">0.00</span></li>
+                          <li class="fixed">$<span class="subtotal">0.00</span>*<span class="discount">0.00</span>%</li>
                         </ul>
                       </div>
                       <div class="right-tab">
@@ -116,15 +116,15 @@
                           <ul class="add-ul">
                             <li>
                               <span>固定折扣</span>
-                              <input type="text" id="discount1">
+                              <input type="text" id="discount1" class="visible">
                             </li>
                             <li>
                               <span>%折扣</span>
-                              <input type="text" id="discount2">
+                              <input type="text" id="discount2" class="visible">
                             </li>
                             <li>
                               <span>优惠码</span>
-                              <input type="text" id="discount3">
+                              <input type="text" id="discount3" class="visible">
                             </li>
                           </ul>
                           <div class="add-right">
@@ -141,30 +141,30 @@
                       <div class="c-top-left">
                         <ul class="contL">
                           <li>折后价</li>
-                          <li>税(13%):</li>
+                          <li>税(<span class="tax">0.00</span>%):</li>
                           <li>总计:</li>
                         </ul>
                         <ul class="contR">
-                          <li>$62.85</li>
-                          <li>$9.61</li>
-                          <li id="total">$83.55</li>
+                          <li>$<span class="discountMoney">0.00</span></li>
+                          <li>$<span class="taxMoney">0.00</span></li>
+                          <li>$<span id="total">0.00</span></li>
                         </ul>
                       </div>
                     </div>
                     <div class="r-c-center">
                         <ul class="cenL">
                           <li>已收到:</li>
-                          <li class="cen-col">现金：$00.00</li>
-                          <li class="cen-col">会员：$00.00</li>
+                          <li class="cen-col">现金：$<span class="cash">0.00</span></li>
+                          <li class="cen-col">会员：$<span class="member">0.00</span></li>
                           <li>剩余:</li>
                           <li>小费:</li>
                         </ul>
                         <ul class="cenC">
-                          <li>$62.85</li>
-                          <li class="cen-col">卡：$00.00</li>
+                          <li>$<span class="received">0.00</span></li>
+                          <li class="cen-col">卡：$<span class="card">0.00</span></li>
                           <li class="cen-col"></li>
-                          <li>$9.61</li>
-                          <li>$83.55</li>
+                          <li>$<span class="surplus">0.00</span></li>
+                          <li>$<span class="tip">0.00</span></li>
                         </ul>
                         
                     </div>
@@ -502,6 +502,41 @@
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/keyboard.js"></script>
     <script type="text/javascript">
+     
+      $(function(){     
+	      //整理所有价格显示
+	    	var totalMoney = 0;//菜品总额
+	    	var unitPrice;//单价
+	    	var n;//数量
+	    	var totalQuantity = $(".pri").length;//取所有菜品的类别的个数	   
+	    	for(var m=0;m<totalQuantity;m++){
+	    		$(".pri").eq(m).each(function(){
+		    		unitPrice = parseFloat($(this).text());
+		    		n = parseInt($(this).parents(".list-center").next(".list-right").text());
+		    		unitPrice = unitPrice*n;   		
+		    	})  
+		    	totalMoney=unitPrice+totalMoney;
+	    	}
+	    	$("#subtotal").text(totalMoney);
+	    	$(".subtotal").text(totalMoney);
+	    	var discount=15;//这个百分比后台调取
+	    	$(".discount").text(discount);//这是折扣百分比 啊
+	    	var rmb;//折后价
+	    	rmb = parseFloat(totalMoney - totalMoney*discount/100);
+	    	rmb = rmb.toFixed(2);//这是折扣价 啊
+	    	$(".discountMoney").text(rmb);
+	    	var tax=13;//这个百分比后台调取
+	    	$(".tax").text(tax);
+	    	var taxMoney = parseFloat(tax*totalMoney/100);
+	    	taxMoney = taxMoney.toFixed(2);//这是税 啊
+	    	$(".taxMoney").text(taxMoney);
+	    	var total;
+	    	total = parseFloat(rmb)+parseFloat(taxMoney);
+	    	total = total.toFixed(2);//这是总计 啊
+	    	$("#total").text(total);
+	    	
+    	})
+    	
     	//添加折扣
       $(".add_zhe").click(function(){
       	$(this).parent(".topOpen").next(".add-content").slideDown();
@@ -515,34 +550,53 @@
       	var basic = $(this).text();
       	basic =parseFloat( basic.substr(0, basic.length - 1));
       	$("#discount2").val(basic);
+      	$(".discount").text(basic);
+      	
       })
-      
-      
-      //只计算了总价，其他暂时没做
+    	
+    	
+    	//计算折扣
       $(".application").click(function(){
       	var txt1 = parseFloat($("#discount1").val());
       	var txt2 = parseFloat($("#discount2").val());
       	var txt3 = parseFloat($("#discount3").val());
-      	var subtotal = parseFloat($("#subtotal").text());
-      	var total;
-      	if(!txt1){
-      		total = subtotal - subtotal*txt2/100;
-      		total = total.toFixed(2)
-//    		alert(1)
-      		console.log(total);
-      	}else if(!txt2){
-      		total = subtotal - txt1;
-      		total = total.toFixed(2)
-//    		alert(2)
-      		console.log(total);
+      	var subtotal = parseFloat($("#subtotal").text());//小计
+      	
+				var tax2=parseFloat($(".tax").text());
+				var total2;
+				var taxMoney2;
+				var last;
+				
+      	if(!txt1&&!txt3){
+      		total2 = subtotal - subtotal*txt2/100;
+      		total2 = total2.toFixed(2)//这是折后价 啊
+      		taxMoney2 = parseFloat(tax2*total2/100);
+	    		taxMoney2 = taxMoney2.toFixed(2);//这是税 啊
+	    		last = parseFloat(total2)+parseFloat(taxMoney2)
+      		console.log(1)
+      	}else if(!txt2&&!txt3){
+      		$(".fixed").text(-txt1);
+      		total2 = subtotal - txt1;
+      		total2 = total2.toFixed(2)//这是折后价 啊
+      		taxMoney2 = parseFloat(tax2*total2/100);
+	    		taxMoney2 = taxMoney2.toFixed(2);//这是税 啊
+	    		last = parseFloat(total2)+parseFloat(taxMoney2)
+      		console.log(2)
+      	}else if(!txt1&&!txt2){
+      		//这里是优惠码，具体怎么算不知
+					
       	}else{
-      		total = subtotal - (subtotal - txt1)*txt2/100;
-      		total = total.toFixed(2)
-//    		alert(3)
-      		console.log(total);
+      		alert("只能选择一种折扣！");
+      		$(".add-ul").find("input").val('');
       	}
-      	$("#total").text(total);
+      	$(".discountMoney").text(total2);
+      	$(".taxMoney").text(taxMoney2);
+      	$("#total").text(last);
       })
+//    $(".visible").change(function(){
+//    	$(this).parents(".add-ul").find("input").attr("disabled","disabled");
+//    	$(this).attr("disabled","enabled");
+//    })
       
       
     $(document).ready(function(){
