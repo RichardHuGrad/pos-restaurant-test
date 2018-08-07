@@ -159,28 +159,26 @@ class PrintComponent extends Component {
 
             // $printerName = $this->PrintPage->getKitchenPrinterName($args['restaurant_id']);//多查询一个打印机id
 
+        
             $print = new PrintLib();
             foreach($printItems['K'] as $item){
-              $type=$this->Cousines->getPrinterId($item[0]['item_id']);//查询菜品设定打印机
-              // print_r($type['Cousines']['printer']."123");
-              if($type['Cousines']['printer']!=""){
-   
-                $printerName1=$this->PrintPage->getPrintName($type["Cousines"]['printer']);
-                $printerName=$printerName1["PrintPage"]['name'];
-                // print_r($printerName);
-                $print->printKitchenItemDoc($order_no, $table, $type, $printerName , $item,true, false,$phone);
-              }else{
-                  $printerName1=$this->PrintPage->getPrintName(2);
-                  $printerName=$printerName1["PrintPage"]['name'];
-                $print->printKitchenItemDoc($order_no, $table, $type, $printerName , $item,true, false,$phone);
-              }
-              // return 1;
-            // foreach($printerName as $value){
-
+              foreach($item as $value){
+                $type=$this->Cousines->getPrinterId($value['item_id']);//查询菜品设定打印机
+                if($type['Cousines']['printer']!=""){
+                  $id=explode(",",$type["Cousines"]['printer']);
+                  foreach($id as $printerid){
+                    $printerName1=$this->PrintPage->getPrintName($printerid);
+                    $printerName=$printerName1["PrintPage"]['name'];
+                    $print->printKitchenItemDoc($order_no, $table, $type, $printerName , $item,true, false,$phone);
+                  }
+                }else{
+                    $printerName1=$this->PrintPage->getPrintName(2);
+                    $printerName=$printerName1["PrintPage"]['name'];
+                    $print->printKitchenItemDoc($order_no, $table, $type, $printerName , $item,true, false,$phone);
+                }
                 
-            //   }
-              // return  $item;
-                // return 1;
+              }
+             
             }
 
         }
@@ -201,7 +199,7 @@ class PrintComponent extends Component {
  //              }
  //              // return  $item;
  //                // return 1;
- //            // }
+ //            // }removeitem
 
  //        }
 
