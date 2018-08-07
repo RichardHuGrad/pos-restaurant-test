@@ -161,14 +161,20 @@ class PrintComponent extends Component {
 
         
             $print = new PrintLib();
+ 
             foreach($printItems['K'] as $item){
-              foreach($item as $value){
-                $type=$this->Cousines->getPrinterId($value['item_id']);//查询菜品设定打印机
+              foreach($item as $key=>$value){
+                $item[$key]["type"]=$this->Cousines->getPrinterId($value['item_id']);//查询菜品设定打印机
+              }
+              // print_r($item[$key]["type"]);
+              $type=$item[$key]["type"];
+              print_r($type['Cousines']['printer']);
                 if($type['Cousines']['printer']!=""){
                   $id=explode(",",$type["Cousines"]['printer']);
                   foreach($id as $printerid){
                     $printerName1=$this->PrintPage->getPrintName($printerid);
                     $printerName=$printerName1["PrintPage"]['name'];
+                    print_r($printerName."<br>");
                     $print->printKitchenItemDoc($order_no, $table, $type, $printerName , $item,true, false,$phone);
                   }
                 }else{
@@ -177,7 +183,6 @@ class PrintComponent extends Component {
                     $print->printKitchenItemDoc($order_no, $table, $type, $printerName , $item,true, false,$phone);
                 }
                 
-              }
              
             }
 
@@ -413,7 +418,7 @@ class PrintComponent extends Component {
 
             } // else do nothing
         }
-        print_r($cancel_items);
+        print_r($cancel_items."133");
         // echo json_encode($cancel_items);
         // echo empty($cancel_items['K']);
         if (!empty($cancel_items['K'])) {
