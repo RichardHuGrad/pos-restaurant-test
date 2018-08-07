@@ -350,15 +350,42 @@ class PrintComponent extends Component {
             // if the item is printed, send remove to kitchen print
             $item_detail = $this->OrderItem->query("SELECT order_items.*,categories.printer,categories.group_id FROM `order_items` JOIN `categories` ON order_items.category_id=categories.id WHERE order_items.id = " . $item_id . " LIMIT 1");
             
-            // print_r($item_detail);
+            print_r($item_detail);
+
+        // ===================================================
+           foreach($printItems['K'] as $item){
+                      foreach($item as $value){
+                        $type=$this->Cousines->getPrinterId($value['item_id']);//查询菜品设定打印机
+                        if($type['Cousines']['printer']!=""){
+                          $id=explode(",",$type["Cousines"]['printer']);
+                          foreach($id as $printerid){
+                            $printerName1=$this->PrintPage->getPrintName($printerid);
+                            $printerName=$printerName1["PrintPage"]['name'];
+                            $print->printKitchenItemDoc($order_no, $table, $type, $printerName , $item,true, false,$phone);
+                          }
+                        }else{
+                            $printerName1=$this->PrintPage->getPrintName(2);
+                            $printerName=$printerName1["PrintPage"]['name'];
+                            $print->printKitchenItemDoc($order_no, $table, $type, $printerName , $item,true, false,$phone);
+                        }
+                        
+                      }
+                     
+                    }
+
+                }
+        // ===================================================
+
+
+
             if(empty($item_detail)){
             	//exit(json_encode(array('ret' => 0, 'message' => "$item_id is not a valid item id!")));
             	continue;
             }          
             
             $is_print = $item_detail[0]['order_items']['is_print'];
-            $printer  = $item_detail[0]['categories']['printer'];            
-            $group_id = $item_detail[0]['categories']['group_id'];
+            $printer  = $item_detail[0]['categories']['printer'];       // K C     
+            $group_id = $item_detail[0]['categories']['group_id'];      
             
             if ($is_print == 'Y') {
 
@@ -380,7 +407,7 @@ class PrintComponent extends Component {
         // echo json_encode($cancel_items);
         // echo empty($cancel_items['K']);
         if (!empty($cancel_items['K'])) {
-            $printerName = $this->Admin->getKitchenPrinterName($args['restaurant_id']);
+            $printerName = $this->PrintPage->getKitchenPrinterName($args['restaurant_id']);
             $print = new PrintLib();
             foreach($cancel_items['K'] as $items){
             	$debug_str = $print->printCancelledItems($order_no, $table, $type, $printerName, $items,true, false);
@@ -388,11 +415,11 @@ class PrintComponent extends Component {
             
         }
         if (!empty($cancel_items['C'])) {
-            $printerName = $this->Admin->getServicePrinterName($args['restaurant_id']);
+            $printerName = $this->PrintPage->getServicePrinterName($args['restaurant_id']);
             $print = new PrintLib();
             
             foreach($cancel_items['C'] as $items){
-            	$print->printCancelledItems($order_no, $table, $type, $printerName, $items,true, false);
+            	// $print->printCancelledItems($order_no, $table, $type, $printerName, $items,true, false);
             }            
         }
 
