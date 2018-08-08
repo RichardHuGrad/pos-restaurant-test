@@ -104,7 +104,8 @@
                         <ul class="contR">
                           <li>D31710311432</li>
                           <li>$<span id="subtotal">0.00</span></li>
-                          <li class="fixed">$<span class="subtotal">0.00</span>*<span class="discount">0.00</span>%</li>
+                          <!--<li class="fixed">$<span class="subtotal">0.00</span>*<span class="discount">0.00</span>%</li>-->
+                          <li class="fixed">--</li>
                         </ul>
                       </div>
                       <div class="right-tab">
@@ -145,7 +146,7 @@
                           <li>总计:</li>
                         </ul>
                         <ul class="contR">
-                          <li>$<span class="discountMoney">0.00</span></li>
+                          <li><span class="discountMoney">0.00</span></li>
                           <li>$<span class="taxMoney">0.00</span></li>
                           <li>$<span id="total">0.00</span></li>
                         </ul>
@@ -156,7 +157,7 @@
                           <li>已收到:</li>
                           <li class="cen-col">现金：$<span class="cash">0.00</span></li>
                           <li class="cen-col">会员：$<span class="member">0.00</span></li>
-                          <li>剩余:</li>
+                          <li>找零:</li>
                           <li>小费:</li>
                         </ul>
                         <ul class="cenC">
@@ -188,7 +189,7 @@
             <div class="login-align">
                 <h4>请选择付款方式</h4>
                 <ul class="payF">
-                  <li class="active">
+                  <li>
                     <a href="javascript:;"><img src="images/btn02.png"></a>
                   </li>
                   <li>
@@ -521,20 +522,17 @@
 	    	$(".subtotal").text(totalMoney);
 	    	var discount=15;//这个百分比后台调取
 	    	$(".discount").text(discount);//这是折扣百分比 啊
-	    	var rmb;//折后价
-	    	rmb = parseFloat(totalMoney - totalMoney*discount/100);
-	    	rmb = rmb.toFixed(2);//这是折扣价 啊
-	    	$(".discountMoney").text(rmb);
+	    	
+	    	$(".discountMoney").text('--');
 	    	var tax=13;//这个百分比后台调取
 	    	$(".tax").text(tax);
 	    	var taxMoney = parseFloat(tax*totalMoney/100);
 	    	taxMoney = taxMoney.toFixed(2);//这是税 啊
 	    	$(".taxMoney").text(taxMoney);
 	    	var total;
-	    	total = parseFloat(rmb)+parseFloat(taxMoney);
+	    	total = parseFloat(totalMoney)+parseFloat(taxMoney);
 	    	total = total.toFixed(2);//这是总计 啊
 	    	$("#total").text(total);
-	    	
     	})
     	
     	//添加折扣
@@ -556,6 +554,7 @@
     	
     	
     	//计算折扣
+    		
       $(".application").click(function(){
       	var txt1 = parseFloat($("#discount1").val());
       	var txt2 = parseFloat($("#discount2").val());
@@ -567,37 +566,219 @@
 				var taxMoney2;
 				var last;
 				
-      	if(!txt1&&!txt3){
+				var html="$";
+				html+="<span class='subtotal'>";
+				html+=subtotal;
+				html+="</span>*<span class='discount'>";
+				html+=txt2;
+				html+="</span>";
+				html+="%";
+				
+				if(!txt1&&!txt2&&!txt3){//无折扣
+					alert("请选择一种折扣！");
+				}else if(!txt1&&!txt3){//按照百分比算
+					$(".fixed").text('');
+					$(".fixed").append(html);
       		total2 = subtotal - subtotal*txt2/100;
       		total2 = total2.toFixed(2)//这是折后价 啊
       		taxMoney2 = parseFloat(tax2*total2/100);
 	    		taxMoney2 = taxMoney2.toFixed(2);//这是税 啊
 	    		last = parseFloat(total2)+parseFloat(taxMoney2)
-      		console.log(1)
-      	}else if(!txt2&&!txt3){
+      		console.log('按照百分比算')
+      	}else if(!txt2&&!txt3){//按照固定折扣算
       		$(".fixed").text(-txt1);
-      		total2 = subtotal - txt1;
+      		total2 = parseFloat(subtotal) - parseFloat(txt1);
       		total2 = total2.toFixed(2)//这是折后价 啊
       		taxMoney2 = parseFloat(tax2*total2/100);
 	    		taxMoney2 = taxMoney2.toFixed(2);//这是税 啊
 	    		last = parseFloat(total2)+parseFloat(taxMoney2)
-      		console.log(2)
+      		console.log('按照固定折扣算')
       	}else if(!txt1&&!txt2){
       		//这里是优惠码，具体怎么算不知
-					
+					console.log('按照优惠码算')
       	}else{
       		alert("只能选择一种折扣！");
       		$(".add-ul").find("input").val('');
+      		
+      		//只能选择一种折扣，清空处理
+	      	$(".fixed").text("--");
+	      	$(".discountMoney").text('$'+subtotal);
+	      	var tax = parseFloat($(".tax").text());
+		    	var taxMoney = parseFloat(tax*subtotal/100);
+		    	taxMoney = taxMoney.toFixed(2);
+	      	$(".taxMoney").text(taxMoney);
+      		
       	}
-      	$(".discountMoney").text(total2);
+      	$(".discountMoney").text('$'+total2);
       	$(".taxMoney").text(taxMoney2);
       	$("#total").text(last);
+      	
+      	
       })
-//    $(".visible").change(function(){
-//    	$(this).parents(".add-ul").find("input").attr("disabled","disabled");
-//    	$(this).attr("disabled","enabled");
-//    })
+
+			//默认金额
+			
+			$(".payde").on("click",function(){       
+				if($(".payF .active").length==0){
+							alert("请选择一种支付方式！");		
+							$(".payment .keyboard").val('');
+						}else{
+							$(".payment .keyboard").val(parseFloat($("#total").text()));
+						}
+        
+      });
+
+			//点击键盘
+			
+			$(".num_left li").not(".empty").on("click",function(){       
+				if($(".payF .active").length==0){
+							alert("请选择一种支付方式！");		
+							$(".payment .keyboard").val('');
+						}else{
+							var inputVal = $(".payment .keyboard").val(),
+	            $_this = $(this).html();
+	        		$(".keyboard").val(inputVal+$_this);
+						}
+        
+      });
+          
+
+      //判断什么支付方式
+      var payment = 0;	
+      var mm = 0;
+      var received = 0;
+			//常理说啊，根据上边选择的支付方式，判断下边的方法，应该是可以的，完全没问题，怎么就不好了呢，心里一万只草泥马在奔腾
+			
+			$(".payF li").click(function(){			
+				mm = $(this).index();
+			});
+			
+				$(".keyboard").change(function() {
+					 var accumulation = parseFloat($(".received").text());
+					 console.log(accumulation);
+						payment = parseFloat($(this).val());
+						//判断是否已经选择了一种支付方式
+						if($(".payF .active").length==0){
+							alert("请选择一种支付方式！");
+							$(this).val('');
+						}
+						if(mm==0){
+
+								$(".pay-right-c").each(function(){
+									if($(this).css("display")=="block"){
+										var all = parseFloat($(this).find("#total").text());	//总价									
+										$(this).find(".received").text(payment);//收到的金额
+										received = parseFloat($(this).find(".received").text());//取值下一次累加备用									
+										$(this).find(".cash").text(payment);//现金
+										var balance = payment-all;
+										balance.toFixed(2);
+										$(this).find(".surplus").text(balance);//剩余
+									}
+								})
+
+						}else if(mm==1){
+
+								$(".pay-right-c").each(function(){
+									if($(this).css("display")=="block"){
+										var all = parseFloat($(this).find("#total").text());//总价		
+										$(this).find(".received").text(payment);//收到的金额
+										received = parseFloat($(this).find(".received").text());//取值下一次累加备用		
+										$(this).find(".card").text(payment);//卡
+										var balance = payment-all;
+										balance.toFixed(2);
+										$(this).find(".tip").text(balance);//小费
+									}
+								})
+						}else if(mm==2){
+
+								$(".pay-right-c").each(function(){
+									if($(this).css("display")=="block"){
+										var all = parseFloat($(this).find("#total").text());//总价		
+										$(this).find(".received").text(payment);//收到的金额
+										received = parseFloat($(this).find(".received").text());//取值下一次累加备用
+										$(this).find(".member").text(payment);//会员卡
+										
+									}
+								})
+						}
+						
+					})
+			
+      //'输入'键 
+      $(".paymo").on("click",function(){       
+				if($(".payF .active").length==0){
+							alert("请选择一种支付方式！");		
+							$(".payment .keyboard").val('');
+						}else{
+							var num = parseFloat($(".payment .keyboard").val());
+							if(mm==0){
+
+								$(".pay-right-c").each(function(){
+									if($(this).css("display")=="block"){
+										var all = parseFloat($(this).find("#total").text());
+										$(this).find(".received").text(num);
+										$(this).find(".cash").text(num);
+										var balance = num-all;
+										balance.toFixed(2);
+										$(this).find(".surplus").text(balance);
+									}
+								})
+
+							console.log("现金支付")
+						}else if(mm==1){
+
+								$(".pay-right-c").each(function(){
+									if($(this).css("display")=="block"){
+										var all = parseFloat($(this).find("#total").text());
+										$(this).find(".received").text(num);
+										$(this).find(".card").text(num);
+										var balance = num-all;
+										balance.toFixed(2);
+										$(this).find(".tip").text(balance);
+									}
+								})
+
+							console.log("刷卡支付")
+						}else if(mm==2){
+
+								$(".pay-right-c").each(function(){
+									if($(this).css("display")=="block"){
+										var all = parseFloat($(this).find("#total").text());
+										$(this).find(".received").text(num);
+										$(this).find(".member").text(num);
+										
+									}
+								})
+
+							console.log("会员支付")
+						}
+						}
+        
+      });
       
+      //清空处理
+      $(".payment .empty").on("click",function(){
+        $(".payment .keyboard").val("");
+        
+        $(".fixed").text("--");
+        $(".visible").val('');
+        $(".discountMoney").text("--");
+        var subtotal = parseFloat($("#subtotal").text());//小计
+      	var tax = parseFloat($(".tax").text());
+	    	var taxMoney = parseFloat(tax*subtotal/100);
+	    	taxMoney = taxMoney.toFixed(2);
+      	$(".taxMoney").text(taxMoney);
+      	var tal = parseFloat(subtotal)+parseFloat(taxMoney);
+      	$("#total").text(tal);
+      	
+        
+        $(".received").text("0.00");
+	      $(".cash").text("0.00");
+	      $(".card").text("0.00");
+	      $(".member").text("0.00");
+	      $(".surplus").text("0.00");
+	      $(".tip").text("0.00");
+      });
       
     $(document).ready(function(){
       // nav
@@ -686,15 +867,15 @@
       $(".payment .num_right a").css({"padding-top":liW2+"px","padding-bottom":liW2+"px"});
 
       // 输入密码
-      $(".payment .num_left li.num").on("click",function(){
-        var inputVal = $(".payment .keyboard").val(),
-            $_this = $(this).html();
-        $(".keyboard").val(inputVal+$_this);
-      });
+//    $(".payment .num_left li.num").on("click",function(){
+//      var inputVal = $(".payment .keyboard").val(),
+//          $_this = $(this).html();
+//      $(".keyboard").val(inputVal+$_this);
+//    });
       // 清空
-      $(".payment .empty").on("click",function(){
-        $(".payment .keyboard").val("");
-      });
+//    $(".payment .empty").on("click",function(){
+//      $(".payment .keyboard").val("");
+//    });
       // 后退
       $(".payment .retreat").on("click",function(){
         var leng = $(".payment .keyboard").val().toString(),valIn = "";
@@ -702,10 +883,10 @@
         $(".payment .keyboard").val(valIn);
       });
       // 默认
-      $(".payde").on("click",function(){
-        // 365为现有的默认金额
-        $(".payment .keyboard").val(365);
-      });
+//    $(".payde").on("click",function(){
+//      // 365为现有的默认金额
+//      $(".payment .keyboard").val(365);
+//    });
       // 关闭ipad付款块
       $(".pay_close").on("click",function(){
         $('.payment .page2-right').hide();

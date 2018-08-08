@@ -3815,7 +3815,9 @@ a.add_zhe{
   }
 }
 @media only screen and (max-width:1024px){
-	
+	.payment a.add_zhe{
+        padding-left: 15%;
+      }
 	
   .seach-content {
     height: 84px;
