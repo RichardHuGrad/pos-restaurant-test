@@ -3537,6 +3537,7 @@ a.add_zhe{
   .admin-left{
   	width: 63%;
   }
+ 
   
 }
 @media only screen and (max-width:1601px){
@@ -4071,6 +4072,13 @@ a.add_zhe{
 }
 
 @media only screen and (max-width:768px){
+	.ulBox,.ulBox+.shadow{
+		top: 15%;
+	}
+	.c_area {
+    width: 96%;
+    padding: 22px 2% 0 2%;
+}
   .container .header .nav li.barnav a.nav-a {
     background: url(../images/nav-01.png) no-repeat 75px 29px;
     background-size: 19px; 
