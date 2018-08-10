@@ -392,6 +392,7 @@ a {
    	border-radius: 100%;
    	float: left;
    	margin-left: 13%;
+   	transition:all 0.3s;
    }
   .sixBlock .list .txt{
   	display: block;
@@ -400,6 +401,23 @@ a {
 	font-size: 18px;
 	margin-top: 12.5%;
   }
+  .sixBlock .list:hover .txt{
+  	color: #00cdef;
+  }
+  .sixBlock .list:hover img{
+  	animation: myfirst 1s infinite;
+  }
+  @keyframes myfirst {
+            0% {
+                transform: translate(0px, 0px);
+            }
+            25% {
+                transform: translate(0px, -5px);
+            }
+            100% {
+                transform: translate(0px, 0px);
+            }
+        }
   .lineUpTable{
   	width: 100%;
   	font-size: 20px;
@@ -430,6 +448,7 @@ a {
   	padding: 1% 0;
   	height: 50px;
   	line-height: 50px;
+  	cursor: pointer;
   }
   .lineUpTable td:first-child,
   .lineUpTable td:last-child{

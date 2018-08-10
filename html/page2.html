@@ -158,7 +158,7 @@
                           <li>已收到:</li>
                           <li class="cen-col">现金：$<span class="cash">0.00</span></li>
                           <li class="cen-col">会员：$<span class="member">0.00</span></li>
-                          <li>找零:</li>
+                          <li class="change">剩余:</li>
                           <li>小费:</li>
                         </ul>
                         <ul class="cenC">
@@ -584,7 +584,8 @@
       		total2 = total2.toFixed(2)//这是折后价 啊
       		taxMoney2 = parseFloat(tax2*total2/100);
 	    		taxMoney2 = taxMoney2.toFixed(2);//这是税 啊
-	    		last = parseFloat(total2)+parseFloat(taxMoney2)
+	    		last = parseFloat(total2)+parseFloat(taxMoney2);
+	    		last = last.toFixed(2);
       		console.log('按照百分比算')
       	}else if(!txt2&&!txt3){//按照固定折扣算
       		$(".fixed").text(-txt1);
@@ -592,7 +593,8 @@
       		total2 = total2.toFixed(2)//这是折后价 啊
       		taxMoney2 = parseFloat(tax2*total2/100);
 	    		taxMoney2 = taxMoney2.toFixed(2);//这是税 啊
-	    		last = parseFloat(total2)+parseFloat(taxMoney2)
+	    		last = parseFloat(total2)+parseFloat(taxMoney2);
+	    		last = last.toFixed(2);
       		console.log('按照固定折扣算')
       	}else if(!txt1&&!txt2){
       		//这里是优惠码，具体怎么算不知
@@ -648,63 +650,63 @@
       var payment = 0;	
       var mm = 0;
       var received = 0;
-			//常理说啊，根据上边选择的支付方式，判断下边的方法，应该是可以的，完全没问题，怎么就不好了呢，心里一万只草泥马在奔腾
 			
 			$(".payF li").click(function(){			
 				mm = $(this).index();
 			});
 			
-				$(".keyboard").change(function() {
-					 var accumulation = parseFloat($(".received").text());
-					 console.log(accumulation);
-						payment = parseFloat($(this).val());
-						//判断是否已经选择了一种支付方式
-						if($(".payF .active").length==0){
-							alert("请选择一种支付方式！");
-							$(this).val('');
-						}
-						if(mm==0){
+//				$(".keyboard").change(function() {
+//					 var accumulation = parseFloat($(".received").text());
+//					 console.log(accumulation);
+//						payment = parseFloat($(this).val());
+//						//判断是否已经选择了一种支付方式
+//						if($(".payF .active").length==0){
+//							alert("请选择一种支付方式！");
+//							$(this).val('');
+//						}
+//						if(mm==0){
+//
+//								$(".pay-right-c").each(function(){
+//									if($(this).css("display")=="block"){
+//										var all = parseFloat($(this).find("#total").text());	//总价									
+//										$(this).find(".received").text(payment);//收到的金额
+//										received = parseFloat($(this).find(".received").text());//取值下一次累加备用									
+//										$(this).find(".cash").text(payment);//现金
+//										var balance = payment-all;
+//										balance.toFixed(2);
+//										$(this).find(".surplus").text(balance);//剩余
+//									}
+//								})
+//
+//						}else if(mm==1){
+//
+//								$(".pay-right-c").each(function(){
+//									if($(this).css("display")=="block"){
+//										var all = parseFloat($(this).find("#total").text());//总价		
+//										$(this).find(".received").text(payment);//收到的金额
+//										received = parseFloat($(this).find(".received").text());//取值下一次累加备用		
+//										$(this).find(".card").text(payment);//卡
+//										var balance = payment-all;
+//										balance.toFixed(2);
+//										$(this).find(".tip").text(balance);//小费
+//									}
+//								})
+//						}else if(mm==2){
+//
+//								$(".pay-right-c").each(function(){
+//									if($(this).css("display")=="block"){
+//										var all = parseFloat($(this).find("#total").text());//总价		
+//										$(this).find(".received").text(payment);//收到的金额
+//										received = parseFloat($(this).find(".received").text());//取值下一次累加备用
+//										$(this).find(".member").text(payment);//会员卡
+//										
+//									}
+//								})
+//						}
+//						
+//					})
 
-								$(".pay-right-c").each(function(){
-									if($(this).css("display")=="block"){
-										var all = parseFloat($(this).find("#total").text());	//总价									
-										$(this).find(".received").text(payment);//收到的金额
-										received = parseFloat($(this).find(".received").text());//取值下一次累加备用									
-										$(this).find(".cash").text(payment);//现金
-										var balance = payment-all;
-										balance.toFixed(2);
-										$(this).find(".surplus").text(balance);//剩余
-									}
-								})
 
-						}else if(mm==1){
-
-								$(".pay-right-c").each(function(){
-									if($(this).css("display")=="block"){
-										var all = parseFloat($(this).find("#total").text());//总价		
-										$(this).find(".received").text(payment);//收到的金额
-										received = parseFloat($(this).find(".received").text());//取值下一次累加备用		
-										$(this).find(".card").text(payment);//卡
-										var balance = payment-all;
-										balance.toFixed(2);
-										$(this).find(".tip").text(balance);//小费
-									}
-								})
-						}else if(mm==2){
-
-								$(".pay-right-c").each(function(){
-									if($(this).css("display")=="block"){
-										var all = parseFloat($(this).find("#total").text());//总价		
-										$(this).find(".received").text(payment);//收到的金额
-										received = parseFloat($(this).find(".received").text());//取值下一次累加备用
-										$(this).find(".member").text(payment);//会员卡
-										
-									}
-								})
-						}
-						
-					})
-			
       //'输入'键 
       $(".paymo").on("click",function(){       
 				if($(".payF .active").length==0){
@@ -716,12 +718,19 @@
 
 								$(".pay-right-c").each(function(){
 									if($(this).css("display")=="block"){
-										var all = parseFloat($(this).find("#total").text());
-										$(this).find(".received").text(num);
-										$(this).find(".cash").text(num);
-										var balance = num-all;
-										balance.toFixed(2);
-										$(this).find(".surplus").text(balance);
+										var all = parseFloat($(this).find("#total").text());//总计
+										$(this).find(".received").text(num);//实收金额
+										$(this).find(".cash").text(num);//现金
+										var balance = num-all;//相差值
+										balance = balance.toFixed(2);
+										if(num>=all){//判断输入的金额是否大于总金额
+											$(this).find(".surplus").text(balance);
+											$(this).find(".change").text('找零:');
+										}else{
+											$(this).find(".surplus").text(-1*balance);
+											$(this).find(".change").text('剩余:');
+										}
+										
 									}
 								})
 
@@ -730,12 +739,24 @@
 
 								$(".pay-right-c").each(function(){
 									if($(this).css("display")=="block"){
-										var all = parseFloat($(this).find("#total").text());
-										$(this).find(".received").text(num);
-										$(this).find(".card").text(num);
-										var balance = num-all;
-										balance.toFixed(2);
-										$(this).find(".tip").text(balance);
+										var all = parseFloat($(this).find("#total").text());//总金额
+										var rest = parseFloat($(this).find(".surplus").text());//剩下的金额
+										$(this).find(".received").text(num);//实收金额
+										$(this).find(".card").text(num);//银行卡
+										//如果首选其他支付，有剩余金额时，刷卡金额减去剩余金额等于小费；首选刷卡支付时，刷卡金额减去总金额等于小费，那剩余金额怎么变化？
+//										if(){}
+										
+										
+										var balance = num-all;//相差值
+										balance = balance.toFixed(2);
+										if(num>=all){//判断输入的金额是否大于总金额
+											$(this).find(".surplus").text("0.00");
+											$(this).find(".tip").text(balance);
+										}else{
+											$(this).find(".surplus").text(-1*balance);
+											$(this).find(".tip").text("0.00");
+										}
+										
 									}
 								})
 
@@ -744,15 +765,24 @@
 
 								$(".pay-right-c").each(function(){
 									if($(this).css("display")=="block"){
-										var all = parseFloat($(this).find("#total").text());
-										$(this).find(".received").text(num);
-										$(this).find(".member").text(num);
-										
+										var all = parseFloat($(this).find("#total").text());//总计
+										$(this).find(".received").text(num);//实收
+										$(this).find(".member").text(num);//会员卡
+										var balance = num-all;//相差值
+										balance = balance.toFixed(2);
+										if(num>=all){//判断输入的金额是否大于总金额
+											$(this).find(".surplus").text("0.00");
+											$(this).find(".tip").text(balance);
+										}else{
+											$(this).find(".surplus").text(-1*balance);
+											$(this).find(".tip").text("0.00");
+										}
 									}
 								})
 
 							console.log("会员支付")
 						}
+						
 						}
         
       });
@@ -773,12 +803,12 @@
       	$("#total").text(tal);
       	
         
-        $(".received").text("0.00");
-	      $(".cash").text("0.00");
-	      $(".card").text("0.00");
-	      $(".member").text("0.00");
-	      $(".surplus").text("0.00");
-	      $(".tip").text("0.00");
+//      $(".received").text("0.00");
+//	      $(".cash").text("0.00");
+//	      $(".card").text("0.00");
+//	      $(".member").text("0.00");
+//	      $(".surplus").text("0.00");
+//	      $(".tip").text("0.00");
       });
       
     $(document).ready(function(){
