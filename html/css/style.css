@@ -3758,8 +3758,8 @@ a.add_zhe{
 	    padding: 0 8px;
 	}
 	.static ul li{
-		font-size: 20px;
-		width: 130px;
+		font-size: 18px;
+		width: 120px;
 	}
 	.page2-top h4{
 		font-size: 20px;
@@ -3771,8 +3771,22 @@ a.add_zhe{
 	.adminTab .a2 ul{
 		margin-top: 0;
 	}
-	
-	
+	.static ul li span {
+	    width: 28px;
+	    height: 28px;
+	}
+	.static ul li{
+		line-height: 28px;
+	}
+	.static h4{
+		padding-left: 0;
+		font-size: 22px;
+		line-height: 28px;
+	}
+	.static p {
+	    font-size: 1.4rem;
+	    line-height: 28px;
+	  }
 	
 	
 	
@@ -3808,9 +3822,6 @@ a.add_zhe{
 
 @media only screen and (max-width:1260px){
   
-  .static ul li {
-    width: 135px;
-  }
   .pay-h h4.pay-h-t{
     font-size: 1.4rem;
   }
@@ -3880,6 +3891,9 @@ a.add_zhe{
   .tLeft, .tRight{
   	width: 32px;
   }
+  .payment a.add_zhe{
+    padding-left: 15%;
+  }
 }
 @media only screen and (max-width:1120px){
   .login_right{
@@ -3900,9 +3914,7 @@ a.add_zhe{
 }
 
 @media only screen and (max-width:1024px){
-	.payment a.add_zhe{
-        padding-left: 15%;
-      }
+	
 	
   .seach-content {
     height: 84px;
