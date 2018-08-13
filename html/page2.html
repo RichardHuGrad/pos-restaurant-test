@@ -743,10 +743,7 @@
 										var rest = parseFloat($(this).find(".surplus").text());//剩下的金额
 										$(this).find(".received").text(num);//实收金额
 										$(this).find(".card").text(num);//银行卡
-										//如果首选其他支付，有剩余金额时，刷卡金额减去剩余金额等于小费；首选刷卡支付时，刷卡金额减去总金额等于小费，那剩余金额怎么变化？
-//										if(){}
-										
-										
+								
 										var balance = num-all;//相差值
 										balance = balance.toFixed(2);
 										if(num>=all){//判断输入的金额是否大于总金额
@@ -801,14 +798,7 @@
       	$(".taxMoney").text(taxMoney);
       	var tal = parseFloat(subtotal)+parseFloat(taxMoney);
       	$("#total").text(tal);
-      	
-        
-//      $(".received").text("0.00");
-//	      $(".cash").text("0.00");
-//	      $(".card").text("0.00");
-//	      $(".member").text("0.00");
-//	      $(".surplus").text("0.00");
-//	      $(".tip").text("0.00");
+
       });
       
     $(document).ready(function(){
@@ -914,10 +904,7 @@
         $(".payment .keyboard").val(valIn);
       });
       // 默认
-//    $(".payde").on("click",function(){
-//      // 365为现有的默认金额
-//      $(".payment .keyboard").val(365);
-//    });
+
       // 关闭ipad付款块
       $(".pay_close").on("click",function(){
         $('.payment .page2-right').hide();
