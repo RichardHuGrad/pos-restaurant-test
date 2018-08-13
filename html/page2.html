@@ -619,18 +619,6 @@
       	
       })
 
-			//默认金额
-			
-			$(".payde").on("click",function(){       
-				if($(".payF .active").length==0){
-							alert("请选择一种支付方式！");		
-							$(".payment .keyboard").val('');
-						}else{
-							$(".payment .keyboard").val(parseFloat($("#total").text()));
-						}
-        
-      });
-
 			//点击键盘
 			
 			$(".num_left li").not(".empty").on("click",function(){       
@@ -645,7 +633,21 @@
         
       });
           
-
+			//付款方式
+      $(".payF li").click(function(){
+      	$(this).addClass("active").siblings().removeClass("active");
+      })
+      //默认金额
+			
+			$(".payde").on("click",function(){       
+				if($(".payF .active").length==0){
+							alert("请选择一种支付方式！");		
+							$(".payment .keyboard").val('');
+						}else{
+							$(".payment .keyboard").val(parseFloat($("#total").text()));
+						}
+        
+      });
       //判断什么支付方式
       var payment = 0;	
       var mm = 0;
@@ -912,10 +914,7 @@
       $(".pay_play").on("click",function(){
         $('.payment .page2-right').css("z-index","20");
       });
-      //付款方式
-      $(".payF li").click(function(){
-      	$(this).addClass("active").siblings().removeClass("active");
-      })
+      
     });
     </script>
   </body>
