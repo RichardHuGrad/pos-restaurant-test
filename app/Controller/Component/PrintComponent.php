@@ -164,21 +164,29 @@ class PrintComponent extends Component {
  
             foreach($printItems['K'] as $item){
               foreach($item as $key=>$value){
+                print_r($value);
                 $item[$key]["type"]=$this->Cousines->getPrinterId($value['item_id']);//查询菜品设定打印机
+                // 将菜品分打印机
+                if($item[$key]["type"]['Cousines']['printer']!=""){
+                    $item1[$key]=$item[$key];
+                }else{
+                    $item2[$key]=$item[$key];
+                }
               }
-              // print_r($item[$key]["type"]);
+          
               $type=$item[$key]["type"];
                 if($type['Cousines']['printer']!=""){
+
                   $id=explode(",",$type["Cousines"]['printer']);
                   foreach($id as $printerid){
                     $printerName1=$this->PrintPage->getPrintName($printerid);
                     $printerName=$printerName1["PrintPage"]['name'];
-                    $print->printKitchenItemDoc($order_no, $table, $type, $printerName , $item,true, false,$phone);
+                    $print->printKitchenItemDoc($order_no, $table, $type, $printerName , $item1,true, false,$phone);
                   }
                 }else{
                     $printerName1=$this->PrintPage->getPrintName(2);
                     $printerName=$printerName1["PrintPage"]['name'];
-                    $print->printKitchenItemDoc($order_no, $table, $type, $printerName , $item,true, false,$phone);
+                    $print->printKitchenItemDoc($order_no, $table, $type, $printerName , $item2,true, false,$phone);
                 }
                 
              
