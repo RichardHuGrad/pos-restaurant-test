@@ -129,7 +129,6 @@ class PrintComponent extends Component {
         }
         // according to order_id
         // find all items in order, print all items which is not print
-
         $order_id = $args['order_id'];
 
         $orderDetail = $this->Order->find('first', array(
@@ -147,47 +146,33 @@ class PrintComponent extends Component {
         $table = $orderDetail['Order']['table_no'];
         $order_no = $orderDetail['Order']['order_no'];
         $phone = $orderDetail['Order']['phone'];
-
-
         // get all unprinted items
         $printItems = $this->OrderItem->getUnprintItemsByOrderId($order_id);
-
-        
-
         if (!empty($printItems['K'])) {
-
-
-            // $printerName = $this->PrintPage->getKitchenPrinterName($args['restaurant_id']);//多查询一个打印机id
-
-        
+            // $printerName = $this->PrintPage->getKitchenPrinterName($args['restaurant_id']);//多查询一个打印机id        
             $print = new PrintLib();
  
             foreach($printItems['K'] as $item){
               foreach($item as $key=>$value){
-                $item[$key]["type"]=$this->Cousines->getPrinterId($value['item_id']);//查询菜品设定打印机
-
-                $type.=$item[$key]["type"].",";
-              }
-              print_r($type);
-                if($type['Cousines']['printer']!=""){
-
-                  $id=explode(",",$type["Cousines"]['printer']);
+                $item[$key]["type"]=$this->Cousines->getPrinterId($value['item_id']);//查询菜品设定打印机          
+               
+                if($item[$key]["type"]['Cousines']['printer']!=""){
+                  $id=explode(",",$item[$key]["type"]["Cousines"]['printer']);
                   foreach($id as $printerid){
                     $printerName1=$this->PrintPage->getPrintName($printerid);
                     $printerName=$printerName1["PrintPage"]['name'];
-                    $print->printKitchenItemDoc($order_no, $table, $type, $printerName , $item,true, false,$phone);
+                     $item1[]=$item[$key];
+                      print_r($item1);
+                    $print->printKitchenItemDoc($order_no, $table, $type, $printerName , $item1,true, false,$phone);
                   }
                 }else{
                     $printerName1=$this->PrintPage->getPrintName(2);
                     $printerName=$printerName1["PrintPage"]['name'];
                     $print->printKitchenItemDoc($order_no, $table, $type, $printerName , $item,true, false,$phone);
-                }
-                
-             
+                }        
+              }    
             }
-
-        }
-
+          }
         if (!empty($printItems['C'])) {
             $printerName = $this->PrintPage->getServicePrinterName($args['restaurant_id']);
             // return $printerName;
@@ -196,7 +181,6 @@ class PrintComponent extends Component {
                 $print->printKitchenItemDoc($order_no, $table, $type, $printerName, $item, true, false);
             }
         }
-
         $this->OrderItem->setAllItemsToPrinted($order_id);
     }
 
@@ -374,26 +358,27 @@ class PrintComponent extends Component {
            foreach($cancel_items['K'] as $items){
                 for($i=0;$i<count($items);$i++){
 
-                   $type=$this->Cousines->getPrinterId($items[$i]['item_id']);//查询菜品设定打印机
-                   }
-                  // print_r($type);exit;
-                  if($type['Cousines']['printer']!=""){
-                      $id=explode(",",$type["Cousines"]['printer']);
+                   $type1=$this->Cousines->getPrinterId($items[$i]['item_id']);//查询菜品设定打印机
+                   $item[$i]=$type1['Cousines']['printer'];
+                  }
+                   $type=implode(",",$item);
+                // print_r($type);exit;
+                  if($type!=""){
+                      $id=explode(",",trim($type,","));
                       foreach($id as $printerid){
                         $printerName1=$this->PrintPage->getPrintName($printerid);
                         $printerName=$printerName1["PrintPage"]['name'];
                   // print_r($printerName);
                         $debug_str = $print->printCancelledItems($order_no, $table, $type, $printerName, $items,true, false);
-                        
                       }
                   }else{
                       $printerName1=$this->PrintPage->getPrintName(2);
                       $printerName=$printerName1["PrintPage"]['name'];
                       $debug_str = $print->printCancelledItems($order_no, $table, $type, $printerName, $items,true, false);
                   }
-                
-              // $debug_str = $print->printCancelledItems($order_no, $table, $type, $printerName, $items,true, false);
-            }
+                }
+              
+            
           
            
             
@@ -403,7 +388,7 @@ class PrintComponent extends Component {
             $print = new PrintLib();
             
             foreach($cancel_items['C'] as $items){
-            	// $print->printCancelledItems($order_no, $table, $type, $printerName, $items,true, false);
+            	$print->printCancelledItems($order_no, $table, $type, $printerName, $items,true, false);
             }            
         }
 
