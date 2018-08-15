@@ -555,69 +555,70 @@
     	
     	
     	//计算折扣
+    	//功能暂时不完善，多种方式支付都选择之后，总额什么的有偏差
     		
-//    $(".application").click(function(){
-//    	var txt1 = parseFloat($("#discount1").val());
-//    	var txt2 = parseFloat($("#discount2").val());
-//    	var txt3 = parseFloat($("#discount3").val());
-//    	var subtotal = parseFloat($("#subtotal").text());//小计
-//    	
-//				var tax2=parseFloat($(".tax").text());
-//				var total2;
-//				var taxMoney2;
-//				var last;
-//				
-//				var html="$";
-//				html+="<span class='subtotal'>";
-//				html+=subtotal;
-//				html+="</span>*<span class='discount'>";
-//				html+=txt2;
-//				html+="</span>";
-//				html+="%";
-//				
-//				if(!txt1&&!txt2&&!txt3){//无折扣
-//					alert("请选择一种折扣！");
-//				}else if(!txt1&&!txt3){//按照百分比算
-//					$(".fixed").text('');
-//					$(".fixed").append(html);
-//    		total2 = subtotal - subtotal*txt2/100;
-//    		total2 = total2.toFixed(2)//这是折后价 啊
-//    		taxMoney2 = parseFloat(tax2*total2/100);
-//	    		taxMoney2 = taxMoney2.toFixed(2);//这是税 啊
-//	    		last = parseFloat(total2)+parseFloat(taxMoney2);
-//	    		last = last.toFixed(2);
-//    		console.log('按照百分比算')
-//    	}else if(!txt2&&!txt3){//按照固定折扣算
-//    		$(".fixed").text(-txt1);
-//    		total2 = parseFloat(subtotal) - parseFloat(txt1);
-//    		total2 = total2.toFixed(2)//这是折后价 啊
-//    		taxMoney2 = parseFloat(tax2*total2/100);
-//	    		taxMoney2 = taxMoney2.toFixed(2);//这是税 啊
-//	    		last = parseFloat(total2)+parseFloat(taxMoney2);
-//	    		last = last.toFixed(2);
-//    		console.log('按照固定折扣算')
-//    	}else if(!txt1&&!txt2){
-//    		//这里是优惠码，具体怎么算不知
-//					console.log('按照优惠码算')
-//    	}else{
-//    		alert("只能选择一种折扣！");
-//    		$(".add-ul").find("input").val('');
-//    		
-//    		//只能选择一种折扣，清空处理
-//	      	$(".fixed").text("--");
-//	      	$(".discountMoney").text('$'+subtotal);
-//	      	var tax = parseFloat($(".tax").text());
-//		    	var taxMoney = parseFloat(tax*subtotal/100);
-//		    	taxMoney = taxMoney.toFixed(2);
-//	      	$(".taxMoney").text(taxMoney);
-//    		
-//    	}
-//    	$(".discountMoney").text('$'+total2);
-//    	$(".taxMoney").text(taxMoney2);
-//    	$("#total").text(last);
-//    	
-//    	
-//    })
+      $(".application").click(function(){
+      	var txt1 = parseFloat($("#discount1").val());
+      	var txt2 = parseFloat($("#discount2").val());
+      	var txt3 = parseFloat($("#discount3").val());
+      	var subtotal = parseFloat($("#subtotal").text());//小计
+      	
+				var tax2=parseFloat($(".tax").text());
+				var total2;
+				var taxMoney2;
+				var last;
+				
+				var html="$";
+				html+="<span class='subtotal'>";
+				html+=subtotal;
+				html+="</span>*<span class='discount'>";
+				html+=txt2;
+				html+="</span>";
+				html+="%";
+				
+				if(!txt1&&!txt2&&!txt3){//无折扣
+					alert("请选择一种折扣！");
+				}else if(!txt1&&!txt3){//按照百分比算
+					$(".fixed").text('');
+					$(".fixed").append(html);
+      		total2 = subtotal - subtotal*txt2/100;
+      		total2 = total2.toFixed(2)//这是折后价 啊
+      		taxMoney2 = parseFloat(tax2*total2/100);
+	    		taxMoney2 = taxMoney2.toFixed(2);//这是税 啊
+	    		last = parseFloat(total2)+parseFloat(taxMoney2);
+	    		last = last.toFixed(2);
+      		console.log('按照百分比算')
+      	}else if(!txt2&&!txt3){//按照固定折扣算
+      		$(".fixed").text(-txt1);
+      		total2 = parseFloat(subtotal) - parseFloat(txt1);
+      		total2 = total2.toFixed(2)//这是折后价 啊
+      		taxMoney2 = parseFloat(tax2*total2/100);
+	    		taxMoney2 = taxMoney2.toFixed(2);//这是税 啊
+	    		last = parseFloat(total2)+parseFloat(taxMoney2);
+	    		last = last.toFixed(2);
+      		console.log('按照固定折扣算')
+      	}else if(!txt1&&!txt2){
+      		//这里是优惠码，具体怎么算不知
+					console.log('按照优惠码算')
+      	}else{
+      		alert("只能选择一种折扣！");
+      		$(".add-ul").find("input").val('');
+      		
+      		//只能选择一种折扣，清空处理
+	      	$(".fixed").text("--");
+	      	$(".discountMoney").text('$'+subtotal);
+	      	var tax = parseFloat($(".tax").text());
+		    	var taxMoney = parseFloat(tax*subtotal/100);
+		    	taxMoney = taxMoney.toFixed(2);
+	      	$(".taxMoney").text(taxMoney);
+      		
+      	}
+      	$(".discountMoney").text('$'+total2);
+      	$(".taxMoney").text(taxMoney2);
+      	$("#total").text(last);
+      	
+      	
+      })
 
 			//点击键盘
 			
