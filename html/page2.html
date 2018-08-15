@@ -504,6 +504,8 @@
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/keyboard.js"></script>
     <script type="text/javascript">
+     //写了这么多关于计算的，可能也没什么用，不如意直接调用旧版的计算方法吧
+     
      
       $(function(){     
 	      //整理所有价格显示
@@ -655,56 +657,6 @@
 				mm = $(this).index();
 			});
 			
-//				$(".keyboard").change(function() {
-//					 var accumulation = parseFloat($(".received").text());
-//					 console.log(accumulation);
-//						payment = parseFloat($(this).val());
-//						//判断是否已经选择了一种支付方式
-//						if($(".payF .active").length==0){
-//							alert("请选择一种支付方式！");
-//							$(this).val('');
-//						}
-//						if(mm==0){
-//
-//								$(".pay-right-c").each(function(){
-//									if($(this).css("display")=="block"){
-//										var all = parseFloat($(this).find("#total").text());	//总价									
-//										$(this).find(".received").text(payment);//收到的金额
-//										received = parseFloat($(this).find(".received").text());//取值下一次累加备用									
-//										$(this).find(".cash").text(payment);//现金
-//										var balance = payment-all;
-//										balance.toFixed(2);
-//										$(this).find(".surplus").text(balance);//剩余
-//									}
-//								})
-//
-//						}else if(mm==1){
-//
-//								$(".pay-right-c").each(function(){
-//									if($(this).css("display")=="block"){
-//										var all = parseFloat($(this).find("#total").text());//总价		
-//										$(this).find(".received").text(payment);//收到的金额
-//										received = parseFloat($(this).find(".received").text());//取值下一次累加备用		
-//										$(this).find(".card").text(payment);//卡
-//										var balance = payment-all;
-//										balance.toFixed(2);
-//										$(this).find(".tip").text(balance);//小费
-//									}
-//								})
-//						}else if(mm==2){
-//
-//								$(".pay-right-c").each(function(){
-//									if($(this).css("display")=="block"){
-//										var all = parseFloat($(this).find("#total").text());//总价		
-//										$(this).find(".received").text(payment);//收到的金额
-//										received = parseFloat($(this).find(".received").text());//取值下一次累加备用
-//										$(this).find(".member").text(payment);//会员卡
-//										
-//									}
-//								})
-//						}
-//						
-//					})
 
 
       //'输入'键 
