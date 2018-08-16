@@ -22,15 +22,15 @@
               <li><a href="javascript:;">中文</a></li>
             </ul>
           </li>
-          <li><a href="javascript:;" class="nav-a member">会员</a></li>
-          <li><a href="paidui.html" class="nav-a">排队</a></li>
-          <li><a href="quhao.html" class="nav-a">取号</a></li>
+          <li><a href="javascript:;" onclick="huiyuan();" class="nav-a member">会员</a></li>
+          <li><a onclick="paidui();" class="nav-a">排队</a></li>
+          <li><a onclick="quhao();"class="nav-a">取号</a></li>
         </ul>
         <?php echo $this->Html->image('nav.png', array( 'class' => 'smalllogo', 'alt' => 'pad菜单')); ?>
         <!-- <img src="images/nav.png" class="smalllogo" alt="pad菜单" /> -->
         <!-- 登录按钮 -->
         <div class="login_right">
-          <button type="button" name="button">登出</button>
+          <button type="button" name="button" onclick="loginout(this);">登出</button>
           <span>管理员</span>
         </div>
       </div>
@@ -343,7 +343,7 @@
     </div>
     <!-- 弹出层 -->
     <div class="model model1">
-      <div class="model-title" >堂食 NO.<span id="tanchu">01</span></div>
+      <div class="model-title" >堂食 NO.<span id="tanchu"></span></div>
        <?php echo $this->Html->image('icon-06.png', array('alt'=>'关闭弹出层','class'=>'model-close')); ?>
       <!-- <img src="images/icon-06.png" alt="关闭弹出层" class="model-close" /> -->
       <ul class="model-content">
@@ -694,7 +694,21 @@ tables=$("#tables").html();
     		var i = $(this).index();
     		$(".ulBox").find("ul").eq(i).show().siblings().hide();
     	})
-      
+      function huiyuan(){
+        alert("This function is temporarily unopened.");
+      }
+      function paidui(){
+        alert("This function is temporarily unopened.");
+      }
+      function quhao(){
+        alert("This function is temporarily unopened.");
+      }
+      function loginout(that){
+        var tiaozhuan = '<?php echo $this->Html->url(array("controller" => "homes", "action" => "logout")) ?>';
+
+        window.location.href=tiaozhuan;
+      }
+
 // 换桌方面的js
 
       function number(that){
@@ -792,7 +806,11 @@ tables=$("#tables").html();
   
 
       function ChangeTable(that){
-        
+        if(!order_no){
+          alert("no order!");
+        }else{
+
+
         var table_s=$(that).html();    //要还的桌号
         var table_class1 = $("li#table_"+table_number).attr("class"); //获取p元素的class 
         var table_class2 = $("li#table_"+table_s).attr("class"); //获取p元素的class 
@@ -833,6 +851,7 @@ tables=$("#tables").html();
               
             }
         });
+         }
       }
 // 换桌结束
     $(document).ready(function(){
@@ -931,6 +950,7 @@ tables=$("#tables").html();
      
       // 会员
       $(".member").on("click",function(){
+        return false;
         $("#member").show();
       });
       $(".member-close,.member-close4").on("click",function(){
