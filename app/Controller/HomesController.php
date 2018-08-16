@@ -24,6 +24,7 @@ class HomesController extends AppController {
         $this->Auth->allow('index', 'checkin');
         
         $this->layout = "default";
+        $this->layouts = "default1";
     }
 
     /**
@@ -31,7 +32,7 @@ class HomesController extends AppController {
      * @return mixed
      */
     public function index() {
-         $this->layout = false;
+         // $this->layout = false;
         if ($this->request->is('post')) {
             $this->loadModel("Cashier");
             if (isset($this->request->data['Cashier']['username']) && isset($this->request->data['Cashier']['password'])) {
@@ -134,6 +135,8 @@ class HomesController extends AppController {
 
     public function dashboard() {
         $head=1;
+        $this->layout = "default1";
+         // $this->layout = false;
         // get all table details
         $this->loadModel('Cashier');
         $tables = $this->Cashier->find("first", array(
