@@ -8,9 +8,12 @@
 	<meta http-equiv="Expires" content="-1" />
 	<meta http-equiv="Vary" content="*" />
 	<title>POS - InStore Experience - <?php echo $title_for_layout; ?></title>
+	
 	<?php 
-		echo $this->Html->css(array('bootstrap.css', 'font-awesome.min.css', 'styles.css', 'responsive.css', 'font-awesome.min.css'));
-        echo $this->fetch('css');
+		if(@$head!=1){
+			echo $this->Html->css(array('bootstrap.css', 'font-awesome.min.css', 'styles.css', 'responsive.css', 'font-awesome.min.css'));
+	        echo $this->fetch('css');
+		}
 	?>
     </head>
 
