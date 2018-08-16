@@ -59,7 +59,7 @@
                         $dine_table_order = @$tables['Admin']['table_order']?@json_decode($tables['Admin']['table_order'], true):array();
     
                       for($i = 0; $i < $tables['Admin']['no_of_tables']; $i++) {
-                          $table_size[$i]=explode(",",$table_size[$i]);
+                          @$table_size[$i]=explode(",",@$table_size[$i]);
                         if(@$table_size[$i][1]==""){
                           @$table_numbers.= @$table_size[$i][0].",";
                           
@@ -68,18 +68,18 @@
 
                         if(@$table_size[$i][1]!="" && @$table_size[$i][1]=="A"){
                       ?>
-                      <li class="sit_kong" id="table_<?php echo $dine_table[$i]<=9?'0'.$dine_table[$i]:$dine_table[$i]; ?>" onclick="number(this)">
+                      <li class="sit_kong" id="table_<?php echo @$dine_table[$i]<=9?'0'.@$dine_table[$i]:@$dine_table[$i]; ?>" onclick="number(this)">
                       <?php }else if(@$table_size[$i][1]!="" && @$table_size[$i][1]=="N"){?>
-                      <li class="sit_no"  id="table_<?php echo $dine_table[$i]<=9?'0'.$dine_table[$i]:$dine_table[$i]; ?>" onclick="number(this)">
+                      <li class="sit_no"  id="table_<?php echo @$dine_table[$i]<=9?'0'.@$dine_table[$i]:@$dine_table[$i]; ?>" onclick="number(this)">
                        <span id="tableStatus" style="display: none;"><?php echo @$table_size[$i][1];?></span>
                       <?php }else if(@$table_size[$i][1]!="" && @$table_size[$i][1]=="P"){?>
-                        <li class="sit_yes"  id="table_<?php echo $dine_table[$i]<=9?'0'.$dine_table[$i]:$dine_table[$i]; ?>" onclick="number(this)">
+                        <li class="sit_yes"  id="table_<?php echo @$dine_table[$i]<=9?'0'.@$dine_table[$i]:@$dine_table[$i]; ?>" onclick="number(this)">
                         <span id="tableStatus" style="display: none;"><?php echo @$table_size[$i][1];?></span>
                       <?php }else if(@$table_size[$i][1]!="" && @$table_size[$i][1]=="R"){?>
-                        <li class="sit_dan"  id="table_<?php echo $dine_table[$i]<=9?'0'.$dine_table[$i]:$dine_table[$i]; ?>" onclick="number(this)">
+                        <li class="sit_dan"  id="table_<?php echo @$dine_table[$i]<=9?'0'.@$dine_table[$i]:@$dine_table[$i]; ?>" onclick="number(this)">
                         <span id="tableStatus" style="display: none;"><?php echo @$table_size[$i][1];?></span>
                       <?php }else if(@$table_size[$i][1]==""){?>
-                      <li onclick="number(this)"  class="sit_kong"  id="table_<?php echo $dine_table[$i]<=9?'0'.$dine_table[$i]:$dine_table[$i]; ?>">
+                      <li onclick="number(this)"  class="sit_kong"  id="table_<?php echo @$dine_table[$i]<=9?'0'.@$dine_table[$i]:@$dine_table[$i]; ?>">
                       <span id="tableStatus" style="display: none;"><?php echo @$table_size[$i][1];?></span>
                       <?php }?>
                      
@@ -89,7 +89,7 @@
                           <!-- 占桌时间 -->
                           <span><?php echo @$orders_time[$i]['D']?date("H:i", strtotime(@$orders_time[$i]['D'])):"0:00" ?></span>
                           
-                          <p><small>No.</small><b><?php echo $dine_table[$i]<=9?"0".$dine_table[$i]:$dine_table[$i]; ?></b></p>
+                          <p><small>No.</small><b><?php echo @$dine_table[$i]<=9?"0".@$dine_table[$i]:@$dine_table[$i]; ?></b></p>
                         </div>
                       </li>
                       
@@ -126,11 +126,11 @@
             </div>
             <div class="ulBox">
 	            <ul class="order">
-	           <?php for($i=0;$i< count($takeway_tables_key);$i++){
+	           <?php for($i=0;$i< count(@$takeway_tables_key);$i++){
                  
               ?>
                 <li>
-                  <h4><?php echo $takeway_tables_key[$i];?></h4>
+                  <h4><?php echo @$takeway_tables_key[$i];?></h4>
                   <div class="order_content">
                     <div class="order_left">
                       <p><?php echo @$orders_no[$takeway_tables_key[$i]]["T"];?></p>
@@ -178,11 +178,11 @@
 	         
 	            </ul>
 	            <ul class="order">
-                   <?php for($i=0;$i< count($takeway_tables_key);$i++){
+                   <?php for($i=0;$i< count(@$takeway_tables_key);$i++){
                  
               ?>
                 <li>
-                  <h4><?php echo $takeway_tables_key[$i];?></h4>
+                  <h4><?php echo @$takeway_tables_key[$i];?></h4>
                   <div class="order_content">
                     <div class="order_left">
                       <p><?php echo @$orders_no[$takeway_tables_key[$i]]["T"];?></p>
