@@ -1,0 +1,249 @@
+/* reset
+-----------------------------------------------------------------*/
+/*@font-face
+{
+   font-family: 'Nobel-Book';
+   src:url('../font/冬青黑体W3.otf');
+   font-weight: normal;
+   font-style: normal;
+}*/
+
+html,body {
+    /* min-width: 1200px;
+    margin: auto; */
+    color:#333;
+    position: relative;height: 100%;
+    background: #26dfff url(../images/bg-01.png) no-repeat left bottom;
+    background-size: 100%;
+    font:12px 微软雅黑;
+}
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+form,
+fieldset,
+legend,
+input,
+button,
+textarea,
+p,
+blockquote,
+th,
+td {
+    margin: 0;
+    padding: 0;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+fieldset {
+    border:none;
+    }
+img {
+    border:none;
+    }
+ul,li,dd,dl,dt {
+    list-style:none;
+    }
+a {
+    text-decoration:none;
+    color:#333;
+  -webkit-tap-highlight-color: transparent;
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+    }
+  a:active,a:visited,a:link,a:hover{
+    border: 0;
+    border-color: inherit;
+    text-decoration:none;
+    cursor: pointer;
+  }
+  a:focus{
+    outline: none;
+    -moz-outline-style:none;
+  }
+
+.container{
+  position: relative;
+  width: 100%;
+  margin: auto;
+  overflow: hidden;
+}
+/* 中英文转换 */
+.english{
+  position: absolute;
+  right: 55px;
+  top: 35px;
+  width: 238px;
+  height: 55px;
+  background: #01cdf0;
+  border: 1px #01cdf0 solid;
+  border-radius: 100px;
+  color: #fff;
+  line-height: 55px;
+  text-align: center;
+  font-size: 24px;
+  outline: none;
+  font-family: Nobel-Book;
+
+}
+.login-align{
+  width: 100%;
+}
+/* logo */
+.logo{
+  float: left;
+  width: 35.6%;
+  max-width: 684px;
+  vertical-align: middle;
+}
+  .logo img{
+    display: block;
+    width: 56.9%;
+    margin: 0 0 0 23%;
+  }
+/* 登录 */
+.login{
+  float: left;
+  width: 558px;
+}
+    .login h3{
+      padding-left: 40px;
+      color: #fff;
+      font-size: 27px;
+      font-weight: bold;
+    }
+    /* formkey */
+    .formkey{
+      position:relative;
+      width: 100%;
+      height: auto;
+          overflow: hidden;
+    }
+    .formkey .keyboard_ico{display: none}
+    .keyboard {
+        height: 78px;
+        width: 556px;
+        margin: 30px 0;
+        padding: 0 35px;
+        border: 1px #fff solid;
+        border-radius: 70px;
+        outline: none;
+            font-size: 27px;
+    }
+    .keyboard{
+      height:78px;
+      width:486px;
+      margin:30px 0;
+      padding: 0 35px;
+      border: 1px #fff solid;
+      border-radius: 70px;
+      outline: none;
+      font-family: Nobel-Book;
+    }
+    .num_left{
+      float: left;
+      width: 420px;
+      padding: 0;
+      margin: 0;
+      overflow: hidden;
+    }
+      .num_left li{
+        float: left;
+        width: 130px;
+        height: 130px;
+        margin:0 10px 10px 0;
+        text-align: center;
+        -webkit-border-radius: 15px;
+        -moz-border-radius: 15px;
+        -o-border-radius: 15px;
+        border-radius: 15px;
+        background: #fff;
+        text-align: center;
+        line-height: 130px;
+        font-size: 32px;
+        cursor: pointer;
+      }
+      .num_left li.empty{
+        background: #919191;
+        color: #fff;
+      }
+      .num_left li.retreat{
+        background: #405a8e;
+        color: #fff;
+      }
+
+  .num_right{
+    float: right;
+    width: 130px;
+  }
+    .num_right a,.num_right a:hover,.num_right a:active,.num_right a:visited,.num_right a:link {
+      display: block;
+      width: 130px;
+      height: 80px;
+      padding: 95px 0;
+      line-height: 40px;
+      font-size: 32px;
+      margin-top: 10px;
+      text-align: center;
+      -webkit-border-radius: 15px;
+      -moz-border-radius: 15px;
+      -o-border-radius: 15px;
+      border-radius: 15px;
+      background: #c42248;
+      color: #fff;
+      text-align: center;
+    }
+    .num_right a:first-child{
+      background: #ffd03b;
+      margin-top: 0;
+    }
+
+
+
+
+    .am-vertical-align {
+    	font-size: 0
+    }
+
+    .am-vertical-align:before {
+    	content: '';
+    	display: inline-block;
+    	height: 100%;
+    	vertical-align: middle
+    }
+
+    .am-vertical-align-bottom, .am-vertical-align-middle {
+    	display: inline-block;
+    	font-size: 1.6rem;
+    	max-width: 100%
+    }
+
+    .am-vertical-align-middle {
+    	vertical-align: middle
+    }
+
+    .am-vertical-align-bottom {
+    	vertical-align: bottom
+    }
+
+    .am-responsive-width {
+    	-webkit-box-sizing: border-box;
+    	box-sizing: border-box;
+    	max-width: 100%;
+    	height: auto
+    }

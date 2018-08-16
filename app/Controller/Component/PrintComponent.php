@@ -156,16 +156,16 @@ class PrintComponent extends Component {
               foreach($item as $key=>$value){
                 $printerid1=$this->Cousines->getPrinterId($value['item_id']);//查询菜品设定打印机          
                 $item[$key]["type"]=$printerid1['Cousines']['printer'];
-                print_r($item);
+                
                 if($item[$key]["type"]!=""){
                   $id=explode(",",$item[$key]["type"]);
                   foreach($id as $k=>$printerid){
-                    $food="";
+                    
                     if($printerid == $item[$key]['type']){
                       $food[$k]=$item[$key];
+                      
                     }
                     // $key=array_keys($item,$printerid);
-                    // print_R($key);
                     $printerName1=$this->PrintPage->getPrintName($printerid);
                     $printerName=$printerName1["PrintPage"]['name'];
                     $print->printKitchenItemDoc($order_no, $table, $type, $printerName , $food,true, false,$phone);
@@ -371,7 +371,7 @@ class PrintComponent extends Component {
                   if($items[$i]["type"]!=""){
                       $id=explode(",",trim($items[$i]["type"],","));
                       foreach($id as $k=>$printerid){
-                       $food="";
+                     
                         $printerName1=$this->PrintPage->getPrintName($printerid);
 
                         $printerName=$printerName1["PrintPage"]['name'];
