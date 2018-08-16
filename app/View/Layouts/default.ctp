@@ -10,13 +10,10 @@
 	<title>POS - InStore Experience - <?php echo $title_for_layout; ?></title>
 	
 	<?php 
-		if(@$head!=1){
+		
 			echo $this->Html->css(array('bootstrap.css', 'font-awesome.min.css', 'styles.css', 'responsive.css', 'font-awesome.min.css'));
 	        echo $this->fetch('css');
-		}else{
-		echo $this->Html->css(array('font-awesome.min.css', 'styles.css', 'responsive.css', 'font-awesome.min.css'));
-	        echo $this->fetch('css');
-		}
+		
 	?>
     </head>
 
