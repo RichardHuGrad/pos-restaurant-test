@@ -1,679 +1,1028 @@
-<body>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            // setTimeout(function(){
-            //    window.location.reload(1);
-            // }, 30000);
-            if ($(window).width() <= 780) {
-                $(".dine_ul, .dine_li").removeAttr("style");
-                $('#dine-in-component').removeClass('col-md-8 col-sm-8 col-xs-8')
-                $("#take-out-component, #waiting-list-component").removeClass('col-md-2 col-sm-2 col-xs-2');
-                // $("").removeAttr("style");
-            }
-            $(window).resize(function () {
-                if ($(window).width() <= 780) {
-                    $(".dine_ul, .dine_li").removeAttr("style");
-                    // $("").removeAttr("style");
-                    $('#dine-in-component').removeClass('col-md-8 col-sm-8 col-xs-8')
-                    $("#take-out-component, #waiting-list-component").removeClass('col-md-2 col-sm-2 col-xs-2');
-                } else {
-                    $('#dine-in-component').addClass('col-md-8 col-sm-8 col-xs-8')
-                    $("#take-out-component, #waiting-list-component").addClass('col-md-2 col-sm-2 col-xs-2');
-                }
-            })
 
-        });
-    </script>
+   <header>
 
-    <header>
-        <?php echo $this->element('navbar'); ?>
-        <?php echo $this->Html->css(array('dashboard'));  ?>
+        <?php echo $this->Html->css(array('style'));  ?>
+        <?php echo $this->Html->css(array('jianpan'));  ?>
     </header>
+    <div class="container">
+      <!-- 头部 -->
+      <div class="header">
+  
+        <!-- logo -->
+        <?php echo $this->Html->image('logo-pos.png', array( 'alt' => 'logo', 'class' => 'logo')); ?>
+        <!-- <img src="img/logo-pos.png" alt="logo" class="logo" /> -->
+        <!-- 导航 -->
 
-        <div class="clearfix homepage col-md-12 col-sm-12 col-xs-12">
-        	
-            <?php echo $this->Session->flash(); ?>
-            
-            <div class="clearfix col-md-8 col-sm-8 col-xs-8" id="dine-in-component">
-                <!--   <div class="col-md-12 col-sm-12 col-xs-12" id="dine-in-title">
-                    Dine in <br/> 堂食
-                </div> -->
-                <div class="col-md-12 col-sm-12 col-xs-12 dine-wrap">
+        <ul class="nav">
+          <li><a href="index.html" class="nav-a">主页</a></li>
+          <li class="barnav">
+            <a href="javascript:;" class="nav-a">语言</a>
+            <ul style="display: none;">
+              <li><a href="javascript:;">English</a></li>
+              <li><a href="javascript:;">中文</a></li>
+            </ul>
+          </li>
+          <li><a href="javascript:;" class="nav-a member">会员</a></li>
+          <li><a href="paidui.html" class="nav-a">排队</a></li>
+          <li><a href="quhao.html" class="nav-a">取号</a></li>
+        </ul>
+        <?php echo $this->Html->image('nav.png', array( 'class' => 'smalllogo', 'alt' => 'pad菜单')); ?>
+        <!-- <img src="images/nav.png" class="smalllogo" alt="pad菜单" /> -->
+        <!-- 登录按钮 -->
+        <div class="login_right">
+          <button type="button" name="button">登出</button>
+          <span>管理员</span>
+        </div>
+      </div>
+      <!-- 主体 -->
+         <?php echo $this->Session->flash(); ?>
+      <div class="content">
+        <div class="content_left">
+          <div class="c_area">
+            <!-- 提示 -->
+            <div class="prompt c1" style="display: none;">
+              <span>错误：请重新选择</span>
+               <?php echo $this->Html->image('icon-02.png', array( 'alt' => '关闭提示')); ?>
+              <!-- <img src="images/icon-02.png" alt="关闭提示" /> -->
+            </div>
+            <!-- 占桌情况 -->
 
-                    <ul class="dine_ul" style="height:auto; overflow:auto; min-height: 580px; padding:0">
-                      <!-- <?php print_r($tables['Admin']);?>  -->
 
-                    	<?php
+
+            <div class="sit">
+              <!-- li的class为sit_no是未支付，sit_yes是已付款，
+                       sit_dan是已打单, sit_kong是空桌 -->
+              <!-- 未加class的li是空白 -->
+              <ul class="sit_left">
+                    <?php
                         $dine_table = @explode(",", $tables['Admin']['table_size']);
                         $dine_table_order = @$tables['Admin']['table_order']?@json_decode($tables['Admin']['table_order'], true):array();
-                    	for($i = 1; $i <= $tables['Admin']['no_of_tables']; $i++) {
-                    	?>
-                        <li class="clearfix dine_li" style="<?php echo @$dine_table_order[$i-1] ?>">
-                            <div class="dropdown-menu dropdown-overlay">
-                        	<ul class="dine-tables">
-
-                                <li class="dropdown-title"><?php echo __('Dine In'); ?><?php echo str_pad($i, 2, 0, STR_PAD_LEFT); ?></li>
-                                <li><a tabindex="-1" href="<?php echo $this->Html->url(array('controller'=>'order', 'action'=>'index', 'table'=>$i, 'type'=>'D')); ?>"><?php echo __('Order'); ?></a></li>
-
-                                <li class="dropdown-submenu <?php if(!@$dinein_tables_status[$i])echo 'disabled';?>">
-                                    <a class="test" tabindex="-1" href="javascript:void(0);"><?php echo __('Change Table'); ?></a>
-                                	<?php if(@$dinein_tables_status[$i]) {;?>
-                                        <ul class="dropdown-menu">
-                                            <div class="customchangemenu clearfix">
-                                            <a class="close-btn" href="javascript:void(0)">X</a>
-                                            <div class="left-arrow"></div>
-                                            <div class="col-md-12 col-sm-12 col-xs-12 text-center timetable"><?php echo __('DINE IN'); ?></div>
-                                            <?php
-                                            for ($t = 1; $t <= $tables['Admin']['no_of_tables']; $t++) {
-                                                if (!@$orders_no[$t]['D'] and $t <> $i) {
-                                                    ?>
-
-                                                        <a href="<?php echo $this->Html->url(array('controller' => 'homes', 'action' => 'move_order', 'table' => $t, 'type' => 'D', 'order_no' => @$orders_no[$i]['D'])); ?>"><div class="col-md-4 col-sm-4 col-xs-4 text-center timetable"><?php echo $t; ?></div></a>
-                                                    <?php
-                                                }
-                                            }
-                                            ?>
-                                            <div class="col-md-12 col-sm-12 col-xs-12 text-center timetable"><?php echo __('TAKE OUT'); ?> </div>
-                                            <?php
-                                            for ($t = 1; $t <= $tables['Admin']['no_of_takeout_tables']; $t++) {
-                                                if (!@$orders_no[$t]['T']) {
-                                                    ?>
-                                                    <a href="<?php echo $this->Html->url(array('controller' => 'homes', 'action' => 'move_order', 'table' => $t, 'type' => 'T', 'order_no' => @$orders_no[$i]['D'])); ?>"><div class="col-md-4 col-sm-4 col-xs-4 text-center timetable"><?php echo $t; ?></div></a>
-                                                    <?php
-                                                }
-                                            }
-                                            ?>
-                                            <div class="col-md-12 col-sm-12 col-xs-12 text-center timetable"><?php echo __('Delivery'); ?></div>
-                                            <?php for($t = 1; $t <= $tables['Admin']['no_of_waiting_tables']; $t++) {
-                                            if(!@$orders_no[$t]['W']){  ?>
-                                               <a href="<?php echo $this->Html->url(array('controller'=>'homes', 'action'=>'move_order', 'table'=>$t, 'type'=>'W', 'order_no'=>@$orders_no[$i]['D']));?>"><div class="col-md-4 col-sm-4 col-xs-4 text-center timetable"><?php echo $t; ?></div></a>
-                                            <?php } }?>
-                                            </div>
-                                        </ul>
-                                    <?php }?>
-                                </li>
-                               
-                                <li <?php if(@$dinein_tables_status[$i] <> 'N' and @$dinein_tables_status[$i] <> 'R') echo 'class="disabled"';?>><a tabindex="-1" href="<?php if(@$dinein_tables_status[$i] <> 'N' and @$dinein_tables_status[$i] <> 'R') echo "javascript:void(0)"; else echo $this->Html->url(array('controller'=>'pay', 'action'=>'index', 'table'=>$i, 'type'=>'D')); ?>"><?php echo __('Pay'); ?></a></li>
-
-                                <li <?php if(@$dinein_tables_status[$i] <> 'N' and @$dinein_tables_status[$i] <> 'P')echo 'class="disabled"';?>><a tabindex="-1" href="<?php if(@$dinein_tables_status[$i] == 'N' or @$dinein_tables_status[$i] == 'P') echo "javascript:makeavailable('".$this->Html->url(array('controller'=>'homes', 'action'=>'makeavailable', 'table'=>$i, 'type'=>'D', 'order'=>@$orders_no[$i]['D']))."')"; else echo "javascript:void(0)"; ?>"><?php echo __('Clear Table'); ?></a></li>
-
-                                <!-- Modified by Yishou Liao @ Oct 13 2016. -->
-                                <li <?php if(@$dinein_tables_status[$i] <> 'N' and @ $dinein_tables_status[$i] <> 'V') echo 'class="disabled"'; else echo 'class="dropdown-submenu bottom-submenu"' ?>>
-                                   <a class="test" tabindex="-1" href="javascript:void(0);"><?php echo __('Merge Bill'); ?></a>
-                                   <?php
-                                   if (@$dinein_tables_status[$i]) {
-                                       ?>
-                                    <ul class="dropdown-menu">
-                                        <div class="clearfix">
-                                            <a class="close-btn" href="javascript:void(0)">X</a>
-                                            <div class="left-arrow"></div>
-                                            <div class="col-md-12 col-sm-12 col-xs-12 text-center timetable timetable-title"><?php echo __('Merge Bill'); ?></div>
-                                            <?php
-                                            $dinein_tables_keys = array_keys($dinein_tables_status);
-                                            for ($t = 0; $t < count(@$dinein_tables_status); $t++) {
-                                                if (@$dinein_tables_status[$dinein_tables_keys[$t]] == "N" && $dinein_tables_keys[$t] != $i) {
-                                                    ?>
-                                                    <div class="col-md-6 col-sm-6 col-xs-6 text-center timetable merge-checkbox"><input type="checkbox" value = "<?php echo $dinein_tables_keys[$t]; ?>" id="mergetable[]" name= "mergetable[]"> <?php echo $dinein_tables_keys[$t]; ?></div>
-                                                    <?php
-                                                }
-                                            }
-                                            ?>
-                                            <!-- <div class="col-md-6 col-sm-6 col-xs-6 text-center timetable"> -->
-                                            <!-- modified by Yu Dec 16, 2016 -->
-                                                <input type="button" onclick="mergebill(<?php echo $i ?>,'<?php
-                                                //Modified by Yishou Liao @ Oct 16 2016.
-                                                 if(@$dinein_tables_status[$i] == 'N' OR @$dinein_tables_status[$i] == 'V'){
-                                                     echo $this->Html->url(array('controller'=>'merge', 'action'=>'index', 'table'=>$i, 'tablemerge'=>"Merge_table",'type'=>'D'));
-                                                 }else{
-                                                     echo "javascript:void(0)";
-                                                 }?>');" name="mergebill" id="mergebill" value="Okay" class="btn btn-primary btn-lg" style="margin-top:10px">
-                                            <!-- </div> -->
-                                        </div>
-                                    </ul>
-                                <?php } ?>
-                                </li>
-
-                                <li <?php if(@$dinein_tables_status[$i] <> 'N' and @ $dinein_tables_status[$i] <> 'R') echo 'class="disabled"'; else echo 'class=" bottom-submenu"' ?>><a class="test" tabindex="-1" href="<?php if(@$dinein_tables_status[$i] <> 'N' and @ $dinein_tables_status[$i] <> 'R') echo "javascript:void(0)"; else echo $this->Html->url(array('controller'=>'split', 'action'=>'index', 'table'=>$i, 'type'=>'D', 'split_method' =>'1')); ?> "><?php echo __('Split Bill'); ?></a>
-                                </li>
-                            <!-- End. -->
-
-                           <?php if(@$dinein_tables_status[$i] == 'P'){ ?>
-                                <li><a tabindex="-1" href="<?php echo $this->Html->url(array('controller'=>'homes', 'action'=>'closeOrder', 'table'=>$i, 'type'=>'D', 'order'=>@$orders_no[$i]['D'])); ?>"><?php echo __('CloseOrder'); ?></a></li>
-                           <?php } ?>
-
-                                <li><a tabindex="-1" href="<?php echo $this->Html->url(array('controller'=>'homes', 'action'=>'tableHistory', 'table_no'=>$i)); ?>"><?php echo __('History'); ?></a></li>
-
-                            <?php if(@$dinein_tables_status[$i] and @$dinein_tables_status[$i]!='P'){ ?>
-                                <li><a tabindex="-1" href="<?php echo $this->Html->url(array('controller'=>'pay', 'action'=>'printBill', 'order'=>@$orders_no[$i]['D'])); ?>"><?php echo __('Receipt'); ?></a></li>
-                            <?php } ?>
-                                                                         
-                        	  </ul>
-                            </div>
-                            <div class="<?php if(@isset($dinein_tables_status[$i])) echo @$colors[$dinein_tables_status[$i]]; else echo 'availablebwrap'; ?> clearfix  dropdown-toggle" data-toggle="dropdown">
-                                <div class="number-txt for-dine"><?php echo __('Dine'); ?> <?php echo str_pad($i, 2, 0, STR_PAD_LEFT); ?></div>
-
-                                <!-- <div class="order_no_box <?php if(isset($dinein_tables_status[$i])) echo "whitecolor"; else echo "lightcolor"; ?>">
-                                	<?php
-                            	 	if(!@$dinein_tables_status[$i])
-                                		echo "&nbsp;";
-                            		else
-                            			echo @$orders_no[$i]['D'];
-                                	?>
-                                </div> -->
-                                <div class="order_total_box <?php if(isset($dinein_tables_status[$i])) echo "whitecolor"; else echo "lightcolor"; ?>">
-                                    <?php
-                                    if(!@$dinein_tables_status[$i])
-                                        echo "&nbsp;";
-                                    else
-                                        echo '$' . @round($orders_total[$orders_no[$i]['D']], 2);
-                                    ?>
-                                </div>
-                                <div class="txt12 text-center <?php if(isset($dinein_tables_status[$i])) echo "whitecolor"; else echo "lightcolor"; ?>"><?php if(@$dinein_tables_status[$i]) {  ?> <?php echo @$orders_time[$i]['D']?date("H:i", strtotime(@$orders_time[$i]['D'])):"" ?><?php }?>
-                                </div>
-                            </div>
-                        </li>
-                        <?php }?>
-                    </ul>
-                </div>
-
-            </div>
-
-            <div class="col-md-2 col-sm-2 col-xs-2" id="take-out-component">
-                <div class="col-md-12 col-sm-12 col-xs-12" id="take-out-title">
-                   <?php echo __('Takeout Tables'); ?> <br/>
-                </div>
-
-                <div class="col-md-12 col-sm-12 col-xs-12 dine-wrap">
-
-                    <ul>
+    
+                      for($i = 0; $i < $tables['Admin']['no_of_tables']; $i++) {
+                          $table_size[$i]=explode(",",$table_size[$i]);
+                        if(@$table_size[$i][1]==""){
+                          @$table_numbers.= @$table_size[$i][0].",";
+                          
+                        }?>
                         <?php
-                        $takeout_tables = @explode(",", $tables['Admin']['takeout_table_size']);
-                        for ($i = 1; $i <= $tables['Admin']['no_of_takeout_tables']; $i++) {
-                            ?>
-                            <li class="clearfix">
-                                <div class="dropdown-menu dropdown-overlay">
-                                   <ul class="takeout-tables">
-                                       <!--<div class="arrow"></div>-->
-                                       <li class="dropdown-title"><?php echo __('Takeout'); ?><?php echo str_pad($i, 2, 0, STR_PAD_LEFT); ?></li>
-                                       <li><a tabindex="-1" href="<?php
-                                           echo $this->Html->url(array('controller' => 'order', 'action' => 'index', 'table' => $i, 'type' => 'T'));
-                                          ?>"><?php echo __('Order'); ?></a>
-                                       </li>
-                                       <li class="dropdown-submenu <?php if (!@$takeway_tables_status[$i]) echo 'disabled'; ?>">
-                                           <a class="test" tabindex="-1" href="javascript:void(0);"><?php echo __('Change Table'); ?></a>
-                                              <?php
-                                              if (@$takeway_tables_status[$i]) {
-                                                  ;
-                                                  ?>
-                                               <ul class="dropdown-menu">
-                                                   <div class="customchangemenu clearfix">
-                                                   	  <a class="close-btn" href="javascript:void(0)">X</a>
-                                                       <div class="left-arrow"></div>
-                                                       <div class="col-md-12 col-sm-12 col-xs-12 text-center timetable"><?php echo __('DINE IN'); ?></div>
-                                                       <?php
-                                                       for ($t = 1; $t <= $tables['Admin']['no_of_tables']; $t++) {
-                                                           if (!@$orders_no[$t]['D']) {
-                                                               ?>
-                                                               <a href="<?php echo $this->Html->url(array('controller' => 'homes', 'action' => 'move_order', 'table' => $t, 'type' => 'D', 'order_no' => @$orders_no[$i]['T'])); ?>"><div class="col-md-4 col-sm-4 col-xs-4 text-center timetable"><?php echo $t; ?></div></a>
-                                                               <?php
-                                                           }
-                                                       }
-                                                       ?>
-                                                       <div class="col-md-12 col-sm-12 col-xs-12 text-center timetable"><?php echo __('TAKE OUT'); ?></div>
-                                                       <?php
-                                                       for ($t = 1; $t <= $tables['Admin']['no_of_takeout_tables']; $t++) {
-                                                           if (!@$orders_no[$t]['T'] and $t <> $i) {
-                                                               ?>
-                                                               <a href="<?php echo $this->Html->url(array('controller' => 'homes', 'action' => 'move_order', 'table' => $t, 'type' => 'T', 'order_no' => @$orders_no[$i]['T'])); ?>"><div class="col-md-4 col-sm-4 col-xs-4 text-center timetable"><?php echo $t; ?></div></a>
-                                                               <?php
-                                                           }
-                                                       }
-                                                       ?>
-                                                       <div class="col-md-12 col-sm-12 col-xs-12 text-center timetable"><?php echo __('Delivery'); ?></div>
-                                                       <?php
-                                                       for ($t = 1; $t <= $tables['Admin']['no_of_waiting_tables']; $t++) {
-                                                           if (!@$orders_no[$t]['W']) {
-                                                               ?>
-                                                               <a href="<?php echo $this->Html->url(array('controller' => 'homes', 'action' => 'move_order', 'table' => $t, 'type' => 'W', 'order_no' => @$orders_no[$i]['T'])); ?>"><div class="col-md-4 col-sm-4 col-xs-4 text-center timetable"><?php echo $t; ?></div></a>
-                                                               <?php
-                                                           }
-                                                       }
-                                                       ?>
-                                                   </div>
-                                                   </ul>
-    	                                           <?php }?>
-    	                                       </li>
-    	                                       
-                                             <li <?php if(@$takeway_tables_status[$i] <> 'N' and @$takeway_tables_status[$i] <> 'R') echo 'class="disabled"';?>><a tabindex="-1" href="<?php if(@$takeway_tables_status[$i] <> 'N' and @$takeway_tables_status[$i] <> 'R') echo "javascript:void(0)"; else echo $this->Html->url(array('controller'=>'pay', 'action'=>'index', 'table'=>$i, 'type'=>'T')); ?>"> <?php echo __('Pay')?></a></li>
-                                             
-    	                                       <li <?php if(@$takeway_tables_status[$i] <> 'N' and @$takeway_tables_status[$i] <> 'R') echo 'class="disabled"';?>><a tabindex="-1" href="<?php if(@$takeway_tables_status[$i] == 'N' or @$takeway_tables_status[$i] == 'P') echo "javascript:makeavailable('".$this->Html->url(array('controller'=>'homes', 'action'=>'makeavailable', 'table'=>$i, 'type'=>'T', 'order'=>@$orders_no[$i]['T']))."')"; else echo "javascript:void(0)"; ?>"><?php echo __('Clear Table')?></a></li>
 
-                                         <?php if(@$takeway_tables_status[$i] == 'P'){ ?>
-                                             <li><a tabindex="-1" href="<?php echo $this->Html->url(array('controller'=>'homes', 'action'=>'closeOrder', 'table'=>$i, 'type'=>'T', 'order'=>@$orders_no[$i]['T'])); ?>"><?php echo __('CloseOrder'); ?></a></li>
-                                         <?php } ?>
-    	                                       
-    	                                       <li><a tabindex="-1" href="<?php echo $this->Html->url(array('controller'=>'homes', 'action'=>'tableHistory', 'table_no'=>$i, 'order_type'=>'T')); ?>"><?php echo __('History'); ?></a></li>
-                                   
-                                         <?php if(@$takeway_tables_status[$i] and @$takeway_tables_status[$i]!='P'){ ?>
-                                             <li><a tabindex="-1" href="<?php echo $this->Html->url(array('controller'=>'pay', 'action'=>'printBill', 'order'=>@$orders_no[$i]['T'])); ?>"><?php echo __('Receipt'); ?></a></li>
-                                         <?php } ?>
-
-    		                           </ul>
-                                </div>
-    	                          <div class="<?php if(isset($takeway_tables_status[$i])) echo $colors[$takeway_tables_status[$i]]; else echo 'availablebwrap'; ?> clearfix  dropdown-toggle" data-toggle="dropdown" style="height:80px">
-                                    <div class="number-txt for-dine">Out <?php echo str_pad($i, 2, 0, STR_PAD_LEFT); ?></div>
-                                <?php
-                                if(@$takeway_tables_status[$i]) {
-                                ?>
-    			                          <div class="order_no_box whitecolor">
-    			                          	<?php
-                                          echo @$orders_no[$i]['T'];
-    			                          	?>
-    			                          </div>
-    			                          
-                                    <div class="order_total_box whitecolor">
-                                      <?php
-                                         echo '$' . @round($orders_total[$orders_no[$i]['T']], 2);
-                                      ?>
-                                    </div>
-    			                          <!--
-    			                          <div class="txt12 text-center whitecolor"><?php echo @$orders_time[$i]['T']?date("H:i", strtotime(@$orders_time[$i]['T'])):"" ?></div>  -->
-
-    			                          <div class="txt12 text-center whitecolor"><?php echo @$orders_phone[$i]['T']; ?></div>
-
-                                <?php }?>
-    		                        </div>
-    	                      </li>
-                                <?php } ?>
-                    </ul>
-                </div>
+                        if(@$table_size[$i][1]!="" && @$table_size[$i][1]=="A"){
+                      ?>
+                      <li class="sit_kong" id="table_<?php echo $dine_table[$i]<=9?'0'.$dine_table[$i]:$dine_table[$i]; ?>" onclick="number(this)">
+                      <?php }else if(@$table_size[$i][1]!="" && @$table_size[$i][1]=="N"){?>
+                      <li class="sit_no"  id="table_<?php echo $dine_table[$i]<=9?'0'.$dine_table[$i]:$dine_table[$i]; ?>" onclick="number(this)">
+                       <span id="tableStatus" style="display: none;"><?php echo @$table_size[$i][1];?></span>
+                      <?php }else if(@$table_size[$i][1]!="" && @$table_size[$i][1]=="P"){?>
+                        <li class="sit_yes"  id="table_<?php echo $dine_table[$i]<=9?'0'.$dine_table[$i]:$dine_table[$i]; ?>" onclick="number(this)">
+                        <span id="tableStatus" style="display: none;"><?php echo @$table_size[$i][1];?></span>
+                      <?php }else if(@$table_size[$i][1]!="" && @$table_size[$i][1]=="R"){?>
+                        <li class="sit_dan"  id="table_<?php echo $dine_table[$i]<=9?'0'.$dine_table[$i]:$dine_table[$i]; ?>" onclick="number(this)">
+                        <span id="tableStatus" style="display: none;"><?php echo @$table_size[$i][1];?></span>
+                      <?php }else if(@$table_size[$i][1]==""){?>
+                      <li onclick="number(this)"  class="sit_kong"  id="table_<?php echo $dine_table[$i]<=9?'0'.$dine_table[$i]:$dine_table[$i]; ?>">
+                      <span id="tableStatus" style="display: none;"><?php echo @$table_size[$i][1];?></span>
+                      <?php }?>
+                     
+                      <p id="ycorder_no" style="display: none;"><?php echo @$orders_no[$table_size[$i][0]]['D'];?></p>
+                        <div class="sit-title" id="money1"><span>$</span><?php echo @round($orders_total[$orders_no[$table_size[$i][0]]['D']], 2)? @round($orders_total[$orders_no[$table_size[$i][0]]['D']], 2):'0.00';?></div>
+                        <div class="sit-time" id="time1">
+                          <!-- 占桌时间 -->
+                          <span><?php echo @$orders_time[$i]['D']?date("H:i", strtotime(@$orders_time[$i]['D'])):"0:00" ?></span>
+                          
+                          <p><small>No.</small><b><?php echo $dine_table[$i]<=9?"0".$dine_table[$i]:$dine_table[$i]; ?></b></p>
+                        </div>
+                      </li>
+                      
+                    <?php }?>
+                      <div id="tables" style="display: none;"><?php echo @$table_numbers;?></div>
+              </ul>
             </div>
+          </div>
+          <!-- 状态 -->
+           <div class="static">
+             <h4>状态栏</h4>
+             <ul>
+               <li><span></span>空桌</li>
+               <li><span></span>未支付</li>
+               <li><span></span>已付款</li>
+               <li><span></span>已打单</li>
+             </ul>
+             <p>现在时间 <?php echo date("Y/m/d H:i", @$time)?></p>
+           </div>
+        </div>
 
-            <div class="col-md-2 col-sm-2 col-xs-2" id="waiting-list-component">
+        <!-- 右侧外卖送餐 -->
+        <div class="content_right">
+          <div class="c_right_title">
+           <?php echo $this->Html->image('icon-02.png', array( 'alt' => '关闭外卖','class'=>'wclose')); ?>
+            <!-- <img src="images/icon-02.png" alt="关闭外卖" class="wclose" /> -->
+            <div class="p"><small>外卖送餐</small><span>2</span></div>
+            <div class="fullOrder">
+            	<!-- <img src="images/fullOrder.png" class="img"/> -->
+              <?php echo $this->Html->image('fullOrder.png', array( 'class'=>'img')); ?>
+            	<ul>
+            		<li class="on">全部订单</li><li>外卖</li><li>自取</li>
+            	</ul>
+            </div>
+            <div class="ulBox">
+	            <ul class="order">
+	           <?php for($i=0;$i< count($takeway_tables_key);$i++){
+                 
+              ?>
+                <li>
+                  <h4><?php echo $takeway_tables_key[$i];?></h4>
+                  <div class="order_content">
+                    <div class="order_left">
+                      <p><?php echo @$orders_no[$takeway_tables_key[$i]]["T"];?></p>
+                      <p>$ <?php echo @$orders_total[$orders_no[$takeway_tables_key[$i]]['T']];?></p>
+                    </div>
+                    <div class="order_right"><?php echo @$orders_time[$takeway_tables_key[$i]]['T']?date("H:i", strtotime(@$orders_time[$takeway_tables_key[$i]]['T'])):"" ?></div>
+                  </div>
+                </li>
+                <?php }?> 
 
-                <div class="col-md-12 col-sm-12 col-xs-12" id="waiting-list-title">
-                     <?php echo __('Delivery List'); ?>
-                </div>
+                <?php for($i=0;$i< count(@$waiting_tables_key);$i++){
+                 
+              ?>
+                <li>
+                  <h4><?php echo @$waiting_tables_key[$i];?></h4>
+                  <div class="order_content">
+                    <div class="order_left">
+                      <p><?php echo @$orders_no[$waiting_tables_key[$i]]["T"];?></p>
+                      <p>$ <?php echo @$orders_total[$orders_no[$waiting_tables_key[$i]]['T']];?></p>
+                    </div>
+                    <div class="order_right"><?php echo @$orders_time[$waiting_tables_key[$i]]['T']?date("H:i", strtotime(@$orders_time[$waiting_tables_key[$i]]['T'])):"" ?></div>
+                  </div>
+                </li>
+                <?php }?>
 
-                <div class="col-md-12 col-sm-12 col-xs-12 dine-wrap">
-                    <ul>
-                        <?php
-                        $wait_table = @explode(",", $tables['Admin']['waiting_table_size']);
-                        for ($i = 1; $i <= $tables['Admin']['no_of_waiting_tables']; $i++) {  ?>
-                            <li class="clearfix">
-                              <div class="dropdown-menu dropdown-overlay">
-                                <ul class="waiting-tables">
-                                    <!--<div class="arrow"></div>-->
-                                    <li class="dropdown-title"><?php echo __('Delivery List'); ?><?php echo str_pad($i, 2, 0, STR_PAD_LEFT); ?></li>
-                                    <li><a tabindex="-1" href="<?php
-                                       echo $this->Html->url(array('controller' => 'order', 'action' => 'index', 'table' => $i, 'type' => 'W')); ?>"><?php echo __('Order'); ?></a>
-                                    </li>
+	      
+	            </ul>
+	            <ul class="order">
+         
+                <?php for($i=0;$i< count(@$waiting_tables_key);$i++){
+                 
+              ?>
+                <li>
+                  <h4><?php echo @$waiting_tables_key[$i];?></h4>
+                  <div class="order_content">
+                    <div class="order_left">
+                      <p><?php echo @$orders_no[$waiting_tables_key[$i]]["T"];?></p>
+                      <p>$ <?php echo @$orders_total[$orders_no[$waiting_tables_key[$i]]['T']];?></p>
+                    </div>
+                    <div class="order_right"><?php echo @$orders_time[$waiting_tables_key[$i]]['T']?date("H:i", strtotime(@$orders_time[$waiting_tables_key[$i]]['T'])):"" ?></div>
+                  </div>
+                </li>
+                <?php }?>
 
-                                    <li class="dropdown-submenu <?php if (!@$waiting_tables_status[$i]) echo 'disabled'; ?>">
-                                        <a class="test" tabindex="-1" href="javascript:void(0);"><?php echo __('Change Table'); ?></a>
-                                           <?php
-                                           if (@$waiting_tables_status[$i]) {
-                                               ;
-                                               ?>
-                                            <ul class="dropdown-menu">
-                                                <div class="customchangemenu clearfix">
-                                                	  <a class="close-btn" href="javascript:void(0)">X</a>
-                                                    <div class="left-arrow"></div>
-                                                    <div class="col-md-12 col-sm-12 col-xs-12 text-center timetable"> <?php echo __('DINE IN'); ?></div>
-                                                    <?php
-                                                    for ($t = 1; $t <= $tables['Admin']['no_of_tables']; $t++) {
-                                                        if (!@$orders_no[$t]['D']) {
-                                                            ?>
-                                                            <a href="<?php echo $this->Html->url(array('controller' => 'homes', 'action' => 'move_order', 'table' => $t, 'type' => 'D', 'order_no' => @$orders_no[$i]['W'])); ?>"><div class="col-md-4 col-sm-4 col-xs-4 text-center timetable"><?php echo $t; ?></div></a>
-                                                            <?php
-                                                        }
-                                                    }
-                                                    ?>
-                                                    <div class="col-md-12 col-sm-12 col-xs-12 text-center timetable"><?php echo __('TAKE OUT'); ?></div>
-                                                    <?php
-                                                    for ($t = 1; $t <= $tables['Admin']['no_of_takeout_tables']; $t++) {
-                                                        if (!@$orders_no[$t]['T']) {
-                                                            ?>
-                                                            <a href="<?php echo $this->Html->url(array('controller' => 'homes', 'action' => 'move_order', 'table' => $t, 'type' => 'T', 'order_no' => @$orders_no[$i]['W'])); ?>"><div class="col-md-4 col-sm-4 col-xs-4 text-center timetable"><?php echo $t; ?></div></a>
-                                                            <?php
-                                                        }
-                                                    }
-                                                    ?>
-                                                    <div class="col-md-12 col-sm-12 col-xs-12 text-center timetable"><?php echo __('Delivery'); ?></div>
-                                                    <?php
-                                                    for ($t = 1; $t <= $tables['Admin']['no_of_waiting_tables']; $t++) {
-                                                        if (!@$orders_no[$t]['W'] and $t <> $i) {
-                                                            ?>
-                                                            <a href="<?php echo $this->Html->url(array('controller' => 'homes', 'action' => 'move_order', 'table' => $t, 'type' => 'W', 'order_no' => @$orders_no[$i]['W'])); ?>"><div class="col-md-4 col-sm-4 col-xs-4 text-center timetable"><?php echo $t; ?></div></a>
-                                                            <?php
-                                                        }
-                                                    }
-                                                    ?>
-                                                </div>
-                                            </ul>
-                                     <?php }?>
-                                    </li>
-                                    
-                                    <li <?php if(@$waiting_tables_status[$i] <> 'N' and @$waiting_tables_status[$i] <> 'R') echo 'class="disabled"';?>><a tabindex="-1" href="<?php if(@$waiting_tables_status[$i] <> 'N' and @$waiting_tables_status[$i] <> 'R') echo "javascript:void(0)"; else echo $this->Html->url(array('controller'=>'pay', 'action'=>'index', 'table'=>$i, 'type'=>'W')); ?>"><?php echo __('Pay'); ?></a></li>
+	         
+	            </ul>
+	            <ul class="order">
+                   <?php for($i=0;$i< count($takeway_tables_key);$i++){
+                 
+              ?>
+                <li>
+                  <h4><?php echo $takeway_tables_key[$i];?></h4>
+                  <div class="order_content">
+                    <div class="order_left">
+                      <p><?php echo @$orders_no[$takeway_tables_key[$i]]["T"];?></p>
+                      <p>$ <?php echo @$orders_total[$orders_no[$takeway_tables_key[$i]]['T']];?></p>
+                    </div>
+                    <div class="order_right"><?php echo @$orders_time[$takeway_tables_key[$i]]['T']?date("H:i", strtotime(@$orders_time[$takeway_tables_key[$i]]['T'])):"" ?></div>
+                  </div>
+                </li>
+                <?php }?> 
+            
+              </li>
+            </ul>
+          	</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 外卖按钮 -->
+    <button type="button" name="button" class="wbtn">外卖送餐</button>
+
+
+    <!-- 管理员,虚拟键盘 -->
+    <div class="key" id="key_admin">
+    <?php echo $this->Html->image('icon-14.png', array('alt'=>'关闭虚拟键盘' ,'class'=>'key_img')); ?>
+      <!-- <img src="images/icon-14.png" alt="关闭虚拟键盘" class="key_img" /> -->
+      <ul id="keyboard">
+        <li class="esc">Esc</li>
+        <li class="symbol"><span class="off">1</span><span class="on">!</span></li>
+
+        <li class="symbol"><span class="off">2</span><span class="on">@</span></li>
+
+        <li class="symbol"><span class="off">3</span><span class="on">#</span></li>
+
+        <li class="symbol"><span class="off">4</span><span class="on">$</span></li>
+
+        <li class="symbol"><span class="off">5</span><span class="on">%</span></li>
+
+        <li class="symbol"><span class="off">6</span><span class="on">^</span></li>
+
+        <li class="symbol"><span class="off">7</span><span class="on">&amp;</span></li>
+
+        <li class="symbol"><span class="off">8</span><span class="on">*</span></li>
+
+        <li class="symbol"><span class="off">9</span><span class="on">(</span></li>
+
+        <li class="symbol"><span class="off">0</span><span class="on">)</span></li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="delete lastitem">Delete</li>
+
+        <li class="tab no"></li>
+
+        <li class="letter">Q</li>
+
+        <li class="letter">W</li>
+
+        <li class="letter">E</li>
+
+        <li class="letter">R</li>
+
+        <li class="letter">T</li>
+
+        <li class="letter">Y</li>
+
+        <li class="letter">U</li>
+
+        <li class="letter">I</li>
+
+        <li class="letter">O</li>
+
+        <li class="letter">P</li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="symbol lastitem"><span class="off">\</span><span class="on">|</span></li>
+
+        <li class="capslock no"></li>
+
+        <li class="letter">A</li>
+
+        <li class="letter">S</li>
+
+        <li class="letter">D</li>
+
+        <li class="letter">F</li>
+
+        <li class="letter">G</li>
+
+        <li class="letter">H</li>
+
+        <li class="letter">J</li>
+
+        <li class="letter">K</li>
+
+        <li class="letter">L</li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="return lastitem">Enter</li>
+
+        <li class="left-shift">SHIFT</li>
+
+        <li class="letter">Z</li>
+
+        <li class="letter">X</li>
+
+        <li class="letter">C</li>
+
+        <li class="letter">V</li>
+
+        <li class="letter">B</li>
+
+        <li class="letter">N</li>
+
+        <li class="letter">M</li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="right-shift no"></li>
+
+        <li class="no b1"></li>
+
+        <li class="no b2"></li>
+
+        <li class="no b3"></li>
+
+        <li class="no b4"></li>
+
+        <li class="space lastitem">&nbsp;</li>
+
+        <li class="no b5"></li>
+
+        <li class="no b5"></li>
+
+        <li class="no b6"></li>
+      </ul>
+    </div>
+
+    <!-- 管理员密码 -->
+    <div id="admin">
+      <p>密码解锁</p>
+      <input type="text" name="" id="write" class="adminInp" placeholder="请输入密码解锁" />
+      <div class="admin-btn">
+        <button type="button" class="a_no">取消</button>
+        <button type="button" class="a_yes">输入</button>
+      </div>
+    </div>
+    <!-- 弹出层 -->
+    <div class="model model1">
+      <div class="model-title" >堂食 NO.<span id="tanchu">01</span></div>
+       <?php echo $this->Html->image('icon-06.png', array('alt'=>'关闭弹出层','class'=>'model-close')); ?>
+      <!-- <img src="images/icon-06.png" alt="关闭弹出层" class="model-close" /> -->
+      <ul class="model-content">
+        <li >
+          <a onclick="dingdan(this)">
+            <div class="model-img"></div>
+            <span>订单</span>
+          </a>
+        </li>
+        <li>
+          <a onclick="fukuan(this)">
+            <div class="model-img"></div>
+            <span>付款</span>
+          </a>
+        </li>
+        <li class="model-nav3">
+          <a>
+            <div class="model-img"></div>
+            <span>换桌</span>
+          </a>
+        </li>
+        <li class="model-nav4">
+          <a href="javascript:;">
+            <div class="model-img"></div>
+            <span>变空桌</span>
+          </a>
+        </li>
+        <li class="model-nav5">
+          <a href="javascript:;">
+            <div class="model-img"></div>
+            <span>合单</span>
+          </a>
+        </li>
+        <li>
+          <a onclick="Split(this)">
+            <div class="model-img"></div>
+            <span>分单</span>
+          </a>
+        </li>
+        <li>
+          <a onclick="Histroy(this)">
+            <div class="model-img"></div>
+            <span>历史订单</span>
+          </a>
+        </li>
+        <li>
+          <a onclick="Receipt(this)">
+            <div class="model-img"></div>
+            <span>打印账单</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <!-- 弹出层，变更 -->
  
-                                    <li <?php if(@$waiting_tables_status[$i] <> 'N' and @$waiting_tables_status[$i] <> 'P')echo 'class="disabled"';?>><a tabindex="-1" href="<?php if(@$waiting_tables_status[$i] == 'N' or @$waiting_tables_status[$i] == 'P') echo "javascript:makeavailable('".$this->Html->url(array('controller'=>'homes', 'action'=>'makeavailable', 'table'=>$i, 'type'=>'W', 'order'=>@$orders_no[$i]['W']))."')"; else echo "javascript:void(0)"; ?>"><?php echo __('Clear'); ?></a></li>
-
-                               <?php if(@$waiting_tables_status[$i] == 'P'){ ?>
-                                    <li><a tabindex="-1" href="<?php echo $this->Html->url(array('controller'=>'homes', 'action'=>'closeOrder', 'table'=>$i, 'type'=>'W', 'order'=>@$orders_no[$i]['W'])); ?>"><?php echo __('CloseOrder'); ?></a></li>
-                               <?php } ?>
-
-                               <?php if(@$waiting_tables_status[$i] and @$waiting_tables_status[$i]!='P'){ ?>
-                                    <li><a tabindex="-1" href="<?php echo $this->Html->url(array('controller'=>'pay', 'action'=>'printBill', 'order'=>@$orders_no[$i]['W'])); ?>"><?php echo __('Receipt'); ?></a></li>
-                               <?php } ?>
-                                        
-                                </ul>
-                              </div>
-                              <div class="<?php if(isset($waiting_tables_status[$i])) echo $colors[$waiting_tables_status[$i]]; else echo 'availablebwrap'; ?> clearfix  dropdown-toggle" data-toggle="dropdown">
-                                  <div class="number-txt for-dine">Deliv<?php echo str_pad($i, 2, 0, STR_PAD_LEFT); ?></div>
-                                  <div class="order_no_box <?php if(isset($waiting_tables_status[$i])) echo "whitecolor"; else echo "lightcolor"; ?>">
-                                      <?php
-                                      if(!@$waiting_tables_status[$i])
-                                          echo "&nbsp;";
-                                      else
-                                          echo @$orders_no[$i]['W'];
-                                      ?>
-                                  </div>
-                                  <div class="txt12 text-center <?php if(isset($waiting_tables_status[$i])) echo "whitecolor"; else echo "lightcolor"; ?>">
-                                      <?php if(@$waiting_tables_status[$i]) {  ?> <?php echo @$orders_time[$i]['W']?date("H:i", strtotime(@$orders_time[$i]['W'])):""; } ?>
-                                  </div>
-                              </div>
-                            </li>
-                  <?php } ?>
-                    </ul>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="col-md-10 col-sm-10 col-xs-10" id="online-list-component">
-
-            <div class="col-md-1 col-sm-1 col-xs-1 dine-wrap" id="online-list-title">
-               <?php echo __('Online'); ?><br>              
-               <a href="<?php echo $this->Html->url(array('controller' => 'opencart', 'action' =>'getOcOrders')); ?>" style="color:#fff" title="Fetch online orders."><icon class="fa fa-refresh icon_size16"></icon></a>     	
-            </div>
-
-            <div class="col-md-11 col-sm-11 col-xs-11 dine-wrap">
-                <ul>
-                    <?php
-                    //$online_table = @explode(",", $tables['Admin']['online_table_size']);
-                    for ($i = 1; $i <= $tables['Admin']['no_of_online_tables']; $i++) {
-                        ?>
-                        <li class="clearfix">
-                            <div class="dropdown-menu dropdown-overlay">
-                              <ul class="online-tables">
-                                <li class="dropdown-title"><?php echo __('Online List'); ?><?php echo str_pad($i, 2, 0, STR_PAD_LEFT); ?></li>
-                                <li <?php if (@$online_tables_status[$i] <> 'P') echo 'class="disabled"'; ?>><a tabindex="-1" href="<?php
-                                    if (@$online_tables_status[$i] == 'P')
-                                        echo $this->Html->url(array('controller' => 'order', 'action' => 'index', 'table' => $i, 'type' => 'L'));
-                                    else
-                                        echo "javascript:void(0)";
-                                    ?>"><?php echo __('Order'); ?></a></li>
-
-                                <li class="dropdown-submenu <?php if (!@$online_tables_status[$i]) echo 'disabled'; ?>">
-                                    <a class="test" tabindex="-1" href="javascript:void(0);"><?php echo __('Change Table'); ?></a>
-                                       <?php
-                                       if (@$online_tables_status[$i]) {
-                                           ;
-                                           ?>
-                                        <ul class="dropdown-menu">
-                                            <div class="customchangemenu clearfix">
-                                            	  <a class="close-btn" href="javascript:void(0)">X</a>
-                                                <div class="left-arrow"></div>
-                                                <div class="col-md-12 col-sm-12 col-xs-12 text-center timetable"> <?php echo __('DINE IN'); ?></div>
-                                                <?php
-                                                for ($t = 1; $t <= $tables['Admin']['no_of_tables']; $t++) {
-                                                    if (!@$orders_no[$t]['D']) {
-                                                        ?>
-                                                        <a href="<?php echo $this->Html->url(array('controller' => 'homes', 'action' => 'move_order', 'table' => $t, 'type' => 'D', 'order_no' => @$orders_no[$i]['L'])); ?>"><div class="col-md-4 col-sm-4 col-xs-4 text-center timetable"><?php echo $t; ?></div></a>
-                                                        <?php
-                                                    }
-                                                }
-                                                ?>
-                                                <div class="col-md-12 col-sm-12 col-xs-12 text-center timetable"><?php echo __('TAKE OUT'); ?></div>
-                                                <?php
-                                                for ($t = 1; $t <= $tables['Admin']['no_of_takeout_tables']; $t++) {
-                                                    if (!@$orders_no[$t]['T']) {
-                                                        ?>
-                                                        <a href="<?php echo $this->Html->url(array('controller' => 'homes', 'action' => 'move_order', 'table' => $t, 'type' => 'T', 'order_no' => @$orders_no[$i]['L'])); ?>"><div class="col-md-4 col-sm-4 col-xs-4 text-center timetable"><?php echo $t; ?></div></a>
-                                                        <?php
-                                                    }
-                                                }
-                                                ?>
-                                                <div class="col-md-12 col-sm-12 col-xs-12 text-center timetable"><?php echo __('Delivery'); ?></div>
-                                                <?php
-                                                for ($t = 1; $t <= $tables['Admin']['no_of_online_tables']; $t++) {
-                                                    if (!@$orders_no[$t]['W'] and $t <> $i) {
-                                                        ?>
-                                                        <a href="<?php echo $this->Html->url(array('controller' => 'homes', 'action' => 'move_order', 'table' => $t, 'type' => 'W', 'order_no' => @$orders_no[$i]['L'])); ?>"><div class="col-md-4 col-sm-4 col-xs-4 text-center timetable"><?php echo $t; ?></div></a>
-                                                        <?php
-                                                    }
-                                                }
-                                                ?>
-                                            </div>
-                                        </ul>
-                                        <?php }?>
-                                 </li>
-
-                                 <li <?php if(@$online_tables_status[$i] <> 'N' and @$online_tables_status[$i] <> 'P')echo 'class="disabled"';?>><a tabindex="-1" href="<?php if(@$online_tables_status[$i] == 'P') echo $this->Html->url(array('controller'=>'homes', 'action'=>'closeOrder', 'table'=>$i, 'type'=>'L', 'order'=>@$orders_no[$i]['L'])); else echo "javascript:void(0)";?>"><?php echo __('CloseOrder'); ?></a></li>
-
-                                 <li <?php if(@$online_tables_status[$i] <> 'N' and @$online_tables_status[$i] <> 'P') echo 'class="disabled"';?>><a tabindex="-1" href="<?php if(@$online_tables_status[$i] == 'N' or @$online_tables_status[$i] == 'P') echo "javascript:makeavailable('".$this->Html->url(array('controller'=>'homes', 'action'=>'makeavailable', 'table'=>$i, 'type'=>'L', 'order'=>@$orders_no[$i]['L']))."')"; else echo "javascript:void(0)"; ?>"><?php echo __('Clear'); ?></a></li>
-                                 
-                              </ul>
-                            </div>
-                            
-                            <div class="<?php if(isset($online_tables_status[$i])) echo $colors[$online_tables_status[$i]]; else echo 'availablebwrap'; ?> clearfix  dropdown-toggle" data-toggle="dropdown" style="height:80px">
-                                <div class="number-txt for-dine">Online<?php echo str_pad($i, 2, 0, STR_PAD_LEFT); ?></div>
-                                <div class="order_no_box <?php if(isset($online_tables_status[$i])) echo "whitecolor"; else echo "lightcolor"; ?>">
-                                    <?php
-                                    if(!@$online_tables_status[$i])
-                                        echo "&nbsp;";
-                                    else
-                                        echo @$orders_no[$i]['L'];
-                                    ?>
-                                </div>
-                                <div class="txt12 text-center <?php if(isset($online_tables_status[$i])) echo "whitecolor"; else echo "lightcolor"; ?>">
-                                    <?php if(@$online_tables_status[$i]) {  ?> <?php echo @$orders_time[$i]['L']?date("H:i", strtotime(@$orders_time[$i]['L'])):""; } ?>
-                                </div>
-                                <div class="txt12 text-center <?php if(isset($online_tables_status[$i])) echo "whitecolor"; else echo "lightcolor"; ?>"><?php echo @$orders_phone[$i]['L'] . @$orders_message[$i]['L']; ?></div>
-                            </div>
-                        </li>
-                            <?php } ?>
-                </ul>
-            </div>
-        </div>
-
-        <div class="col-md-2 dine-wrap">
-            <div class="clearfix marginB15 col-md-6">
-                <div class="pull-left notpaid"></div>
-                <div class="pull-left "><?php echo __('On-going'); ?></div>
-            </div>
-            <div class="clearfix marginB15 col-md-6">
-                <div class="pull-left availableb"></div>
-                <div class="pull-left"><?php echo __('Available'); ?></div>
-            </div>
-            <div class="clearfix marginB15 col-md-6">
-                <div class="pull-left paidb"></div>
-                <div class="pull-left"><?php echo __('Paid'); ?></div>
-            </div>
-            <div class="clearfix marginB15 col-md-6">
-                <div class="pull-left printedb"></div>
-                <div class="pull-left"><?php echo __('Printed'); ?></div>
-            </div>
-        </div>
-        
-        <div>
-            <!-- Scroll buttons -->
-            <a href="#" class="scrollUp">Up</a>
-            <a href="#" class="scrollDown">Down</a>
-        </div>
-
-
-<div id="dialog" title="Please Enter Password" style="display:none" class="popPassword">
-    <!-- <span>Please Enter Your Password</span> -->
-    <div class="input-group input-group-lg">
-        <span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock"></i></span>
-        <input id="login-password" type="password"  class="EntPassword form-control" placeholder="password" aria-describedby="sizing-addon1"/>
+    <div class="model model2">
+      <div class="model-title" >堂食 NO.<span id="huanzhou1"></span> 变更为</div>
+       <?php echo $this->Html->image('icon-06.png', array('alt'=>'关闭弹出层','class'=>'model-close')); ?>
+      <!-- <img src="images/icon-06.png" alt="关闭弹出层" class="model-close" /> -->
+      <div class="model2-content">
+        <input type="text" name="" placeholder="堂食" class="model-input" />
+        <ul class="tang1" id="Changed">
+         <!--  <?php 
+            $table_numbers=explode(",",trim($table_numbers,","));
+            
+            for($l=0;$l< count($table_numbers);$l++){ ?>
+               
+             <li><a href="javascript:;" onclick="ChangeTable(this)"><?php echo $table_numbers[$l]<=9 ? "0".$table_numbers[$l]:$table_numbers[$l]; ?></a></li>
+           <?php }?> -->
+         
+        </ul>
+      
+      </div>
     </div>
-
-    <input type="hidden" id="url" value="" />
-    <div class="form-group">
-        <div class="col-sm-12 controls">
-            <input class="btn btn-primary btn-lg enter" type="button" value="Enter" onclick="checkPassword('<?php echo $admin_passwd[0]['admins']['password']?>')"/>
-            <input class="btn btn-secondary btn-lg cancel" type="button" value="Cancel" onclick="checkPasswordC()"/>
-        </div>
-
+    <!-- 弹出层，合单 -->
+    <div class="model model3">
+      <div class="model-title" >堂食 NO.01 合并为</div>
+      <?php echo $this->Html->image('icon-06.png', array('alt'=>'关闭弹出层','class'=>'model-close')); ?>
+      <!-- <img src="images/icon-06.png" alt="关闭弹出层" class="model-close" /> -->
+      <div class="model3-content">
+        <input type="text" name="" placeholder="堂食" class="model-input" />
+        <ul class="tang1">
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">02</a></li>
+          <li><a href="javascript:;">03</a></li>
+          <li><a href="javascript:;">04</a></li>
+          <li><a href="javascript:;">05</a></li>
+          <li><a href="javascript:;">06</a></li>
+          <li><a href="javascript:;">07</a></li>
+          <li><a href="javascript:;">08</a></li>
+          <li><a href="javascript:;">09</a></li>
+          <li><a href="javascript:;">10</a></li>
+          <li><a href="javascript:;">11</a></li>
+          <li><a href="javascript:;">12</a></li>
+          <li><a href="javascript:;">13</a></li>
+          <li><a href="javascript:;">14</a></li>
+          <li><a href="javascript:;">15</a></li>
+          <li><a href="javascript:;">16</a></li>
+          <li><a href="javascript:;">17</a></li>
+        </ul>
+      </div>
+      <button type="button" class="model3_btn">确认合并</button>
     </div>
-</div>
-<?php //echo $this->element('footer'); 
-?>
-
-
-
-<?php
-echo $this->Html->script(array('jquery.min.js', 'bootstrap.min.js','md5.js','jquery.kinetic.min.js', 'notify.min.js'));
+    <!-- 弹出层，会员 -->
+    <div id="member">
+      <div class="member-top">
+        <button type="button" class="member-btn">新&nbsp;增</button>
+        <h2>会员列表</h2>
+        <?php echo $this->Html->image('icon-06.png', array('alt'=>'关闭弹出层','class'=>'member-close')); ?>
+        <!-- <img src="images/icon-06.png" alt="关闭弹出层" class="member-close" /> -->
+      </div>
+      <div class="member-bot">
+        <input type="text" name="" class="member-input" placeholder="搜索卡号/ID/姓名/电话" />
+        <p>
+          <span>Card Number</span>
+          <span>ID</span>
+          <span>Amount</span>
+        </p>
+        <ul class="memberLi">
+          <li>
+            <a href="javascript:;">
+              <span>10001</span>
+              <span>ABC123</span>
+              <span>$558</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;">
+              <span>10002</span>
+              <span>ABC123</span>
+              <span>$558</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;">
+              <span>10003</span>
+              <span>ABC123</span>
+              <span>$558</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <!-- 新增会员 -->
+      <div class="add_member">
+        <div class="member-top">
+        <?php echo $this->Html->image('icon-07.png', array('alt'=>'关闭新增会员','class'=>'member-close1')); ?>
+          <!-- <img src="images/icon-07.png" alt="关闭新增会员" class="member-close1" /> -->
+          <h2>添加新会员</h2>
+        </div>
+        <div class="member-center"><b>会员ID</b>ABC123</div>
+        <div class="add_bot">
+          <label>Card Number</label>
+          <input type="text" name="" placeholder="请添加备注信息" />
+          <label>Name</label>
+          <input type="text" name="" placeholder="请添加备注信息" />
+          <label>Phone Number</label>
+          <input type="text" name="" placeholder="请添加备注信息" />
+          <label>Note</label>
+          <input type="text" name="" placeholder="请添加备注信息" />
+        </div>
+        <button type="button" class="add_btn">保存信息</button>
+      </div>
+      <!-- 会员详情 -->
+      <div class="xiang_member">
+        <div class="member-top">
+        <?php echo $this->Html->image('icon-07.png', array('alt'=>'关闭会员详情','class'=>'member-close2')); ?>
+          <!-- <img src="images/icon-07.png" alt="关闭会员详情" class="member-close2" /> -->
+          <h2>会员页面</h2>
+          <button type="button" class="member-btn1">信息修改</button>
+        </div>
+        <div class="member-bot">
+          <p>
+            <span>Card Number</span>
+            <span>ID</span>
+            <span>Amount</span>
+          </p>
+          <p class="p_color">
+            <span>10001</span>
+            <span>ABC123</span>
+            <span>Nan</span>
+          </p>
+          <p class="p_span">
+            <span>Phone</span>
+            <span>Note</span>
+          </p>
+          <p class="p_color p_span">
+            <span>647-123-4567</span>
+            <span>聚餐 家庭 面食 少盐</span>
+          </p>
+          <div class="p_back">
+            <p class="p_color p_span">
+              <span>单号：D51710171215</span>
+              <span>2017/12/2 15:58</span>
+            </p>
+            <p class="p_color p_span">
+              <span>账单金额<small>$44.5</small></span>
+              <span>支付：<small>$50</small></span>
+            </p>
+            <p class="p_color p_span">
+              <span>账单金额<small>$449</small></span>
+              <span></span>
+            </p>
+          </div>
+          <div class="p_back">
+            <p class="p_color p_span">
+              <span>单号：D51710171215</span>
+              <span>2017/12/2 15:58</span>
+            </p>
+            <p class="p_color p_span">
+              <span>账单金额<small>$44.5</small></span>
+              <span>支付：<small>$50</small></span>
+            </p>
+            <p class="p_color p_span">
+              <span>账单金额<small>$449</small></span>
+              <span></span>
+            </p>
+          </div>
+          <div class="p_back">
+            <p class="p_color">
+              <span>总消费<small>$449</small></span>
+              <span>总充值<small>$449</small></span>
+              <span>账户余额<small>$449</small></span>
+            </p>
+          </div>
+        </div>
+        <div class="x_btn">
+          <button type="button" class="xiang_btnL">会员充值</button>
+          <button type="button" class="xiang_btnR">查看充值记录</button>        
+        </div>
+      </div>
+      <!-- 充值记录 -->
+      <div class="chong_member">
+        <div class="member-top">
+        <?php echo $this->Html->image('icon-07.png', array('alt'=>'关闭新增会员','class'=>'member-close3')); ?>
+          <!-- <img src="images/icon-07.png" alt="关闭新增会员" class="member-close3" /> -->
+          <h2>会员充值历史记录</h2>
+          <?php echo $this->Html->image('icon-06.png', array('alt'=>'关闭弹出层','class'=>'member-close4')); ?>
+          <!-- <img src="images/icon-06.png" alt="关闭弹出层" class="member-close4" /> -->
+        </div>
+        <div class="member-bot">
+          <p>
+            <span>充值时间</span>
+            <span>充值余额</span>
+            <span>类型</span>
+          </p>
+          <ul class="memberLi">
+            <li>
+              <a href="javascript:;">
+                <span>2018/05/08</span>
+                <span>$558</span>
+                <span>现金</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- 弹出层，会员充值 -->
+    <div id="member_C">
+      <div class="c_member">
+        <div class="member-top">
+        <?php echo $this->Html->image('icon-07.png', array('alt'=>'关闭会员详情','class'=>'member-close5')); ?>
+          <!-- <img src="images/icon-07.png" alt="关闭会员详情" class="member-close5"> -->
+          <h2>会员充值页面</h2>
+        </div>
+        <div class="member-bot">
+          <label>充值信息</label>
+          <p>
+            <span>Card Number</span>
+            <span>ID</span>
+            <span>Amount</span>
+          </p>
+          <p class="p_color">
+            <span>10001</span>
+            <span>ABC123</span>
+            <span>Nan</span>
+          </p>
+        </div>
+        <ul class="payM">
+          <li class="active-li">
+            <a href="javascript:;"><?php echo $this->Html->image('c1.png'); ?><!-- <img src="images/c1.png"> --></a>
+          </li>
+          <li>
+            <a href="javascript:;"><?php echo $this->Html->image('c2.png'); ?><!-- <img src="images/c2.png"> --></a>
+          </li>
+          <li>
+            <a href="javascript:;"><?php echo $this->Html->image('c3.png'); ?><!-- <img src="images/c3.png"> --></a>
+          </li>
+        </ul>
+        <button type="button" class="c_btn">确认充值</button>
+      </div>
+      <div class="r_member">
+        <div class="formkey">
+          <input type="text" value="" class="keyboard" placeholder="0.00">
+          <!-- 左侧数字 -->
+          <ul class="num_left">
+            <li class="num" style="height: 112px; line-height: 112px;">1</li>
+            <li class="num" style="height: 112px; line-height: 112px;">2</li>
+            <li class="num" style="height: 112px; line-height: 112px;">3</li>
+            <li class="num" style="height: 112px; line-height: 112px;">4</li>
+            <li class="num" style="height: 112px; line-height: 112px;">5</li>
+            <li class="num" style="height: 112px; line-height: 112px;">6</li>
+            <li class="num" style="height: 112px; line-height: 112px;">7</li>
+            <li class="num" style="height: 112px; line-height: 112px;">8</li>
+            <li class="num" style="height: 112px; line-height: 112px;">9</li>
+            <li class="empty" style="height: 112px; line-height: 112px;">清空</li>
+            <li class="num" style="height: 112px; line-height: 112px;">0</li>
+            <!--<li class="retreat" style="height: 112px; line-height: 112px;">后退</li>-->
+            <li class="num" style="height: 112px; line-height: 112px;">.</li>
+          </ul>
+          <!-- 右侧操作 -->
+          <div class="num_right">
+            <a href="javascript:;" class="payde" style="padding-top: 75px; padding-bottom: 75px;">默认<br>金额</a>
+            <a href="javascript:;" class="paymo" style="padding-top: 75px; padding-bottom: 75px;">输入</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 充值成功 -->
+    <div id="mer" >
+      <p>充值已成功!</p>
+      <div class="p_back">
+        <span>充值金额<small>$44.5</small></span>
+        <span>账户余额<small>$44.5</small></span>
+      </div>
+    </div>
+    <!-- 充值未成功 -->
+    <div id="mer1">
+      <p>余额不足!</p>
+      <div class="p_back">
+        <span>应付金额<small>$44.5</small></span>
+        <span>账户余额<small>$44.5</small></span>
+      </div>
+    </div>
+        <?php
+echo $this->Html->script(array('jquery.js', 'keyboard.js'));
 
 echo $this->fetch('script');
 ?>
-<script>
-	$(document).ready(function () {
+    <!-- <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/keyboard.js"></script> -->
+    <script type="text/javascript">
+tables=$("#tables").html();
+// console.log(tables);
+    	//外卖订单切换
+    	$(".fullOrder li").click(function(){
+    		$(this).addClass("on").siblings().removeClass("on");
+    		var i = $(this).index();
+    		$(".ulBox").find("ul").eq(i).show().siblings().hide();
+    	})
+      
+// 换桌方面的js
 
-        $(window).scroll(function () {
-            if ($(this).scrollTop() > 100) {
-                $('.scrollUp').fadeIn();
-            } else {
-                $('.scrollUp').fadeOut();
-            }
-
-            if ($(this).scrollTop() + $(this).height() >= $(document).height() - 100) {
-                $('.scrollDown').fadeOut();
-            } else {
-                $('.scrollDown').fadeIn();
-            }
-        });
-
-        $('.scrollUp').click(function () {
-            $("html, body").animate({
-                scrollTop: 0
-            }, 300);
-            return false;
-        });
-
-        $('.scrollDown').click(function() {
-            $('html, body').animate({ scrollTop: $(document).height() }, 300);
-            return false;
-        });
-
-        $('.dropdown-submenu a.test').on("click", function (e) {
-            var subMenu = $(this).next('ul');
-            subMenu.toggle();
-            if(subMenu.hasClass('sub-open'))
-                subMenu.removeClass('sub-open');
-            else
-                subMenu.addClass('sub-open');
-            e.stopPropagation();
-            e.preventDefault();
-        });
-
-        $('.dropdown-menu a.close-btn').on("click", function (e) {
-            var subMenu = $(this).closest('ul');
-            subMenu.toggle();
-            subMenu.removeClass('sub-open');
-            e.stopPropagation();
-            e.preventDefault();
-        });
-
-        $('.dropdown-toggle').on('click', function (e) {
-            setTimeout(function () {
-                var ddmenu = $('.open').find('.dropdown-menu');
-                if (ddmenu) {
-                    var position_x = ddmenu.offset().left;
-                    var el_width = ddmenu.outerWidth();
-                    var window_width = $(window).width();
-
-                    if (position_x + el_width > window_width && !ddmenu.hasClass('dropdown-menu-right')) {
-                        ddmenu.addClass('dropdown-menu-right');
-                    }
-                }
-            }, 1);
-        });
-        
-        $('.dropdown-submenu a.test').on('click', function (e) {
-            setTimeout(function() {
-                var ddmenu = $('.dropdown-submenu').find('ul.dropdown-menu.sub-open');
-                if (ddmenu.offset()) {
-                    var position_y = ddmenu.offset().top;
-                    if (position_y < 0) {
-                        ddmenu.css({top:0});
-                    }
-                }
-            }, 1);
-        });
-
-        $('.merge-checkbox').on('click', function(e) {        
-        	 $(this).find(':checkbox').click();
-           e.stopPropagation();           
-        });
-
-        $('input[type=checkbox]').click(function (e) {
-            e.stopPropagation();
-        });
-
-
-	});
-
-    $(window).load(function () {
-        if ($(window).scrollTop() + $(window).height() >= $(document).height() - 100) {
-            $('.scrollDown').fadeOut();
-        } else {
-            $('.scrollDown').fadeIn();
+      function number(that){
+        table_number="";
+        var str_table="";
+        table_number=$(that).children("div").next().children("P").children("b").html();
+        tableStatus=$(that).children("span").html();
+        // tables0=tables.substring(0,tables.Length-1);
+        tables1=tables.split(",");
+        console.log(tables1);
+        for(var i=0;i< tables1.length-1;i++){
+          if(tables1[i]<=9){
+            tables1[i]="0"+tables1[i];
+          }
+          str_table +='<li><a href="" onclick="ChangeTable(this)">'+tables1[i]+'</a></li>';
         }
-    });
-</script>
+          // str_table = str_table.replace(/table/i,tables1[i]);
+           //  
+         
+        var str="";
+        var str1="";
 
-</body>
+        order_no=$(that).children("P").html();
+        str1=table_number;
+        $("#huanzhou1").html(table_number);
+        $("#tanchu").html(str1);
+        $("#Changed").html(str_table);
 
-<!-- Modified by Yishou Liao @ Oct 13 2016. -->
-<script type="text/javascript">
-    function mergebill(tableId) {
-        var table_merge = "";
-        $('input[name="mergetable[]"]:checked').each(function () {
-           table_merge += $(this).val()+",";
-            $(this).attr("checked",false);
-        });
-        table_merge = table_merge.substring(0,(table_merge.length-1));
+      }
 
-        document.location = "../merge/index/table:"+tableId+"/tablemerge:"+table_merge+"/type:D";
+      // 订单
+      function dingdan(that){
+        var table_num=$("#tanchu").html();
+        var tiaozhuan = '<?php echo $this->Html->url(array("controller"=>"order", "action"=>"index","table"=>"table_num", "type"=>"D")); ?>';
+        tiaozhuan = tiaozhuan.replace(/table_num/i,table_num);
+        window.location.href=tiaozhuan;
+      }  
+        // 订单
+      function Histroy(that){
+        var table_num=$("#tanchu").html();
 
-    }
+       var hisorder = '<?php echo $this->Html->url(array("controller"=>"homes", "action"=>"tableHistory","table_no"=>"table_num")); ?>';
+        hisorder = hisorder.replace(/table_num/i,table_num);
+        window.location.href=hisorder;
+      }
+      // 付款
+      function fukuan(that){
+        if(!order_no){
+          alert("no order");
+        }else{
+          var table_num=$("#tanchu").html();
+      
+          var fukuan = '<?php echo $this->Html->url(array("controller"=>"pay", "action"=>"index","table"=>"table_num", "type"=>"D")); ?>';
+            console.log(order_no);
+          fukuan = fukuan.replace(/table_num/i,table_num);
+          window.location.href=fukuan;
+        }
+       
+      }
+      // 打印收据
+      function Receipt(that){
+        if(!order_no){
+          alert("no order");
+        }else{
+          if (tableStatus!="P") {
 
-	//Modified by Yishou Liao @ Nov 18 2016.
-	function makeavailable(url){
-		$('#dialog').show();
-		$(".EntPassword").val("");
-		$('#url').val(url);
-	}
-	
-	function checkPassword(passwd){
-		// $('#dialog').hide();
-    var pwd_makeavailable = hex_md5($(".EntPassword").val());
-		if (pwd_makeavailable == passwd){
-      $('#dialog').hide();
-			document.location = $('#url').val();
-		} else {
-			// alert("Your password is incorrect!");
-      $('.popPassword .input-group-addon').notify("Your password is incorrect!", {position: "top", className: "error"});
-		};
-  }
+            var table_num=$("#tanchu").html();
+            var receipt = '<?php echo $this->Html->url(array("controller"=>"pay", "action"=>"printBill","order"=>"order_no", "type"=>"D")); ?>';
+            receipt = receipt.replace(/order_no/i,order_no);
+            window.location.href=receipt;
+          }
+        }
+       
+      }
+      // 分单
+        function Split(that){
+        if(!order_no){
+          alert("no order");
+        }else{
+          if(tableStatus!= "N"  &&　tableStatus != "R"){
+
+            var table_num=$("#tanchu").html();
+            // console.log(tableStatus);
+            // echo $this->Html->url(array('controller'=>'split', 'action'=>'index', 'table'=>$i, 'type'=>'D', 'split_method' =>'1'))
+            var Split = '<?php echo $this->Html->url(array("controller"=>"split", "action"=>"index","table"=>"table_num","split_method"=>"1", "type"=>"D")); ?>';
+            Split = Split.replace(/table_num/i,table_num);
+            window.location.href=Split;
+          }else{
+            alert("Order status is not allowed.");
+          }
+        }
+       
+      }
     
-	function checkPasswordC(){
-		$('#dialog').hide();
-	}
-	//End.
-</script>
-<!-- End. -->
+  
+
+      function ChangeTable(that){
+        
+        var table_s=$(that).html();    //要还的桌号
+        var table_class1 = $("li#table_"+table_number).attr("class"); //获取p元素的class 
+        var table_class2 = $("li#table_"+table_s).attr("class"); //获取p元素的class 
+
+        var ycorder_no=$("li#table_"+table_number).children("p").html();   //订单号
+        var money=$("li#table_"+table_number).children("p").next("div").html();   //订单号
+        var time1=$("li#table_"+table_number).children("p").next("div").next("div").children("span").html();   //订单号
+
+        var ycorder_no2=$("li#table_"+table_s).children("p").html();   //订单号
+        var money2=$("li#table_"+table_s).children("p").next("div").html();   //订单号
+        var time2=$("li#table_"+table_s).children("p").next("div").next("div").children("span").html();   //订单号
+      
+           $.ajax({
+            type: "POST",
+            url: "<?= $this->Html->url(array('controller' => 'homes', 'action' => 'move_order')); ?>",
+            data: {"table": table_s,"order_no":order_no},
+            dataType: 'json',
+              success: function(data) {
+                $("li#table_"+table_number).removeClass(table_class1); //获取p元素的class 
+                $("li#table_"+table_s).addClass(table_class1); //获取p元素的class 
+                $("li#table_"+table_number).addClass(table_class2); //获取p元素的class 
+                  console.log(table_class1);
+                $("li#table_"+table_s).children("p").html(ycorder_no);
+                $("li#table_"+table_number).children("p").html(ycorder_no2);
+
+                $("li#table_"+table_s).children("p").next("div").html(money);
+                $("li#table_"+table_number).children("p").next("div").html(money2);
+
+                $("li#table_"+table_s).children("p").next("div").next("div").children("span").html(time1);
+                $("li#table_"+table_number).children("p").next("div").next("div").children("span").html(time2);
+
+                $("li#table_"+table_s).children("p").next("div").next("div").children("p").children("b").html(table_s);
+                $("li#table_"+table_number).children("p").next("div").next("div").children("p").children("b").html(table_number);
+            
+
+                alert("Order table successfully changed successfully.");
+                $(".model1").hide();$(".model2").hide();
+              
+            }
+        });
+      }
+// 换桌结束
+    $(document).ready(function(){
+      // nav
+      $(".barnav").hover(function(){
+        $(this).find("ul").slideDown();
+      },function(){
+        $(this).find("ul").slideUp();
+      });
+      $(".barnav").on("click",function(){
+        var ulD = $(this).find("ul").css("display");
+        if(ulD == "none"){
+          $(this).find("ul").slideDown();
+        }else{
+          $(this).find("ul").slideUp();
+        }
+      });
+      // content
+      var winH = $(window).height() - 100, //100是导航
+          winH1 = $(window).height() - 155 -22;//100是导航，55是状态栏 22是上padding
+      $(".content").css("height",winH+"px");
+      $(".c_area").css("height",winH1+"px");
+
+      $(".wbtn").on("click",function(){
+        $(".content_right").animate({width:"40%"});
+      });
+      $(".wclose").on("click",function(){
+        $(".content_right").animate({width:"0"});
+      });
+
+      $(".prompt img").on("click",function(){
+        $(this).parent().css("display","none");
+      });
+      // 弹出层
+      $(".model-close").on("click",function(){
+        $(this).parents(".model").hide();
+      });
+      var $_this;
+      $(".sit_no,.sit_yes,.sit_dan,.sit_kong,.sit_bai").on("click",function(){
+        $_this = $(this);
+        $(".model1").show();
+      });
+      // 变更
+      $(".model-nav3").on("click",function(){
+        // $(".model1").hide();
+        $(".model2").show();
+      });
+      // 管理员密码
+      $(".login_right span").on("click",function(){
+        $("#admin").show();
+      });
+      $(".a_no").on("click",function(){
+        $("#admin").hide();
+        $(".key").hide();
+      });
+      $(".a_yes").on("click",function(){
+        $(".key").show();
+      });
+      $(".key_img").on("click",function(){
+        $(".key").hide();
+      });
+      // 变空桌
+      $(".model-nav4").on("click",function(){
+        $(".model").hide();
+        $("#admin").addClass("adminCss").show();
+      });
+      // 回车,跳转到管理员界面      
+      $(".return").on("click",function(){
+        hrefG();
+      });
+      window.document.onkeydown= function(evt){
+       evt = window.event || evt;
+       if(evt.keyCode == 13){//如果取到的键值是回车
+        hrefG();
+       }
+      }
+      function hrefG(){
+        var aVal = $("#write").val(),
+            adminCss = $("#admin").attr("class");
+        // 1是管理员解锁密码
+        if(aVal == 1 && adminCss == null){ 
+          // 跳转管理员界面
+          window.location.href="admin.html";         
+        }else if(aVal == 1 && adminCss == "adminCss"){
+          // 变空桌
+          alert("成功变空桌！");
+          $("#admin,.key").hide();
+          $("#write").val("");
+          // 改变点击的li的class变成空桌的class名
+          $_this.attr("class","sit_kong");
+        }else{
+          alert("解锁密码错误！");
+        }
+      }
+     
+     
+      // 会员
+      $(".member").on("click",function(){
+        $("#member").show();
+      });
+      $(".member-close,.member-close4").on("click",function(){
+        $("#member").hide();
+        $(".chong_member,.xiang_member").animate({width:'0'},200);
+      });
+      // 新增会员
+      $(".member-btn").on("click",function(){
+        $(".add_member").animate({width:'100%'},300);
+      });
+      $(".member-close1").on("click",function(){
+        $(".add_member").animate({width:'0'},200);
+      });
+      // 会员详情页
+      $(".memberLi li").on("click",function(){
+        $(".xiang_member").animate({width:'100%'},300);
+      });
+      $(".member-close2").on("click",function(){
+        $(".xiang_member").animate({width:'0'},200);
+      });
+      // 充值记录
+      $(".xiang_btnR").on("click",function(){
+        $(".chong_member").animate({width:'100%'},200);
+      });
+      $(".member-close3").on("click",function(){
+        $(".chong_member").animate({width:'0'},200);
+      });
+      var liW = parseFloat($(".r_member .num_left li").width()) ,
+          liW1 = parseFloat($(".r_member .num_left li").width()*2 + 7),
+          liW2 = parseInt((liW1 - 80)/2);
+      $(".r_member .num_left li").css({"height":liW+"px","line-height":liW+"px"});
+      $(".r_member .num_right a").css({"padding-top":liW2+"px","padding-bottom":liW2+"px"});
+
+      // 输入密码
+      $(".r_member .num_left li.num").on("click",function(){
+        var inputVal = $(".r_member .keyboard").val(),
+            $_this = $(this).html();
+        $(".r_member .keyboard").val(inputVal+$_this);
+      });
+      // 清空
+      $(".r_member .empty").on("click",function(){
+        $(".r_member .keyboard").val("");
+      });
+      // 后退
+      $(".r_member .retreat").on("click",function(){
+        var leng = $(".r_member .keyboard").val().toString(),valIn = "";
+        valIn = leng.substring(0,leng.length-1);
+        $(".r_member .keyboard").val(valIn);
+      });
+      // 默认
+      $(".r_member .payde").on("click",function(){
+        // 365为现有的默认金额
+        $(".r_member .keyboard").val(365);
+      });
+      // 会员充值
+      $(".xiang_btnL").on("click",function(){
+        var winW = $(window).width();
+        if(winW > 768){
+          $("#member_C").animate({width:'1000px'},200);
+        }else{
+          $("#member_C").animate({width:'760px',marginLeft:'-380px'},200);
+          $(".c_member").css("width","380px");
+          $(".r_member").css("width","320px");
+        }
+      });
+      $(".member-close5").on("click",function(){
+        $("#member_C").animate({width:'0'},200);
+      });
+      $(".payM li").click(function(){
+      	$(this).addClass("active-li").siblings().removeClass('active-li');
+      })
+      // 充值情况
+      $(".c_btn").on("click",function(){
+        $("#mer").fadeIn();
+        setTimeout(function(){
+          $("#mer").fadeOut(1000);
+        },1500);
+      });
+      // 合并
+      $(".model-nav5").on("click",function(){
+        $(".model3").show();
+      });
+      $(".model3 li").on("click",function(){
+        $(this).toggleClass("hover");
+      });
+      $(".model3_btn").on("click",function(){
+        var claB = $(".hover").length;
+        if(claB > 1){
+          window.location.href = "page5.html";
+        }
+      });
+    });
+    </script>
+  </body>
+</html>
