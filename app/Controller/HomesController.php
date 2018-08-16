@@ -159,11 +159,11 @@ class HomesController extends AppController {
         $takeway_tables_status = @$tables_status['T'];
         $waiting_tables_status = @$tables_status['W'];
         $online_tables_status  = @$tables_status['L'];
-        $dinein_tables_key=array_keys($dinein_tables_status);
-        $takeway_tables_key=array_keys($takeway_tables_status);
+        @$dinein_tables_key=array_keys($dinein_tables_status);
+        @$takeway_tables_key=array_keys($takeway_tables_status);
         @$waiting_tables_key=array_keys($waiting_tables_status);
-        // print_r($waiting_tables_key);exit;
-        // print_r($takeway_tables_key);exit;
+        // print_r($dinein_tables_status);exit;
+        // print_r($takeway_tables_status);exit;
 
         // get all order no.
         $orders_no = $this->Order->find("list", array(
