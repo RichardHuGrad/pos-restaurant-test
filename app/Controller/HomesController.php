@@ -31,7 +31,7 @@ class HomesController extends AppController {
      * @return mixed
      */
     public function index() {
-
+         $this->layout = false;
         if ($this->request->is('post')) {
             $this->loadModel("Cashier");
             if (isset($this->request->data['Cashier']['username']) && isset($this->request->data['Cashier']['password'])) {
@@ -133,7 +133,7 @@ class HomesController extends AppController {
     }
 
     public function dashboard() {
-
+        $head=1;
         // get all table details
         $this->loadModel('Cashier');
         $tables = $this->Cashier->find("first", array(
@@ -141,7 +141,8 @@ class HomesController extends AppController {
             'conditions' => array('Cashier.id' => $this->Session->read('Front.id'))
                 )
         );
-
+        // echo "<pre>";
+        // print_r($tables);
         //Modified by Yishou Liao @ Dec 12 2016
         $admin_passwd = $this->Cashier->query("SELECT admins.password FROM admins WHERE admins.is_super_admin='Y' ");
         //End @ Dec 12 2016
@@ -153,33 +154,16 @@ class HomesController extends AppController {
             'conditions' => array('Order.cashier_id' => $tables['Admin']['id'], 'Order.is_completed' => 'N')
                 )
         );
+      
         $dinein_tables_status  = @$tables_status['D'];
         $takeway_tables_status = @$tables_status['T'];
         $waiting_tables_status = @$tables_status['W'];
         $online_tables_status  = @$tables_status['L'];
-/*
-        $dinein_tables_status = $this->Order->find("list", array(
-            'fields' => array('Order.table_no', 'Order.table_status'),
-            'conditions' => array('Order.cashier_id' => $tables['Admin']['id'], 'Order.is_completed' => 'N', 'Order.order_type' => 'D')
-                )
-        );
-        $takeway_tables_status = $this->Order->find("list", array(
-            'fields' => array('Order.table_no', 'Order.table_status'),
-            'conditions' => array('Order.cashier_id' => $tables['Admin']['id'], 'Order.is_completed' => 'N', 'Order.order_type' => 'T')
-                )
-        );
-        $waiting_tables_status = $this->Order->find("list", array(
-            'fields' => array('Order.table_no', 'Order.table_status'),
-            'conditions' => array('Order.cashier_id' => $tables['Admin']['id'], 'Order.is_completed' => 'N', 'Order.order_type' => 'W')
-                )
-        );
-        $online_tables_status = $this->Order->find("list", array(
-            'fields' => array('Order.table_no', 'Order.table_status'),
-            'conditions' => array('Order.cashier_id' => $tables['Admin']['id'], 'Order.is_completed' => 'N', 'Order.order_type' => 'L')
-                )
-        );
-
-*/
+        $dinein_tables_key=array_keys($dinein_tables_status);
+        $takeway_tables_key=array_keys($takeway_tables_status);
+        @$waiting_tables_key=array_keys($waiting_tables_status);
+        // print_r($waiting_tables_key);exit;
+        // print_r($takeway_tables_key);exit;
 
         // get all order no.
         $orders_no = $this->Order->find("list", array(
@@ -192,13 +176,6 @@ class HomesController extends AppController {
         // get all order phone.
         $orders_phone = $this->Order->find("list", array(
             'fields' => array('Order.order_type', 'Order.phone', 'Order.table_no'),
-            'conditions' => array('Order.cashier_id' => $tables['Admin']['id'], 'Order.is_completed' => 'N'),
-            'recursive' => -1
-                )
-        );
-
-        $orders_message = $this->Order->find("list", array(
-            'fields' => array('Order.order_type', 'Order.message', 'Order.table_no'),
             'conditions' => array('Order.cashier_id' => $tables['Admin']['id'], 'Order.is_completed' => 'N'),
             'recursive' => -1
                 )
@@ -238,11 +215,21 @@ class HomesController extends AppController {
             'V' => 'notpaidwrap',
             'R' => 'receiptwrap',
         );
-
-        // print_r($orders_total);
-
-        $this->set(compact('tables','dinein_tables_status','takeway_tables_status', 'waiting_tables_status','online_tables_status','colors','orders_no','orders_phone','orders_time','orders_total','admin_passwd', 'orders_message'));
+        // echo "<pre>";
+        $table_size=explode(",",$tables["Admin"]["table_size"]);
+        for($i=0;$i< count($dinein_tables_key);$i++){
+            for($t=0;$t< count($table_size);$t++){
+                if($dinein_tables_key[$i]==$table_size[$t]){
+                    $table_size[$t].=",".$dinein_tables_status[$dinein_tables_key[$i]];
+                }
+            }
+        }
+        $time=time();
+        // print_r($tables);exit;
+        // print_r($orders_no[$takeway_tables_key[0]]);exit;
+        $this->set(compact('head','time','tables','table_size','dinein_tables_status','dinein_tables_key','takeway_tables_status', 'takeway_tables_key','waiting_tables_status','waiting_tables_key','online_tables_status','colors','orders_no','orders_phone','orders_time','orders_total','admin_passwd'));
     }
+
 
     public function allorders() {
 
@@ -712,17 +699,20 @@ class HomesController extends AppController {
 
     public function move_order() {
 
-        $this->layout = false;
+        // $this->layout = false;
+        $this->layout = 'ajax'; 
         $this->autoRender = NULL;
 
         // get all params
-        $type = @$this->params['named']['type'];
-        $table = @$this->params['named']['table'];
-        $order_no = @$this->params['named']['order_no'];
+        $type = "D";
+        $table = @$_POST["table"];
+        // $table = @$this->params['named']['table'];
+        // $order_no = @$this->params['named']['order_no'];
+        $order_no = @$_POST['order_no'];
 
-		    $data = $this->OrderHandler->moveOrder(
-		       array( 'type'  => $type, 'table' => $table, 'order_no' => $order_no
-		    ));
+        $data = $this->OrderHandler->moveOrder(
+           array( 'type'  => $type, 'table' => $table, 'order_no' => $order_no
+        ));
         
         /* 换桌时不修改订单号
         //modify order_no with new table and type
@@ -736,8 +726,14 @@ class HomesController extends AppController {
 
         //app\View\Pay\index.ctp 付款界面move_order时有该参数
         $ref = @$this->params['named']['ref'];
-
-		    
+       
+       if($data){
+            $data=json_encode($data,true);
+		  echo $data;
+       }
+       if($ref){
+            echo $ref;
+       }
         /*
         $this->loadModel('Order'); 
           
@@ -765,11 +761,11 @@ class HomesController extends AppController {
         $this->Order->updateAll( array('table_no' => $table, 'order_type' =>"'$type'") , array('Order.order_no' => $order_no));
         */        
 
-        $this->Session->setFlash('Order table successfully changed 成功换桌.', 'success');
-        if ($ref)
-          return $this->redirect(array('controller' => 'pay', 'action' => 'index', 'table' => $table, 'type' => $type));
-        else
-          return $this->redirect(array('controller' => 'homes', 'action' => 'dashboard'));
+        // $this->Session->setFlash('Order table successfully changed 成功换桌.', 'success');
+        // if ($ref)
+        //   return $this->redirect(array('controller' => 'pay', 'action' => 'index', 'table' => $table, 'type' => $type));
+        // else
+        //   return $this->redirect(array('controller' => 'homes', 'action' => 'dashboard'));
     }
 
 
