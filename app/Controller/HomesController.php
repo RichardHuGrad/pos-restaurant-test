@@ -32,7 +32,7 @@ class HomesController extends AppController {
      * @return mixed
      */
     public function index() {
-         // $this->layout = "default1";
+         // $this->layout = "default1";   如果用新嵌套的登录页面  就将注释解开
         if ($this->request->is('post')) {
             $this->loadModel("Cashier");
             if (isset($this->request->data['Cashier']['username']) && isset($this->request->data['Cashier']['password'])) {
@@ -134,9 +134,8 @@ class HomesController extends AppController {
     }
 
     public function dashboard() {
-        $head=1;
+  
         $this->layout = "default1";
-         // $this->layout = false;
         // get all table details
         $this->loadModel('Cashier');
         $tables = $this->Cashier->find("first", array(
@@ -144,8 +143,7 @@ class HomesController extends AppController {
             'conditions' => array('Cashier.id' => $this->Session->read('Front.id'))
                 )
         );
-        // echo "<pre>";
-        // print_r($tables);
+
         //Modified by Yishou Liao @ Dec 12 2016
         $admin_passwd = $this->Cashier->query("SELECT admins.password FROM admins WHERE admins.is_super_admin='Y' ");
         //End @ Dec 12 2016
@@ -165,8 +163,6 @@ class HomesController extends AppController {
         @$dinein_tables_key=array_keys($dinein_tables_status);
         @$takeway_tables_key=array_keys($takeway_tables_status);
         @$waiting_tables_key=array_keys($waiting_tables_status);
-        // print_r($dinein_tables_status);exit;
-        // print_r($takeway_tables_status);exit;
 
         // get all order no.
         $orders_no = $this->Order->find("list", array(
