@@ -153,6 +153,7 @@ class PrintComponent extends Component {
             $print = new PrintLib();
  
             foreach($printItems['K'] as $item){
+              // $food="";
               foreach($item as $key=>$value){
                 $printerid1=$this->Cousines->getPrinterId($value['item_id']);//查询菜品设定打印机          
                 $item[$key]["type"]=$printerid1['Cousines']['printer'];
@@ -163,7 +164,6 @@ class PrintComponent extends Component {
                     
                     if($printerid == $item[$key]['type']){
                       $food[$k]=$item[$key];
-                      
                     }
                     // $key=array_keys($item,$printerid);
                     $printerName1=$this->PrintPage->getPrintName($printerid);
@@ -172,8 +172,9 @@ class PrintComponent extends Component {
                   }
                 }else{
                     $printerName1=$this->PrintPage->getPrintName(2);
+                    $food[$key]=$item[$key];
                     $printerName=$printerName1["PrintPage"]['name'];
-                    $print->printKitchenItemDoc($order_no, $table, $type, $printerName , $item,true, false,$phone);
+                    $print->printKitchenItemDoc($order_no, $table, $type, $printerName , $food,true, false,$phone);
                 }        
               }    
             }
@@ -229,7 +230,6 @@ class PrintComponent extends Component {
         $order_no = $orderDetail['Order']['order_no'];
 
         $cancel_items = array('K'=> array(), 'C'=>array());
-
 
         foreach ($item_id_list as $item_id) {
             // if the item is printed, send urge to kitchen print
@@ -384,7 +384,8 @@ class PrintComponent extends Component {
                   }else{
                       $printerName1=$this->PrintPage->getPrintName(2);
                       $printerName=$printerName1["PrintPage"]['name'];
-                      $debug_str = $print->printCancelledItems($order_no, $table, $type, $printerName, $items,true, false);
+                      $food[$i]=$items[$i];
+                      $debug_str = $print->printCancelledItems($order_no, $table, $type, $printerName, $food,true, false);
                   }
                 }
               }    

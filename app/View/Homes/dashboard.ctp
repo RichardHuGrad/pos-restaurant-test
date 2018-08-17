@@ -718,7 +718,6 @@ tables=$("#tables").html();
         tableStatus=$(that).children("span").html();
         // tables0=tables.substring(0,tables.Length-1);
         tables1=tables.split(",");
-        console.log(tables1);
         for(var i=0;i< tables1.length-1;i++){
           if(tables1[i]<=9){
             tables1[i]="0"+tables1[i];
@@ -762,7 +761,6 @@ tables=$("#tables").html();
           var table_num=$("#tanchu").html();
       
           var fukuan = '<?php echo $this->Html->url(array("controller"=>"pay", "action"=>"index","table"=>"table_num", "type"=>"D")); ?>';
-            console.log(order_no);
           fukuan = fukuan.replace(/table_num/i,table_num);
           window.location.href=fukuan;
         }
@@ -832,7 +830,6 @@ tables=$("#tables").html();
                 $("li#table_"+table_number).removeClass(table_class1); //获取p元素的class 
                 $("li#table_"+table_s).addClass(table_class1); //获取p元素的class 
                 $("li#table_"+table_number).addClass(table_class2); //获取p元素的class 
-                  console.log(table_class1);
                 $("li#table_"+table_s).children("p").html(ycorder_no);
                 $("li#table_"+table_number).children("p").html(ycorder_no2);
 
@@ -844,9 +841,7 @@ tables=$("#tables").html();
 
                 $("li#table_"+table_s).children("p").next("div").next("div").children("p").children("b").html(table_s);
                 $("li#table_"+table_number).children("p").next("div").next("div").children("p").children("b").html(table_number);
-            
 
-                alert("Order table successfully changed successfully.");
                 $(".model1").hide();$(".model2").hide();
               
             }

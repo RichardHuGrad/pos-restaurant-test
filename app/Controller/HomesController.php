@@ -32,7 +32,7 @@ class HomesController extends AppController {
      * @return mixed
      */
     public function index() {
-         // $this->layout = false;
+         // $this->layout = "default1";
         if ($this->request->is('post')) {
             $this->loadModel("Cashier");
             if (isset($this->request->data['Cashier']['username']) && isset($this->request->data['Cashier']['password'])) {
