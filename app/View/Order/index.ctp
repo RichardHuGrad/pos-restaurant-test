@@ -21,12 +21,12 @@
             <!-- <img src="img/logo-pos.png" alt="logo" class="logo" /> -->
             <!-- 导航 -->
 
-            <ul class="nav nav-tabs text-center" style="position: absolute; right: 40%;" >
+            <ul class="nav nav-tabs text-center" style="position: absolute; right: 40%; " >
                 <?php
                 if (!empty($records)) {
                     foreach ($records as $key => $category) {
                         ?>
-                        <li <?php if ($key == 0) echo "class='active'" ?>><a data-toggle="tab" href="#tab<?php echo $category['Category']['id']; ?>"><?php echo $category['Category']['eng_name'] . "<br/>" . $category['Category']['zh_name']; ?></a></li>
+                        <li <?php if ($key == 0) echo "class='active'" ?>><a style="line-height: 40px;" data-toggle="tab" href="#tab<?php echo $category['Category']['id']; ?>"><?php echo $category['Category']['eng_name'] . "<br/>" . $category['Category']['zh_name']; ?></a></li>
                         <?php
                     }
                 }
@@ -37,7 +37,7 @@
             <!-- 登录按钮 -->
             <div class="login_right">
               <button type="button" name="button" onclick="loginout(this);">登出</button>
-              <span>管理员</span>
+              <span><a style="color: white" href="../../../homes/dashboard/" class="nav-a">主页</a></span>
             </div>
           
 
@@ -51,7 +51,7 @@
 
 
 
-    <div class="clearfix cartwrap-wrap col-md-12 col-sm-12 col-xs-12">
+    <div class="clearfix cartwrap-wrap col-md-12 col-sm-12 col-xs-12" >
         <div class="col-md-9 col-sm-8 col-xs-12 home-link">
             <div class="cart-txt" id="order_no_display">
             <!-- Modified by Yishou Liao @ Dec 09 2016 -->
@@ -72,8 +72,8 @@
 
 
     <div class="clearfix cart-wrap col-md-12 col-sm-12 col-xs-12">
-        <div class="col-md-4 col-sm-5 col-xs-12 summary_box">
-            <div class="clearfix marginB15 cashierbox" style="display:none">
+        <div class="col-md-4 col-sm-5 col-xs-12 summary_box" style="font-size: large">
+            <div class="clearfix marginB15 cashierbox">
                 <div class="pull-left marginR5">
                     <?php if ($cashier_detail['Cashier']['image']) { ?>
                         <?php echo $this->Html->image(TIMB_PATH . "timthumb.php?src=" . CASHIER_IMAGE_PATH . $cashier_detail['Cashier']['image'] . "&h=60&w=60&&zc=4&Q=100", array('class' => 'img-circle img-responsive')); ?>
@@ -89,7 +89,7 @@
         </div>
 
 
-        <div class="col-md-8 col-sm-7 col-xs-12 products-panel">
+        <div class="col-md-8 col-sm-7 col-xs-12 products-panel" style="font-size: large;">
         	
             <div class="tab-content <?php if(@$Order_detail['Order']['table_status']=='P') echo 'hide'; ?>">
 
