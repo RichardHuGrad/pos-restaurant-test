@@ -390,8 +390,8 @@ Cache::config('_cake_model_', array(
 $project_directory = '/';
 
 define('DB_HOST', 'localhost');
-define('DB_USERNAME', 'pos');
-define('DB_PASSWORD', 'pos1209');
+define('DB_USERNAME', 'root');
+define('DB_PASSWORD', '');
 define('DB_DATABASE', 'pos');
 
 if (php_sapi_name() === 'cli') {

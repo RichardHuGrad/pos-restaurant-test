@@ -7,39 +7,50 @@
 <body>
 
     <header class="product-header">
-
-        <div class="home-logo">
-            <a href="<?php echo $this->Html->url(array('controller' => 'homes', 'action' => 'dashboard')) ?>">
-                <?php                      
-                	if(substr($_SERVER['REQUEST_URI'],0,5)=='/skip')
-                  		echo $this->Html->image("logo-skip.jpg", array('alt' => "SKIP"));               
-                	else
-                  		echo $this->Html->image("logo-home.jpg", array('alt' => "POS")); 
-                ?>
-            </a>
-
-            <div class="HomeText text-left">
-                <a href="<?php echo $this->Html->url(array('controller' => 'homes', 'action' => 'index')) ?>"><?php echo __('Home')?></a>
-                <a href="javascript:void(0)" onclick="window.history.back()"><?php echo __('Back')?></a>
-            </div>
-
-        </div>
-
-        <div class="logout"><a href="<?php echo $this->Html->url(array('controller' => 'homes', 'action' => 'logout')) ?>"><?php echo __('Logout')?></a></div>
-
-        <ul class="nav nav-tabs text-center" style="margin-left:100px">
-            <?php
-            if (!empty($records)) {
-                foreach ($records as $key => $category) {
-                    ?>
-                    <li <?php if ($key == 0) echo "class='active'" ?>><a data-toggle="tab" href="#tab<?php echo $category['Category']['id']; ?>"><?php echo $category['Category']['eng_name'] . "<br/>" . $category['Category']['zh_name']; ?></a></li>
-                    <?php
-                }
-            }
-            ?>
-        </ul>
+        <?php echo $this->Html->css(array('style'));  ?>
+        <?php echo $this->Html->css(array('jianpan'));  ?>
 
     </header>
+
+
+    <div class="container" style="min-height: 0px;">
+        <div class="header">
+  
+            <!-- logo -->
+            <?php echo $this->Html->image('logo-pos.png', array( 'alt' => 'logo', 'class' => 'logo')); ?>
+            <!-- <img src="img/logo-pos.png" alt="logo" class="logo" /> -->
+            <!-- 导航 -->
+
+            <ul class="nav nav-tabs text-center" style="position: absolute; right: 40%;" >
+                <?php
+                if (!empty($records)) {
+                    foreach ($records as $key => $category) {
+                        ?>
+                        <li <?php if ($key == 0) echo "class='active'" ?>><a data-toggle="tab" href="#tab<?php echo $category['Category']['id']; ?>"><?php echo $category['Category']['eng_name'] . "<br/>" . $category['Category']['zh_name']; ?></a></li>
+                        <?php
+                    }
+                }
+                ?>
+            </ul>
+            
+            <!-- <img src="images/nav.png" class="smalllogo" alt="pad菜单" /> -->
+            <!-- 登录按钮 -->
+            <div class="login_right">
+              <button type="button" name="button" onclick="loginout(this);">登出</button>
+              <span>管理员</span>
+            </div>
+          
+
+            <!--<div class="logout"><a href="<?php echo $this->Html->url(array('controller' => 'homes', 'action' => 'logout')) ?>"><?php echo __('Logout')?></a></div>-->
+        </div>
+    </div>
+
+
+
+
+
+
+
     <div class="clearfix cartwrap-wrap col-md-12 col-sm-12 col-xs-12">
         <div class="col-md-9 col-sm-8 col-xs-12 home-link">
             <div class="cart-txt" id="order_no_display">
