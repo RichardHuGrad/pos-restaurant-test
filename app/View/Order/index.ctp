@@ -1,27 +1,59 @@
-<html>
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" href="../../../html/css/style.css" />
+    <link rel="stylesheet" href="../../../html/css/jianpan.css" />
     <?php echo $this->Html->css(array('order', 'components/TastesComponent', 'summarypanel')); ?>
 </head>
 
-
 <body>
 
-    <header class="product-header">
-        <?php echo $this->Html->css(array('style'));  ?>
-        <?php echo $this->Html->css(array('jianpan'));  ?>
-
-    </header>
-
-
-    <div class="container" style="min-height: 0px;">
+    
+    <div class="container">
         <div class="header">
-  
+      
             <!-- logo -->
             <?php echo $this->Html->image('logo-pos.png', array( 'alt' => 'logo', 'class' => 'logo')); ?>
             <!-- <img src="img/logo-pos.png" alt="logo" class="logo" /> -->
             <!-- 导航 -->
 
-            <ul class="nav nav-tabs text-center" style="position: absolute; right: 40%; " >
+            <ul class="nav">
+              <li><a href="../../../homes/dashboard" class="nav-a">主页</a></li>
+              <li class="barnav">
+                <a href="javascript:;" class="nav-a">语言</a>
+                <ul style="display: none;">
+                  <li><a href="javascript:;">English</a></li>
+                  <li><a href="javascript:;">中文</a></li>
+                </ul>
+              </li>
+              <li><a href="javascript:;" onclick="huiyuan();" class="nav-a member">会员</a></li>
+              <li><a onclick="paidui();" class="nav-a">排队</a></li>
+              <li><a onclick="quhao();"class="nav-a">取号</a></li>
+            </ul>
+            <?php echo $this->Html->image('nav.png', array( 'class' => 'smalllogo', 'alt' => 'pad菜单')); ?>
+            <!-- <img src="images/nav.png" class="smalllogo" alt="pad菜单" /> -->
+            <!-- 登录按钮 -->
+            <div class="login_right">
+              <button type="button" name="button" onclick="loginout(this);">登出</button>
+              <span>管理员</span>
+            </div>
+          </div>
+
+        <div class="page2-content">
+            <div class="page2-left">
+          <div class="page2-top">
+            <h4><?php echo __('Order No.')?><?php echo @$Order_detail['Order']['order_no']; ?>, <?php echo __('Table No.')?><?php echo $table; ?><?php echo @$Order_detail['Order']['phone']!=''?(', Tel: '.$Order_detail['Order']['phone']):''; ?></h4>
+            <button type="button" name="button" class="newPhone">添加外卖手机号码</button>
+            <!-- 外卖手机号 -->
+                    <div class="lock-div">
+                        <input type="text" name="" value="" placeholder="请输入手机号" id="phone">
+                        <img src="../../../html/images/icon-08.png" alt="关闭" class="closeBox">
+                      </div>
+          </div>
+          <div class="page2-left-c">
+            <!-- 左侧菜单 -->
+            <ul class="page2-tabnav">
                 <?php
                 if (!empty($records)) {
                     foreach ($records as $key => $category) {
@@ -32,66 +64,16 @@
                 }
                 ?>
             </ul>
-            
-            <!-- <img src="images/nav.png" class="smalllogo" alt="pad菜单" /> -->
-            <!-- 登录按钮 -->
-            <div class="login_right">
-              <button type="button" name="button" onclick="loginout(this);">登出</button>
-              <span><a style="color: white" href="../../../homes/dashboard/" class="nav-a">主页</a></span>
-            </div>
-          
-
-            <!--<div class="logout"><a href="<?php echo $this->Html->url(array('controller' => 'homes', 'action' => 'logout')) ?>"><?php echo __('Logout')?></a></div>-->
-        </div>
-    </div>
-
-
-
-
-
-
-
-    <div class="clearfix cartwrap-wrap col-md-12 col-sm-12 col-xs-12" >
-        <div class="col-md-9 col-sm-8 col-xs-12 home-link">
-            <div class="cart-txt" id="order_no_display">
-            <!-- Modified by Yishou Liao @ Dec 09 2016 -->
-                <?php echo __('Order No.')?><?php echo @$Order_detail['Order']['order_no']; ?>, <?php echo __('Table No.')?><?php echo $table; ?><?php echo @$Order_detail['Order']['phone']!=''?(', Tel: '.$Order_detail['Order']['phone']):''; ?>
-            <!-- End -->
-            </div>
-        </div>
-
-        <div class="col-md-3 col-sm-4 col-xs-12">
-            <div class="searchwrap">
-                <label for="search-input"><i class="fa fa-search" aria-hidden="true"></i></label>
-                <a class="fa fa-times-circle-o search-clear" aria-hidden="true"></a>
-                <input id="search-input" class="form-control input-lg" placeholder=<?php echo __('Search')?>>
-            </div>
-        </div>
-
-    </div>
-
-
-    <div class="clearfix cart-wrap col-md-12 col-sm-12 col-xs-12">
-        <div class="col-md-4 col-sm-5 col-xs-12 summary_box" style="font-size: large">
-            <div class="clearfix marginB15 cashierbox">
-                <div class="pull-left marginR5">
-                    <?php if ($cashier_detail['Cashier']['image']) { ?>
-                        <?php echo $this->Html->image(TIMB_PATH . "timthumb.php?src=" . CASHIER_IMAGE_PATH . $cashier_detail['Cashier']['image'] . "&h=60&w=60&&zc=4&Q=100", array('class' => 'img-circle img-responsive')); ?>
-                    <?php } else { ?>
-                        <?php echo $this->Html->image(TIMB_PATH . "timthumb.php?src=" . TIMB_PATH . 'no_image.jpg' . "&h=60&w=60&&zc=4&Q=100", array('class' => 'img-circle img-responsive')); ?>
-                    <?php } ?>
-                </div>
-                <div class="pull-left marginL5 clearfix">
-                    <div class="txt16 marginB5 marginT5"><?php echo ucfirst($cashier_detail['Cashier']['firstname']) . " " . $cashier_detail['Cashier']['lastname']; ?></div>
-                    <div class="txt15"><?php echo str_pad($cashier_detail['Cashier']['id'], 4, 0, STR_PAD_LEFT); ?></div>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="col-md-8 col-sm-7 col-xs-12 products-panel" style="font-size: large;">
-        	
-            <div class="tab-content <?php if(@$Order_detail['Order']['table_status']=='P') echo 'hide'; ?>">
+            <a href="javascript:;" class="tab-bot">
+              <img src="../../../html/images//btn01.png" alt="向下按钮">
+            </a>
+            <!-- 右侧菜品选择 -->
+            <div class="page2-tavright">
+              <!-- 搜索 -->
+              <input type="text" name="" placeholder="搜索" class="tab-input" />
+              <img src="../../../html/images/icon-08.png" alt="去除搜索内容" class="tab-close" />
+              <!-- 内容 -->
+              <div class="tab-content tabright tab1 <?php if(@$Order_detail['Order']['table_status']=='P') echo 'hide'; ?>">
 
                 <?php
                 if (!empty($records)) {
@@ -107,12 +89,10 @@
                                             <?php
                                             foreach ($category['Cousine'] as $items) {
                                                 ?>
-                                                <li class="col-md-3 col-sm-6 col-xs-6 add_items" alt="<?php echo $items['id']; ?>" title="Add to Cart">
-                                                    <div class="item-wrapper">
-                                                        <div class="clearfixrow">
-                                                            <div class="dish-price">$<?php echo number_format($items['price'], 2); ?></div>
-                                                            <div class="dish-title"><div class="name-title"><strong><?php echo $items['zh_name'] . "<br/>" . $items['eng_name']; ?></strong></div></div>
-                                                        </div>
+                                                <li class="add_items" alt="<?php echo $items['id']; ?>" title="Add to Cart">
+                                                    <div class="clearfixrow" style="font-size: medium;">
+                                                        <div class="dish-price">$<?php echo number_format($items['price'], 2); ?></div>
+                                                        <div class="dish-title"><div class="name-title"><strong><?php echo $items['zh_name'] . "<br/>" . $items['eng_name']; ?></strong></div></div>
                                                     </div>
                                                 </li>
                                                 <?php
@@ -131,37 +111,108 @@
                     }
                 }
                 ?>
+              </div>
             </div>
+
+          </div>
         </div>
+
+        <div class="page2-right">
+              <div class="right-btn" id="button-group">
+                <button id="delete-btn" class="rBtn rBtn02"><strong><?php echo __('Delete');?></strong></button>
+                <button id="take-out-btn" class="rBtn rBtn04"><strong><?php echo __('Takeout');?></strong></button>
+                <button id="urge-btn" class="rBtn rBtn05"><strong><?php echo __('Urge');?></strong></button>
+                <button id="quantity-btn" class="rBtn rBtn03" data-toggle="modal" data-target="#change-quantity-component-modal"><strong><?php echo __('Change Quantity');?></strong></button>
+                <button id="batch-add-taste-btn" class="rBtn rBtn01" data-toggle="modal" data-target="#taste-component-modal"><strong><?php echo __('Batch Add Taste');?></strong></button>
+                <button id="change-price-btn" class="rBtn rBtn06" data-toggle="modal" data-target="#change-price-component-modal"><strong><?php echo __('Change Price');?></strong></button>
+                <!-- <button id="free-price-btn" class="btn btn-lg"><strong>免费</strong></button> -->
+                <!-- <button id="add-discount-btn" class="btn btn-lg">Add Discount</button>  -->     
+              </div>
+
+              <div class="right-con">
+                <div class="right-tab clearfix">
+                  <ul class="right-top">
+                    <li class="firstLi right-active">
+                      <a href="javascript:;">订单列表</a>
+                    </li>
+                    <li class="totalSelection">
+                      <a href="javascript:;">全选</a>
+                    </li>
+                    <li class="reverseSelection">
+                      <a href="javascript:;">反选</a>
+                    </li>
+                    <li class="cancel">
+                      <a href="javascript:;"><p>取消</p><p>选择</p></a>
+                    </li>
+                    <li class="not_yet">
+                      <a href="javascript:;">未送厨</a>
+                    </li>
+                    <li class="already">
+                      <a href="javascript:;">已送厨</a>
+                    </li>
+                  </ul>
+                  <ul class="right-list" id="order-component">
+                    <!-- 背景色 class="rig-act" data-state="1" 表示已送厨-->
+                    <!-- <li data-state="1">
+                      <a href="javascript:;">
+                        <div class="list-left">
+                          <h4>宋嫂牛肉面 </h4>
+                          <p>Option: 中辣；少麻；去葱；加卤蛋；加面；加肉；改米线；多花生</p>
+                        </div>
+                        <div class="list-center">
+                          12.99 <span>(15%off)</span>
+                        </div>
+                        <div class="list-right">1</div>
+                      </a>
+                    </li> -->
+                  </ul>
+                </div>
+                <div class="right-tab">
+                  <a href="javascript:;" class="add_zhe">加入折扣</a>
+                  <div class="add-content">
+                    <ul class="add-ul">
+                      <li>
+                        <span>固定折扣</span>
+                        <input type="text" />
+                      </li>
+                      <li>
+                        <span>%折扣</span>
+                        <input type="text" id="txt2"/>
+                      </li>
+                      <li>
+                        <span>优惠码</span>
+                        <input type="text" />
+                      </li>
+                    </ul>
+                    <div class="add-right">
+                      <span>折扣快捷按钮</span>
+                      <button type="button" name="button" class="butt">15%</button>
+                      <button type="button" name="button" class="butt">20%</button>
+                      <button type="button" name="button" class="butt">25%</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="right-tab1">
+                  <button id="pay-btn" type="button" name="button" class="rightBtn01"><strong><?php echo __('Pay')?></strong></button>
+                  <button id="send-to-kitchen-btn" type="button" name="button" class="rightBtn02"><strong><?php echo __('Send to Kitchen')?></strong></button>
+                </div>
+              </div>
+
+
+
+
+            </div>
+
+        </div>
+
     </div>
-    
-    <div class="col-md-12 col-sm-12 col-xs-12 " id="button-group">
-    	<div class="col-md-8">
-        <button id="batch-add-taste-btn" class="btn btn-info btn-lg" data-toggle="modal" data-target="#taste-component-modal"><strong><?php echo __('Batch Add Taste');?></strong></button>
-        <button id="delete-btn" class="btn btn-lg btn-danger"><strong><?php echo __('Delete');?></strong></button>
-        <button id="quantity-btn" class="btn btn-lg btn-warning" data-toggle="modal" data-target="#change-quantity-component-modal"><strong><?php echo __('Change Quantity');?></strong></button>
-        <button id="take-out-btn" class="btn btn-lg btn-info"><strong><?php echo __('Takeout');?></strong></button>
-        <button id="urge-btn" class="btn btn-lg btn-info"><strong><?php echo __('Urge');?></strong></button>
-        <button id="change-price-btn" class="btn btn-lg btn-warning" data-toggle="modal" data-target="#change-price-component-modal"><strong><?php echo __('Change Price');?></strong></button>
-        <!-- <button id="free-price-btn" class="btn btn-lg"><strong>免费</strong></button> -->
-        <!-- <button id="add-discount-btn" class="btn btn-lg">Add Discount</button>  -->
-        <button id="edit-phone-btn" class="btn btn-lg btn-info" data-toggle="modal" data-target="#edit-phone-component-modal"><strong><?php echo __('Edit Phone');?></strong></button>        
-      </div>
-      <div class="col-md-4">
-        <button id="send-to-kitchen-btn" class="btn btn-xl btn-primary" disabled style="margin-left:auto"><strong><?php echo __('Send to Kitchen')?></strong></button>
-        <button id="pay-btn" class="btn btn-xl btn-success"><strong><?php echo __('Pay')?></strong></button>
-        <button id="add-taste-btn" class="btn btn-xl btn-info" data-toggle="modal" data-target="#single-extra-component-modal"><strong><?php echo __('CHange Taste');?></strong></button>
-      </div>
-    </div>
+
 
 </div>
 
 <div id="single-extra-component-modal-placeholder">
 
 </div>
-
-</body>
-</html>
 
 <script id="taste-component" type="text/template">
     <div class="modal fade clearfix" id="taste-component-modal" role="dialog">
@@ -320,6 +371,7 @@ echo $this->fetch('script');
 
 <script type="text/javascript">
 
+
     if (!String.prototype.format) {
       String.prototype.format = function() {
         var args = arguments;
@@ -334,36 +386,65 @@ echo $this->fetch('script');
 
 
 
+    // $(".add_items").on("click", function () {
+    //     var item_id = $(this).attr("alt");
+    //     var message = $("#Message").val();
+    //     var table = "<?php echo $table ?>";
+    //     var type = "<?php echo $type ?>";
+    //     console.log(item_id, table, type);
+
+    //     $.ajax({
+    //         url: "<?php echo $this->Html->url(array('controller' => 'order', 'action' => 'addItem')); ?>",
+    //         type: "POST",
+    //         data: {item_id: item_id, table: "<?php echo $table ?>", type: "<?php echo $type ?>"},
+    //         success: function (json) {
+    //             // console.log(html);
+
+    //             // $(".order-summary-indent").scrollTop($(".order-summary-indent ul").height());
+    //             $("#order_no_display").html("Order 订单号 #" + $("#Order_no").val() + ", Table 桌 #<?php echo $table; ?>");
+    //             $(".products-panel").removeClass('load1 csspinner');
+
+    //             //console.log(json);
+    //             var obj = JSON.parse(json);
+    //     //  {"extra_categories":["15","16"],"order_item_id":"4143","comb_id":"0","comb_num":"0"}
+    //             renderOrder(function() {
+    //                 if (obj.comb_id != 0) {
+    //                     $("#order-component li[data-order-item-id=" + obj.order_item_id + "]").trigger("click");
+    //                     $("#add-taste-btn").trigger("click");
+    //                 }
+
+    //             });
+    //         },
+    //         beforeSend: function () {
+    //             $(".products-panel").addClass('load1 csspinner');
+    //         }
+    //     });
+    // });
+
+
+    //加菜到summaryPanel里
     $(".add_items").on("click", function () {
         var item_id = $(this).attr("alt");
-        var message = $("#Message").val();
+        var table = "<?php echo $table ?>";
+        var type = "<?php echo $type ?>";
+        var price = $(".dish-price")[$(this).attr("alt") - 1].innerText;
+        var cuisine = $(".name-title").children()[$(this).attr("alt") - 1].innerText;
+        console.log(price);
+        console.log(cuisine);
 
-        $.ajax({
-            url: "<?php echo $this->Html->url(array('controller' => 'order', 'action' => 'addItem')); ?>",
-            method: "post",
-            data: {item_id: item_id, table: "<?php echo $table ?>", type: "<?php echo $type ?>"},
-            success: function (json) {
-                // console.log(html);
-
-                // $(".order-summary-indent").scrollTop($(".order-summary-indent ul").height());
-                $("#order_no_display").html("Order 订单号 #" + $("#Order_no").val() + ", Table 桌 #<?php echo $table; ?>");
-                $(".products-panel").removeClass('load1 csspinner');
-
-                var obj = JSON.parse(json);
-				//  {"extra_categories":["15","16"],"order_item_id":"4143","comb_id":"0","comb_num":"0"}
-                renderOrder(function() {
-                    if (obj.comb_id != 0) {
-                        $("#order-component li[data-order-item-id=" + obj.order_item_id + "]").trigger("click");
-                        $("#add-taste-btn").trigger("click");
-                    }
-
-                });
-            },
-            beforeSend: function () {
-                $(".products-panel").addClass('load1 csspinner');
-            }
-        });
+        $("#order-component").append("<li class='order-item' data-order-item-id=" + item_id + " id='order-item-" + item_id + "' data-state='1' style='width: 100%; background-color: rgb(240, 240, 240);''><a href='javascript:;'><div class = 'list-left'><h4>" + cuisine + "</h4><p id='tasteOption'></p></div><div class='list-center'>" + price + "</div><div class='list-right'>1</div></li>"); 
     });
+
+    $(".order-item").on("click", function () {
+        console.log($(this));
+
+    })
+
+
+
+
+
+
 
     $('#delete-btn').on('click', function () {
         var selected_item_id_list = getSelectedItem();
@@ -451,7 +532,7 @@ echo $this->fetch('script');
     });
 
     $(document).ready(function () {
-    	
+      
         $('#edit-phone-component-modal').on('shown.bs.modal', function () {
             $( "input[name='phone']").focus();
         })  
@@ -463,7 +544,7 @@ echo $this->fetch('script');
         $('#change-quantity-component-modal').on('shown.bs.modal', function () {
             $( "input[name='quantity']").focus();
         })  
-           	
+            
 
         $(".search-clear").click(function () {
             $("#search-input").val('');
@@ -492,7 +573,7 @@ echo $this->fetch('script');
         //hide some buttons for online orders
         <?php 
            if(@$Order_detail['Order']['table_status']=='P'){
-           	 echo "$('#pay-btn,#delete-btn,#quantity-btn,#change-price-btn,#edit-phone-btn').hide();";
+             echo "$('#pay-btn,#delete-btn,#quantity-btn,#change-price-btn,#edit-phone-btn').hide();";
            }              
         ?>
         
@@ -503,7 +584,7 @@ echo $this->fetch('script');
         if ($(this).val()) {
             $(".discount_section").attr("disabled", "disabled");
             $(this).removeAttr("disabled");
-			      $(this).focus();
+            $(this).focus();
         } else {
             $(".discount_section").removeAttr("disabled");
         }
@@ -907,8 +988,8 @@ echo $this->fetch('script');
         }
     })()
 
-	class CousineExtraCategory {
-    	constructor(cousine_id, category_ids) {
+  class CousineExtraCategory {
+      constructor(cousine_id, category_ids) {
             this.cousine_id = cousine_id;
             this.category_ids = category_ids;
         }
@@ -992,27 +1073,27 @@ echo $this->fetch('script');
 
     var loadCousineExtraCategories = function() {
         var cousine_categories = [];
-		var cousine_id;
+    var cousine_id;
         var category = [];
 
         <?php
             if (!empty($records)) {
                 foreach ($records as $rc1) {
-					foreach ($rc1['Cousine'] as $rc2) {
+          foreach ($rc1['Cousine'] as $rc2) {
          ?>
-         			cousine_id = '<?php echo $rc2['id']; ?>';
+              cousine_id = '<?php echo $rc2['id']; ?>';
                     category = [];
                     <?php if ($rc2['extrascategories']) { 
-						foreach ($rc2['extrascategories'] as $cid) { ?>
-							category.push('<?php echo $cid; ?>');
-					<?php	}
-						}
-					 ?>
+            foreach ($rc2['extrascategories'] as $cid) { ?>
+              category.push('<?php echo $cid; ?>');
+          <?php }
+            }
+           ?>
                      cousine_categories[cousine_id] = category;
          <?php
                 }
             }
-			}
+      }
           ?>
 
         return cousine_categories;
@@ -1046,7 +1127,7 @@ echo $this->fetch('script');
         // console.log(selected_extras_amount);
         
         if(selected_extras_id.length == 0){
-        	$.notify("No taste selected 没有选择口味",  { position: "top center", className:"warn"});
+          $.notify("No taste selected 没有选择口味",  { position: "top center", className:"warn"});
          return false;
         }
         
@@ -1066,11 +1147,11 @@ echo $this->fetch('script');
 
 
     $('body').on('click', '#add-taste-btn' ,function() {
-    	
+      
         var selected_item_id_list = getSelectedItem();
         
         if (selected_item_id_list.length == 0) { 
-        	           
+                     
             // $.notify("No item selected 没有选择菜",{position:"top center",className:"warn"}); return false;
             
             //default select the first item
@@ -1100,7 +1181,7 @@ echo $this->fetch('script');
         
         var cousineExtraCategory = [];
         if (typeof cousineExtraCategories[cousine_id] !== 'undefined') {
-        	cousineExtraCategory = cousineExtraCategories[cousine_id];
+          cousineExtraCategory = cousineExtraCategories[cousine_id];
         }
         
         // remove existing modal
@@ -1284,12 +1365,12 @@ echo $this->fetch('script');
 
         var quantity = $('input[name="quantity"]').val();
         if(quantity == ''){
-        	alert("Please input quantity!");
-        	$('input[name="quantity"]').focus();
-        	return;
+          alert("Please input quantity!");
+          $('input[name="quantity"]').focus();
+          return;
         }
         quantity = Math.round(parseInt(quantity));
-    	  
+        
         var selected_item_id_list = getSelectedItem();
 
         $.ajax({
@@ -1351,8 +1432,8 @@ echo $this->fetch('script');
 
 
     $('body').on('click', '.selected-extra-item', function() {
-    	
-    	if($(this).has('button').length){
+      
+      if($(this).has('button').length){
         $(this).remove();
       }
        
@@ -1360,3 +1441,254 @@ echo $this->fetch('script');
     
 
 </script>
+
+
+<script type="text/javascript" src="../../../html/js/jquery.js"></script>
+    <script type="text/javascript" src="../../../html/js/keyboard.js"></script>
+    <script type="text/javascript">
+        //我就在想这里的折扣有什么用，到付款的时候不是有折扣吗
+        $(".butt").click(function(){
+        var basic = $(this).text();
+        basic =parseFloat( basic.substr(0, basic.length - 1));
+        $("#txt2").val(basic);
+      })
+
+    function isSelect(){
+        $("#order-component > li").on("click",function(){
+        console.log(12314);
+        if($(this).hasClass("select")){
+            $(this).removeClass("select");
+        }else{
+            $(this).addClass("select");
+        }
+      });
+    }
+        
+        
+    $(document).ready(function(){
+
+      // nav
+      $(".barnav").hover(function(){
+        $(this).find("ul").slideDown();
+      },function(){
+        $(this).find("ul").slideUp();
+      });
+      $(".barnav").on("click",function(){
+        var ulD = $(this).find("ul").css("display");
+        if(ulD == "none"){
+          $(this).find("ul").slideDown();
+        }else{
+          $(this).find("ul").slideUp();
+        }
+      });
+      // content
+      var winH = $(window).height() - 110, //100是导航
+          winH1 = $(window).height() - 190,
+          winW = $(window).width();//可是宽度
+      $(".content").css("height",winH+"px");
+      if(winW > 768){
+        $(".page2-content .page2-left,.page2-content .page2-right .cashierbox .right-tab").css("height",winH+"px");
+        $(".page2-content .page2-left-c").css("height",winH1+"px");
+      }else{
+        $(".page2-content .page2-left").css({"height":"500px"});
+        $(".page2-content .page2-left-c").css("height","410px");
+      }
+
+
+      // 菜单向下滑动
+      $(".page2-content .tab-bot").on("click",function(){
+        var scroll = $(".page2-content .page2-tabnav").scrollTop() + 70;
+        $(".page2-content .page2-tabnav").scrollTop(scroll);
+      });
+      $(".tab-bot1").on("click",function(){
+        var scroll = $("#change .page2-tabnav").scrollTop() + 70;
+        $("#change .page2-tabnav").scrollTop(scroll);
+      });
+      $(".tab-bot2").on("click",function(){
+        var scroll = $(".change-q").scrollTop() + 50;
+        $(".change-q").scrollTop(scroll);
+      });
+      $(".page2-content .page2-tabnav li").on("click",function(){
+        var index = $(this).data("index");
+        // $(".page2-content .tabright").hide();
+        $(".page2-content .tab"+index).show();
+        $(this).addClass("tab-active");
+        $(this).siblings().removeClass("tab-active");
+      });
+      $("#change .page2-tabnav li").on("click",function(){
+        var index = $(this).data("index");
+        $("#change .right-list").hide();
+        $("#change .chan"+index).show();
+        $(this).addClass("tab-active");
+        $(this).siblings().removeClass("tab-active");
+      });
+      
+      
+      //菜品数量调整
+      $(".rBtn04").on("click",function(){
+        $("#changeNum").fadeIn();
+      });
+      $("#changeNum .cancel").on("click",function(){
+        $("#changeNum").hide();
+  
+      });
+      //菜品价格调整
+      $(".rBtn05").on("click",function(){
+        $("#changePrice").fadeIn();
+      });
+      $("#changePrice .cancel").on("click",function(){
+        $("#changePrice").hide();
+      });
+      
+      
+      //判断哪个菜品被选中
+      $("#order-component > li").on("click",function(){
+        console.log(12314);
+        if($(this).hasClass("select")){
+            $(this).removeClass("select");
+        }else{
+            $(this).addClass("select");
+        }
+      })
+
+
+
+      //取消选择的菜品
+      $(".cancel").click(function(){
+        $(".right-list li").removeClass("select");
+      })
+      //订单列表
+      $(".firstLi").click(function(){
+        $(".right-list li").removeClass("select");
+        
+      })
+      //全选
+      $(".totalSelection").click(function(){
+        $(".right-list li").addClass("select");
+        
+      })
+      //送厨与未送厨背景颜色区分
+      $(function(){
+        $(".right-list li").each(function(){
+            var state = $(this).attr("data-state");
+            if(state==1){
+                $(this).css('background-color','#f0f0f0');
+            }
+        })
+      })
+      //未送厨
+      $(".not_yet").click(function(){
+        $(".right-list li").each(function(){
+            var state = $(this).attr("data-state");
+            if(state==0){
+                $(this).addClass("select");
+            }else{
+                $(this).removeClass("select");
+            }
+            
+        })
+        
+      })
+      //已送厨
+      $(".already").click(function(){
+        $(".right-list li").each(function(){
+            var state = $(this).attr("data-state");
+            if(state==1){
+                $(this).addClass("select");
+            }else{
+                $(this).removeClass("select");
+            }
+            
+        })
+      })
+      //反选()
+      $(".reverseSelection").click(function(){
+        $(".right-list li").each(function(){
+            var selected = $(this).attr("class");
+            if(selected == 'select'){                           
+                $(this).removeClass("select");
+            }else if(selected != 'select'){
+                $(this).addClass("select");
+            }
+        })
+      })
+      //右侧已选菜品选中操作
+      $(".right-list li").click(function(){
+            var selected = $(this).attr("class");
+                if(selected =='select'){
+                    $(this).removeClass("select");
+        
+                }else if(selected !='select'){
+                    $(this).addClass("select");
+        
+                }
+      })
+      //类似选项卡样式切换
+      $(".right-top li").click(function(){
+        $(this).addClass("right-active").siblings().removeClass("right-active");
+      })
+        
+     //电话号码弹窗
+     $(".newPhone").click(function(){
+        $(this).next(".lock-div").fadeIn();
+     })
+     $(".closeBox").click(function(){
+        $(this).parents(".lock-div").fadeOut();
+     })
+      
+      //添加折扣
+      $(".add_zhe").click(function(){
+        $(".add-content").slideToggle();
+      })
+      // 去除搜索框中的内容
+      $(".tab-close").on("click",function(){
+        $(".tab-input").val("");
+      });
+      // 管理员密码
+      $(".login_right span").on("click",function(){
+        $("#admin").show();
+      });
+      $(".a_no").on("click",function(){
+        $("#admin").hide();
+        $(".key").hide();
+      });
+      $(".a_yes").on("click",function(){
+        $(".key").show();
+      });
+      $(".key_img").on("click",function(){
+        $(".key").hide();
+      });
+      // 回车,跳转到管理员界面      
+      $(".return").on("click",function(){
+        var aVal = $("#write").val();
+        if(aVal == 1){//如果取到的键值是回车
+          window.location.href="admin.html";         
+        }else{
+          alert("解锁密码错误！");
+        }
+      });
+      window.document.onkeydown= function(evt){
+       evt = window.event || evt;
+       var aVal = $("#write").val();
+       if(evt.keyCode == 13 && aVal == 1){//如果取到的键值是回车
+          window.location.href="admin.html";         
+       }else if(evt.keyCode == 13 && aVal != 1){
+          alert("解锁密码错误！");
+       }
+      }
+      // 移除已选口味
+      $(".change-q img").on("click",function(){
+        $(this).parents("li").remove();
+      });
+      $(".rBtn06").on("click",function(){
+        $("#change").show();
+      });
+      $(".change-close").on("click",function(){
+        $("#change").hide();
+      });
+    });
+    </script>
+</body>
+
+
+

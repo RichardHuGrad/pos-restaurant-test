@@ -97,7 +97,7 @@
                 </div>
        <?php } ?>
 
-            <div class="avoid-this text-center reprint"><button type="button" class="submitbtn"><?php echo __('Print Receipt'); ?></button></div>
+            <div class="avoid-this text-center reprint"><button style="background: #00cdef" type="button" class="submitbtn"><?php echo __('Print Receipt'); ?></button></div>
             <div class="order-summary">
                 <h3><?php echo __('Order Summary'); ?></h3>
                 <div class="order-summary-indent clearfix">

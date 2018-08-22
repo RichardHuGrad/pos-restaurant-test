@@ -87,7 +87,7 @@
                         <div class="sit-title" id="money1"><span>$</span><?php echo @round($orders_total[$orders_no[$table_size[$i][0]]['D']], 2)? @round($orders_total[$orders_no[$table_size[$i][0]]['D']], 2):'0.00';?></div>
                         <div class="sit-time" id="time1">
                           <!-- 占桌时间 -->
-                          <span><?php echo @$orders_time[$i]['D']?date("H:i", strtotime(@$orders_time[$i]['D'])):"0:00" ?></span>
+                          <span><?php echo @$orders_time[$i]['D']?date("h:i:sa", strtotime(@$orders_time[$i]['D'])):"0:00" ?></span>
                           
                           <p><small>No.</small><b><?php echo @$dine_table[$i]<=9?"0".@$dine_table[$i]:@$dine_table[$i]; ?></b></p>
                         </div>

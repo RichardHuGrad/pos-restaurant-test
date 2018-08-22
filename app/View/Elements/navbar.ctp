@@ -3,10 +3,10 @@
     // echo $this->Html->script(array('jquery', 'bootstrap.min.js'));
 ?>
 
-<div id="custom-bootstrap-menu" class="navbar navbar-default navbar-static-top" role="navigation">
+<!-- <div id="custom-bootstrap-menu" class="navbar navbar-default navbar-static-top" role="navigation">
     <div class="container-fluid ">
         <!-- brand -->
-        <div class="navbar-header">
+        <!-- <div class="navbar-header">
             <a href="<?php echo $this->Html->url(array('controller' => 'homes', 'action' => 'dashboard')) ?>">
             <?php 
                 if(substr($_SERVER['REQUEST_URI'],0,5)=='/skip')
@@ -25,7 +25,7 @@
                 </li>
                 <li>
                     <a id="admin-link" href="#" data-toggle="modal" data-target="#modal_input_password"><?php echo __('Admin Functions'); ?></a>
-                </li>
+                </li> -->
                 <!-- <li><div id='print-today-all' class="pull-left paid-txt">打印总单 </div></li>
                   <li><div id='print-today-items' class="pull-left paid-txt">打印销量</div></li> -->
              <!--
@@ -54,7 +54,7 @@
                 </li>
              -->
              
-                <li class="dropdown">
+                <!-- <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?php echo __('Languages'); ?>
     <span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -94,7 +94,35 @@
 
         </div>
     </div>
-</div>
+</div> -->
+  
+  <header class="product-header">
+        <?php echo $this->Html->css(array('style'));  ?>
+        <?php echo $this->Html->css(array('jianpan'));  ?>
+
+    </header>
+
+
+    <div class="container" style="min-height: 0px;">
+        <div class="header">
+  
+            <!-- logo -->
+            <?php echo $this->Html->image('logo-pos.png', array( 'alt' => 'logo', 'class' => 'logo')); ?>
+            <!-- <img src="img/logo-pos.png" alt="logo" class="logo" /> -->
+            <!-- 导航 -->
+            
+            <!-- <img src="images/nav.png" class="smalllogo" alt="pad菜单" /> -->
+            <!-- 登录按钮 -->
+            <div class="login_right">
+              <button type="button" name="button" onclick="loginout(this);">登出</button>
+              <span><a style="color: white" href="../../../homes/dashboard/" class="nav-a">主页</a></span>
+            </div>
+          
+
+            <!--<div class="logout"><a href="<?php echo $this->Html->url(array('controller' => 'homes', 'action' => 'logout')) ?>"><?php echo __('Logout')?></a></div>-->
+        </div>
+    </div>
+
 
    <div class="modal fade clearfix" id="modal_input_password" role="dialog">
        <div class="modal-dialog modal-lg" style="width:400px">

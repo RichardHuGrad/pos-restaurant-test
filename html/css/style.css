@@ -732,7 +732,7 @@ a {
         font-size: 1.8rem;
       }
       .page2-top button{
-        float: left;
+        float: right;
         width: auto;
         margin-left: 13px;
         background: #00cdef;
@@ -865,7 +865,7 @@ a {
       .tabright li{
         float: left;
         width: 20%;
-        padding: 15px 2%;
+        padding: 15px 1%;
         margin-right: 1%;
         margin-top: 1%;
         background-color: #fff;
