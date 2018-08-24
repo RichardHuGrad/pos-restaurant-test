@@ -42,79 +42,79 @@
 
         <div class="page2-content">
             <div class="page2-left">
-          <div class="page2-top">
-            <h4><?php echo __('Order No.')?><?php echo @$Order_detail['Order']['order_no']; ?>, <?php echo __('Table No.')?><?php echo $table; ?><?php echo @$Order_detail['Order']['phone']!=''?(', Tel: '.$Order_detail['Order']['phone']):''; ?></h4>
-            <button type="button" name="button" class="newPhone">添加外卖手机号码</button>
-            <!-- 外卖手机号 -->
-                    <div class="lock-div">
-                        <input type="text" name="" value="" placeholder="请输入手机号" id="phone">
-                        <img src="../../../html/images/icon-08.png" alt="关闭" class="closeBox">
-                      </div>
-          </div>
-          <div class="page2-left-c">
-            <!-- 左侧菜单 -->
-            <ul class="page2-tabnav">
-                <?php
-                if (!empty($records)) {
-                    foreach ($records as $key => $category) {
-                        ?>
-                        <li <?php if ($key == 0) echo "class='active'" ?>><a style="line-height: 40px;" data-toggle="tab" href="#tab<?php echo $category['Category']['id']; ?>"><?php echo $category['Category']['eng_name'] . "<br/>" . $category['Category']['zh_name']; ?></a></li>
-                        <?php
+              <div class="page2-top">
+                <h4><?php echo __('Order No.')?><?php echo @$Order_detail['Order']['order_no']; ?>, <?php echo __('Table No.')?><?php echo $table; ?><?php echo @$Order_detail['Order']['phone']!=''?(', Tel: '.$Order_detail['Order']['phone']):''; ?></h4>
+                <button type="button" name="button" class="newPhone">添加外卖手机号码</button>
+                <!-- 外卖手机号 -->
+                        <div class="lock-div">
+                            <input type="text" name="" value="" placeholder="请输入手机号" id="phone">
+                            <img src="../../../html/images/icon-08.png" alt="关闭" class="closeBox">
+                          </div>
+              </div>
+              <div class="page2-left-c">
+                <!-- 左侧菜单 -->
+                <ul class="page2-tabnav">
+                    <?php
+                    if (!empty($records)) {
+                        foreach ($records as $key => $category) {
+                            ?>
+                            <li <?php if ($key == 0) echo "class='active'" ?>><a style="line-height: 40px;" data-toggle="tab" href="#tab<?php echo $category['Category']['id']; ?>"><?php echo $category['Category']['eng_name'] . "<br/>" . $category['Category']['zh_name']; ?></a></li>
+                            <?php
+                        }
                     }
-                }
-                ?>
-            </ul>
-            <a href="javascript:;" class="tab-bot">
-              <img src="../../../html/images//btn01.png" alt="向下按钮">
-            </a>
-            <!-- 右侧菜品选择 -->
-            <div class="page2-tavright">
-              <!-- 搜索 -->
-              <input type="text" name="" placeholder="搜索" class="tab-input" />
-              <img src="../../../html/images/icon-08.png" alt="去除搜索内容" class="tab-close" />
-              <!-- 内容 -->
-              <div class="tab-content tabright tab1 <?php if(@$Order_detail['Order']['table_status']=='P') echo 'hide'; ?>">
+                    ?>
+                </ul>
+                <a href="javascript:;" class="tab-bot">
+                  <img src="../../../html/images//btn01.png" alt="向下按钮">
+                </a>
+                <!-- 右侧菜品选择 -->
+                <div class="page2-tavright">
+                  <!-- 搜索 -->
+                  <input type="text" name="" placeholder="搜索" class="tab-input" />
+                  <img src="../../../html/images/icon-08.png" alt="去除搜索内容" class="tab-close" />
+                  <!-- 内容 -->
+                  <div class="tab-content tabright tab1 <?php if(@$Order_detail['Order']['table_status']=='P') echo 'hide'; ?>">
 
-                <?php
-                if (!empty($records)) {
-                    $count = 0;
-                    foreach ($records as $key => $category) {
-                        $count++;
-                        ?>
-                        <div id="tab<?php echo $category['Category']['id']; ?>" class="tab-pane fade in <?php if ($key == 0) echo "active" ?>">
-                            <div class="clearfix">
-                                <div class="clearfix row productbox">
-                                    <?php if (!empty($category['Cousine'])) { ?>
-                                        <ul>
-                                            <?php
-                                            foreach ($category['Cousine'] as $items) {
-                                                ?>
-                                                <li class="add_items" alt="<?php echo $items['id']; ?>" title="Add to Cart">
-                                                    <div class="clearfixrow" style="font-size: medium;">
-                                                        <div class="dish-price">$<?php echo number_format($items['price'], 2); ?></div>
-                                                        <div class="dish-title"><div class="name-title"><strong><?php echo $items['zh_name'] . "<br/>" . $items['eng_name']; ?></strong></div></div>
-                                                    </div>
-                                                </li>
+                    <?php
+                    if (!empty($records)) {
+                        $count = 0;
+                        foreach ($records as $key => $category) {
+                            $count++;
+                            ?>
+                            <div id="tab<?php echo $category['Category']['id']; ?>" class="tab-pane fade in <?php if ($key == 0) echo "active" ?>">
+                                <div class="clearfix">
+                                    <div class="clearfix row productbox">
+                                        <?php if (!empty($category['Cousine'])) { ?>
+                                            <ul>
                                                 <?php
-                                            }
-                                            ?>
-                                        </ul>
-                                    <?php
-                                    } else {
-                                        echo "<div class='noitems'>No Items Available</div>";
-                                    }
-                                    ?>
+                                                foreach ($category['Cousine'] as $items) {
+                                                    ?>
+                                                    <li class="add_items" alt="<?php echo $items['id']; ?>" title="Add to Cart">
+                                                        <div class="clearfixrow" style="font-size: medium;">
+                                                            <div class="dish-price">$<?php echo number_format($items['price'], 2); ?></div>
+                                                            <div class="dish-title"><div class="name-title"><h4><?php echo $items['zh_name'] . "<br/>" . $items['eng_name']; ?></h4></div></div>
+                                                        </div>
+                                                    </li>
+                                                    <?php
+                                                }
+                                                ?>
+                                            </ul>
+                                        <?php
+                                        } else {
+                                            echo "<div class='noitems'>No Items Available</div>";
+                                        }
+                                        ?>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <?php
+                            <?php
+                        }
                     }
-                }
-                ?>
-              </div>
-            </div>
+                    ?>
+                  </div>
+                </div>
 
-          </div>
+              </div>
         </div>
 
         <div class="page2-right">
@@ -198,9 +198,6 @@
                 </div>
               </div>
 
-
-
-
             </div>
 
         </div>
@@ -214,43 +211,69 @@
 
 </div>
 
-<script id="taste-component" type="text/template">
-    <div class="modal fade clearfix" id="taste-component-modal" role="dialog">
-        <div class="modal-dialog modal-lg">
+<div class="modal fade clearfix" id="taste-component-modal" role="dialog">
+    <div class="modal-dialog modal-lg">
 
-            <!-- Modal content-->
-            <div class="modal-content clearfix">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title"><?php echo __('Taste');?></h4>
+        <!-- Modal content-->
+        <div class="modal-content clearfix">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <ul id="taste-component-items" class="clearfix">
+
+                </ul>
+                <div class="clearfix">
+                    <h4>已选:</h4>
                 </div>
-                <div class="modal-body clearfix">
-                    <ul id="taste-component-items" class="clearfix">
+                <ul id="selected-extra" class="clearfix">
 
-                    </ul>
-                    <div class="clearfix">
-
-                        已选:
-                    </div>
-                    <ul id="selected-extra" class="clearfix">
-
-                    </ul>
+                </ul>
+            </div>
+            <div class="modal-body clearfix">
+                <div class="clearfix">
+                    <h4>特殊口味: 
+                    <input id="taste-component-special" type="text" placeholder="e.g. no onions, no mayo" size="30" style="height:30px"></h4>
                 </div>
-                <div class="modal-footer clearfix">
-                    <div class="clearfix">
-                        <label class="pull-left" for="taste-component-special">Special Instructions: </label>
-                        <input class="pull-left" id="taste-component-special" type="text" placeholder="e.g. no onions, no mayo" size="30" style="height:26px">
-                    </div>
-                    <div class="clearfix">
-                         <button style="display:none;" type="button" id="taste-component-clear" class="pull-left btn btn-lg btn-danger"><?php echo __('Clear');?></button>
-                        <button type="button" id="taste-component-save" class="pull-right btn btn-lg btn-success"><?php echo __('Save');?></button>
-                    </div>
-                </div>
+            </div>
+            <div class="modal-footer clearfix">
+                <button type="button" id="change-flavor-component-save" class="pull-right btn btn-lg btn-success" data-dismiss="modal">Save 保存</button>
             </div>
         </div>
     </div>
-</script>
+</div>
 
+<div class="modal fade clearfix" id="change-price-component-modal" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content clearfix">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4>修改价格</h4>
+            </div>
+            <div class="modal-body clearfix">
+                <h4>新价格： <input id="change-price-component-price" type="number" placeholder="$ 0.00" style="height:30px"></h4>
+            </div>
+            <div class="modal-footer clearfix">                  
+                <button type="button" id="change-price-component-save" class="pull-right btn btn-lg btn-success" data-dismiss="modal">Save 保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade clearfix" id="change-quantity-component-modal" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content clearfix">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4>修改数量</h4>
+            </div>
+            <div class="modal-body clearfix">
+                <h4>新数量: <input id="change-quantity-component" type="number" min="1" step="1" style="height:30px"></h4>
+            </div>
+            <div class="modal-footer clearfix">                  
+                <button type="button" id="change-quantity-component-save" class="pull-right btn btn-lg btn-success" data-dismiss="modal">Save 保存</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script id="single-extra-component" type="text/template">
     <div class="modal fade clearfix" id="single-extra-component-modal" role="dialog">
@@ -291,45 +314,6 @@
                          <button style="display:none;" type="button" id="single-extra-component-clear" class="pull-left btn btn-lg btn-danger">Clear 清除</button>
                         <button type="button" id="single-extra-component-save" class="pull-right btn btn-lg btn-success">Save 保存</button>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</script>
-
-
-<script id="change-price-component" type="text/template">
-    <div class="modal fade clearfix" id="change-price-component-modal" role="dialog">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content clearfix">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4>{0}</h4>
-                </div>
-                <div class="modal-body clearfix">
-                    New price: <input id="change-price-component-price" type="number" min="0" step="1" placeholder="eg. 0.00" style="height:30px">
-                </div>
-                <div class="modal-footer clearfix">                  
-                    <button type="button" id="change-price-component-save" class="pull-right btn btn-lg btn-success">Save 保存</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</script>
-
-<script id="change-quantity-component" type="text/template">
-    <div class="modal fade clearfix" id="change-quantity-component-modal" role="dialog">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content clearfix">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4>{0}</h4>
-                </div>
-                <div class="modal-body clearfix">
-                    New quantity: <input name="quantity" type="number" min="1" step="1" style="height:30px">
-                </div>
-                <div class="modal-footer clearfix">                  
-                    <button type="button" id="change-quantity-component-save" class="pull-right btn btn-lg btn-success">Save 保存</button>
                 </div>
             </div>
         </div>
@@ -422,6 +406,20 @@ echo $this->fetch('script');
     // });
 
 
+    /***************************************************************************************************************/
+
+    function isSelect(data){
+
+        //console.log($("#" + data.id + ""));
+        if($("#" + data.id + "").hasClass("select")){
+            $("#" + data.id + "").removeClass("select");
+        }else{
+            $("#" + data.id + "").addClass("select");
+        }
+    }
+
+    var click = 0;
+
     //加菜到summaryPanel里
     $(".add_items").on("click", function () {
         var item_id = $(this).attr("alt");
@@ -429,42 +427,209 @@ echo $this->fetch('script');
         var type = "<?php echo $type ?>";
         var price = $(".dish-price")[$(this).attr("alt") - 1].innerText;
         var cuisine = $(".name-title").children()[$(this).attr("alt") - 1].innerText;
-        console.log(price);
-        console.log(cuisine);
+        //console.log(price);
+        //console.log(cuisine);
 
-        $("#order-component").append("<li class='order-item' data-order-item-id=" + item_id + " id='order-item-" + item_id + "' data-state='1' style='width: 100%; background-color: rgb(240, 240, 240);''><a href='javascript:;'><div class = 'list-left'><h4>" + cuisine + "</h4><p id='tasteOption'></p></div><div class='list-center'>" + price + "</div><div class='list-right'>1</div></li>"); 
+        click = click + 1;
+
+        $("#order-component").append("<li onclick='isSelect(this)' class='order-item' data-order-item-id=" + item_id + " id='order-item-" + click + "' data-state='1' style='margin-bottom: 2px; width: 100%; background-color: rgb(240, 240, 240);''><a href='javascript:;'><div class = 'list-left'><h4>" + cuisine + "</h4><p id='tasteOption'></p></div><div class='list-center'>" + price + "</div><div class='list-right'>1</div></li>"); 
     });
 
-    $(".order-item").on("click", function () {
-        console.log($(this));
+    //删除已选菜品
+    // $('#delete-btn').on('click', function () {
+    //     var selected_item_id_list = getSelectedItem();
 
-    })
+    //     if (selected_item_id_list.length == 0) {
+    //         // alert("No item selected 没有选择菜");
+    //          $.notify("No item selected 没有选择菜",  { position: "top center", className:"warn"});
+    //         return false;
+    //     }
 
+    //     $.ajax({
+    //         url: "<?php echo $this->Html->url(array('controller' => 'order', 'action' => 'removeitem')); ?>",
+    //         method: "post",
+    //         data: {selected_item_id_list: selected_item_id_list, table: "<?php echo $table ?>", type: "<?php echo $type ?>", order_no: $("#Order_no").val()},
+    //         success: function(html) {
+    //             renderOrder();
+    //         }
+    //     });
 
+    // });
 
-
-
-
-
+    //删除已选菜品
     $('#delete-btn').on('click', function () {
-        var selected_item_id_list = getSelectedItem();
-
-        if (selected_item_id_list.length == 0) {
-            // alert("No item selected 没有选择菜");
-             $.notify("No item selected 没有选择菜",  { position: "top center", className:"warn"});
-            return false;
-        }
-
-        $.ajax({
-            url: "<?php echo $this->Html->url(array('controller' => 'order', 'action' => 'removeitem')); ?>",
-            method: "post",
-            data: {selected_item_id_list: selected_item_id_list, table: "<?php echo $table ?>", type: "<?php echo $type ?>", order_no: $("#Order_no").val()},
-            success: function(html) {
-                renderOrder();
+        for(var i = 0; i < $("#order-component > li").length; i++){
+            if($("#order-component > li").hasClass("select")){
+                $(".select").remove();
             }
-        });
+        }
+    });
+
+
+    $('#change-price-btn').on('click', function() {
+        // var selected_item_id_list = getSelectedItem();
+
+        // if (selected_item_id_list.length == 0) {
+        //     // alert("No item selected");
+        //      $.notify("No item selected 没有选择菜",  { position: "top center", className:"warn"});
+        //     return false;
+        // }
+
+        // //popup an input for new price
+        // $('#change-price-component-modal').modal('hide').remove();
+        // var changePriceComponent = ChangePriceComponent.init();
+        // $('body').append(changePriceComponent);
+
+
+        //$('#change-price-component-modal').modal('show');
+
+        // for(var i = 0; i < $(".select").length; i++){
+        //     $(".select")[i].innerHTML = 123;
+        // }
+        
+
 
     });
+
+    $('#take-out-btn').on('click', function() {
+        alert("外卖！");
+        // var selected_item_id_list = getSelectedItem();
+
+        // if (selected_item_id_list.length == 0) {
+        //     // alert("No item selected");
+        //     $.notify("No item selected 没有选择菜",  { position: "top center", className:"warn"});
+        //     return false;
+        // }
+
+        // $.ajax({
+        //     url: "<?php echo $this->Html->url(array('controller' => 'order', 'action' => 'takeout')); ?>",
+        //     method: "post",
+        //     data: {selected_item_id_list: selected_item_id_list, table: "<?php echo $table ?>", type: "<?php echo $type ?>"},
+        //     success: function (html) {
+        //         renderOrder();
+        //     },
+        // });
+    });
+
+
+    //修改价格保存
+    $('#change-price-component-save').on('click', function() {
+        var change_price = $('#change-price-component-price').val();
+
+        for(var i = 0; i < $('.select').length; i++){
+            $('.select')[i].children[0].childNodes[1].innerText = ("$" + change_price);
+        }
+    });
+
+    //修改数量保存
+    $('#change-quantity-component-save').on('click', function() {
+        var change_quantity = $('#change-quantity-component').val();
+
+        for(var i = 0; i < $('.select').length; i++){
+            $('.select')[i].children[0].childNodes[2].innerText = change_quantity;
+        }
+    });
+
+
+    // $('body').on('click', '#change-quantity-component-save', function() {
+
+    //     var quantity = $('input[name="quantity"]').val();
+    //     if(quantity == ''){
+    //       alert("Please input quantity!");
+    //       $('input[name="quantity"]').focus();
+    //       return;
+    //     }
+    //     quantity = Math.round(parseInt(quantity));
+        
+    //     var selected_item_id_list = getSelectedItem();
+
+    //     $.ajax({
+    //         url: "<?php echo $this->Html->url(array('controller' => 'order', 'action' => 'changeQuantity')); ?>",
+    //         method: "post",
+    //         data: {
+    //             selected_item_id_list: selected_item_id_list,
+    //             quantity: quantity,
+    //             table: "<?php echo $table ?>",
+    //             type: "<?php echo $type ?>",
+    //             order_no: $("#Order_no").val()
+    //         },
+    //         success: function(html) {
+    //             // $(".summary_box").html(html);
+    //             $('#change-quantity-component-modal .close').trigger('click');
+    //             renderOrder();
+    //         }
+    //     });
+    // });
+
+
+
+    // $('body').on('click', '#change-price-component-save', function() {
+    //     var selected_item_id_list = getSelectedItem();
+
+    //     var price = $('#change-price-component-price').val();
+    //     price = Math.round(parseFloat(price) * 100) / 100;
+
+    //     $.ajax({
+    //         url: "<?php echo $this->Html->url(array('controller' => 'order', 'action' => 'changePrice')); ?>",
+    //         method: "post",
+    //         data: {
+    //             selected_item_id_list: selected_item_id_list,
+    //             price: price,
+    //             table: "<?php echo $table ?>",
+    //             type: "<?php echo $type ?>",
+    //             order_no: $("#Order_no").val()
+    //         },
+    //         success: function(html) {
+    //             // $(".summary_box").html(html);
+    //             renderOrder();
+    //             $('#change-price-component-modal .close').trigger('click');
+    //         }
+    //     });
+    // });
+
+    $('body').on('click', '#urge-btn', function() {
+        alert("催菜！");
+        // var selected_item_id_list = getSelectedItem();
+
+        // if (selected_item_id_list.length == 0) {
+        //     // alert("No item selected");
+        //      $.notify("No item selected 没有选择菜",  { position: "top center", className:"warn"});
+        //     return false;
+        // }
+
+        // $.ajax({
+        //     url: "<?php echo $this->Html->url(array('controller' => 'order', 'action' => 'urgeItem')); ?>",
+        //     method: "post",
+        //     data: {
+        //         selected_item_id_list: selected_item_id_list,
+        //         table: "<?php echo $table ?>",
+        //         type: "<?php echo $type ?>",
+        //         order_no: $("#Order_no").val()
+        //     },
+        //     success: function(html) {
+        //         // $(".summary_box").html(html);
+        //         renderOrder();
+        //     }
+        // });
+    });
+
+
+    // $('body').on('click', '#quantity-btn', function() {
+    //     var selected_item_id_list = getSelectedItem();
+
+    //     if (selected_item_id_list.length == 0) {
+    //         // alert("No item selected");
+    //         $.notify("No item selected 没有选择菜",{ position: "top center",className:"warn" });
+    //         return false;
+    //     }
+
+    //     $('#change-quantity-component-modal').modal('hide').remove();
+    //     var changeQuantityComponent = ChangeQuantityComponent.init();
+    //     $('body').append(changeQuantityComponent);
+    // });
+
+
+    /***************************************************************************************************************/
     //get order_item_id of all selected items
     var getSelectedItem = function () {
         var order_item_id_list = [];
@@ -508,21 +673,21 @@ echo $this->fetch('script');
     $("#send-to-kitchen-btn").on('click', function() {
         $.ajax({
             url: "<?php echo $this->Html->url(array('controller' => 'order', 'action' => 'printToKitchen')); ?>",
-            method: "post",
+            type: "post",
             data: {
                 order_no: $("#Order_no").val(),
                 type: "<?php echo $type ?>",
                 table: '<?php echo $table ?>',
             },
             success: function(html) {
-                // $(".summary_box").html(html);
-                // renderOrder();
-                // <?php
-                // if($type == 'D')
-                //   echo "window.location = '{$this->Html->url(array('controller' => 'homes', 'action' => 'dashboard'))} ' ;";
-                // else
-                //   echo "window.location = window.location;"
-                // ?>              
+                $(".summary_box").html(html);
+                renderOrder();
+                <?php
+                if($type == 'D')
+                  echo "window.location = '{$this->Html->url(array('controller' => 'homes', 'action' => 'dashboard'))} ' ;";
+                else
+                  echo "window.location = window.location;"
+                ?>              
                 
             },
             beforeSend: function () {
@@ -533,17 +698,17 @@ echo $this->fetch('script');
 
     $(document).ready(function () {
       
-        $('#edit-phone-component-modal').on('shown.bs.modal', function () {
-            $( "input[name='phone']").focus();
-        })  
+        // $('#edit-phone-component-modal').on('shown.bs.modal', function () {
+        //     $( "input[name='phone']").focus();
+        // })  
 
-        $('#change-price-component-modal').on('shown.bs.modal', function () {
-            $( "input[type='number']").focus();
-        })  
+        // $('#change-price-component-modal').on('shown.bs.modal', function () {
+        //     $( "input[type='number']").focus();
+        // })  
 
-        $('#change-quantity-component-modal').on('shown.bs.modal', function () {
-            $( "input[name='quantity']").focus();
-        })  
+        // $('#change-quantity-component-modal').on('shown.bs.modal', function () {
+        //     $( "input[name='quantity']").focus();
+        // })  
             
 
         $(".search-clear").click(function () {
@@ -683,24 +848,7 @@ echo $this->fetch('script');
     });
 
 
-    $('#take-out-btn').on('click', function() {
-        var selected_item_id_list = getSelectedItem();
-
-        if (selected_item_id_list.length == 0) {
-            // alert("No item selected");
-            $.notify("No item selected 没有选择菜",  { position: "top center", className:"warn"});
-            return false;
-        }
-
-        $.ajax({
-            url: "<?php echo $this->Html->url(array('controller' => 'order', 'action' => 'takeout')); ?>",
-            method: "post",
-            data: {selected_item_id_list: selected_item_id_list, table: "<?php echo $table ?>", type: "<?php echo $type ?>"},
-            success: function (html) {
-                renderOrder();
-            },
-        });
-    });
+    
 
 
     var TastesComponent = (function() {
@@ -1248,10 +1396,10 @@ echo $this->fetch('script');
     }();
     
     // when part of selected items are printed, only allow delete action
-    $('body').on('click contentChanged','#order-component, #select-all',function() {
-        // console.log('click');
-        ChangeBtnDisabled(['#delete-btn, #change-price-btn' , '#urge-btn']);
-    });
+    // $('body').on('click contentChanged','#order-component, #select-all',function() {
+    //     // console.log('click');
+    //     ChangeBtnDisabled(['#delete-btn, #change-price-btn' , '#urge-btn']);
+    // });
 
     function ChangeBtnDisabled(selectors) {
         
@@ -1280,116 +1428,10 @@ echo $this->fetch('script');
     });
 
 
-    $('#change-price-btn').on('click', function() {
-        var selected_item_id_list = getSelectedItem();
-
-        if (selected_item_id_list.length == 0) {
-            // alert("No item selected");
-             $.notify("No item selected 没有选择菜",  { position: "top center", className:"warn"});
-            return false;
-        }
-
-        //popup an input for new price
-        $('#change-price-component-modal').modal('hide').remove();
-        var changePriceComponent = ChangePriceComponent.init();
-        $('body').append(changePriceComponent);
-
-    });
+    
 
 
-    $('body').on('click', '#change-price-component-save', function() {
-        var selected_item_id_list = getSelectedItem();
-
-        var price = $('#change-price-component-price').val();
-        price = Math.round(parseFloat(price) * 100) / 100;
-
-        $.ajax({
-            url: "<?php echo $this->Html->url(array('controller' => 'order', 'action' => 'changePrice')); ?>",
-            method: "post",
-            data: {
-                selected_item_id_list: selected_item_id_list,
-                price: price,
-                table: "<?php echo $table ?>",
-                type: "<?php echo $type ?>",
-                order_no: $("#Order_no").val()
-            },
-            success: function(html) {
-                // $(".summary_box").html(html);
-                renderOrder();
-                $('#change-price-component-modal .close').trigger('click');
-            }
-        });
-    });
-
-    $('body').on('click', '#urge-btn', function() {
-        var selected_item_id_list = getSelectedItem();
-
-        if (selected_item_id_list.length == 0) {
-            // alert("No item selected");
-             $.notify("No item selected 没有选择菜",  { position: "top center", className:"warn"});
-            return false;
-        }
-
-        $.ajax({
-            url: "<?php echo $this->Html->url(array('controller' => 'order', 'action' => 'urgeItem')); ?>",
-            method: "post",
-            data: {
-                selected_item_id_list: selected_item_id_list,
-                table: "<?php echo $table ?>",
-                type: "<?php echo $type ?>",
-                order_no: $("#Order_no").val()
-            },
-            success: function(html) {
-                // $(".summary_box").html(html);
-                renderOrder();
-            }
-        });
-    });
-
-
-    $('body').on('click', '#quantity-btn', function() {
-        var selected_item_id_list = getSelectedItem();
-
-        if (selected_item_id_list.length == 0) {
-            // alert("No item selected");
-            $.notify("No item selected 没有选择菜",{ position: "top center",className:"warn" });
-            return false;
-        }
-
-        $('#change-quantity-component-modal').modal('hide').remove();
-        var changeQuantityComponent = ChangeQuantityComponent.init();
-        $('body').append(changeQuantityComponent);
-    });
-
-    $('body').on('click', '#change-quantity-component-save', function() {
-
-        var quantity = $('input[name="quantity"]').val();
-        if(quantity == ''){
-          alert("Please input quantity!");
-          $('input[name="quantity"]').focus();
-          return;
-        }
-        quantity = Math.round(parseInt(quantity));
-        
-        var selected_item_id_list = getSelectedItem();
-
-        $.ajax({
-            url: "<?php echo $this->Html->url(array('controller' => 'order', 'action' => 'changeQuantity')); ?>",
-            method: "post",
-            data: {
-                selected_item_id_list: selected_item_id_list,
-                quantity: quantity,
-                table: "<?php echo $table ?>",
-                type: "<?php echo $type ?>",
-                order_no: $("#Order_no").val()
-            },
-            success: function(html) {
-                // $(".summary_box").html(html);
-                $('#change-quantity-component-modal .close').trigger('click');
-                renderOrder();
-            }
-        });
-    });
+    
 
     $('body').on('click', '#edit-phone-component-save', function() {
 
@@ -1453,16 +1495,7 @@ echo $this->fetch('script');
         $("#txt2").val(basic);
       })
 
-    function isSelect(){
-        $("#order-component > li").on("click",function(){
-        console.log(12314);
-        if($(this).hasClass("select")){
-            $(this).removeClass("select");
-        }else{
-            $(this).addClass("select");
-        }
-      });
-    }
+   
         
         
     $(document).ready(function(){
@@ -1488,10 +1521,12 @@ echo $this->fetch('script');
       $(".content").css("height",winH+"px");
       if(winW > 768){
         $(".page2-content .page2-left,.page2-content .page2-right .cashierbox .right-tab").css("height",winH+"px");
-        $(".page2-content .page2-left-c").css("height",winH1+"px");
+        $(".right-list").css("height", winH - 300 + "px");
+        $(".page2-content .page2-left-c, .right-list").css("height",winH1+"px");
       }else{
         $(".page2-content .page2-left").css({"height":"500px"});
         $(".page2-content .page2-left-c").css("height","410px");
+        $(".right-list").css("height","410px");
       }
 
 
