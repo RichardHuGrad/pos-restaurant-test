@@ -1,108 +1,55 @@
-<header >
-    <?php echo $this->element('navbar'); ?>
-    <style>
-        .payment-group {
-            margin-bottom: 15px;
-        }
-        .tip-group {
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" href="../../../html/css/style.css" />
+    <link rel="stylesheet" href="../../../html/css/jianpan.css" />
+  </head>
 
-        }
+  <body>
+    <div class="container">
+      <!-- 头部 -->
+      <div class="header">
+      
+        <!-- logo -->
+        <?php echo $this->Html->image('logo-pos.png', array( 'alt' => 'logo', 'class' => 'logo')); ?>
+        <!-- <img src="img/logo-pos.png" alt="logo" class="logo" /> -->
+        <!-- 导航 -->
 
-        .tip-paid-by input[type="radio"] {
-            display: inline-block;
-            /*margin: 10px;*/
-            vertical-align: middle;
-            margin-right: 3%;
-            visibility:hidden;
-        }
-
-        .tip-paid-by img {
-            background-color: #F8DCDC;
-            width: 20px;
-        }
-        .tip-paid-by label {
-            display: inline-block;
-            width: 80px;
-            height: 50px;
-            margin-top: 10px;
-            margin-bottom: 10px;
-            border-radius: 10px;
-
-            background-color: #F8DCDC;
-            color: #FFFFFF;
-            vertical-align: middle;
-            margin-right: 3%;
-        }
-
-        .tip-paid-by input[type="radio"]:checked+label{
-            background: #C9302C;
-        }
-        .tip-paid-by input[type="radio"]:checked+label img{
-            background: #C9302C;
-        }
-
-        /*for notify.js*/
-        .notifyjs-bootstrap-warn {
-            /*height: 100px;*/
-            font-size: 20px;
-            /*text-align: center;*/
-            /*width: 100px;*/
-        }
-
-    </style>
-
-</header>
-<div class="pay container-fluid">
-    <div class="order-wrap">
-        <?php echo $this->Session->flash(); ?>
-        <div class="col-md-4 col-sm-4 col-xs-12 order-left">
-            <h2><?php echo __('Order No.'); ?><?php echo $Order_detail['Order']['order_no'] ?><br><?php echo __('Table'); ?> <?php echo (($type == 'D') ? '[[堂食]]' : (($type == 'T') ? '[[外卖]]' : (($type == 'W') ? '[[等候]]' : ''))); ?>#<?php echo $table; ?><?php echo @$Order_detail['Order']['reason']!=''?('<br />'.$Order_detail['Order']['reason']):''; ?></h2>
-
-            <div class="paid-box">
-                <div class="checkbox-btn">
-                    <input type="checkbox" value="value-1" id="rc1" name="rc1" <?php if ($Order_detail['Order']['table_status'] == 'P') echo "checked='checked'"; ?>/>
-                    <label for="rc1" disabled><?php echo __('Paid'); ?></label>
-                </div>
-            </div>
-            <?php
-            if ($Order_detail['Order']['table_status'] <> 'P') {
-                ?>
-                <div class="table-box dropdown"><a href="" class="dropdown-toggle"  data-toggle="dropdown"><?php echo __('Change Table'); ?></a>
-                    <ul class="dropdown-menu">
-                        <div class="customchangemenu clearfix">
-                            <div class="left-arrow"></div>
-                            <div class="col-md-12 col-sm-12 col-xs-12 text-center timetable"><?php echo __('DINE IN'); ?></div>
-                            <?php for ($t = 1; $t <= DINEIN_TABLE; $t++) {
-                                if (!@$orders_no[$t]['D']) {
-                                    ?>
-                                    <div class="col-md-6 col-sm-6 col-xs-6 text-center timetable" style="cursor:pointer" onclick="location.href='<?php echo $this->Html->url(array('controller' => 'homes', 'action' => 'move_order', 'table' => $t, 'type' => 'D', 'order_no' => @$Order_detail['Order']['order_no'], 'ref' => 'pay')); ?>';">D<?php echo $t; ?></div>
-                                <?php }
-                            } ?>
-                            <div class="col-md-12 col-sm-12 col-xs-12 text-center timetable"><?php echo __('TAKE OUT'); ?></div>
-                            <?php for ($t = 1; $t <= TAKEOUT_TABLE; $t++) {
-                                if (!@$orders_no[$t]['T']) {
-                                    ?>
-                                    <div class="col-md-6 col-sm-6 col-xs-6 text-center timetable" style="cursor:pointer" onclick="location.href='<?php echo $this->Html->url(array('controller' => 'homes', 'action' => 'move_order', 'table' => $t, 'type' => 'T', 'order_no' => @$Order_detail['Order']['order_no'], 'ref' => 'pay')); ?>';">T<?php echo $t; ?></div>
-                                <?php }
-                            } ?>
-                            <div class="col-md-12 col-sm-12 col-xs-12 text-center timetable"><?php echo __('Delivery'); ?></div>
-                            <?php for ($t = 1; $t <= WAITING_TABLE; $t++) {
-                                if (!@$orders_no[$t]['W']) {
-                            ?>
-                                    <div class="col-md-6 col-sm-6 col-xs-6 text-center timetable" style="cursor:pointer" onclick="location.href='<?php echo $this->Html->url(array('controller' => 'homes', 'action' => 'move_order', 'table' => $t, 'type' => 'W', 'order_no' => @$Order_detail['Order']['order_no'], 'ref' => 'pay')); ?>';">Delv<?php echo $t; ?></div>
-                                <?php }
-                             } ?>
-                        </div>
-                    </ul>
-                </div>
-       <?php } ?>
-
-            <div class="avoid-this text-center reprint"><button style="background: #00cdef" type="button" class="submitbtn"><?php echo __('Print Receipt'); ?></button></div>
-            <div class="order-summary">
-                <h3><?php echo __('Order Summary'); ?></h3>
-                <div class="order-summary-indent clearfix">
-                    <ul>
-                        <?php
+        <ul class="nav">
+          <li><a href="../../../homes/dashboard" class="nav-a">主页</a></li>
+          <li class="barnav">
+            <a href="javascript:;" class="nav-a">语言</a>
+            <ul style="display: none;">
+              <li><a href="javascript:;">English</a></li>
+              <li><a href="javascript:;">中文</a></li>
+            </ul>
+          </li>
+          <li><a href="javascript:;" onclick="huiyuan();" class="nav-a member">会员</a></li>
+          <li><a onclick="paidui();" class="nav-a">排队</a></li>
+          <li><a onclick="quhao();"class="nav-a">取号</a></li>
+        </ul>
+        <?php echo $this->Html->image('nav.png', array( 'class' => 'smalllogo', 'alt' => 'pad菜单')); ?>
+        <!-- <img src="images/nav.png" class="smalllogo" alt="pad菜单" /> -->
+        <!-- 登录按钮 -->
+        <div class="login_right">
+          <button type="button" name="button" onclick="loginout(this);">登出</button>
+          <span>管理员</span>
+        </div>
+      </div>
+      <!-- 主体 -->
+      <div class="page2-content payment">
+        <div class="page2-left">
+          <div class="page2-top">
+            <h4><?php echo __('Order No.'); ?><?php echo $Order_detail['Order']['order_no'] ?><?php echo __('Table'); ?> <?php echo (($type == 'D') ? '[[堂食]]' : (($type == 'T') ? '[[外卖]]' : (($type == 'W') ? '[[等候]]' : ''))); ?>#<?php echo $table; ?><?php echo @$Order_detail['Order']['reason']!=''?('<br />'.$Order_detail['Order']['reason']):''; ?></h4>
+            <button type="button" name="button">换&nbsp;桌</button>
+          </div>
+          <div class="page2-tavright">
+          <div class="pay-left">
+                <div class="pay-title"><?php echo __('Order Summary'); ?></div>
+                <ul class="right-list">
+                  <!-- 背景色 class="rig-act" -->
+                  <?php
                         if (!empty($Order_detail['OrderItem'])) {
                             foreach ($Order_detail['OrderItem'] as $key => $value) {
                                 # code...
@@ -121,695 +68,820 @@
                                     }
                                 // }
                                 ?>
-                                <li class="clearfix">
-                                    <div class="row">
-                                        <div class="col-md-9 col-sm-8 col-xs-8">
-                                            <div class="pull-left titlebox1">
-                                                <!-- to show name of item -->
-                                                <div class="less-title"><?php echo $value['name_en'] . "<br/>" . $value['name_xh']; ?></div>
+                  <li>
+                    <a href="javascript:;">
+                      <div class="list-left">
+                        <h4><?php echo $value['name_en'] . "<br/>" . $value['name_xh']; ?></h4>
+                        <!-- <p>Option: 中辣；少麻；去葱；加卤蛋；加面；加肉；改米线；多花生</p> -->
+                        <p><?php echo implode(",", $selected_extras_name); ?></p>
+                      </div>
+                      <div class="list-center">
+                        <i class="pri"><?php echo ($value['price'] + $value['extras_amount']); ?></i> <span>(15%off)</span>
+                      </div>
+                      <div class="list-right"><?php echo $value['qty']; ?></div>
+                    </a>
+                  </li>
 
-                                                <!-- to show the extras item name -->
-                                                <div class="less-txt"><?php echo implode(",", $selected_extras_name); ?></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3 col-sm-4 col-xs-4 text-right price-txt">
-                                            $<?php echo ($value['price'] + $value['extras_amount']); ?><?php echo $value['qty'] > 1 ? "x" . $value['qty'] : "" ?>
-                                        </div>
-                                    </div>
-                                </li>
-    <?php }
-}
-?>
-                    </ul>
-                </div>
-
-            </div>
-        </div>
-        <div class="col-md-8 col-sm-8 col-xs-12 RIGHT-SECTION">
-            <div class="clearfix total-payment">
-                <ul>
-                    <li class="clearfix">
-                        <div class="row">
-                            <div class="col-md-3 col-sm-4 col-xs-4 sub-txt"><?php echo __('Subtotal'); ?></div>
-							<div class="col-md-3 col-sm-4 col-xs-4 sub-price">
-                                $<?php echo round($Order_detail['Order']['subtotal'], 2);?>
-							</div>
-
-                    <?php
-                    if ($Order_detail['Order']['table_status'] != 'P' and $Order_detail['Order']['discount_value']==0) {
-                        ?>
-                                <div class="col-md-6 col-sm-4 col-xs-4"><button type="button" class="addbtn pull-right add-discount"><i class="fa fa-plus-circle" aria-hidden="true"></i> <?php echo __('Add Discount'); ?></button></div>
-					<?php } ?>
-                        </div>
-                    </li>
-<?php if ($Order_detail['Order']['discount_value']==0) { ?>
-                        <li class="clearfix discount_view" style="display:none;">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="fix_discount" style="font-size:11px;"><?php echo __('Fix Discount'); ?></label>
-                                        <input type="text" id="fix_discount" required="required" class="form-control discount_section" maxlength="5"  name="fix_discount">
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="percent_discount" style="font-size:11px;"><?php echo __('Discount in %'); ?></label>
-                                        <input type="text" id="percent_discount" required="required" class="form-control discount_section" maxlength="5"   name="percent_discount">
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="promocode" style="font-size:11px;"><?php echo __('Promo Code'); ?></label>
-                                        <input type="text" id="promocode" required="required" class="form-control discount_section" maxlength="200" name="promocode">
-                                    </div>
-                                </div>
-
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="AdminTableSize" style="width:100%">&nbsp;</label>
-                                        <a class="btn btn-primary btn-wide" id="apply-discount" href="javascript:void(0)"><?php echo __('Apply'); ?> <i class="fa fa-arrow-circle-right"></i></a>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </li>
-<?php } ?>
-
-<?php if ($Order_detail['Order']['discount_value']!=0) {
-    ?>
-                        <li class="clearfix">
-                            <div class="row">
-                                    <?php
-                                    // show discount code here
-                                    ?>
-                                <div class="col-md-3 col-sm-4 col-xs-4 sub-txt"><?php echo __('Discount'); ?></div>
-                                <div class="col-md-3 col-sm-4 col-xs-4 sub-price">
-                                    $<?php
-                                echo round($Order_detail['Order']['discount_value'], 2);
-                                if ($Order_detail['Order']['percent_discount']) {
-                                    echo "<span class='txt12'> " . $Order_detail['Order']['promocode'] . " (" . $Order_detail['Order']['percent_discount'] . "%)</span>";
-                                }
-                                    ?>
-                                    <a aria-hidden="true" class="fa fa-times remove_discount" order_id="<?php echo $Order_detail['Order']['id']; ?>" href="javascript:void(0)"></a>
-                                </div>
-
-                            </div>
-                        </li>
-
-                    <li class="clearfix">
-                        <div class="row">
-                            <div class="col-md-3 col-sm-4 col-xs-4 sub-txt"><?php echo __('After Discount'); ?>: </div><div class="col-md-3 col-sm-4 col-xs-4 sub-price">$<?php if(!empty($Order_detail) and !empty(@$Order_detail['OrderItem'] )) echo round(max($Order_detail['Order']['subtotal'] - $Order_detail['Order']['discount_value'], 0), 2); else echo '0.00'; ?></div>
-
-                        </div>
-                    </li>
-
-    <?php
-}
-?>
-
-                    <li class="clearfix">
-                        <div class="row">
-                            <div class="col-md-3 col-sm-4 col-xs-4 sub-txt"><?php echo __('Tax'); ?>(<?php echo $Order_detail['Order']['tax'] ?>%)</div>
-                            <div class="col-md-3 col-sm-4 col-xs-4 sub-price">$<?php echo round($Order_detail['Order']['tax_amount'], 2) ?></div>                            
-                        </div>
-                    </li>
-
-				<?php 
-				  //如果缺省小费率不为0,则显示
-				  if($Order_detail['Order']['default_tip_rate']!=0){ 
-				?>   
-                    <li class="clearfix">
-                        <div class="row">
-                            <div class="col-md-3 col-sm-4 col-xs-4 sub-txt"><?php echo __('Tip'); ?>(<?php echo $Order_detail['Order']['default_tip_rate'] ?>%)</div>
-                            <div class="col-md-3 col-sm-4 col-xs-4 sub-price">$<?php echo $Order_detail['Order']['default_tip_amount'] ?></div>                            
-                        </div>
-                    </li>
-				<?php 
-				  } 
-				?>    
-
-					<!-- End -->
-
-                    <li class="clearfix">
-                        <div class="row">
-                            <div class="col-md-3 col-sm-4 col-xs-4 sub-txt"><?php echo __('Total'); ?></div>
-                            <div class="col-md-3 col-sm-4 col-xs-4 sub-price total_price" alt="<?php echo round($Order_detail['Order']['total'],2); ?>">$<?php echo round($Order_detail['Order']['total'], 2) ?></div>
-                        </div>
-                    </li>
-<?php
-if ($Order_detail['Order']['table_status'] == 'P') {
-    ?>
-                        <li class="clearfix">
-                            <div class="row">
-                                <div class="col-md-3 col-sm-3 col-xs-3 sub-txt"><?php echo __('Received'); ?></div>
-                                <div class="col-md-2 col-sm-2 col-xs-2 sub-price received_price">$<?php echo $Order_detail['Order']['paid']; ?></div>
-
-
-                                <div class="col-md-2 col-sm-2 col-xs-2 sub-price cash_price"><?php echo __('Cash'); ?>: $<?php echo $Order_detail['Order']['cash_val']; ?></div>
-                                <div class="col-md-2 col-sm-2 col-xs-2 sub-price card_price"><?php echo __('Card'); ?>: $<?php echo $Order_detail['Order']['card_val']; ?></div>
-                                <div class="col-md-3 col-sm-3 col-xs-3 sub-price membercard_price"><?php echo __('Member'); ?>: $<?php echo $Order_detail['Order']['membercard_val']; ?></div>
-                            </div>
-                        </li>
-
-    <?php if ($Order_detail['Order']['change']) { ?>
-                            <li class="clearfix">
-                                <div class="row">
-                                    <div class="col-md-3 col-sm-4 col-xs-4 sub-txt change_price_txt"><?php echo __('Change'); ?></div>
-                                    <div class="col-md-3 col-sm-4 col-xs-4 sub-price change_price">$<?php echo $Order_detail['Order']['change']; ?></div>
-                                </div>
-                            </li>
-                        <?php } ?>
-
-                        <li class="clearfix">
-                            <div class="row">
-                                <div class="col-md-3 col-sm-4 col-xs-4 sub-txt"><?php echo __('Tip'); ?></div>
-                                <div class="col-md-3 col-sm-4 col-xs-4 sub-price tip_price">$<?php echo $Order_detail['Order']['tip']; ?></div>
-                            </div>
-                        </li>
-    <?php
-} else {
-    ?>
-                        <li class="clearfix">
-                            <div class="row">
-                                <div class="col-md-3 col-sm-3 col-xs-3 sub-txt"><?php echo __('Received'); ?></div>
-                                <div class="col-md-2 col-sm-2 col-xs-2 sub-price received_price">$00.00</div>
-
-                                <div class="col-md-2 col-sm-2 col-xs-2 sub-price cash_price"><?php echo __('Cash'); ?>: $00.00</div>
-                                <div class="col-md-2 col-sm-2 col-xs-2 sub-price card_price"><?php echo __('Card'); ?>: $00.00</div>
-                                <div class="col-md-3 col-sm-3 col-xs-3 sub-price membercard_price"><?php echo __('Member'); ?>: $00.00</div>
-                            </div>
-                        </li>
-                        <li class="clearfix">
-                            <div class="row">
-                                <div class="col-md-3 col-sm-4 col-xs-4 sub-txt change_price_txt"><?php echo __('Remaining'); ?></div>
-                                <div class="col-md-3 col-sm-4 col-xs-4 sub-price change_price">$00.00</div>
-                            </div>
-                        </li>
-                        <li class="clearfix">
-                            <div class="row">
-                                <div class="col-md-3 col-sm-4 col-xs-4 sub-txt"><?php echo __('Tip'); ?></div>
-                                <div class="col-md-3 col-sm-4 col-xs-4 sub-price tip_price">$00.00</div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <!-- <div class="control-label col-md-4 sub-txt">Paid by:</div> -->
-                                        <!-- <div class="col-md-8 tip-paid-by text-center"> -->
-
-
-                                                    <!-- <input id="tip-card" name="tip_paid_by"  class="tip_paid_by" value="CARD" type="radio">
-                                                    <label for="tip-card" class="control-label vcenter"><?php echo $this->Html->image("card.png", array('alt' => "card")); ?><div>Card 卡</div></label> -->
-
-
-                                                    <!-- <input id="tip-cash" name="tip_paid_by"  class="tip_paid_by" value="CASH" type="radio">
-                                                    <label for="tip-cash" class="control-label"><?php echo $this->Html->image("cash.png", array('alt' => "cash")); ?><div>Cash 现金</div></label> -->
-
-                                        <!-- </div> -->
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                <?php
-            }
-            ?>
-                        <li class="clearfix" style='display:none' id='mbm_fee_display'>
-                            <div class="row">
-                                <div class="col-md-3 col-sm-4 col-xs-4 sub-txt">Card# : <span id='mbm_disp_cardnumber'></span></div>
-                                <div class="col-md-3 col-sm-4 col-xs-4 sub-txt">Balance : <span id='mbm_disp_amount'></span></div>
-                            </div>
-                        </li>
+                <?php }} ?>
                 </ul>
-            </div>
-
-            <div class="card-bot clearfix text-center">
-                <button type="button" class="btn btn-danger select_card" id="membercard"> <?php echo $this->Html->image("card.png", array('alt' => "member")); ?> <?php echo __('Member'); ?></button>
-                <button type="button" class="btn btn-danger select_card" id="card"> <?php echo $this->Html->image("card.png", array('alt' => "card")); ?> <?php echo __('Card'); ?></button>
-                <button type="button" class="btn btn-danger select_card" id="cash"><?php echo $this->Html->image("cash.png", array('alt' => "cash")); ?> <?php echo __('Cash'); ?></button>
-            
-                <!-- <button type="button" class="btn btn-warning select_card"  id="tip"><?php echo $this->Html->image("cash.png", array('alt' => "tip")); ?> Tip 小费</button> -->
-            
-                <button type="button" class="btn btn-success card-ok"  id="submit"><?php echo $this->Html->image("right.png", array('alt' => "right")); ?><?php echo __('Confirm'); ?> </button>
-            
-                <input type="hidden" id="selected_card" value="" />
-                <input type="hidden" id="membercard_id" name="membercard_id" value="" />
-                <input type="hidden" id="membercard_val" name="membercard_val" value="" />
-                <input type="hidden" id="card_val" name="card_val" value="" />
-                <input type="hidden" id="cash_val" name="cash_val" value="" />
-                <input type="hidden" id="tip_val"name="tip" value="" />
-                <input type="hidden" id="tip_paid_by"name="tip_paid_by" value="" />
-            </div>
-
-
-<?php
-if ($Order_detail['Order']['table_status'] <> 'P') {
-    ?>
-                <div class="card-wrap"><input type="text" id="screen" buffer="" lastinput="" maxlength="13" readonly></div>
-                <div class="card-indent clearfix">
-                    <ul>
-                        <li>1</li>
-                        <li>2</li>
-                        <li>3</li>
-
-                        <li>4</li>
-                        <li>5</li>
-                        <li>6</li>
-
-                        <li>7</li>
-                        <li>8</li>
-                        <li>9</li>
-
-                        <li>0</li>
-                        <li id="Dot">.</li>
-                        <li class="txt" id="Back">Back</li>
+              </div>
+              <div class="pay-right">
+                <div class="notop">
+                  <ul class="pay-ul"> 
+                    <li class="noto-act">顾客.01</li>
+                  </ul>
+                  <div class="pay-right-c">
+                    <div class="r-c-top">
+                      <div class="c-top-left">
+                        <ul class="contL">
+                          <li>订单号</li>
+                          <li>小计</li>
+                          <li>折扣</li>
+                        </ul>
+                        <ul class="contR">
+                          <li>D31710311432</li>
+                          <li>$<span id="subtotal">0.00</span></li>
+                          <!--<li class="fixed">$<span class="subtotal">0.00</span>*<span class="discount">0.00</span>%</li>-->
+                          <li class="fixed">--</li>
+                        </ul>
+                      </div>
+                      <div class="right-tab">
+                        <div class="topOpen">
+                            <a href="javascript:;" class="add_zhe">加入折扣</a>
+                            <a href="javascript:;" class="add_shou"> - 收起</a>
+                        </div>
+                        <div class="add-content">
+                          <ul class="add-ul">
+                            <li>
+                              <span>固定折扣</span>
+                              <input type="text" id="discount1" class="visible">
+                            </li>
+                            <li>
+                              <span>%折扣</span>
+                              <input type="text" id="discount2" class="visible">
+                            </li>
+                            <li>
+                              <span>优惠码</span>
+                              <input type="text" id="discount3" class="visible">
+                            </li>
+                          </ul>
+                          <div class="add-right">
+                            <span>折扣快捷按钮</span>
+                            <p class="btn">
+                                <button type="button" name="button" class="butt">15%</button>
+                                <button type="button" name="button" class="butt">20%</button>
+                                <button type="button" name="button" class="butt">25%</button>
+                                <i class="application">应用折扣</i>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="c-top-left">
+                        <ul class="contL">
+                          <li>折后价</li>
+                          <li>税(<span class="tax">0.00</span>%):</li>
+                          <li>总计:</li>
+                        </ul>
+                        <ul class="contR">
+                          <li><span class="discountMoney">0.00</span></li>
+                          <li>$<span class="taxMoney">0.00</span></li>
+                          <li>$<span id="total">0.00</span></li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="r-c-center">
+                        <ul class="cenL">
+                          <li>已收到:</li>
+                          <li class="cen-col">现金：$<span class="cash">0.00</span></li>
+                          <li class="cen-col">会员：$<span class="member">0.00</span></li>
+                          <li class="change">剩余:</li>
+                          <li>小费:</li>
+                        </ul>
+                        <ul class="cenC">
+                          <li>$<span class="received">0.00</span></li>
+                          <li class="cen-col">卡：$<span class="card">0.00</span></li>
+                          <li class="cen-col"></li>
+                          <li>$<span class="surplus">0.00</span></li>
+                          <li>$<span class="tip">0.00</span></li>
+                        </ul>
                         
-                        <li class="txt" id="Default"><?php echo __('Default'); ?></li>
-                        <li class="clear-txt" id="Clear"><?php echo __('Clear'); ?></li>
-                        <li class="enter-txt" id="Enter"><?php echo __('Enter'); ?></li>
-                    </ul>
+                    </div>
+                    <div class="r-c-bot">
+                      <h5>状态</h5>
+                      <!-- color1未支付，color2已付款，color3已打单 -->
+                      <p><span class="color1"></span>未支付</p>
+                    </div>
+                  </div>
                 </div>
+              </div>
+          </div>
 
-<?php } ?>
+          <!-- <div class="page2-left-c">
+              
+          </div> -->
         </div>
-    </div>
-</div>
-
-<?php
-echo $this->Html->script(array('jquery.min.js', 'bootstrap.min.js', 'jquery.mCustomScrollbar.concat.min.js', 'barcode.js', 'epos-print-5.0.0.js', 'fanticonvert.js', 'jquery.kinetic.min.js', 'notify.min.js','flowtype.js'));
-echo $this->fetch('script');
-?>
-<script>
-    // $('#tip-cash').trigger('click');
-
-    var text_remaining = "<?php echo __('Remaining'); ?>";
-    var text_change = "<?php echo __('Change'); ?>";
-    var text_cash = "<?php echo __('Cash'); ?>";
-    var text_card = "<?php echo __('Card'); ?>";
-    var text_membercard = "<?php echo __('Member'); ?>";
-
-    $(document).on('click', '.reprint', function () {
-
-        $.ajax({
-            url: "<?php echo $this->Html->url(array('controller' => 'pay', 'action' => 'printBill')); ?>",
-            method: "post",
-            data: {
-                order_no: "<?php echo $Order_detail['Order']['order_no']; ?>",
-            },
-            success: function (html) {
-
-            }
-        })
-        //End.
-    });
-
-
-    $(document).ready(function () {
-
-        $(".select_card").click(function () {
-            $(".select_card").removeClass("active")
-            $("#mbm_fee_display").hide();
-            $(this).addClass("active")
-            var type = $(this).attr("id");
-            if (type == 'card') {
-                $("#cash").removeClass("active");
-                var card_val = $("#card_val").val() ? parseFloat($("#card_val").val()) * 100 : 0;
-                $("#screen").attr('buffer', card_val);
-                $("#screen").val($("#card_val").val());
-            } else if (type == 'cash') {
-                var cash_val = $("#cash_val").val() ? parseFloat($("#cash_val").val()) * 100 : 0;
-                $("#screen").attr('buffer', cash_val);
-                $("#screen").val($("#cash_val").val());
-            } else if (type == 'membercard') {
-                var membercard_val = $("#membercard_val").val() ? parseFloat($("#membercard_val").val()) * 100 : 0;
-                $("#screen").attr('buffer', membercard_val);
-                $("#screen").val($("#membercard_val").val());
-                $("#member_search_next").val('mbm_pay_select');
-                $('#modal_member_search').modal('show');
-
-                $('#mbm_pay_order_paid').val($(".received_price").attr("amount"));
-                $('#mbm_pay_order_total').val($(".total_price").attr("alt"));
-            } else {
-                var tip_val = $("#tip_val").val() ? parseFloat($("#tip_val").val()) * 100 : 0;
-                $("#screen").attr('buffer', tip_val);
-                $("#screen").val($("#tip_val").val());
-            }
-            $("#selected_card").val(type);
-        })
-
-
-
-        $(".select_tip").click(function () {
-            $(".select_card").removeClass("active");
-            $(this).toggleClass("active");
-            var val = $("#tip_val").val() ? parseFloat($("#tip_val").val()) * 100 : 0;
-            $("#screen").attr('buffer', val);
-            $("#screen").val($("#tip_val").val());
-        })
-
-        $("#submit").click(function () {
-            if ($("#selected_card").val()) {
-                if (parseFloat($(".change_price").attr("amount")) >= 0) {
-
-                    // check tip type(card/cash) if exists
-                    if (parseFloat($("#tip_val").val())) {
-                        if (!$("#tip_paid_by").val()) {
-                            $("#submit").notify("Please select tip payment method card or cash \n 请选择提示付款方式卡或现金. ", {
-                                position: "top center",
-                                className:"warn"
-                            });
-                            // alert("Please select tip payment method card or cash 请选择提示付款方式卡或现金. ");
-                            return false;
-                        }
-                    }
-
-                    // submit form for complete payment process
-                    $.ajax({
-                        url: "<?php echo $this->Html->url(array('controller' => 'pay', 'action' => 'complete')); ?>",
-                        method: "post",
-                        data: {
-                            pay: $(".received_price").attr("amount"),
-                            paid_by: $("#selected_card").val(),
-                            change: $(".change_price").attr("amount"),
-                            table: "<?php echo $table ?>",
-                            type: "<?php echo $type ?>",
-                            order_id: "<?php echo $Order_detail['Order']['id'] ?>",
-                            card_val: $("#card_val").val(),
-                            membercard_id: $("#membercard_id").val(),
-                            membercard_val: $("#membercard_val").val(),
-                            cash_val: $("#cash_val").val(),
-                            tip_val: $("#tip_val").val(),
-                            tip_paid_by: $("#tip_paid_by").val(),
-                        },
-                        success: function (html) {
-                            $(".alert-warning").hide();
-                            // $(".reprint").trigger("click");
-                            $.ajax({
-                                url: "<?php echo $this->Html->url(array('controller' => 'pay', 'action' => 'printReceipt')); ?>",
-                                method: "post",
-                                data: {
-                                    order_no: "<?php echo $Order_detail['Order']['order_no']; ?>",
-                                },
-                                success: function (html) {
-                                    window.location = "<?php echo $this->Html->url(array('controller' => 'homes', 'action' => 'dashboard')); ?>";
-                                }
-                            })
-                        },
-                        beforeSend: function () {
-                            $(".RIGHT-SECTION").addClass('load1 csspinner');
-                            $(".alert-warning").show();
-                        }
-                    })
-                } else {
-                    $.notify("Invalid amount, please check and verfy again 金额无效，请检查并再次验证.", {
-                        position: "top center",
-                        className:"warn"
-                    });
-                    // alert("Invalid amount, please check and verfy again 金额无效，请检查并再次验证.");
-                    return false;
-                }
-            } else {
-                $.notify("Please select card or cash payment method 请选择卡或现金付款方式. ", {
-                        position: "top center",
-                        className:"warn"
-                    });
-                // alert("Please select card or cash payment method 请选择卡或现金付款方式. ");
-                return false;
-            }
-        })
-
-        $(".card-indent li").click(function () {
-            if (!$("#selected_card").val() && !$(".select_tip").hasClass("active")) {
-                // alert("Please select payment type cash/card or select tip.");
-                $.notify("Please select payment type card/cash.",  {
-                    position: "top center",
-                    className:"warn",
-                });
-                return false;
-            }
-
-            if ($(this).hasClass("clear-txt") || $(this).hasClass("enter-txt") || $(this).attr("id") == "Back")
-                return false;
-
-            var new_value;
-            
-            if ($(this).attr("id") == "Default"){
-            	new_value= $(".total_price").attr("alt");
-            	$('#screen').attr("buffer", new_value);	
-            	$('#screen').val(new_value);
-            	return true;
-            }
+        <div class="page2-right">
+          <!-- ipad关闭付款块 -->
+          <img src="../../../html/images/icon-06.png" alt="ipad关闭付款块" class="pay_close" />
+          <!-- 登录 -->
+          <div class="login">
+            <div class="login-align">
+                <h4>请选择付款方式</h4>
+                <ul class="payF">
+                  <li>
+                    <a href="javascript:;"><img src="../../../html/images/btn02.png"></a>
+                  </li>
+                  <li>
+                    <a href="javascript:;"><img src="../../../html/images/btn03.png"></a>
+                  </li>
+                  <li>
+                    <a href="javascript:;"><img src="../../../html/images/btn04.png"></a>
+                  </li>
+                </ul>
+                <h4>付款金额</h4>
+                <div class="formkey">
+                  <input type="text" value="" class="keyboard" placeholder="0.00" />
+                  <!-- 左侧数字 -->
+                  <ul class="num_left">
+                    <li class="num">1</li>
+                    <li class="num">2</li>
+                    <li class="num">3</li>
+                    <li class="num">4</li>
+                    <li class="num">5</li>
+                    <li class="num">6</li>
+                    <li class="num">7</li>
+                    <li class="num">8</li>
+                    <li class="num">9</li>
+                    <li class="empty">清空</li>
+                    <li class="num">0</li>
+                    <!--<li class="retreat">后退</li>-->
+                    <li class="num">.</li>
+                  </ul>
+                  <!-- 右侧操作 -->
+                  <div class="num_right">
+                    <a href="javascript:;" class="payde">默认<br />金额</a>
+                    <a href="javascript:;" class="paymo">输入</a>
+                  </div>
+                </div>
                 
+                <div class="right-con">
+                    <div class="right-tab1">
+                      <button type="button" name="button" class="pay01">确认付款</button>
+                      <button type="button" name="button" class="pay02">打印收据</button>
+                    </div>
+                  </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ipad付款块按钮 -->
+    <button type="button" name="button" class="pay_play">选择/输入付款金额</button>
+    <!-- 付款虚拟键盘 -->
+    <div class="key" id="pay_key">
+      <img src="../../../html/images/icon-14.png" alt="关闭虚拟键盘" class="key_img" />
+      <ul id="keyboard">
+        <li class="esc">Esc</li>
+        <li class="symbol"><span class="off">1</span><span class="on">!</span></li>
 
-				    var buffer = $('#screen').attr("buffer");
-				    if(Number(buffer) == 0) buffer = '';
-				    
-				    new_value= buffer + $(this).html();										
-				                				    
-				    $('#screen').attr("buffer", new_value);				
-            
-            $('#screen').attr("lastinput", $('#screen').val() );
-				    
-				    $('#screen').val(new_value);
+        <li class="symbol"><span class="off">2</span><span class="on">@</span></li>
 
-        })
+        <li class="symbol"><span class="off">3</span><span class="on">#</span></li>
 
+        <li class="symbol"><span class="off">4</span><span class="on">$</span></li>
 
-        function recalculateAmount(cash_val, card_val, tip, total_price, membercard_val) {
-            $("#tip_val").val(tip);
+        <li class="symbol"><span class="off">5</span><span class="on">%</span></li>
 
-            var card_extra_tip = 0;
+        <li class="symbol"><span class="off">6</span><span class="on">^</span></li>
 
-            var amount = cash_val + card_val + membercard_val;
-            var card_amount = card_val + membercard_val;
+        <li class="symbol"><span class="off">7</span><span class="on">&amp;</span></li>
 
-            $(".received_price").html("$" + amount.toFixed(2));
-            $(".received_price").attr('amount', amount.toFixed(2));
+        <li class="symbol"><span class="off">8</span><span class="on">*</span></li>
 
+        <li class="symbol"><span class="off">9</span><span class="on">(</span></li>
 
-            if (card_amount >= total_price) {
-                card_extra_tip = card_amount - total_price;
-                tip += card_extra_tip;
+        <li class="symbol"><span class="off">0</span><span class="on">)</span></li>
 
-                $(".change_price_txt").html("Change 找零");
-                $(".change_price").html("$" + cash_val.toFixed(2));
-                $(".change_price").attr('amount', cash_val.toFixed(2));
+        <li class="no"></li>
 
-                $(".tip_price").html("$" + card_extra_tip.toFixed(2));
-                $("#tip_val").val(card_extra_tip.toFixed(2));
-                if (card_extra_tip > 0) {
-                    $("#tip_paid_by").val("CARD");
-                }
-            } else { // card_val < total_price
+        <li class="no"></li>
 
-                $(".change_price").html("$" + Math.abs(amount - total_price).toFixed(2));
-                $(".change_price").attr('amount', (amount - total_price).toFixed(2));
+        <li class="delete lastitem">Delete</li>
 
-                if (amount < total_price) {
-                    $(".change_price_txt").html(text_remaining);
-                } else { // amount >= total_price
-                    $(".change_price_txt").html(text_change);
-                }
+        <li class="tab no"></li>
 
-                $(".tip_price").html("$" + (0).toFixed(2));
-                $("#tip_val").val((0).toFixed(2));
+        <li class="letter">Q</li>
+
+        <li class="letter">W</li>
+
+        <li class="letter">E</li>
+
+        <li class="letter">R</li>
+
+        <li class="letter">T</li>
+
+        <li class="letter">Y</li>
+
+        <li class="letter">U</li>
+
+        <li class="letter">I</li>
+
+        <li class="letter">O</li>
+
+        <li class="letter">P</li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="symbol lastitem"><span class="off">\</span><span class="on">|</span></li>
+
+        <li class="capslock no"></li>
+
+        <li class="letter">A</li>
+
+        <li class="letter">S</li>
+
+        <li class="letter">D</li>
+
+        <li class="letter">F</li>
+
+        <li class="letter">G</li>
+
+        <li class="letter">H</li>
+
+        <li class="letter">J</li>
+
+        <li class="letter">K</li>
+
+        <li class="letter">L</li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="return lastitem">Enter</li>
+
+        <li class="left-shift">SHIFT</li>
+
+        <li class="letter">Z</li>
+
+        <li class="letter">X</li>
+
+        <li class="letter">C</li>
+
+        <li class="letter">V</li>
+
+        <li class="letter">B</li>
+
+        <li class="letter">N</li>
+
+        <li class="letter">M</li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="right-shift no"></li>
+
+        <li class="no b1"></li>
+
+        <li class="no b2"></li>
+
+        <li class="no b3"></li>
+
+        <li class="no b4"></li>
+
+        <li class="space lastitem">&nbsp;</li>
+
+        <li class="no b5"></li>
+
+        <li class="no b5"></li>
+
+        <li class=" b6"></li>
+      </ul>
+    </div>
+    <!-- 管理员虚拟键盘 -->
+    <div class="key" id="admin_key">
+      <img src="../../../html/images/icon-14.png" alt="关闭虚拟键盘" class="key_img" />
+      <ul id="keyboard">
+        <li class="esc">Esc</li>
+        <li class="symbol"><span class="off">1</span><span class="on">!</span></li>
+
+        <li class="symbol"><span class="off">2</span><span class="on">@</span></li>
+
+        <li class="symbol"><span class="off">3</span><span class="on">#</span></li>
+
+        <li class="symbol"><span class="off">4</span><span class="on">$</span></li>
+
+        <li class="symbol"><span class="off">5</span><span class="on">%</span></li>
+
+        <li class="symbol"><span class="off">6</span><span class="on">^</span></li>
+
+        <li class="symbol"><span class="off">7</span><span class="on">&amp;</span></li>
+
+        <li class="symbol"><span class="off">8</span><span class="on">*</span></li>
+
+        <li class="symbol"><span class="off">9</span><span class="on">(</span></li>
+
+        <li class="symbol"><span class="off">0</span><span class="on">)</span></li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="delete lastitem">Delete</li>
+
+        <li class="tab no"></li>
+
+        <li class="letter">Q</li>
+
+        <li class="letter">W</li>
+
+        <li class="letter">E</li>
+
+        <li class="letter">R</li>
+
+        <li class="letter">T</li>
+
+        <li class="letter">Y</li>
+
+        <li class="letter">U</li>
+
+        <li class="letter">I</li>
+
+        <li class="letter">O</li>
+
+        <li class="letter">P</li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="symbol lastitem"><span class="off">\</span><span class="on">|</span></li>
+
+        <li class="capslock no"></li>
+
+        <li class="letter">A</li>
+
+        <li class="letter">S</li>
+
+        <li class="letter">D</li>
+
+        <li class="letter">F</li>
+
+        <li class="letter">G</li>
+
+        <li class="letter">H</li>
+
+        <li class="letter">J</li>
+
+        <li class="letter">K</li>
+
+        <li class="letter">L</li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="return lastitem">Enter</li>
+
+        <li class="left-shift">SHIFT</li>
+
+        <li class="letter">Z</li>
+
+        <li class="letter">X</li>
+
+        <li class="letter">C</li>
+
+        <li class="letter">V</li>
+
+        <li class="letter">B</li>
+
+        <li class="letter">N</li>
+
+        <li class="letter">M</li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="right-shift no"></li>
+
+        <li class="no b1"></li>
+
+        <li class="no b2"></li>
+
+        <li class="no b3"></li>
+
+        <li class="no b4"></li>
+
+        <li class="space lastitem">&nbsp;</li>
+
+        <li class="no b5"></li>
+
+        <li class="no b5"></li>
+
+        <li class=" b6"></li>
+      </ul>
+    </div>
+    <!-- 管理员密码 -->
+    <div id="admin">
+      <p>密码解锁</p>
+      <input type="text" name="" id="write" class="adminInp" placeholder="请输入密码解锁" />
+      <div class="admin-btn">
+        <button type="button" class="a_no">取消</button>
+        <button type="button" class="a_yes">输入</button>
+      </div>
+    </div>
+    <script type="text/javascript" src="../../../html/js/jquery.js"></script>
+    <script type="text/javascript" src="../../../html/js/keyboard.js"></script>
+    <script type="text/javascript">
+     //写了这么多关于计算的，可能也没什么用，不如意直接调用旧版的计算方法吧
+     
+     
+      $(function(){     
+          //整理所有价格显示
+            var totalMoney = 0;//菜品总额
+            var unitPrice;//单价
+            var n;//数量
+            var totalQuantity = $(".pri").length;//取所有菜品的类别的个数     
+            for(var m=0;m<totalQuantity;m++){
+                $(".pri").eq(m).each(function(){
+                    unitPrice = parseFloat($(this).text());
+                    n = parseInt($(this).parents(".list-center").next(".list-right").text());
+                    unitPrice = unitPrice*n;        
+                })  
+                totalMoney=unitPrice+totalMoney;
             }
+            $("#subtotal").text(totalMoney);
+            $(".subtotal").text(totalMoney);
+            var discount=15;//这个百分比后台调取
+            $(".discount").text(discount);//这是折扣百分比 啊
+            
+            $(".discountMoney").text('--');
+            var tax=13;//这个百分比后台调取
+            $(".tax").text(tax);
+            var taxMoney = parseFloat(tax*totalMoney/100);
+            taxMoney = taxMoney.toFixed(2);//这是税 啊
+            $(".taxMoney").text(taxMoney);
+            var total;
+            total = parseFloat(totalMoney)+parseFloat(taxMoney);
+            total = total.toFixed(2);//这是总计 啊
+            $("#total").text(total);
+        })
+        
+        //添加折扣
+      $(".add_zhe").click(function(){
+        $(this).parent(".topOpen").next(".add-content").slideDown();
+        $(this).parent(".topOpen").find(".add_shou").show();
+      })
+       $(".add_shou").click(function(){
+        $(this).parent(".topOpen").next(".add-content").slideUp();
+        $(this).hide();
+      })
+      $(".butt").click(function(){
+        var basic = $(this).text();
+        basic =parseFloat( basic.substr(0, basic.length - 1));
+        $("#discount2").val(basic);
+        $(".discount").text(basic);
+        
+      })
+        
+        
+        //计算折扣
+            
+      $(".application").click(function(){
+        var txt1 = parseFloat($("#discount1").val());
+        var txt2 = parseFloat($("#discount2").val());
+        var txt3 = parseFloat($("#discount3").val());
+        var subtotal = parseFloat($("#subtotal").text());//小计
+        
+                var tax2=parseFloat($(".tax").text());
+                var total2;
+                var taxMoney2;
+                var last;
+                
+                var html="$";
+                html+="<span class='subtotal'>";
+                html+=subtotal;
+                html+="</span>*<span class='discount'>";
+                html+=txt2;
+                html+="</span>";
+                html+="%";
+                
+                if(!txt1&&!txt2&&!txt3){//无折扣
+                    alert("请选择一种折扣！");
+                }else if(!txt1&&!txt3){//按照百分比算
+                    $(".fixed").text('');
+                    $(".fixed").append(html);
+            total2 = subtotal - subtotal*txt2/100;
+            total2 = total2.toFixed(2)//这是折后价 啊
+            taxMoney2 = parseFloat(tax2*total2/100);
+                taxMoney2 = taxMoney2.toFixed(2);//这是税 啊
+                last = parseFloat(total2)+parseFloat(taxMoney2);
+                last = last.toFixed(2);
+            console.log('按照百分比算')
+        }else if(!txt2&&!txt3){//按照固定折扣算
+            $(".fixed").text(-txt1);
+            total2 = parseFloat(subtotal) - parseFloat(txt1);
+            total2 = total2.toFixed(2)//这是折后价 啊
+            taxMoney2 = parseFloat(tax2*total2/100);
+                taxMoney2 = taxMoney2.toFixed(2);//这是税 啊
+                last = parseFloat(total2)+parseFloat(taxMoney2);
+                last = last.toFixed(2);
+            console.log('按照固定折扣算')
+        }else if(!txt1&&!txt2){
+            //这里是优惠码，具体怎么算不知
+                    console.log('按照优惠码算')
+        }else{
+            alert("只能选择一种折扣！");
+            $(".add-ul").find("input").val('');
+            
+            //只能选择一种折扣，清空处理
+            $(".fixed").text("--");
+            $(".discountMoney").text('$'+subtotal);
+            var tax = parseFloat($(".tax").text());
+                var taxMoney = parseFloat(tax*subtotal/100);
+                taxMoney = taxMoney.toFixed(2);
+            $(".taxMoney").text(taxMoney);
+            
         }
+        $(".discountMoney").text('$'+total2);
+        $(".taxMoney").text(taxMoney2);
+        $("#total").text(last);
+        
+        
+      })
 
-
-        $("#Enter").click(function () {
-            if (!$("#selected_card").val()) {
-                $.notify("Please select payment type card/cash.",  {
-                    position: "top center",
-                    className:"warn",
-                });
-                return false;
-                // alert("Please select payment type card/cash.");
-                // return false;
-            }
-            var amount = $("#screen").val() ? parseFloat($("#screen").val()) : 0;
-            var total_price = parseFloat($(".total_price").attr("alt"));
-
-            if ($("#selected_card").val() == 'cash') {
-                $("#cash_val").val(amount.toFixed(2));
-                $(".cash_price").html(text_cash + ": $" + amount.toFixed(2));
-            }
-            if ($("#selected_card").val() == 'card') {
-                $("#card_val").val(amount.toFixed(2));
-                $(".card_price").html(text_card + ": $" + amount.toFixed(2));
-            }
-            if ($("#selected_card").val() == 'membercard') {
-                $("#membercard_val").val(amount.toFixed(2));
-                $(".membercard_price").html(text_membercard + ": $" + amount.toFixed(2));
-            }
-            if ($("#selected_card").val() == 'tip') {
-                $("#tip_val").val(amount.toFixed(2));
-                // $(".tip_price").html("$" + amount.toFixed(2));
-            }
-
-            var cash_val = $("#cash_val").val() ? parseFloat($("#cash_val").val()) : 0;
-            var card_val = $("#card_val").val() ? parseFloat($("#card_val").val()) : 0;
-            var membercard_val = $("#membercard_val").val() ? parseFloat($("#membercard_val").val()) : 0;
-            var tip_val = $("#tip_val").val() ? parseFloat($("#tip_val").val()) : 0;
-
-            recalculateAmount(cash_val, card_val, tip_val, total_price, membercard_val);
-
-        })
-
-        $("#rc1").click(function (E) {
-            E.preventDefault();
-        })
-
-        $("#Clear").click(function () {
-
-            var selected_card = $("#selected_card").val();
-            var total_price = parseFloat($(".total_price").attr("alt"));
-            if (selected_card == 'cash') {
-                $("#cash_val").val(0);
-                $(".cash_price").html(text_cash + ": $" + (0).toFixed(2));
-            }
-
-            if (selected_card == 'card') {
-                $("#card_val").val(0);
-                $(".card_price").html(text_card + ": $" + (0).toFixed(2));
-            }
+            //默认金额
             
-            if (selected_card == 'membercard') {
-                $("#membercard_val").val(0);
-                $(".membercard_price").html(text_membercard + ": $" + (0).toFixed(2));
-            }
+            $(".payde").on("click",function(){       
+                if($(".payF .active").length==0){
+                            alert("请选择一种支付方式！");        
+                            $(".payment .keyboard").val('');
+                        }else{
+                            $(".payment .keyboard").val(parseFloat($("#total").text()));
+                        }
+        
+      });
+
+            //点击键盘
             
-            $("#tip_val").val(0);
-            $(".tip_price").html("$" + (0).toFixed(2));
+            $(".num_left li").not(".empty").on("click",function(){       
+                if($(".payF .active").length==0){
+                            alert("请选择一种支付方式！");        
+                            $(".payment .keyboard").val('');
+                        }else{
+                            var inputVal = $(".payment .keyboard").val(),
+                $_this = $(this).html();
+                    $(".keyboard").val(inputVal+$_this);
+                        }
+        
+      });
+          
+
+      //判断什么支付方式
+      var payment = 0;  
+      var mm = 0;
+      var received = 0;
             
-            var cash_val = $("#cash_val").val() ? parseFloat($("#cash_val").val()) : 0;
-            var card_val = $("#card_val").val() ? parseFloat($("#card_val").val()) : 0;
-            var membercard_val = $("#membercard_val").val() ? parseFloat($("#membercard_val").val()) : 0;
-            var tip_val = $("#tip_val").val() ? parseFloat($("#tip_val").val()) : 0;
-
-            recalculateAmount(cash_val, card_val, tip_val, total_price, membercard_val);
-
-            $("#screen").attr('buffer', '');
-            $("#screen").val("");
-            $("#screen").focus();
-        })
-
-        $("#Back").click(function () {
-
-				   var current_val = $('#screen').val();
-				   var new_val = current_val.substring(0,current_val.length-1);		
-
-				   $('#screen').val(new_val);
-           $('#screen').attr("buffer", new_val);		
-           
-           $("#screen").focus();
-        })
-
-
-        $("#screen").keydown(function (e) {
-            // Allow: backspace, delete, tab, escape, enter and .
-            if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
-                    // Allow: Ctrl+A, Command+A
-                            (e.keyCode == 65 && (e.ctrlKey === true || e.metaKey === true)) ||
-                            // Allow: home, end, left, right, down, up
-                                    (e.keyCode >= 35 && e.keyCode <= 40)) {
-                        // let it happen, don't do anything
-                        return;
-                    }
-                    // Ensure that it is a number and stop the keypress
-                    if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
-                        e.preventDefault();
-                    }
-                });
-    })
-
-    $(document).on("keyup", ".discount_section", function () {
-        if ($(this).val()) {
-            $(".discount_section").attr("disabled", "disabled");
-            $(this).removeAttr("disabled");
-            $(this).focus();
-        } else {
-            $(".discount_section").removeAttr("disabled");
-        }
-    })
-
-    $(document).on("click", "#apply-discount", function () {
-
-        var fix_discount = $("#fix_discount").val();
-        var percent_discount = $("#percent_discount").val();
-        var promocode = $("#promocode").val();
-
-        if (fix_discount || percent_discount || promocode) {
-        	
-            var discountType  = $("input.discount_section:enabled").attr('id');
-            var discountValue = $("input.discount_section:enabled").val();
-
-            $.ajax({
-                url: "<?php echo $this->Html->url(array('controller' => 'discount', 'action' => 'addDiscount')); ?>",
-                method: "post",
-                dataType: "json",
-                data: {"discountType":discountType,"discountValue":discountValue,"order_no": "<?php echo $Order_detail['Order']['order_no'] ?>"},
-                success: function (response) {
-                    if (response.ret===0) {
-                        $.notify(response.message,  {
-                            position: "top center",
-                            className:"warn",
-                        });
-                        // alert(response.message);
-                        $(".discount_section").val("").removeAttr("disabled");
-                        $(".RIGHT-SECTION").removeClass('load1 csspinner');
-                        return false;
-                    } else {
-                        window.location.reload();
-                    }
-                },
-                beforeSend: function () {
-                    $(".RIGHT-SECTION").addClass('load1 csspinner');
-                }
-            })
-
-
-        } else {
-            $.notify("Please add discount first.",  {
-                position: "top center",
-                className:"warn",
+            $(".payF li").click(function(){         
+                mm = $(this).index();
             });
-            // alert("Please add discount first.");
-            return false;
+            
+
+
+      //'输入'键 
+      $(".paymo").on("click",function(){       
+                if($(".payF .active").length==0){
+                            alert("请选择一种支付方式！");        
+                            $(".payment .keyboard").val('');
+                        }else{
+                            var num = parseFloat($(".payment .keyboard").val());
+                            if(mm==0){
+
+                                $(".pay-right-c").each(function(){
+                                    if($(this).css("display")=="block"){
+                                        var all = parseFloat($(this).find("#total").text());//总计
+                                        $(this).find(".received").text(num);//实收金额
+                                        $(this).find(".cash").text(num);//现金
+                                        var balance = num-all;//相差值
+                                        balance = balance.toFixed(2);
+                                        if(num>=all){//判断输入的金额是否大于总金额
+                                            $(this).find(".surplus").text(balance);
+                                            $(this).find(".change").text('找零:');
+                                        }else{
+                                            $(this).find(".surplus").text(-1*balance);
+                                            $(this).find(".change").text('剩余:');
+                                        }
+                                        
+                                    }
+                                })
+
+                            console.log("现金支付")
+                        }else if(mm==1){
+
+                                $(".pay-right-c").each(function(){
+                                    if($(this).css("display")=="block"){
+                                        var all = parseFloat($(this).find("#total").text());//总金额
+                                        var rest = parseFloat($(this).find(".surplus").text());//剩下的金额
+                                        $(this).find(".received").text(num);//实收金额
+                                        $(this).find(".card").text(num);//银行卡
+                                        //如果首选其他支付，有剩余金额时，刷卡金额减去剩余金额等于小费；首选刷卡支付时，刷卡金额减去总金额等于小费，那剩余金额怎么变化？
+//                                      if(){}
+                                        
+                                        
+                                        var balance = num-all;//相差值
+                                        balance = balance.toFixed(2);
+                                        if(num>=all){//判断输入的金额是否大于总金额
+                                            $(this).find(".surplus").text("0.00");
+                                            $(this).find(".tip").text(balance);
+                                        }else{
+                                            $(this).find(".surplus").text(-1*balance);
+                                            $(this).find(".tip").text("0.00");
+                                        }
+                                        
+                                    }
+                                })
+
+                            console.log("刷卡支付")
+                        }else if(mm==2){
+
+                                $(".pay-right-c").each(function(){
+                                    if($(this).css("display")=="block"){
+                                        var all = parseFloat($(this).find("#total").text());//总计
+                                        $(this).find(".received").text(num);//实收
+                                        $(this).find(".member").text(num);//会员卡
+                                        var balance = num-all;//相差值
+                                        balance = balance.toFixed(2);
+                                        if(num>=all){//判断输入的金额是否大于总金额
+                                            $(this).find(".surplus").text("0.00");
+                                            $(this).find(".tip").text(balance);
+                                        }else{
+                                            $(this).find(".surplus").text(-1*balance);
+                                            $(this).find(".tip").text("0.00");
+                                        }
+                                    }
+                                })
+
+                            console.log("会员支付")
+                        }
+                        
+                        }
+        
+      });
+      
+      //清空处理
+      $(".payment .empty").on("click",function(){
+        $(".payment .keyboard").val("");
+        
+        $(".fixed").text("--");
+        $(".visible").val('');
+        $(".discountMoney").text("--");
+        var subtotal = parseFloat($("#subtotal").text());//小计
+        var tax = parseFloat($(".tax").text());
+            var taxMoney = parseFloat(tax*subtotal/100);
+            taxMoney = taxMoney.toFixed(2);
+        $(".taxMoney").text(taxMoney);
+        var tal = parseFloat(subtotal)+parseFloat(taxMoney);
+        $("#total").text(tal);
+        $(".cash")[0].innerText = 0;
+        $(".card")[0].innerText = 0;
+
+        
+        
+//      $(".received").text("0.00");
+//        $(".cash").text("0.00");
+//        $(".card").text("0.00");
+//        $(".member").text("0.00");
+//        $(".surplus").text("0.00");
+//        $(".tip").text("0.00");
+      });
+      
+    $(document).ready(function(){
+      // nav
+      $(".barnav").hover(function(){
+        $(this).find("ul").slideDown();
+      },function(){
+        $(this).find("ul").slideUp();
+      });
+      $(".barnav").on("click",function(){
+        var ulD = $(this).find("ul").css("display");
+        if(ulD == "none"){
+          $(this).find("ul").slideDown();
+        }else{
+          $(this).find("ul").slideUp();
         }
-    })
+      });
+      // content
+      var winH = $(window).height() - 100, //100是导航
+          winH1 = $(window).height() - 190,
+          winW = $(window).width();//可是宽度
+      $(".page2-content, .payment").css("height",winH+"px");
+      // if(winW > 768){
+        $(".page2-left").css("height", winH + "px");
+        $(".page2-left-c").css("height",winH1 + "px");
+        $(".page2-right").css("height", winH + "px");
+      // }else{
+      //   $(".page2-left").css({"height":"500px"});
+      //   $(".page2-left-c").css("height","410px");
+      // }
 
-    $(document).on('click', ".remove_discount", function () {
-        var order_id = "<?php echo $Order_detail['Order']['id'] ?>";
-        var message = $("#Message").val();
-        $.ajax({
-            url: "<?php echo $this->Html->url(array('controller' => 'discount', 'action' => 'removeDiscount')); ?>",
-            method: "post",
-            data: {order_no: "<?php echo $Order_detail['Order']['order_no'] ?>"},
-            success: function (html) {
-                window.location.reload();
-            },
-            beforeSend: function () {
-                $(".RIGHT-SECTION").addClass('load1 csspinner');
-            }
-        })
-    })
-    $(document).on('click', ".add-discount", function () {
-        $(".discount_view").toggle();
+      // 菜单向下滑动
+      $(".tab-bot").on("click",function(){
+        var scroll = $(".page2-tabnav").scrollTop() + 70;
+        console.log(scroll);
+        $(".page2-tabnav").scrollTop(scroll);
+      });
+      $(".page2-tabnav li").on("click",function(){
+        var index = $(this).data("index");
+        $(".tabright").hide();
+        $(".tab"+index).show();
+        $(this).addClass("tab-active");
+        $(this).siblings().removeClass("tab-active");
+      });
+      // 去除搜索框中的内容
+      $(".tab-close").on("click",function(){
+        $(".tab-input").val("");
+      });
+      // 管理员密码
+      $(".login_right span").on("click",function(){
+        $("#admin").show();
+      });
+      $(".a_no").on("click",function(){
+        $("#admin").hide();
+        $("#admin_key").hide();
+        $("#write").val("");
+      });
+      $(".a_yes").on("click",function(){
+        $("#admin_key").show();
+      });
+      $(".key_img").on("click",function(){
+        $(this).parents(".key").hide();
+      });
+      // 回车,跳转到管理员界面      
+      $("#admin_key .return").on("click",function(){
+        var aVal = $("#write").val();
+        if(aVal == 1){//如果取到的键值是回车
+          window.location.href="admin.html";         
+        }else{
+          alert("解锁密码错误！");
+        }
+      });
+      window.document.onkeydown= function(evt){
+       evt = window.event || evt;
+       var aVal = $("#write").val();
+       if(evt.keyCode == 13){//如果取到的键值是回车
+        if(aVal == 1){         
+          window.location.href="admin.html";         
+        }else if(aVal != "" && aVal != 1){
+          alert("解锁密码错误！");
+        }
+       }
+     }
+      var liW = parseFloat($(".payment .num_left li").width()) ,
+          liW1 = parseFloat($(".payment .num_left li").width()*2 + 7),
+          liW2 = parseInt((liW1 - 80)/2);
+      $(".payment .num_left li").css({"height":liW+"px","line-height":liW+"px"});
+      $(".payment .num_right a").css({"padding-top":liW2+"px","padding-bottom":liW2+"px"});
+
+      // 输入密码
+//    $(".payment .num_left li.num").on("click",function(){
+//      var inputVal = $(".payment .keyboard").val(),
+//          $_this = $(this).html();
+//      $(".keyboard").val(inputVal+$_this);
+//    });
+      // 清空
+//    $(".payment .empty").on("click",function(){
+//      $(".payment .keyboard").val("");
+//    });
+      // 后退
+      $(".payment .retreat").on("click",function(){
+        var leng = $(".payment .keyboard").val().toString(),valIn = "";
+        valIn = leng.substring(0,leng.length-1);
+        $(".payment .keyboard").val(valIn);
+      });
+      // 默认
+//    $(".payde").on("click",function(){
+//      // 365为现有的默认金额
+//      $(".payment .keyboard").val(365);
+//    });
+      // 关闭ipad付款块
+      $(".pay_close").on("click",function(){
+        $('.payment .page2-right').hide();
+      });
+      $(".pay_play").on("click",function(){
+        $('.payment .page2-right').css("z-index","20");
+      });
+      //付款方式
+      $(".payF li").click(function(){
+        $(this).addClass("active").siblings().removeClass("active");
+      })
     });
-
-
-    $(document).on('click', ".tip_paid_by", function () {
-        $("#tip_paid_by").val($(this).val());
-    });
-
-    // modified by Yu Dec 15, 2016
-/*    $(document).ready(function() {
-        $('.order-summary-indent').kinetic();
-    });
-*/
-
-    // $(document).ready(function () {
-    //     $('body').flowtype({
-    //         minimum: 500,
-    //         minFont: 12,
-    //         maxFont: 40
-    //     });
-    // });
-</script>
+    </script>
+  </body>
