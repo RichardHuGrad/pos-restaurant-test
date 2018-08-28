@@ -42,7 +42,7 @@
         <div class="page2-left">
           <div class="page2-top">
             <h4><?php echo __('Order No.'); ?><?php echo $Order_detail['Order']['order_no'] ?><?php echo __('Table'); ?> <?php echo (($type == 'D') ? '[[堂食]]' : (($type == 'T') ? '[[外卖]]' : (($type == 'W') ? '[[等候]]' : ''))); ?>#<?php echo $table; ?><?php echo @$Order_detail['Order']['reason']!=''?('<br />'.$Order_detail['Order']['reason']):''; ?></h4>
-            <button type="button" name="button">换&nbsp;桌</button>
+            <button id="change_table" type="button" name="button">换&nbsp;桌</button>
           </div>
           <div class="page2-tavright">
           <div class="pay-left">
@@ -683,7 +683,7 @@
                                     }
                                 })
 
-                            console.log("现金支付")
+                            console.log("cash")
                         }else if(mm==1){
 
                                 $(".pay-right-c").each(function(){
@@ -709,7 +709,7 @@
                                     }
                                 })
 
-                            console.log("刷卡支付")
+                            console.log("card")
                         }else if(mm==2){
 
                                 $(".pay-right-c").each(function(){
@@ -729,7 +729,7 @@
                                     }
                                 })
 
-                            console.log("会员支付")
+                            console.log("membercard")
                         }
                         
                         }
@@ -882,6 +882,54 @@
       $(".payF li").click(function(){
         $(this).addClass("active").siblings().removeClass("active");
       })
+
+      //确认付款
+      console.log(payment);
+      $(".pay01").click(function () {
+            // submit form for complete payment process
+            $.ajax({
+                url: "<?php echo $this->Html->url(array('controller' => 'pay', 'action' => 'complete')); ?>",
+                type: "post",
+                data: {
+                    pay: $(".received")[0].innerText,
+                    paid_by: payment,
+                    change: $(".surplus")[0].innerText,
+                    table: "<?php echo $table ?>",
+                    type: "<?php echo $type ?>",
+                    order_id: "<?php echo $Order_detail['Order']['id'] ?>",
+                    card_val: $("#card_val").val(),
+                    membercard_id: $("#membercard_id").val(),
+                    membercard_val: $("#membercard_val").val(),
+                    cash_val: $("#cash_val").val(),
+                    tip_val: $("#tip_val").val(),
+                    tip_paid_by: $("#tip_paid_by").val(),
+                },
+                success: function (html) {
+                    $(".alert-warning").hide();
+                    // $(".reprint").trigger("click");
+                    $.ajax({
+                        url: "<?php echo $this->Html->url(array('controller' => 'pay', 'action' => 'printReceipt')); ?>",
+                        type: "post",
+                        data: {
+                            order_no: "<?php echo $Order_detail['Order']['order_no']; ?>",
+                        },
+                        success: function (html) {
+                            window.location = "<?php echo $this->Html->url(array('controller' => 'homes', 'action' => 'dashboard')); ?>";
+                        }
+                    })
+                },
+                beforeSend: function () {
+                    $(".RIGHT-SECTION").addClass('load1 csspinner');
+                    $(".alert-warning").show();
+                }
+            })
+        })
+
+      $("#change_table").click(function(){
+        alert(123);
+        $(".model, .model2").css("display: block;");
+      })
+
     });
     </script>
   </body>

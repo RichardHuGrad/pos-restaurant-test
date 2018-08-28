@@ -265,7 +265,8 @@
                 <h4>修改数量</h4>
             </div>
             <div class="modal-body clearfix">
-                <h4>新数量: <input id="change-quantity-component" type="number" min="1" step="1" style="height:30px"></h4>
+                <h4>新数量: <input id="change-quantity-component" type="number" style="height:30px"> <button class="btn btn-lg btn-success">+</button> <button class="btn btn-lg btn-success">-</button></h4>
+
             </div>
             <div class="modal-footer clearfix">                  
                 <button type="button" id="change-quantity-component-save" class="pull-right btn btn-lg btn-success" data-dismiss="modal">Save 保存</button>
@@ -1455,18 +1456,25 @@ echo $this->fetch('script');
     function renderOrder(callback) {
         $.ajax({
             url: "<?php echo $this->Html->url(array('controller' => 'order', 'action' => 'summarypanel', $table, $type)); ?>",
-            method: "post",
+            type: "post",
             success: function(html) {
 
-                $(".summary_box").html(html);
-                $(".summary_box").removeClass('load1 csspinner');
-                // $('#change-quantity-component-modal .close').trigger('click');
-                if (typeof callback == "function") {
-                    callback();
-                }
+                // $("#order-component").html(html);
+                // $("#order-component").removeClass('load1 csspinner');
+                // $(".clearfix")[10].remove();
+                // $(".bgwhite")[0].remove()
+                // // $('#change-quantity-component-modal .close').trigger('click');
+                // if (typeof callback == "function") {
+                //     callback();
+                // }
+
+
+                console.log(html);
+
+
             },
             beforeSend: function () {
-                $(".summary_box").addClass('load1 csspinner');
+                $("#order-component").addClass('load1 csspinner');
             }
         })
     }
@@ -1488,14 +1496,12 @@ echo $this->fetch('script');
     <script type="text/javascript" src="../../../html/js/keyboard.js"></script>
     <script type="text/javascript">
         //我就在想这里的折扣有什么用，到付款的时候不是有折扣吗
-        $(".butt").click(function(){
+    $(".butt").click(function(){
         var basic = $(this).text();
         basic =parseFloat( basic.substr(0, basic.length - 1));
         $("#txt2").val(basic);
-      })
+    })
 
-   
-        
         
     $(document).ready(function(){
 
