@@ -1469,7 +1469,7 @@ echo $this->fetch('script');
                 // }
 
 
-                console.log(html);
+                //console.log(html);
 
 
             },

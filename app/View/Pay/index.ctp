@@ -44,6 +44,7 @@
             <h4><?php echo __('Order No.'); ?><?php echo $Order_detail['Order']['order_no'] ?><?php echo __('Table'); ?> <?php echo (($type == 'D') ? '[[堂食]]' : (($type == 'T') ? '[[外卖]]' : (($type == 'W') ? '[[等候]]' : ''))); ?>#<?php echo $table; ?><?php echo @$Order_detail['Order']['reason']!=''?('<br />'.$Order_detail['Order']['reason']):''; ?></h4>
             <button id="change_table" type="button" name="button">换&nbsp;桌</button>
           </div>
+        <div class="page2-left-c">
           <div class="page2-tavright">
           <div class="pay-left">
                 <div class="pay-title"><?php echo __('Order Summary'); ?></div>
@@ -175,6 +176,7 @@
                 </div>
               </div>
           </div>
+      </div>
 
           <!-- <div class="page2-left-c">
               
@@ -235,6 +237,78 @@
         </div>
       </div>
     </div>
+
+    <!-- 换桌 -->
+    <div id="show_modal"class="model model2">
+      <div class="model-title">堂食 NO.01 变更为</div>
+      <img src="../../../html/images/icon-06.png" alt="关闭弹出层" class="model-close" />
+      <div class="model2-content">
+        <input type="text" name="" placeholder="堂食" class="model-input" />
+        <ul class="tang1">
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+        </ul>
+        <input type="text" name="" placeholder="外卖" class="model-input" />
+        <ul class="tang2">
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+        </ul>
+        <input type="text" name="" placeholder="送餐" class="model-input" />
+        <ul class="tang3">
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">01</a></li>
+        </ul>
+      </div>
+    </div>
+
     <!-- ipad付款块按钮 -->
     <button type="button" name="button" class="pay_play">选择/输入付款金额</button>
     <!-- 付款虚拟键盘 -->
@@ -926,8 +1000,8 @@
         })
 
       $("#change_table").click(function(){
-        alert(123);
-        $(".model, .model2").css("display: block;");
+        alert("换桌");
+        //$("#show_modal").css({ 'display': "block" });
       })
 
     });
