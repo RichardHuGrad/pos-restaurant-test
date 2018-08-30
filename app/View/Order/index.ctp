@@ -150,7 +150,7 @@
                       <a href="javascript:;">已送厨</a>
                     </li>
                   </ul>
-                  <ul class="right-list" id="order-component">
+                  <!-- <ul class="right-list" id="order-component"> -->
                     <!-- 背景色 class="rig-act" data-state="1" 表示已送厨-->
                     <!-- <li data-state="1">
                       <a href="javascript:;">
@@ -164,7 +164,47 @@
                         <div class="list-right">1</div>
                       </a>
                     </li> -->
-                  </ul>
+                  <!-- </ul> -->
+                  <ul class="right-list" id="order-component">
+                  <!-- 背景色 class="rig-act" -->
+
+                  <?php echo $Order_detail['OrderItem']; ?>
+
+                  <?php
+                        if (!empty($Order_detail['OrderItem'])) {
+                            foreach ($Order_detail['OrderItem'] as $key => $value) {
+                                # code...
+                                $selected_extras_name = [];
+                                // if ($value['all_extras']) {
+                                    // $extras = json_decode($value['all_extras'], true);
+                                    $selected_extras = json_decode($value['selected_extras'], true);
+
+                                    // prepare extras string
+                                    $selected_extras_id = [];
+                                    if (!empty($selected_extras)) {
+                                        foreach ($selected_extras as $k => $v) {
+                                            $selected_extras_name[] = $v['name'];
+                                            $selected_extras_id[] = $v['id'];
+                                        }
+                                    }
+                                // }
+                                ?>
+                  <li>
+                    <a href="javascript:;">
+                      <div class="list-left">
+                        <h4><?php echo $value['name_en'] . "<br/>" . $value['name_xh']; ?></h4>
+                        <!-- <p>Option: 中辣；少麻；去葱；加卤蛋；加面；加肉；改米线；多花生</p> -->
+                        <p><?php echo implode(",", $selected_extras_name); ?></p>
+                      </div>
+                      <div class="list-center">
+                        <i class="pri"><?php echo ($value['price'] + $value['extras_amount']); ?></i> <span>(15%off)</span>
+                      </div>
+                      <div class="list-right"><?php echo $value['qty']; ?></div>
+                    </a>
+                  </li>
+
+                <?php }} ?>
+                </ul>
                 </div>
                 <div class="right-tab">
                   <a href="javascript:;" class="add_zhe">加入折扣</a>
@@ -529,6 +569,8 @@ echo $this->fetch('script');
             $('.select')[i].children[0].childNodes[2].innerText = change_quantity;
         }
     });
+
+    
 
 
     // $('body').on('click', '#change-quantity-component-save', function() {
@@ -1453,23 +1495,102 @@ echo $this->fetch('script');
     });
 
 
+    function loadOrder(order_no) {
+
+            var tempOrder = new Order(order_no);
+            <?php
+                if (!empty($Order_detail['OrderItem'])) {
+                ?>
+                    var percent_discount = '<?php echo $Order_detail['Order']['percent_discount'] ;?>';
+                    var fix_discount = '<?php echo $Order_detail['Order']['fix_discount']; ?>';
+
+                    // console.log(percent_discount);
+                    // console.log(fix_discount);
+                    if (percent_discount != 0) {
+                        tempOrder.discount = {"type": "percent", "value": percent_discount}
+                        // console.log(tempOrder.discount)
+                    } else if (fix_discount != 0) {
+                        tempOrder.discount = {"type": "fixed", "value": fix_discount}
+                    }
+                <?php
+
+                    $i = 0;
+                    foreach ($Order_detail['OrderItem'] as $key => $value) {
+
+                        $selected_extras_name = [];
+                    // if ($value['all_extras']) {
+                        $extras = json_decode($value['all_extras'], true);
+                        $selected_extras = json_decode($value['selected_extras'], true);
+
+                        // prepare extras string
+                        $selected_extras_id = [];
+                        if (!empty($selected_extras)) {
+                            foreach ($selected_extras as $k => $v) {
+                                $selected_extras_name[] = $v['name'];
+                                $selected_extras_id[] = $v['id'];
+                            }
+                        }
+                    // }
+                ?>
+                        var temp_item = new Item(
+                                item_id = '<?php echo $i ?>',
+                                image= '<?php if ($value['image']) { echo $value['image']; } else { echo 'no_image.jpg';};?>',
+                                name_en = '<?php echo $value['name_en']; ?>',
+                                name_zh = '<?php echo $value['name_xh']; ?>',
+                                selected_extras_name = '<?php echo implode(",", $selected_extras_name); ?>', // can be extend to json object
+                                price = '<?php echo $value['price'] ?>',
+                                extras_amount = '<?php echo $value['extras_amount'] ?>',
+                                quantity = '<?php echo $value['qty'] ?>',
+                                order_item_id = '<?php echo $value['id'] ?>',
+                                state = "keep",
+                                shared_suborders = null,
+                                assigned_suborder = null,
+                                is_takeout = '<?php echo $value["is_takeout"] ?>',
+                                comb_id = '<?php echo $value["comb_id"] ?>',
+                                selected_extras_json = '<?php echo $value['selected_extras'] ?>',
+                                is_print = '<?php echo $value['is_print']?>',
+                                special = '<?php echo  $value["special_instruction"]?>',
+                                cousine_id = '<?php echo $value['item_id']?>');
+
+                        tempOrder.addItem(temp_item);
+                <?php
+                        $i++;
+                    }
+                ?>
+
+            <?php
+                }
+            ?>
+            return tempOrder;
+        }
+
+
     function renderOrder(callback) {
         $.ajax({
             url: "<?php echo $this->Html->url(array('controller' => 'order', 'action' => 'summarypanel', $table, $type)); ?>",
             type: "post",
             success: function(html) {
 
-                // $("#order-component").html(html);
+
+                $("#order-component").html(html);
+                $("#order-component").remove();
+                $("#order-component").html();
                 // $("#order-component").removeClass('load1 csspinner');
                 // $(".clearfix")[10].remove();
                 // $(".bgwhite")[0].remove()
-                // // $('#change-quantity-component-modal .close').trigger('click');
+                // $('#change-quantity-component-modal .close').trigger('click');
                 // if (typeof callback == "function") {
                 //     callback();
                 // }
+                // console.log('<?php echo $Order_detail['Order']['order_no'] ?>');
+                // var order_no = '<?php echo $Order_detail['Order']['order_no'] ?>';
 
-
-                //console.log(html);
+                // var order;
+                // order = loadOrder(order_no);
+                for(var i = 0; i < order.items.length; i++){
+                    console.log(order.items[i]._name_zh);
+                }
+                
 
 
             },

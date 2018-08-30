@@ -50,6 +50,9 @@
                 <div class="pay-title"><?php echo __('Order Summary'); ?></div>
                 <ul class="right-list">
                   <!-- 背景色 class="rig-act" -->
+
+                  <?php echo $Order_detail['OrderItem']; ?>
+                  
                   <?php
                         if (!empty($Order_detail['OrderItem'])) {
                             foreach ($Order_detail['OrderItem'] as $key => $value) {
