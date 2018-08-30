@@ -23,8 +23,8 @@
             </ul>
           </li>
           <li><a href="javascript:;" onclick="huiyuan();" class="nav-a member">会员</a></li>
-          <li><a onclick="paidui();" class="nav-a">排队</a></li>
-          <li><a onclick="quhao();"class="nav-a">取号</a></li>
+          <!-- <li><a onclick="paidui();" class="nav-a">排队</a></li>
+          <li><a onclick="quhao();"class="nav-a">取号</a></li> -->
         </ul>
         <?php echo $this->Html->image('nav.png', array( 'class' => 'smalllogo', 'alt' => 'pad菜单')); ?>
         <!-- <img src="images/nav.png" class="smalllogo" alt="pad菜单" /> -->

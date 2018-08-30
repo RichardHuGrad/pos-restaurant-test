@@ -27,8 +27,8 @@
                 </ul>
               </li>
               <li><a href="javascript:;" onclick="huiyuan();" class="nav-a member">会员</a></li>
-              <li><a onclick="paidui();" class="nav-a">排队</a></li>
-              <li><a onclick="quhao();"class="nav-a">取号</a></li>
+              <!-- <li><a onclick="paidui();" class="nav-a">排队</a></li>
+              <li><a onclick="quhao();"class="nav-a">取号</a></li> -->
             </ul>
             <?php echo $this->Html->image('nav.png', array( 'class' => 'smalllogo', 'alt' => 'pad菜单')); ?>
             <!-- <img src="images/nav.png" class="smalllogo" alt="pad菜单" /> -->
@@ -168,42 +168,6 @@
                   <ul class="right-list" id="order-component">
                   <!-- 背景色 class="rig-act" -->
 
-                  <?php echo $Order_detail['OrderItem']; ?>
-
-                  <?php
-                        if (!empty($Order_detail['OrderItem'])) {
-                            foreach ($Order_detail['OrderItem'] as $key => $value) {
-                                # code...
-                                $selected_extras_name = [];
-                                // if ($value['all_extras']) {
-                                    // $extras = json_decode($value['all_extras'], true);
-                                    $selected_extras = json_decode($value['selected_extras'], true);
-
-                                    // prepare extras string
-                                    $selected_extras_id = [];
-                                    if (!empty($selected_extras)) {
-                                        foreach ($selected_extras as $k => $v) {
-                                            $selected_extras_name[] = $v['name'];
-                                            $selected_extras_id[] = $v['id'];
-                                        }
-                                    }
-                                // }
-                                ?>
-                  <li>
-                    <a href="javascript:;">
-                      <div class="list-left">
-                        <h4><?php echo $value['name_en'] . "<br/>" . $value['name_xh']; ?></h4>
-                        <!-- <p>Option: 中辣；少麻；去葱；加卤蛋；加面；加肉；改米线；多花生</p> -->
-                        <p><?php echo implode(",", $selected_extras_name); ?></p>
-                      </div>
-                      <div class="list-center">
-                        <i class="pri"><?php echo ($value['price'] + $value['extras_amount']); ?></i> <span>(15%off)</span>
-                      </div>
-                      <div class="list-right"><?php echo $value['qty']; ?></div>
-                    </a>
-                  </li>
-
-                <?php }} ?>
                 </ul>
                 </div>
                 <div class="right-tab">
@@ -458,7 +422,10 @@ echo $this->fetch('script');
         }
     }
 
-    var click = 0;
+    var order_item_length = '';
+    
+
+    var click = order_item_length + 1;
 
     //加菜到summaryPanel里
     $(".add_items").on("click", function () {
@@ -1466,7 +1433,40 @@ echo $this->fetch('script');
         // if message exist save message
         // $('#send-to-kitchen-btn').trigger('click');
 
+        // for(var i = 0; i < order.items.length; i++){
+        //     //console.log(order.items[i]._name_zh);
+
+        //     console.log(order.items[i].item_id);
+        //     $.ajax({
+        //         url: "<?php echo $this->Html->url(array('controller' => 'order', 'action' => 'addItem')); ?>",
+        //         type: "post",
+        //         data: {item_id: order.items[i].item_id, table: "<?php echo $table ?>", type: "<?php echo $type ?>"},
+        //         success: function (json) {
+                    
+
+        //             // console.log(html);
+
+        //             // $(".order-summary-indent").scrollTop($(".order-summary-indent ul").height());
+        //             // $("#order_no_display").html("Order 订单号 #" + $("#Order_no").val() + ", Table 桌 #<?php echo $table; ?>");
+        //             // $(".products-panel").removeClass('load1 csspinner');
+
+        //             // var obj = JSON.parse(json);
+        //             // //  {"extra_categories":["15","16"],"order_item_id":"4143","comb_id":"0","comb_num":"0"}
+        //             // renderOrder(function() {
+        //             //     if (obj.comb_id != 0) {
+        //             //         $("#order-component li[data-order-item-id=" + obj.order_item_id + "]").trigger("click");
+        //             //         $("#add-taste-btn").trigger("click");
+        //             //     }
+
+        //             // });
+
+        //         }
+
+        //     })
+        // };
+
         window.location = "<?php echo $this->Html->url(array('controller' => 'pay', 'action' => 'index', 'table' => $table, 'type' => $type)); ?>";
+
     });
 
 
@@ -1496,73 +1496,72 @@ echo $this->fetch('script');
 
 
     function loadOrder(order_no) {
+        var tempOrder = new Order(order_no);
+        <?php
+            if (!empty($Order_detail['OrderItem'])) {
+            ?>
+                var percent_discount = '<?php echo $Order_detail['Order']['percent_discount'] ;?>';
+                var fix_discount = '<?php echo $Order_detail['Order']['fix_discount']; ?>';
 
-            var tempOrder = new Order(order_no);
+                // console.log(percent_discount);
+                // console.log(fix_discount);
+                if (percent_discount != 0) {
+                    tempOrder.discount = {"type": "percent", "value": percent_discount}
+                    // console.log(tempOrder.discount)
+                } else if (fix_discount != 0) {
+                    tempOrder.discount = {"type": "fixed", "value": fix_discount}
+                }
             <?php
-                if (!empty($Order_detail['OrderItem'])) {
-                ?>
-                    var percent_discount = '<?php echo $Order_detail['Order']['percent_discount'] ;?>';
-                    var fix_discount = '<?php echo $Order_detail['Order']['fix_discount']; ?>';
 
-                    // console.log(percent_discount);
-                    // console.log(fix_discount);
-                    if (percent_discount != 0) {
-                        tempOrder.discount = {"type": "percent", "value": percent_discount}
-                        // console.log(tempOrder.discount)
-                    } else if (fix_discount != 0) {
-                        tempOrder.discount = {"type": "fixed", "value": fix_discount}
-                    }
-                <?php
+                $i = 0;
+                foreach ($Order_detail['OrderItem'] as $key => $value) {
 
-                    $i = 0;
-                    foreach ($Order_detail['OrderItem'] as $key => $value) {
+                    $selected_extras_name = [];
+                // if ($value['all_extras']) {
+                    $extras = json_decode($value['all_extras'], true);
+                    $selected_extras = json_decode($value['selected_extras'], true);
 
-                        $selected_extras_name = [];
-                    // if ($value['all_extras']) {
-                        $extras = json_decode($value['all_extras'], true);
-                        $selected_extras = json_decode($value['selected_extras'], true);
-
-                        // prepare extras string
-                        $selected_extras_id = [];
-                        if (!empty($selected_extras)) {
-                            foreach ($selected_extras as $k => $v) {
-                                $selected_extras_name[] = $v['name'];
-                                $selected_extras_id[] = $v['id'];
-                            }
+                    // prepare extras string
+                    $selected_extras_id = [];
+                    if (!empty($selected_extras)) {
+                        foreach ($selected_extras as $k => $v) {
+                            $selected_extras_name[] = $v['name'];
+                            $selected_extras_id[] = $v['id'];
                         }
-                    // }
-                ?>
-                        var temp_item = new Item(
-                                item_id = '<?php echo $i ?>',
-                                image= '<?php if ($value['image']) { echo $value['image']; } else { echo 'no_image.jpg';};?>',
-                                name_en = '<?php echo $value['name_en']; ?>',
-                                name_zh = '<?php echo $value['name_xh']; ?>',
-                                selected_extras_name = '<?php echo implode(",", $selected_extras_name); ?>', // can be extend to json object
-                                price = '<?php echo $value['price'] ?>',
-                                extras_amount = '<?php echo $value['extras_amount'] ?>',
-                                quantity = '<?php echo $value['qty'] ?>',
-                                order_item_id = '<?php echo $value['id'] ?>',
-                                state = "keep",
-                                shared_suborders = null,
-                                assigned_suborder = null,
-                                is_takeout = '<?php echo $value["is_takeout"] ?>',
-                                comb_id = '<?php echo $value["comb_id"] ?>',
-                                selected_extras_json = '<?php echo $value['selected_extras'] ?>',
-                                is_print = '<?php echo $value['is_print']?>',
-                                special = '<?php echo  $value["special_instruction"]?>',
-                                cousine_id = '<?php echo $value['item_id']?>');
-
-                        tempOrder.addItem(temp_item);
-                <?php
-                        $i++;
                     }
-                ?>
+                // }
+            ?>
+                    var temp_item = new Item(
+                            item_id = '<?php echo $i ?>',
+                            image= '<?php if ($value['image']) { echo $value['image']; } else { echo 'no_image.jpg';};?>',
+                            name_en = '<?php echo $value['name_en']; ?>',
+                            name_zh = '<?php echo $value['name_xh']; ?>',
+                            selected_extras_name = '<?php echo implode(",", $selected_extras_name); ?>', // can be extend to json object
+                            price = '<?php echo $value['price'] ?>',
+                            extras_amount = '<?php echo $value['extras_amount'] ?>',
+                            quantity = '<?php echo $value['qty'] ?>',
+                            order_item_id = '<?php echo $value['id'] ?>',
+                            state = "keep",
+                            shared_suborders = null,
+                            assigned_suborder = null,
+                            is_takeout = '<?php echo $value["is_takeout"] ?>',
+                            comb_id = '<?php echo $value["comb_id"] ?>',
+                            selected_extras_json = '<?php echo $value['selected_extras'] ?>',
+                            is_print = '<?php echo $value['is_print']?>',
+                            special = '<?php echo  $value["special_instruction"]?>',
+                            cousine_id = '<?php echo $value['item_id']?>');
 
+                    tempOrder.addItem(temp_item);
             <?php
+                    $i++;
                 }
             ?>
-            return tempOrder;
-        }
+
+        <?php
+            }
+        ?>
+        return tempOrder;
+    }
 
 
     function renderOrder(callback) {
@@ -1573,9 +1572,13 @@ echo $this->fetch('script');
 
 
                 $("#order-component").html(html);
-                $("#order-component").remove();
-                $("#order-component").html();
-                // $("#order-component").removeClass('load1 csspinner');
+                $("#order-component").empty();
+
+                // for(var i = 0; i < $("#order-component").children.length; i++){
+                //     $("#order-component").children[i].empty();
+                // }
+                
+                $("#order-component").removeClass('load1 csspinner');
                 // $(".clearfix")[10].remove();
                 // $(".bgwhite")[0].remove()
                 // $('#change-quantity-component-modal .close').trigger('click');
@@ -1587,8 +1590,30 @@ echo $this->fetch('script');
 
                 // var order;
                 // order = loadOrder(order_no);
+
+                function isSelect(data){
+
+                    //console.log($("#" + data.id + ""));
+                    if($("#" + data.id + "").hasClass("select")){
+                        $("#" + data.id + "").removeClass("select");
+                    }else{
+                        $("#" + data.id + "").addClass("select");
+                    }
+                }
+
+                order_item_length = order.items.length;
+                console.log(order_item_length);
+
+                var click = 0;
+
                 for(var i = 0; i < order.items.length; i++){
-                    console.log(order.items[i]._name_zh);
+                    //console.log(order.items[i]._name_zh);
+
+
+                    $("#order-component").append("<li onclick='isSelect(this)' class='order-item' data-order-item-id=" + order.items[i].item_id + " id='order-item-" + click + "' data-state='1' style='margin-bottom: 2px; width: 100%; background-color: rgb(240, 240, 240);''><a href='javascript:;'><div class = 'list-left'><h4>" + order.items[i]._name_zh + " " +order.items[i]._name_en + "</h4><p id='tasteOption'></p></div><div class='list-center'>$" + order.items[i]._price + "</div><div class='list-right'>1</div></li>");
+
+                    click = click + 1;
+
                 }
                 
 
