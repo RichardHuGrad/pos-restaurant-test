@@ -373,41 +373,50 @@ echo $this->fetch('script');
     }
 
 
+    $(".add_items").on("click", function () {
 
-    // $(".add_items").on("click", function () {
-    //     var item_id = $(this).attr("alt");
-    //     var message = $("#Message").val();
-    //     var table = "<?php echo $table ?>";
-    //     var type = "<?php echo $type ?>";
-    //     console.log(item_id, table, type);
+        var item_id = $(this).attr("alt");
+        var message = $("#Message").val();
+        var table = "<?php echo $table ?>";
+        var type = "<?php echo $type ?>";
+        //console.log(item_id, table, type);
 
-    //     $.ajax({
-    //         url: "<?php echo $this->Html->url(array('controller' => 'order', 'action' => 'addItem')); ?>",
-    //         type: "POST",
-    //         data: {item_id: item_id, table: "<?php echo $table ?>", type: "<?php echo $type ?>"},
-    //         success: function (json) {
-    //             // console.log(html);
+        $.ajax({
+            url: "<?php echo $this->Html->url(array('controller' => 'order', 'action' => 'addItem')); ?>",
+            type: "POST",
+            data: {item_id: item_id, table: "<?php echo $table ?>", type: "<?php echo $type ?>"},
+            success: function (json) {
+                // console.log(html);
 
-    //             // $(".order-summary-indent").scrollTop($(".order-summary-indent ul").height());
-    //             $("#order_no_display").html("Order 订单号 #" + $("#Order_no").val() + ", Table 桌 #<?php echo $table; ?>");
-    //             $(".products-panel").removeClass('load1 csspinner');
+                // $(".order-summary-indent").scrollTop($(".order-summary-indent ul").height());
+        //         $("#order_no_display").html("Order 订单号 #" + $("#Order_no").val() + ", Table 桌 #<?php echo $table; ?>");
+        //         $(".products-panel").removeClass('load1 csspinner');
 
-    //             //console.log(json);
-    //             var obj = JSON.parse(json);
-    //     //  {"extra_categories":["15","16"],"order_item_id":"4143","comb_id":"0","comb_num":"0"}
-    //             renderOrder(function() {
-    //                 if (obj.comb_id != 0) {
-    //                     $("#order-component li[data-order-item-id=" + obj.order_item_id + "]").trigger("click");
-    //                     $("#add-taste-btn").trigger("click");
-    //                 }
+        //         //console.log(json);
+        //         var obj = JSON.parse(json);
+        // //  {"extra_categories":["15","16"],"order_item_id":"4143","comb_id":"0","comb_num":"0"}
+        //         renderOrder(function() {
+        //             if (obj.comb_id != 0) {
+        //                 $("#order-component li[data-order-item-id=" + obj.order_item_id + "]").trigger("click");
+        //                 $("#add-taste-btn").trigger("click");
+        //             }
 
-    //             });
-    //         },
-    //         beforeSend: function () {
-    //             $(".products-panel").addClass('load1 csspinner');
-    //         }
-    //     });
-    // });
+        //         });
+
+                var obj = JSON.parse(json);
+        //  {"extra_categories":["15","16"],"order_item_id":"4143","comb_id":"0","comb_num":"0"}
+                Obj = JSON.parse(json);
+                renderOrder(function() {
+                    if (obj.comb_id != 0) {
+                        $("#order-component li[data-order-item-id=" + obj.order_item_id + "]").trigger("click");
+                        $("#add-taste-btn").trigger("click");
+                    }
+
+                });
+            }
+        });
+
+    });
 
 
     /***************************************************************************************************************/
@@ -443,34 +452,45 @@ echo $this->fetch('script');
     });
 
     //删除已选菜品
-    // $('#delete-btn').on('click', function () {
-    //     var selected_item_id_list = getSelectedItem();
+    $('#delete-btn').on('click', function () {
+        var selected_item_id_list = getSelectedItem();
 
-    //     if (selected_item_id_list.length == 0) {
-    //         // alert("No item selected 没有选择菜");
-    //          $.notify("No item selected 没有选择菜",  { position: "top center", className:"warn"});
-    //         return false;
-    //     }
+        if (selected_item_id_list.length == 0) {
+            // alert("No item selected 没有选择菜");
+             $.notify("No item selected 没有选择菜",  { position: "top center", className:"warn"});
+            return false;
+        }
 
-    //     $.ajax({
-    //         url: "<?php echo $this->Html->url(array('controller' => 'order', 'action' => 'removeitem')); ?>",
-    //         method: "post",
-    //         data: {selected_item_id_list: selected_item_id_list, table: "<?php echo $table ?>", type: "<?php echo $type ?>", order_no: $("#Order_no").val()},
-    //         success: function(html) {
-    //             renderOrder();
-    //         }
-    //     });
+        $.ajax({
+            url: "<?php echo $this->Html->url(array('controller' => 'order', 'action' => 'removeitem')); ?>",
+            type: "post",
+            data: {selected_item_id_list: selected_item_id_list, table: "<?php echo $table ?>", type: "<?php echo $type ?>", order_no: "<?php echo @$Order_detail['Order']['order_no']; ?>"},
+            success: function(html) {
+                renderOrder();
+            }
+        });
 
-    // });
+    });
+    //get order_item_id of all selected items
+    var getSelectedItem = function () {
+        var order_item_id_list = [];
+
+        $('#order-component .order-item.selected').each(function() {
+            order_item_id_list.push(parseInt($(this).attr('data-order-item-id')));
+            // console.log($(this).attr('data-order-item-id'));
+        });
+
+        return order_item_id_list;
+    }
 
     //删除已选菜品
-    $('#delete-btn').on('click', function () {
-        for(var i = 0; i < $("#order-component > li").length; i++){
-            if($("#order-component > li").hasClass("select")){
-                $(".select").remove();
-            }
-        }
-    });
+    // $('#delete-btn').on('click', function () {
+    //     for(var i = 0; i < $("#order-component > li").length; i++){
+    //         if($("#order-component > li").hasClass("select")){
+    //             $(".select").remove();
+    //         }
+    //     }
+    // });
 
 
     $('#change-price-btn').on('click', function() {
@@ -643,10 +663,12 @@ echo $this->fetch('script');
     var getSelectedItem = function () {
         var order_item_id_list = [];
 
-        $('#order-component .order-item.selected').each(function() {
+        $('#order-component .order-item.select').each(function() {
             order_item_id_list.push(parseInt($(this).attr('data-order-item-id')));
             // console.log($(this).attr('data-order-item-id'));
         });
+
+        //console.log(order_item_id_list);
 
         return order_item_id_list;
     }
@@ -698,9 +720,6 @@ echo $this->fetch('script');
                   echo "window.location = window.location;"
                 ?>              
                 
-            },
-            beforeSend: function () {
-                $(".summary_box").addClass('load1 csspinner');
             }
         });
     });
@@ -1427,9 +1446,11 @@ echo $this->fetch('script');
             $(selectors[1]).attr('disabled', true);
         }
     }
-
+    
 
     $('#pay-btn').on('click', function () {
+
+
         // if message exist save message
         // $('#send-to-kitchen-btn').trigger('click');
 
@@ -1602,15 +1623,15 @@ echo $this->fetch('script');
                 }
 
                 order_item_length = order.items.length;
-                console.log(order_item_length);
+                //console.log(order_item_length);
 
                 var click = 0;
 
                 for(var i = 0; i < order.items.length; i++){
-                    //console.log(order.items[i]._name_zh);
+                    console.log(order.items[i]);
 
 
-                    $("#order-component").append("<li onclick='isSelect(this)' class='order-item' data-order-item-id=" + order.items[i].item_id + " id='order-item-" + click + "' data-state='1' style='margin-bottom: 2px; width: 100%; background-color: rgb(240, 240, 240);''><a href='javascript:;'><div class = 'list-left'><h4>" + order.items[i]._name_zh + " " +order.items[i]._name_en + "</h4><p id='tasteOption'></p></div><div class='list-center'>$" + order.items[i]._price + "</div><div class='list-right'>1</div></li>");
+                    $("#order-component").append("<li onclick='isSelect(this)' class='order-item' data-order-item-id=" + order.items[i].order_item_id + " id='order-item-" + click + "' data-state='1' style='margin-bottom: 2px; width: 100%; background-color: rgb(240, 240, 240);''><a href='javascript:;'><div class = 'list-left'><h4>" + order.items[i]._name_zh + " " +order.items[i]._name_en + "</h4><p id='tasteOption'></p></div><div class='list-center'>$" + order.items[i]._price + "</div><div class='list-right'>1</div></li>");
 
                     click = click + 1;
 
@@ -1618,9 +1639,6 @@ echo $this->fetch('script');
                 
 
 
-            },
-            beforeSend: function () {
-                $("#order-component").addClass('load1 csspinner');
             }
         })
     }
