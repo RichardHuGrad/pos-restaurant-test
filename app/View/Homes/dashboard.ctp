@@ -18,11 +18,13 @@
           <li class="barnav">
             <a href="javascript:;" class="nav-a">语言</a>
             <ul style="display: none;">
-              <li><a href="javascript:;">English</a></li>
-              <li><a href="javascript:;">中文</a></li>
+              <li><a href="javascript:;" class="switch-lang">English</a></li>
+              <li><a href="javascript:;" class="switch-lang">中文</a></li>
             </ul>
           </li>
           <li><a href="javascript:;" onclick="huiyuan();" class="nav-a member">会员</a></li>
+
+
           <!-- <li><a onclick="paidui();" class="nav-a">排队</a></li>
           <li><a onclick="quhao();"class="nav-a">取号</a></li> -->
         </ul>
@@ -46,8 +48,6 @@
               <!-- <img src="images/icon-02.png" alt="关闭提示" /> -->
             </div>
             <!-- 占桌情况 -->
-
-
 
             <div class="sit">
               <!-- li的class为sit_no是未支付，sit_yes是已付款，
@@ -679,15 +679,31 @@
       </div>
     </div>
         <?php
-echo $this->Html->script(array('jquery.js', 'keyboard.js'));
+          echo $this->Html->script(array('jquery.js', 'keyboard.js'));
 
-echo $this->fetch('script');
-?>
-    <!-- <script type="text/javascript" src="js/jquery.js"></script>
-    <script type="text/javascript" src="js/keyboard.js"></script> -->
+          echo $this->fetch('script');
+        ?>
+
     <script type="text/javascript">
-tables=$("#tables").html();
-// console.log(tables);
+
+      $('.switch-lang').on('click', function() {
+          $.ajax({
+              url: "<?php echo $this->Html->url(array('controller' => 'homes', 'action' => 'switchLang')); ?>",
+              method: "post",
+              data: {
+                  lang: $(this).data('lang')
+              },
+              success: function(html) {
+                  // reload the page
+                  location.reload();
+              }
+          })
+          // console.log("click");
+      });
+
+
+      tables=$("#tables").html();
+      // console.log(tables);
     	//外卖订单切换
     	$(".fullOrder li").click(function(){
     		$(this).addClass("on").siblings().removeClass("on");
@@ -736,6 +752,11 @@ tables=$("#tables").html();
         $("#tanchu").html(str1);
         $("#Changed").html(str_table);
 
+      }
+
+      //会员
+      function huiyuan(that){
+        $("#modal_member_search").removeClass("hidden");
       }
 
       // 订单

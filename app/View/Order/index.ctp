@@ -18,15 +18,15 @@
             <!-- 导航 -->
 
             <ul class="nav">
-              <li><a href="../../../homes/dashboard" class="nav-a">主页</a></li>
+              <li><a href="../../../homes/dashboard" class="nav-a"><?php echo __('Home'); ?></a></li>
               <li class="barnav">
-                <a href="javascript:;" class="nav-a">语言</a>
+                <a href="javascript:;" class="nav-a"><?php echo __('Languages'); ?></a>
                 <ul style="display: none;">
                   <li><a href="javascript:;">English</a></li>
                   <li><a href="javascript:;">中文</a></li>
                 </ul>
               </li>
-              <li><a href="javascript:;" onclick="huiyuan();" class="nav-a member">会员</a></li>
+              <li><a href="javascript:;" onclick="huiyuan();" class="nav-a member"><?php echo __('Member'); ?></a></li>
               <!-- <li><a onclick="paidui();" class="nav-a">排队</a></li>
               <li><a onclick="quhao();"class="nav-a">取号</a></li> -->
             </ul>
@@ -34,7 +34,7 @@
             <!-- <img src="images/nav.png" class="smalllogo" alt="pad菜单" /> -->
             <!-- 登录按钮 -->
             <div class="login_right">
-              <button type="button" name="button" onclick="loginout(this);">登出</button>
+              <button type="button" name="button" onclick="loginout(this);"><?php echo __('Logout'); ?></button>
               <span>管理员</span>
             </div>
           </div>
@@ -389,7 +389,7 @@ echo $this->fetch('script');
                 // console.log(html);
 
                 // $(".order-summary-indent").scrollTop($(".order-summary-indent ul").height());
-        //         $("#order_no_display").html("Order 订单号 #" + $("#Order_no").val() + ", Table 桌 #<?php echo $table; ?>");
+                $("#order_no_display").html("Order 订单号 #" + $("#Order_no").val() + ", Table 桌 #<?php echo $table; ?>");
         //         $(".products-panel").removeClass('load1 csspinner');
 
         //         //console.log(json);
@@ -406,6 +406,7 @@ echo $this->fetch('script');
                 var obj = JSON.parse(json);
         //  {"extra_categories":["15","16"],"order_item_id":"4143","comb_id":"0","comb_num":"0"}
                 Obj = JSON.parse(json);
+
                 renderOrder(function() {
                     if (obj.comb_id != 0) {
                         $("#order-component li[data-order-item-id=" + obj.order_item_id + "]").trigger("click");
@@ -1623,22 +1624,21 @@ echo $this->fetch('script');
                 }
 
                 order_item_length = order.items.length;
-                //console.log(order_item_length);
+                console.log(order_item_length);
 
-                var click = 0;
+                if(order_item_length != 0){
+                    var click = 0;
 
-                for(var i = 0; i < order.items.length; i++){
-                    console.log(order.items[i]);
+                    for(var i = 0; i < order.items.length; i++){
+                        //console.log(order.items[i]);
 
 
-                    $("#order-component").append("<li onclick='isSelect(this)' class='order-item' data-order-item-id=" + order.items[i].order_item_id + " id='order-item-" + click + "' data-state='1' style='margin-bottom: 2px; width: 100%; background-color: rgb(240, 240, 240);''><a href='javascript:;'><div class = 'list-left'><h4>" + order.items[i]._name_zh + " " +order.items[i]._name_en + "</h4><p id='tasteOption'></p></div><div class='list-center'>$" + order.items[i]._price + "</div><div class='list-right'>1</div></li>");
+                        $("#order-component").append("<li onclick='isSelect(this)' class='order-item' data-order-item-id=" + order.items[i].order_item_id + " id='order-item-" + click + "' data-state='1' style='margin-bottom: 2px; width: 100%; background-color: rgb(240, 240, 240);''><a href='javascript:;'><div class = 'list-left'><h4>" + order.items[i]._name_zh + " " +order.items[i]._name_en + "</h4><p id='tasteOption'></p></div><div class='list-center'>$" + order.items[i]._price + "</div><div class='list-right'>1</div></li>");
 
-                    click = click + 1;
+                        click = click + 1;
 
+                    }
                 }
-                
-
-
             }
         })
     }
