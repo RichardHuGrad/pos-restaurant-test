@@ -22,12 +22,13 @@
               <li><a href="javascript:;" class="switch-lang">中文</a></li>
             </ul>
           </li>
-          <li><a href="javascript:;" onclick="huiyuan();" class="nav-a member">会员</a></li>
+          <li><a href="javascript:;" class="nav-a member" data-toggle="modal" data-target="#myModal">会员</a></li>
 
 
           <!-- <li><a onclick="paidui();" class="nav-a">排队</a></li>
           <li><a onclick="quhao();"class="nav-a">取号</a></li> -->
         </ul>
+
         <?php echo $this->Html->image('nav.png', array( 'class' => 'smalllogo', 'alt' => 'pad菜单')); ?>
         <!-- <img src="images/nav.png" class="smalllogo" alt="pad菜单" /> -->
         <!-- 登录按钮 -->
@@ -684,6 +685,27 @@
           echo $this->fetch('script');
         ?>
 
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog">
+      
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Modal Header</h4>
+          </div>
+          <div class="modal-body">
+            <p>Some text in the modal.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
     <script type="text/javascript">
 
       $('.switch-lang').on('click', function() {
@@ -702,6 +724,8 @@
       });
 
 
+
+
       tables=$("#tables").html();
       // console.log(tables);
     	//外卖订单切换
@@ -710,15 +734,12 @@
     		var i = $(this).index();
     		$(".ulBox").find("ul").eq(i).show().siblings().hide();
     	})
+
+      //会员
       function huiyuan(){
         alert("This function is temporarily unopened.");
       }
-      function paidui(){
-        alert("This function is temporarily unopened.");
-      }
-      function quhao(){
-        alert("This function is temporarily unopened.");
-      }
+      
       function loginout(that){
         var tiaozhuan = '<?php echo $this->Html->url(array("controller" => "homes", "action" => "logout")) ?>';
 
@@ -754,10 +775,6 @@
 
       }
 
-      //会员
-      function huiyuan(that){
-        $("#modal_member_search").removeClass("hidden");
-      }
 
       // 订单
       function dingdan(that){

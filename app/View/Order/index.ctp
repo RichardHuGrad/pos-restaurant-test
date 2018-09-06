@@ -168,7 +168,7 @@
                   <ul class="right-list" id="order-component">
                   <!-- 背景色 class="rig-act" -->
 
-                </ul>
+                  </ul>
                 </div>
                 <div class="right-tab">
                   <a href="javascript:;" class="add_zhe">加入折扣</a>
@@ -1595,23 +1595,9 @@ echo $this->fetch('script');
 
                 $("#order-component").html(html);
                 $("#order-component").empty();
-
-                // for(var i = 0; i < $("#order-component").children.length; i++){
-                //     $("#order-component").children[i].empty();
-                // }
                 
                 $("#order-component").removeClass('load1 csspinner');
-                // $(".clearfix")[10].remove();
-                // $(".bgwhite")[0].remove()
-                // $('#change-quantity-component-modal .close').trigger('click');
-                // if (typeof callback == "function") {
-                //     callback();
-                // }
-                // console.log('<?php echo $Order_detail['Order']['order_no'] ?>');
-                // var order_no = '<?php echo $Order_detail['Order']['order_no'] ?>';
 
-                // var order;
-                // order = loadOrder(order_no);
 
                 function isSelect(data){
 
