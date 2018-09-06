@@ -22,12 +22,40 @@
               <li><a href="javascript:;" class="switch-lang">中文</a></li>
             </ul>
           </li>
-          <li><a href="javascript:;" class="nav-a member" data-toggle="modal" data-target="#myModal">会员</a></li>
-
+          <li><a href="javascript:;" class="nav-a member" data-toggle="modal" data-target="#modal_member_search">会员</a></li>
 
           <!-- <li><a onclick="paidui();" class="nav-a">排队</a></li>
           <li><a onclick="quhao();"class="nav-a">取号</a></li> -->
         </ul>
+
+        <div class="modal" id="modal_member_search" role="dialog" hidden="true">
+           <div class="modal-dialog modal-lg" style="width:400px">
+               <div class="modal-content clearfix">
+                   <div class="modal-header">
+                       <button type="button" data-dismiss="modal" class="member_btn_close"><?php echo __('Close'); ?></button>
+                       <h4><?php echo __('Member'); ?></h4>
+                       <button type="button" data-dismiss="modal" id="member_btn_add"><?php echo __('Add'); ?></button>
+                   </div>
+                   <div class="modal-body clearfix">
+                      <div class='row'>
+                        <div class='col-sm-12'>
+                            <input id="member_search_input" type="text" style="font-size:25px;height:38px" placeholder='Card Number/ID/Name/Phone Number' />
+                            <input id="member_search_next" type="hidden" value="" />
+                        </div>
+                      </div>
+                      <div class='row'>
+                        <div class='col-sm-4'><?php echo __('Card Number'); ?></div>
+                        <div class='col-sm-4'><?php echo __('ID'); ?></div>
+                        <div class='col-sm-4'><?php echo __('Amount'); ?></div>
+                      </div>
+                      <div class='row' id='mbm_sch_list'>
+                        <div class='col-sm-12'>
+                        </div>
+                      </div>
+                   </div>
+               </div>
+           </div>
+       </div>
 
         <?php echo $this->Html->image('nav.png', array( 'class' => 'smalllogo', 'alt' => 'pad菜单')); ?>
         <!-- <img src="images/nav.png" class="smalllogo" alt="pad菜单" /> -->
@@ -513,7 +541,6 @@
         <?php echo $this->Html->image('icon-07.png', array('alt'=>'关闭会员详情','class'=>'member-close2')); ?>
           <!-- <img src="images/icon-07.png" alt="关闭会员详情" class="member-close2" /> -->
           <h2>会员页面</h2>
-          <button type="button" class="member-btn1">信息修改</button>
         </div>
         <div class="member-bot">
           <p>
@@ -686,25 +713,7 @@
         ?>
 
     <!-- Modal -->
-    <div class="modal fade" id="myModal" role="dialog">
-      <div class="modal-dialog">
-      
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Modal Header</h4>
-          </div>
-          <div class="modal-body">
-            <p>Some text in the modal.</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-        
-      </div>
-    </div>
+    
 
     <script type="text/javascript">
 
@@ -983,7 +992,7 @@
      
       // 会员
       $(".member").on("click",function(){
-        return false;
+        //return false;
         $("#member").show();
       });
       $(".member-close,.member-close4").on("click",function(){
