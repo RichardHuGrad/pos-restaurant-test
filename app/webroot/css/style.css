@@ -2370,10 +2370,10 @@ a.add_zhe{
     }
 
 /*管理员密码*/
-#admin{
+#admin, #dialog{
   display: none;
   position: fixed;
-  right: 13%;
+  right: 41%;
   top: 100px;
   width: 372px;
 /*  height: 238px;*/  
@@ -2388,7 +2388,7 @@ a.add_zhe{
   width: 372px;
   margin-left: -286px;
 }
-  #admin p{
+  #admin, #dialog p{
     padding-left: 150px;
     background: url(../images/icon-11.png) no-repeat 103px center;
     font-size: 24px;
@@ -2396,7 +2396,7 @@ a.add_zhe{
     color: #00cdef;
     line-height: 80px;
   }
-  #admin input{
+  #admin, #dialog input{
     width: 92%;
     height: 55px;
     margin: 0 2%;
@@ -2411,7 +2411,7 @@ a.add_zhe{
     line-height: 55px;
     outline: none;
   }
-    .a_no{
+    .a_no, .dia_no{
       float: left;
       width: 100px;
       height: 50px;
@@ -2427,7 +2427,7 @@ a.add_zhe{
       border-radius: 5px;
       cursor: pointer;
     }
-    .a_yes{
+    .a_yes, .dia_yes{
       float: right;
       width: 100px;
       height: 50px;

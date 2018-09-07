@@ -371,12 +371,16 @@
       </div>
     </div>
     <!-- 弹出层 -->
+
+
     <div class="model model1">
       <div class="model-title" >堂食 NO.<span id="tanchu"></span></div>
        <?php echo $this->Html->image('icon-06.png', array('alt'=>'关闭弹出层','class'=>'model-close')); ?>
+
       <!-- <img src="images/icon-06.png" alt="关闭弹出层" class="model-close" /> -->
       <ul class="model-content">
-        <li >
+        
+        <li>
           <a onclick="dingdan(this)">
             <div class="model-img"></div>
             <span>订单</span>
@@ -395,15 +399,20 @@
           </a>
         </li>
         <li class="model-nav4">
-          <a href="javascript:;">
-            <div class="model-img"></div>
-            <span>变空桌</span>
-          </a>
+          <a tabindex="-1" href="<?php 
+          
+          for($i = 1; $i <= $tables['Admin']['no_of_tables']; $i++) { 
+              if(@$dinein_tables_status[$i] == 'N' or @$dinein_tables_status[$i] == 'P')
+                echo "javascript:makeavailable('".$this->Html->url(array('controller'=>'homes', 'action'=>'makeavailable', 'table'=>$i, 'type'=>'D', 'order'=>@$orders_no[$i]['D']))."');"; else echo "javascript:void(0);";
+          } 
+          ?>">
+          <div class="model-img"></div>
+          <span><?php echo __('Clear Table'); ?></span></a>
         </li>
         <li class="model-nav5">
           <a href="javascript:;">
             <div class="model-img"></div>
-            <span>合单</span>
+            <span><?php echo __('Merge Bill'); ?></span>
           </a>
         </li>
         <li>
@@ -455,27 +464,37 @@
       <div class="model3-content">
         <input type="text" name="" placeholder="堂食" class="model-input" />
         <ul class="tang1">
-          <li><a href="javascript:;">01</a></li>
-          <li><a href="javascript:;">02</a></li>
-          <li><a href="javascript:;">03</a></li>
-          <li><a href="javascript:;">04</a></li>
-          <li><a href="javascript:;">05</a></li>
-          <li><a href="javascript:;">06</a></li>
-          <li><a href="javascript:;">07</a></li>
-          <li><a href="javascript:;">08</a></li>
-          <li><a href="javascript:;">09</a></li>
-          <li><a href="javascript:;">10</a></li>
-          <li><a href="javascript:;">11</a></li>
-          <li><a href="javascript:;">12</a></li>
-          <li><a href="javascript:;">13</a></li>
-          <li><a href="javascript:;">14</a></li>
-          <li><a href="javascript:;">15</a></li>
-          <li><a href="javascript:;">16</a></li>
-          <li><a href="javascript:;">17</a></li>
+          <?php
+                  $dinein_tables_keys = array_keys($dinein_tables_status);
+                  for ($t = 0; $t < count(@$dinein_tables_status); $t++) {
+                      if (@$dinein_tables_status[$dinein_tables_keys[$t]] == "N" && $dinein_tables_keys[$t] != $i) {
+                          ?>
+                          <li><a href="javascript:;"><?php echo $dinein_tables_keys[$t]; ?></a></li>
+                          <?php
+                      }
+                  }
+                  ?>
         </ul>
       </div>
       <button type="button" class="model3_btn">确认合并</button>
     </div>
+
+    <div id="dialog">
+      <p>密码解锁</p>
+      <div class="input-group input-group-lg">
+          <span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock"></i></span>
+          <input id="login-password" type="password"  class="EntPassword form-control adminInp" placeholder="password" aria-describedby="sizing-addon1"/>
+      </div>
+      
+      <input type="hidden" id="url" value="" />
+      
+      <div class="admin-btn">
+        <button type="button" class="a_no" value="Cancel" onclick="checkPasswordC()">取消</button>
+        <button type="button" class="a_yes" value="Enter" onclick="checkPassword('<?php echo $admin_passwd[0]['admins']['password']?>')">输入</button>
+      </div>
+    </div>
+
+
     <!-- 弹出层，会员 -->
     <div id="member">
       <div class="member-top">
@@ -706,6 +725,10 @@
         <span>账户余额<small>$44.5</small></span>
       </div>
     </div>
+
+    
+
+
         <?php
           echo $this->Html->script(array('jquery.js', 'keyboard.js'));
 
@@ -733,6 +756,40 @@
       });
 
 
+      function mergebill(tableId) {
+          var table_merge = "";
+          $('input[name="mergetable[]"]:checked').each(function () {
+             table_merge += $(this).val()+",";
+              $(this).attr("checked",false);
+          });
+          table_merge = table_merge.substring(0,(table_merge.length-1));
+
+          document.location = "../merge/index/table:"+tableId+"/tablemerge:"+table_merge+"/type:D";
+
+      }
+
+      function makeavailable(url){
+          $("#dialog").show();
+          $(".EntPassword").val("");
+          $('#url').val(url);
+      }
+
+
+
+      function checkPassword(passwd){
+            // $('#dialog').hide();
+       // var pwd_makeavailable = hex_md5($(".EntPassword").val());
+            
+          document.location = $('#url').val();
+            
+                // alert("Your password is incorrect!");
+          $('.popPassword .input-group-addon').notify("Your password is incorrect!", {position: "top", className: "error"});
+           
+      }
+    
+      function checkPasswordC(){
+          $('#dialog').hide();
+      }
 
 
       tables=$("#tables").html();
@@ -956,10 +1013,21 @@
         $(".key").hide();
       });
       // 变空桌
-      $(".model-nav4").on("click",function(){
-        $(".model").hide();
-        $("#admin").addClass("adminCss").show();
-      });
+      // $(".model-nav4").on("click",function(){
+      //   $(".model").hide();
+      //   // $("#admin").addClass("adminCss").show();
+
+      //   $.ajax({
+      //         url: "<?php echo $this->Html->url(array('controller'=>'homes', 'action'=>'makeavailable', 'table'=>$i, 'type'=>'D', 'order'=>@$orders_no[$i]['D'])); ?>",
+      //         type: "post",
+              
+      //         success: function(html) {
+      //             // reload the page
+      //             location.reload();
+      //         }
+      //     })
+      // });
+      
       // 回车,跳转到管理员界面      
       $(".return").on("click",function(){
         hrefG();
