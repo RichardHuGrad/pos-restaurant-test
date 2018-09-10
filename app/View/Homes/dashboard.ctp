@@ -69,6 +69,7 @@
          <?php echo $this->Session->flash(); ?>
       <div class="content">
         <div class="content_left">
+          
           <div class="c_area">
             <!-- 提示 -->
             <div class="prompt c1" style="display: none;">
@@ -127,6 +128,7 @@
               </ul>
             </div>
           </div>
+          
           <!-- 状态 -->
            <div class="static">
              <h4>状态栏</h4>
