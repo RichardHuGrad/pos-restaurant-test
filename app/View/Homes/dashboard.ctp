@@ -69,7 +69,6 @@
          <?php echo $this->Session->flash(); ?>
       <div class="content">
         <div class="content_left">
-          
           <div class="c_area">
             <!-- 提示 -->
             <div class="prompt c1" style="display: none;">
@@ -84,51 +83,79 @@
                        sit_dan是已打单, sit_kong是空桌 -->
               <!-- 未加class的li是空白 -->
               <ul class="sit_left">
-                    <?php
-                        $dine_table = @explode(",", $tables['Admin']['table_size']);
-                        $dine_table_order = @$tables['Admin']['table_order']?@json_decode($tables['Admin']['table_order'], true):array();
-    
-                      for($i = 0; $i < $tables['Admin']['no_of_tables']; $i++) {
-                          @$table_size[$i]=explode(",",@$table_size[$i]);
-                        if(@$table_size[$i][1]==""){
-                          @$table_numbers.= @$table_size[$i][0].",";
-                          
-                        }?>
-                        <?php
+                    
+                <?php
+                  $dine_table = @explode(",", $tables['Admin']['table_size']);
+                  $dine_table_order = @$tables['Admin']['table_order']?@json_decode($tables['Admin']['table_order'], true):array();
+                for($i = 1; $i <= $tables['Admin']['no_of_tables']; $i++) {
+                ?>
+                <li class="dine_li sit_kong" style="<?php echo @$dine_table_order[$i-1] ?>">
 
-                        if(@$table_size[$i][1]!="" && @$table_size[$i][1]=="A"){
-                      ?>
-                      <li class="sit_kong" id="table_<?php echo @$dine_table[$i]<=9?'0'.@$dine_table[$i]:@$dine_table[$i]; ?>" onclick="number(this)">
-                      <?php }else if(@$table_size[$i][1]!="" && @$table_size[$i][1]=="N"){?>
-                      <li class="sit_no"  id="table_<?php echo @$dine_table[$i]<=9?'0'.@$dine_table[$i]:@$dine_table[$i]; ?>" onclick="number(this)">
-                       <span id="tableStatus" style="display: none;"><?php echo @$table_size[$i][1];?></span>
-                      <?php }else if(@$table_size[$i][1]!="" && @$table_size[$i][1]=="P"){?>
-                        <li class="sit_yes"  id="table_<?php echo @$dine_table[$i]<=9?'0'.@$dine_table[$i]:@$dine_table[$i]; ?>" onclick="number(this)">
-                        <span id="tableStatus" style="display: none;"><?php echo @$table_size[$i][1];?></span>
-                      <?php }else if(@$table_size[$i][1]!="" && @$table_size[$i][1]=="R"){?>
-                        <li class="sit_dan"  id="table_<?php echo @$dine_table[$i]<=9?'0'.@$dine_table[$i]:@$dine_table[$i]; ?>" onclick="number(this)">
-                        <span id="tableStatus" style="display: none;"><?php echo @$table_size[$i][1];?></span>
-                      <?php }else if(@$table_size[$i][1]==""){?>
-                      <li onclick="number(this)"  class="sit_kong"  id="table_<?php echo @$dine_table[$i]<=9?'0'.@$dine_table[$i]:@$dine_table[$i]; ?>">
-                      <span id="tableStatus" style="display: none;"><?php echo @$table_size[$i][1];?></span>
-                      <?php }?>
-                     
-                      <p id="ycorder_no" style="display: none;"><?php echo @$orders_no[$table_size[$i][0]]['D'];?></p>
-                        <div class="sit-title" id="money1"><span>$</span><?php echo @round($orders_total[$orders_no[$table_size[$i][0]]['D']], 2)? @round($orders_total[$orders_no[$table_size[$i][0]]['D']], 2):'0.00';?></div>
-                        <div class="sit-time" id="time1">
-                          <!-- 占桌时间 -->
-                          <span><?php echo @$orders_time[$i]['D']?date("h:i:sa", strtotime(@$orders_time[$i]['D'])):"0:00" ?></span>
-                          
-                          <p><small>No.</small><b><?php echo @$dine_table[$i]<=9?"0".@$dine_table[$i]:@$dine_table[$i]; ?></b></p>
-                        </div>
-                      </li>
-                      
-                    <?php }?>
-                      <div id="tables" style="display: none;"><?php echo @$table_numbers;?></div>
+                  <div class="model1">
+                  <div class="model-title" ><?php echo __('Dine In'); ?><?php echo str_pad($i, 2, 0, STR_PAD_LEFT); ?>
+                  </div>
+                   <img src="../../../html/images/icon-06.png" alt="关闭弹出层" class="model-close" />
+
+                  <!-- <img src="images/icon-06.png" alt="关闭弹出层" class="model-close" /> -->
+                  <ul class="model-content">
+                    
+                    <li>
+                      <a tabindex="-1" href="<?php echo $this->Html->url(array('controller'=>'order', 'action'=>'index', 'table'=>$i, 'type'=>'D')); ?>">
+                        <div class="model-img"></div>
+                        <span><?php echo __('Order');?></span>
+                      </a>
+                    </li>
+                    <li >
+                      <a tabindex="-1" >
+                        <div class="model-img"></div>
+                        <span><?php echo __('Pay'); ?></span>
+                      </a>
+                    </li>
+                    <li class="model-nav3">
+                      <a>
+                        <div class="model-img"></div>
+                        <span><?php echo __('Change Table'); ?></span>
+                      </a>
+                    </li>
+                    <li class="model-nav4">
+                      <a>
+                      <div class="model-img"></div>
+                      <span><?php echo __('Clear Table'); ?></span></a>
+                    </li>
+                    <li class="model-nav5">
+                      <a href="javascript:;">
+                        <div class="model-img"></div>
+                        <span><?php echo __('Merge Bill'); ?></span>
+                      </a>
+                    </li>
+                    <li>
+                      <a onclick="Split(this)">
+                        <div class="model-img"></div>
+                        <span>分单</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a onclick="Histroy(this)">
+                        <div class="model-img"></div>
+                        <span>历史订单</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a onclick="Receipt(this)">
+                        <div class="model-img"></div>
+                        <span>打印账单</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+
+
+                <?php }; ?>
+                </li>
+
               </ul>
             </div>
           </div>
-          
           <!-- 状态 -->
            <div class="static">
              <h4>状态栏</h4>
@@ -375,68 +402,7 @@
     <!-- 弹出层 -->
 
 
-    <div class="model model1">
-      <div class="model-title" >堂食 NO.<span id="tanchu"></span></div>
-       <?php echo $this->Html->image('icon-06.png', array('alt'=>'关闭弹出层','class'=>'model-close')); ?>
-
-      <!-- <img src="images/icon-06.png" alt="关闭弹出层" class="model-close" /> -->
-      <ul class="model-content">
-        
-        <li>
-          <a onclick="dingdan(this)">
-            <div class="model-img"></div>
-            <span>订单</span>
-          </a>
-        </li>
-        <li>
-          <a onclick="fukuan(this)">
-            <div class="model-img"></div>
-            <span>付款</span>
-          </a>
-        </li>
-        <li class="model-nav3">
-          <a>
-            <div class="model-img"></div>
-            <span>换桌</span>
-          </a>
-        </li>
-        <li class="model-nav4">
-          <a tabindex="-1" href="<?php 
-          
-          for($i = 1; $i <= $tables['Admin']['no_of_tables']; $i++) { 
-              if(@$dinein_tables_status[$i] == 'N' or @$dinein_tables_status[$i] == 'P')
-                echo "javascript:makeavailable('".$this->Html->url(array('controller'=>'homes', 'action'=>'makeavailable', 'table'=>$i, 'type'=>'D', 'order'=>@$orders_no[$i]['D']))."');"; else echo "javascript:void(0);";
-          } 
-          ?>">
-          <div class="model-img"></div>
-          <span><?php echo __('Clear Table'); ?></span></a>
-        </li>
-        <li class="model-nav5">
-          <a href="javascript:;">
-            <div class="model-img"></div>
-            <span><?php echo __('Merge Bill'); ?></span>
-          </a>
-        </li>
-        <li>
-          <a onclick="Split(this)">
-            <div class="model-img"></div>
-            <span>分单</span>
-          </a>
-        </li>
-        <li>
-          <a onclick="Histroy(this)">
-            <div class="model-img"></div>
-            <span>历史订单</span>
-          </a>
-        </li>
-        <li>
-          <a onclick="Receipt(this)">
-            <div class="model-img"></div>
-            <span>打印账单</span>
-          </a>
-        </li>
-      </ul>
-    </div>
+    
     <!-- 弹出层，变更 -->
  
     <div class="model model2">
@@ -739,6 +705,31 @@
 
     <!-- Modal -->
     
+    <script>
+        // $(document).ready(function () {
+        //     // setTimeout(function(){
+        //     //    window.location.reload(1);
+        //     // }, 30000);
+        //     if ($(window).width() <= 780) {
+        //         $(".dine_ul, .dine_li").removeAttr("style");
+        //         $('#dine-in-component').removeClass('col-md-8 col-sm-8 col-xs-8')
+        //         $("#take-out-component, #waiting-list-component").removeClass('col-md-2 col-sm-2 col-xs-2');
+        //         // $("").removeAttr("style");
+        //     }
+        //     $(window).resize(function () {
+        //         if ($(window).width() <= 780) {
+        //             $(".dine_ul, .dine_li").removeAttr("style");
+        //             // $("").removeAttr("style");
+        //             $('#dine-in-component').removeClass('col-md-8 col-sm-8 col-xs-8')
+        //             $("#take-out-component, #waiting-list-component").removeClass('col-md-2 col-sm-2 col-xs-2');
+        //         } else {
+        //             $('#dine-in-component').addClass('col-md-8 col-sm-8 col-xs-8')
+        //             $("#take-out-component, #waiting-list-component").addClass('col-md-2 col-sm-2 col-xs-2');
+        //         }
+        //     })
+
+        // });
+    </script>
 
     <script type="text/javascript">
 
@@ -987,14 +978,27 @@
         $(this).parent().css("display","none");
       });
       // 弹出层
+
+
+
       $(".model-close").on("click",function(){
-        $(this).parents(".model").hide();
+
+        //console.log($(this).parent(".model1"));
+        $(this).parents(".model1").css('display', 'none');
+        $(this).parent(".model1").css('display', 'none');
+        $(this).parent().css('display', 'none');
+        $(".model1").hide();
       });
+
       var $_this;
       $(".sit_no,.sit_yes,.sit_dan,.sit_kong,.sit_bai").on("click",function(){
         $_this = $(this);
-        $(".model1").show();
+        // console.log($_this);
+        // console.log($(this).children());
+        //$(this).children().show();
+        $(this).children().css('display', 'block');
       });
+
       // 变更
       $(".model-nav3").on("click",function(){
         // $(".model1").hide();
@@ -1156,5 +1160,144 @@
       });
     });
     </script>
+
+
+    <script>
+      $(document).ready(function () {
+
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 100) {
+                    $('.scrollUp').fadeIn();
+                } else {
+                    $('.scrollUp').fadeOut();
+                }
+
+                if ($(this).scrollTop() + $(this).height() >= $(document).height() - 100) {
+                    $('.scrollDown').fadeOut();
+                } else {
+                    $('.scrollDown').fadeIn();
+                }
+            });
+
+            $('.scrollUp').click(function () {
+                $("html, body").animate({
+                    scrollTop: 0
+                }, 300);
+                return false;
+            });
+
+            $('.scrollDown').click(function() {
+                $('html, body').animate({ scrollTop: $(document).height() }, 300);
+                return false;
+            });
+
+            $('.dropdown-submenu a.test').on("click", function (e) {
+                var subMenu = $(this).next('ul');
+                subMenu.toggle();
+                if(subMenu.hasClass('sub-open'))
+                    subMenu.removeClass('sub-open');
+                else
+                    subMenu.addClass('sub-open');
+                e.stopPropagation();
+                e.preventDefault();
+            });
+
+            $('.dropdown-menu a.close-btn').on("click", function (e) {
+                var subMenu = $(this).closest('ul');
+                subMenu.toggle();
+                subMenu.removeClass('sub-open');
+                e.stopPropagation();
+                e.preventDefault();
+            });
+
+            $('.dropdown-toggle').on('click', function (e) {
+                setTimeout(function () {
+                    var ddmenu = $('.open').find('.dropdown-menu');
+                    if (ddmenu) {
+                        var position_x = ddmenu.offset().left;
+                        var el_width = ddmenu.outerWidth();
+                        var window_width = $(window).width();
+
+                        if (position_x + el_width > window_width && !ddmenu.hasClass('dropdown-menu-right')) {
+                            ddmenu.addClass('dropdown-menu-right');
+                        }
+                    }
+                }, 1);
+            });
+            
+            $('.dropdown-submenu a.test').on('click', function (e) {
+                setTimeout(function() {
+                    var ddmenu = $('.dropdown-submenu').find('ul.dropdown-menu.sub-open');
+                    if (ddmenu.offset()) {
+                        var position_y = ddmenu.offset().top;
+                        if (position_y < 0) {
+                            ddmenu.css({top:0});
+                        }
+                    }
+                }, 1);
+            });
+
+            $('.merge-checkbox').on('click', function(e) {        
+               $(this).find(':checkbox').click();
+               e.stopPropagation();           
+            });
+
+            $('input[type=checkbox]').click(function (e) {
+                e.stopPropagation();
+            });
+
+
+      });
+
+        $(window).load(function () {
+            if ($(window).scrollTop() + $(window).height() >= $(document).height() - 100) {
+                $('.scrollDown').fadeOut();
+            } else {
+                $('.scrollDown').fadeIn();
+            }
+        });
+    </script>
+
+
+    <!-- Modified by Yishou Liao @ Oct 13 2016. -->
+    <script type="text/javascript">
+        function mergebill(tableId) {
+            var table_merge = "";
+            $('input[name="mergetable[]"]:checked').each(function () {
+               table_merge += $(this).val()+",";
+                $(this).attr("checked",false);
+            });
+            table_merge = table_merge.substring(0,(table_merge.length-1));
+
+            document.location = "../merge/index/table:"+tableId+"/tablemerge:"+table_merge+"/type:D";
+
+        }
+
+      //Modified by Yishou Liao @ Nov 18 2016.
+      function makeavailable(url){
+        $('#dialog').show();
+        $(".EntPassword").val("");
+        $('#url').val(url);
+      }
+      
+      function checkPassword(passwd){
+        // $('#dialog').hide();
+        var pwd_makeavailable = hex_md5($(".EntPassword").val());
+        if (pwd_makeavailable == passwd){
+          $('#dialog').hide();
+          document.location = $('#url').val();
+        } else {
+          // alert("Your password is incorrect!");
+          $('.popPassword .input-group-addon').notify("Your password is incorrect!", {position: "top", className: "error"});
+        };
+      }
+        
+      function checkPasswordC(){
+        $('#dialog').hide();
+      }
+      //End.
+    </script>
+
+
   </body>
 </html>
