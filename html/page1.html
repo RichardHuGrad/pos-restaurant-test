@@ -39,7 +39,7 @@
       <div class="page2-content">
         <div class="page2-left">
           <div class="page2-top">
-            <h4>堂食订单 订单号 #D31803211631,  桌 #3</h4>
+            <h4>堂食订单 订单号 #,  桌 #</h4>
             <button type="button" name="button" class="newPhone">添加外卖手机号码</button>
             <!-- 外卖手机号 -->
 				    <div class="lock-div">
@@ -500,6 +500,12 @@
     	
     	
     $(document).ready(function(){
+
+      var sequence = localStorage.getItem("sequence");
+      $(".page2-top > h4")[0].innerText = "堂食订单 订单号 #,  桌 #" + sequence;
+
+
+
       // nav
       $(".barnav").hover(function(){
         $(this).find("ul").slideDown();

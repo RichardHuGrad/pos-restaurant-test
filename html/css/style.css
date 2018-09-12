@@ -254,8 +254,9 @@ a {
   }
     .c_right_title{
       position: relative;
+      width: 90%;
       height: 100%;
-      padding: 0 10%;
+      margin: 0 5%;
       text-align: center;
       overflow: hidden;
     }
@@ -295,72 +296,62 @@ a {
           /*font-family: Nobel-GBW6;*/
         }
 .fullOrder{
-	width: 100%;
-	overflow: hidden;
+  width: 100%;
+  overflow: hidden;
 }
 .fullOrder .img{
-	display: block;
-	width: 40px;
-	height: 40px;
-	border-radius: 3px;
-	overflow: hidden;
-	float: left;
+  display: block;
+  width: 40px;
+  height: 40px;
+  border-radius: 3px;
+  overflow: hidden;
+  float: left;
 }
 .fullOrder ul{
-	color: #7a7a7a;
-	font-size: 16px;
-	margin-left: 50px;
-	text-align: left;
+  color: #7a7a7a;
+  font-size: 18px;
+  margin-left: 50px;
+  text-align: left;
 }
 .fullOrder ul li{
-	display: inline-block;
-	line-height: 40px;
-	padding: 0 10px;
-	text-align: left;
-	position: relative;
-	cursor: pointer;
+  display: inline-block;
+  line-height: 40px;
+  padding: 0 10px;
+  text-align: left;
+  position: relative;
+  cursor: pointer;
 }
 .fullOrder ul li.on{
-	color: #ffffff;
+  color: #ffffff;
 }
 .fullOrder ul li+li:after{
-	content: '/';
-	display:block;
-	position: absolute;
-	color: #7a7a7a;
-	left: -3px;
-	top: 0;
+  content: '/';
+  display:block;
+  position: absolute;
+  color: #7a7a7a;
+  left: -3px;
+  top: 0;
 }
 .ulBox{
     position: absolute;
+    left: 0;
     right: 0;
     top: 18%;
     bottom: 7%;
     z-index: 10;
-    border-top: 1px solid #ffd03b;
-    left: 0;
+    
     
   }
-.ulBox+.shadow{
- 	position: absolute;
- 	width: 100%;
- 	top: 18%;
- 	right: 0;
- 	height: 30px;
- 	background: url(../images/bg222.png) repeat-x top left;
- 	z-index: 10;
-    height: 100px;
- }
   .order{
-  	max-width: 100%;
-  	height: 100%;
-  	overflow: hidden;
+    max-width: 100%;
+    height: 100%;
+    overflow: hidden;
     overflow-y: scroll;
-    padding: 0 10%;
+    padding: 0 5%;
     display: none;
   }
   .ulBox .order:first-child{
-  	display: block;
+    display: block;
   }
   .order::-webkit-scrollbar-track {
       /* -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.3); */
@@ -461,15 +452,15 @@ a {
       overflow: hidden;
       overflow-y: scroll;
     }
-    .c_area::-webkit-scrollbar-track,.payment .pay-right::-webkit-scrollbar-track,.payment {
+    .c_area::-webkit-scrollbar-track {
         -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.3);
         background: #fff;
     }
-    .c_area::-webkit-scrollbar,.payment .pay-right::-webkit-scrollbar {
+    .c_area::-webkit-scrollbar {
         width: 2px;
         background: #fff;
     }
-    .c_area::-webkit-scrollbar-thumb,.payment .pay-right::-webkit-scrollbar {
+    .c_area::-webkit-scrollbar-thumb {
       background: #00cdef;
     }
   /* 提示 */
@@ -506,7 +497,7 @@ a {
   /* 占桌情况 */
   .sit{
     width: 100%;
-    overflow: hidden;
+    max-width: 1175px;
     margin-top: 1.3%;
   }
     .sit_left{
@@ -526,23 +517,16 @@ a {
       overflow: hidden;
     }
       .sit li{
-        position: relative;
         float: left;
-        width: 12.5%;
+        width: 10%;
         height: 104px;
-        margin-bottom: 1.3%;
-        padding: 8px 0;
+        padding: 6px 0;
         border-radius: 10px;
         background: #fff;
         margin-left: 1%;
         cursor: pointer;
       }
-      .sit li:nth-child(6n+1){
-        margin-left: 0;
-      }
-      .sit li:nth-child(6n+3),.sit li:nth-child(6n+5){
-        margin-left: 11%;
-      }
+      
       .sit li.sit_kong{
         background: #eaeaea;
       }
@@ -699,25 +683,24 @@ a {
     position: relative;
     float: left;
     width: 56%;
-    background: #ffffff;
+    background: #f7f7f7;
     overflow: hidden;
   }
   .payment .page2-left{
     width: 66%;
   }
     .page2-top{
-      padding: 20px 0 20px 5%;
+      padding: 20px 5%;
       position: relative;
-      background: #f7f7f7;
     }
     .page2-top:after{
-    	content: '';
-    	display: block;
-    	clear:both;
+      content: '';
+      display: block;
+      clear:both;
     }
     .page2-top .lock-div{
-	top: 70px;
-	display: none;
+  top: 70px;
+  display: none;
 }
       .page2-top h4{
         float: left;
@@ -732,7 +715,7 @@ a {
         font-size: 1.8rem;
       }
       .page2-top button{
-        float: right;
+        float: left;
         width: auto;
         margin-left: 13px;
         background: #00cdef;
@@ -754,8 +737,7 @@ a {
     left: 1%;
     bottom: 0;
     width: 99%;
-    background: #fff;
-  } 
+  }
     .page2-tabnav{
       position: relative;
       float: left;
@@ -865,7 +847,7 @@ a {
       .tabright li{
         float: left;
         width: 20%;
-        padding: 15px 1%;
+        padding: 15px 2%;
         margin-right: 1%;
         margin-top: 1%;
         background-color: #fff;
@@ -873,10 +855,10 @@ a {
         border-radius: 10px;
       }
        .tabright li.select{
-       	background-image: url(../images/yes.png);
-       	background-repeat: no-repeat;
-       	background-position: right bottom;
-       	background-size: 28px; 
+        background-image: url(../images/yes.png);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+        background-size: 28px; 
        }
         .tabright li a{
           display: block;
@@ -905,7 +887,7 @@ a {
 
 .page2-right{
   float: right;
-  width: 42%;
+  width: 42.5%;
   height: 100%;
   padding-right: 1%;
   overflow-y: scroll;
@@ -924,6 +906,7 @@ a {
     .right-btn .rBtn{
       width: 100%;
       margin-top: 3%;
+      padding-left: 15%;
       border: 0;
       outline: none;
       color: #fff;
@@ -931,7 +914,7 @@ a {
       font-size: 2rem;
       font-family: Nobel-GBW6;
       line-height: 65px;
-      text-align: center;
+      text-align: left;
       border-radius: 4px;
       cursor: pointer;
     }
@@ -941,17 +924,15 @@ a {
 .right-con{
   float: right;
   width: 81%;
-  height: 100%;
   overflow: hidden;
 }
   .right-tab{
+    width: 99.5%;
     margin-top: 1%;
-    margin-bottom: 1%;
     border: 1px #ccc solid;
   }
   .right-top{
     width: 100%;
-    height: 100%;
     overflow: hidden;
     background: #eaeaea;
     box-sizing: border-box;
@@ -968,13 +949,13 @@ a {
       vertical-align: inherit;
       border-bottom: 1px #b5b5b5 solid;
       line-height: 55px;
-	  box-sizing: border-box;
+    box-sizing: border-box;
     }
     .right-top li+li{
-    	border-left: 1px #b5b5b5 solid;
+      border-left: 1px #b5b5b5 solid;
     }
     .right-top li:first-child{
-    	width: 24%;
+      width: 24%;
     }
     .right-top li.right-active{
       background: #fff;
@@ -986,20 +967,17 @@ a {
       padding: 21px 2.5% 20px;
       line-height: 27px;
     }
-    .right-top li:nth-child(4) p{
-    	line-height: 27px;
-    }
     .right-top li:last-child{
       border-right: 0;
     }
 
   .right-list{
-    /*width: 96%;*/
-    /*height: 400px;*/
+    width: 96%;
+    height: auto;
     max-height: 470px;
-    padding: 0 0 0 0;
+    padding: 0 2% 0 0;
     margin: 10px 1%;
-    /*overflow: hidden;*/
+    overflow: hidden;
     overflow-y: scroll;
   }
   .right-list::-webkit-scrollbar-track {
@@ -1007,16 +985,16 @@ a {
       background: #fff;
   }
   .right-list::-webkit-scrollbar {
-      width: 1px;
-      background: #00cdef;
+      width: 3px;
+      background: #fff;
   }
   .right-list::-webkit-scrollbar-thumb {
     background: #00cdef;
   }
     .right-list li{
       width: 94%;
-      padding: 0px 2%;
-      border-top: 0px solid #cfcfcf;
+      padding: 6px 3%;
+      border-top: 1px solid #cfcfcf;
       overflow: hidden;
     }
     .right-list li.rig-act,
@@ -1070,8 +1048,8 @@ a {
           text-align: right;
         }
         .right-list li a .list-center .pri{
-        	font-style:normal;
-        	font-size: inherit;
+          font-style:normal;
+          font-size: inherit;
         }
           .right-list li a .list-center span{
             font-size: 14px;
@@ -1088,32 +1066,22 @@ a {
           line-height: 66px;
           text-align: right;
         }
-.topOpen{
-	overflow: hidden;
-	width: 100%;
-}
+
 a.add_zhe{
-  display: inline-block;
+  display: block;
+  width: 91%;
   padding-left: 9%;
-  background: url(../images/icon-05.png) no-repeat  8px;
+  background: url(../images/icon-05.png) no-repeat 3% 8px;
   line-height: 40px;
   color: #000;
   font-size: 18px;
   font-family: Nobel-Book;
 }
-.topOpen .add_shou{
-	color: #c42248;
-	display: inline-block;
-	line-height: 40px;
-    font-size: 18px;
-    float: right;
-    padding-right:5%;
-    display: none;
-}
   .add-content{
     width: 100%;
     overflow: hidden;
     display: none;
+    border-top: 1px #e6e6e6 dashed;
   }
     .add-content ul{
       float: left;
@@ -1135,16 +1103,14 @@ a.add_zhe{
           font-family: Nobel-FZLTXHK;
         }
         .add-content ul li input{
-          width:100%;
-          padding: 0 5%;
+          width:96%;
+          padding: 0 2%;
           background: #eaeaea;
           border: 0;
           outline: none;
           line-height: 30px;
           border-radius: 5px;
           overflow: hidden;
-          border: 1px solid #666;
-          box-sizing: border-box;
         }
   .add-right{
     float: right;
@@ -1172,18 +1138,11 @@ a.add_zhe{
       line-height: 50px;
       border-radius: 5px;
       border: 0;
+      outline: none;
       font-size: 18px;
       font-family: Nobel-GBW6;
     }
-.right-tab+.right-tab1 button{
-	width: 32%;
-}
-.right-tab1.three button{
-	width: 30%;
-	word-break: break-all;
-	white-space: pre-wrap;
-	line-height: 30px;
-}
+
 .right-tab1{
   width: 100%;
   margin-top: 3%;
@@ -1191,19 +1150,17 @@ a.add_zhe{
 }
   .right-tab1 button{
     float: right;
-    width: 48%;
+    width: 30%;
     height:80px;
+    margin-left: 2%;
     border: 0;
     outline: none;
     color: #fff;
     border-radius: 5px;
-    font-size: 24px;
+    font-size: 26px;
     font-family: Nobel-FZLTZHK;
     text-align: center;
     cursor: pointer;
-  }
-  .right-tab1 button+button{
-  	margin-right: 4%;
   }
   .rightBtn01{
     background: #c42248;
@@ -1231,7 +1188,7 @@ a.add_zhe{
     margin: 18px 5% 0;
     border: 0;
     outline: none;
-    font-size: 20px;
+    font-size: 21px;
     font-family: Nobel-Book;
     color: #848484;
   }
@@ -1559,9 +1516,9 @@ a.add_zhe{
 }
 .payment .pay-left{
   float: left;
-  width: 51%;
-  height: 90%;
-  margin: 3% 3% 0 2%; 
+  width: 35%;
+  height: 80%;
+  margin: 5% 2%;
   background: #fff;
   border-radius: 10px;
 }
@@ -1572,8 +1529,7 @@ a.add_zhe{
     font-size: 20px;
     font-family: Nobel-GBW6;
     line-height: 4;
-    /*text-align: center;*/
-   text-indent: 1em;
+    text-align: center;
     color: #000;
     border-bottom: 1px dashed #d8d8d8;
   }
@@ -1584,7 +1540,6 @@ a.add_zhe{
   .payment .right-list{
     float: left;
     height: 83%;
-    width: 99%;
     background: #fff;
   }
   .payment .page6-list{
@@ -1661,9 +1616,9 @@ a.add_zhe{
 
 .payment .pay-right{
   float: left;
-  width: 40%;
+  width: 59%;
   max-height: 80%;
-  margin: 3% 0 0;
+  margin: 5% 0;
 }
   .notop{
     width: 100%;
@@ -1677,7 +1632,7 @@ a.add_zhe{
   }
     .pay-ul li{
       float: left;
-      padding: 0 25px;
+      width: 18%;
       height: 40px;
       background: #eaeaea;
       font-size: 20px;
@@ -1692,8 +1647,9 @@ a.add_zhe{
       background: #fff;
     }
   .pay-right-c{
+    width: 96%;
     min-height: 50%;
-    padding: 10px 20px;
+    padding: 2% 2% 0;
     background: #fff;
     overflow: hidden;
     border-top-right-radius: 10px;
@@ -1705,11 +1661,9 @@ a.add_zhe{
     display: none;
   }
     .payment .right-tab{
-      border-radius: 4px;
-      background: #f9f9f9;
-      padding:0 5px;
-      border: none;
-      box-sizing: border-box;
+      float: right;
+      width: 50%;
+      border-radius: 10px;
     }
     .r-c-top{
       width: 100%;
@@ -1721,37 +1675,19 @@ a.add_zhe{
           width: 100%;
           border: 0;
           padding: 5px 0;
-          border-top: 1px #e6e6e6 dashed;
-      }
-      .pay-title2 .add-right{
-      	border: none;
       }
       .payment .add-right button{
         font-size: 16px;
-        padding: 0 2%;
+        padding: 0 1%;
         margin:10px 0.5%;
         height: 40px;
         line-height: 40px;
         cursor: pointer;
       }
-      .application{
-      	background: #c42248;
-  	    font-size: 16px;
-	    padding: 0 5%;
-	    margin: 10px 0.5% 10px 2%;
-	    height: 40px;
-	    line-height: 40px;
-	    cursor: pointer;
-	    float: left;
-	    width: auto;
-	    border-radius: 5px;
-	    color: #fff;
-	    font-style: normal;
-      }
       .payment .pay-title2 button{
         font-size: 14px;
         padding: 0;
-        margin:0 0.5%;
+        margin:10px 0.5%;
         height: 40px;
         width: 40px;
         line-height: 40px;
@@ -1761,21 +1697,14 @@ a.add_zhe{
         padding: 4px 0;
       }
       .payment .add-right span{
-        line-height: 1;
-        display: block;
-        line-height: 40px;
-        width: 60%;
-      }
-      .payment .add-right .btn{
-      	display: block;
-      	width: 100%;
-      	overflow: hidden;
+        line-height: 60px;
       }
       .payment a.add_zhe{
-        padding-left: 12%;
+        padding-left: 15%;
       }
     .c-top-left{
-      width: 100%;
+      float: left;
+      width: 47%;
       overflow: hidden;
     }
       .c-top-left .contL{
@@ -1805,7 +1734,7 @@ a.add_zhe{
     }
       .r-c-center ul{
         float: left;
-        width: 50%;
+        width: 33%;
         text-align: left;
       }
         .r-c-center li{
@@ -1823,7 +1752,7 @@ a.add_zhe{
         }
     .r-c-bot{
       width: 100%;
-      padding: 10px 0 5px;
+      padding: 15px 0;
       overflow: hidden;
     }
           .r-c-bot h5{
@@ -1878,7 +1807,7 @@ a.add_zhe{
 
 .payment .login {
     width: 80%;
-    margin: 6% auto 0;
+    margin: 7% auto;
 }
   .payment .login-align {
       width: 100%;
@@ -1899,7 +1828,7 @@ a.add_zhe{
     /* height: 6rem; */
     height: 5rem;
     width: 84%;
-    margin: 15px 0;
+    margin: 15px 0 25px;
     padding: 0 8%;
     border: 0;
     border-radius: 70px;
@@ -1911,7 +1840,7 @@ a.add_zhe{
   }
   .payment .num_left {
     float: left;
-    width: 70%;
+    width: 74%;
     padding: 0;
     margin: 0;
     overflow: hidden;
@@ -1938,7 +1867,7 @@ a.add_zhe{
     background: #919191;
     color: #fff;
     font-size: 32px;
-    font-size: 2rem;
+    font-size: 2.7rem;
   }
   .payment .num_left li.retreat {
       background: #405a8e;
@@ -1948,7 +1877,7 @@ a.add_zhe{
   }
   .payment .num_right {
       float: right;
-      width: 28%;
+      width: 24.5%;
   }
   .payment .num_right a,.payment  .num_right a:hover, .payment .num_right a:active,.payment  .num_right a:visited,.payment  .num_right a:link {
       display: block;
@@ -1957,7 +1886,7 @@ a.add_zhe{
       /* padding: 95px 0; */
       line-height: 80px;
       font-size: 32px;
-      font-size: 2rem;
+      font-size: 2.7rem;
       margin-top: 10px;
       text-align: center;
       -webkit-border-radius: 15px;
@@ -2081,7 +2010,7 @@ a.add_zhe{
       
     }
     .page8-bot table+table{
-    	border: 1px #f1f1f1 solid;
+      border: 1px #f1f1f1 solid;
       border-collapse: unset;
       padding: 15px 15px 50px;
       border-radius: 0 0 5px 5px ;
@@ -2240,7 +2169,8 @@ a.add_zhe{
   }
     .model-content li{
       float: left;
-      width: 24.5%;
+      width: 23.5%;
+      height: 13%;
       padding-top: 20px;
       border-top: 1px dashed #e8e8e8;
       border-left: 1px dashed #e8e8e8;
@@ -2434,10 +2364,10 @@ a.add_zhe{
     }
 
 /*管理员密码*/
-#admin{
+#admin, #dialog{
   display: none;
   position: fixed;
-  right: 13%;
+  right: 41%;
   top: 100px;
   width: 372px;
 /*  height: 238px;*/  
@@ -2452,7 +2382,7 @@ a.add_zhe{
   width: 372px;
   margin-left: -286px;
 }
-  #admin p{
+  #admin, #dialog p{
     padding-left: 150px;
     background: url(../images/icon-11.png) no-repeat 103px center;
     font-size: 24px;
@@ -2460,7 +2390,7 @@ a.add_zhe{
     color: #00cdef;
     line-height: 80px;
   }
-  #admin input{
+  #admin, #dialog input{
     width: 92%;
     height: 55px;
     margin: 0 2%;
@@ -2475,7 +2405,7 @@ a.add_zhe{
     line-height: 55px;
     outline: none;
   }
-    .a_no{
+    .a_no, .dia_no{
       float: left;
       width: 100px;
       height: 50px;
@@ -2491,7 +2421,7 @@ a.add_zhe{
       border-radius: 5px;
       cursor: pointer;
     }
-    .a_yes{
+    .a_yes, .dia_yes{
       float: right;
       width: 100px;
       height: 50px;
@@ -3091,15 +3021,15 @@ a.add_zhe{
       position: relative;
     }
     #change .tabright li .ck{
-    	position: absolute;
-    	left: 0;
-    	top: 0;
-    	width: 100%;
-    	height: 100%;
-    	opacity:0;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      opacity:0;
     }
     #change .tabright li .ck:checked+a{
-    	color: #00cdef;
+      color: #00cdef;
     }
       #change .tabright li a{
         display: block;
@@ -3321,7 +3251,7 @@ a.add_zhe{
     line-height: 80px;
 }
 #changeNum .changeInp{
-	width: 92%;
+  width: 92%;
     height: 55px;
     margin: 0 2%;
     padding: 0 2%;
@@ -3336,8 +3266,8 @@ a.add_zhe{
     outline: none;
 }
 #changeNum .changeBtn{
-	width: 100%;
-	overflow: hidden;
+  width: 100%;
+  overflow: hidden;
 }
 #changeNum .cancel{
     float: left;
@@ -3391,7 +3321,7 @@ a.add_zhe{
     line-height: 80px;
 }
 #changePrice .changeInp{
-	width: 92%;
+  width: 92%;
     height: 55px;
     margin: 0 2%;
     padding: 0 2%;
@@ -3406,8 +3336,8 @@ a.add_zhe{
     outline: none;
 }
 #changePrice .changeBtn{
-	width: 100%;
-	overflow: hidden;
+  width: 100%;
+  overflow: hidden;
 }
 #changePrice .cancel{
     float: left;
@@ -3538,35 +3468,27 @@ a.add_zhe{
   .a-top p{
     font-size: 17px;
   }
-  .admin-left{
-  	width: 63%;
-  }
- 
-  
 }
 @media only screen and (max-width:1601px){
-	 .admin-left{
-  	width: 65%;
-  }
-  .admin-right {
-    width: 33%;
-}
   .content_left{
     width: 77%;
   }
-  
+  .sit li:nth-child(6n+3),.sit li:nth-child(6n+5){
+    margin-left: 11%;
+  }
+
   .login_right,.content_right{
-    width: 22%;
+    width: 23%;
   }
   .payment .login {
       width: 86%;
+          margin: 9% auto;
   }
   .pay-h h4.pay-h-t{
     font-size: 1.7rem;
   }
 }
 @media only screen and (max-width:1451px){
-	
   .lock-div{
     right: 7%;
   }
@@ -3610,13 +3532,7 @@ a.add_zhe{
     width: 55px;
     margin: 0 10px 0 15px
   }
-  
-  .right-tab1 button{
-  	font-size: 22px;
-  }
 }
-
-
 @media only screen and (max-width:1421px){
   .right-top li.right-active{
     /*width: 21.5%;*/
@@ -3654,7 +3570,7 @@ a.add_zhe{
     font-size: 17px;
   }
   .a-top p{
-    font-size: 14px;
+    font-size: 16px;
   }
   .seach-content .sTop small, .seach-content .sBot small,.seach-form .time2, .seach-form .time2 option,.seach-form .time1, .seach-form .time1 option,.seach-form input.time{
     font-size: 16px;
@@ -3714,102 +3630,16 @@ a.add_zhe{
     font-size: 1.5rem;
   }
   .admin-left{
-    width: 66%;
+    width: 64%;
   }
-  .admin-right {
-    width: 32%;
-}
   .seach-form{
     padding: 8px 0;
   }
 }
-@media only screen and (max-width:1345px){
-	.application{
-		margin: 0 0.5% 10px 2%;	
-	}
-}
-@media only screen and (max-width:1280px){
-	.page2-left {
-	  width: 50%;
-	}
-	.page2-right {
-	  width: 48.5%;
-	}
-	.page2-tabnav{
-	  width: 30%;
-	}
-	.tab-bot{
-	  width: 30%;
-	}     
-	.page2-tavright{
-	  width: 66%;
-	}
-	.tabright li{
-	  width: 45%;
-	}
-	.fullOrder .img{
-		width: 30px;
-		height: 30px;
-	}
-	.fullOrder ul {
-	    font-size: 14px;
-	    margin-left: 30px;
-	}
-	.fullOrder ul li {
-	    line-height: 30px;
-	    padding: 0 8px;
-	}
-	.static ul li{
-		font-size: 20px;
-		width: 130px;
-	}
-	.page2-top h4{
-		font-size: 20px;
-	}
-	
-	.adminTab ul.a1 {
-	    margin-top: 90px;
-	}
-	.adminTab .a2 ul{
-		margin-top: 0;
-	}
-	
-	
-	
-	
-	
-	
-		
-}
-@media only screen and (max-width:1280px) {
-	.sit_left{
-	    width: 100%;
-	  }
-	.sit li:nth-child(6n+3), .sit li:nth-child(6n+5) {
-	    margin-left: 5%;
-	}
-	.sit li {
-    	width: 14%;
-    	margin-left: 2%;
-    }
-    .fullOrder .img {
-	    width: 24px;
-	    height: 24px;
-	}
-    .fullOrder ul li {
-	    padding: 0 5px;
-	    line-height: 24px;
-	}
-	.c_right_title .p {
-	    margin: 11% 0 10%;
-	}
-    
-    
-    
-}
-
 @media only screen and (max-width:1260px){
-  
+  .sit_left{
+    width: 100%;
+  }
   .static ul li {
     width: 135px;
   }
@@ -3864,48 +3694,19 @@ a.add_zhe{
   .pay-ul li{
     font-size: 18px;
   }
-  
-  
-  
-  
 }
 @media only screen and (max-width:1206px){
   .admin-right a{
     width: 24%;
   }
   .admin-right{
-    width: 28%;
+    width: 30%;
   }
   .admin-left {
-    width: 70%;
-  }
-  .tLeft, .tRight{
-  	width: 32px;
+    width: 69%;
   }
 }
-@media only screen and (max-width:1120px){
-  .login_right{
-    width: 15%;
-	}
-	.login_right button{
-		font-size: 1.5rem;
-	}
-	.right-top li{
-		font-size: 16px;
-	}
-	.add-content ul li span{
-		font-size: 16px;
-	}
-	  .payment a.add_zhe {
-	    padding-left: 15%;
-	}
-}
-
 @media only screen and (max-width:1024px){
-	.payment a.add_zhe{
-        padding-left: 15%;
-      }
-	
   .seach-content {
     height: 84px;
   }
@@ -3972,6 +3773,7 @@ a.add_zhe{
     line-height: 65px;
   }
   .sit li{
+    width: 14.5%;
     height: 85px;
   }
   .sit li:nth-child(6n+3),.sit li:nth-child(6n+5){
@@ -4017,7 +3819,7 @@ a.add_zhe{
 
   .container .header .nav li a,.login_right span{
     font-size: 2rem;
-    width: 80px;
+    width: 90px;
   }
   .model1{
     top: 18%;
@@ -4106,23 +3908,8 @@ a.add_zhe{
       width: 60px;
   }
 }
-@media only screen and (max-width:980px){
-  .container .header .nav li a, .login_right span{
-  	width: 80px;
-  	
-  }
-  .container .header .nav li{
-  	margin: 10px 0  0;
-  }
-}
+
 @media only screen and (max-width:768px){
-	.ulBox,.ulBox+.shadow{
-		top: 15%;
-	}
-	.c_area {
-    width: 96%;
-    padding: 22px 2% 0 2%;
-}
   .container .header .nav li.barnav a.nav-a {
     background: url(../images/nav-01.png) no-repeat 75px 29px;
     background-size: 19px; 
@@ -4223,7 +4010,9 @@ a.add_zhe{
   .c_right_title .p{
     width: 140px;
   }
-  
+  .sit li{
+    width: 15%;
+  }
   .sit li .sit-title span{
     margin: 0 5px 0 8px;
   }
@@ -4271,9 +4060,9 @@ a.add_zhe{
   .page2-left,.page2-right{
     width: 100%;
   }
-  /*.right-top li{
+  .right-top li{
     width: 15.4%;
-  }*/
+  }
   .page2-top h4, .page2-tabnav li a {
     font-size: 20px;
   }
@@ -4337,7 +4126,7 @@ a.add_zhe{
       clear: both;
   }
   .admin-right {
-    width: 45%;
+    width: 70%;
     margin-top: 10px;
   }
   .seach-form .time1, .seach-form .time1 option, .seach-form .time2, .seach-form .time2 option{
