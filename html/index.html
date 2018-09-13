@@ -455,7 +455,7 @@
           </a>
         </li>
         <li>
-          <a href="page2.html">
+          <a class="model-nav2">
             <div class="model-img"></div>
             <span>付款</span>
           </a>
@@ -479,7 +479,7 @@
           </a>
         </li>
         <li>
-          <a href="page6.html">
+          <a class="model-nav6">
             <div class="model-img"></div>
             <span>分单</span>
           </a>
@@ -491,7 +491,7 @@
           </a>
         </li>
         <li>
-          <a href="javascript:;">
+          <a class="model-nav8">
             <div class="model-img"></div>
             <span>打印账单</span>
           </a>
@@ -505,35 +505,14 @@
       <div class="model2-content">
         <input type="text" name="" placeholder="堂食" class="model-input" />
         <ul class="tang1">
-          <li><a href="javascript:;">01</a></li>
-          <li><a href="javascript:;">01</a></li>
-          <li><a href="javascript:;">01</a></li>
-          <li><a href="javascript:;">01</a></li>
-          <li><a href="javascript:;">01</a></li>
-          <li><a href="javascript:;">01</a></li>
-          <li><a href="javascript:;">01</a></li>
-          <li><a href="javascript:;">01</a></li>
-          <li><a href="javascript:;">01</a></li>
-          <li><a href="javascript:;">01</a></li>
-          <li><a href="javascript:;">01</a></li>
-          <li><a href="javascript:;">01</a></li>
-          <li><a href="javascript:;">01</a></li>
-          <li><a href="javascript:;">01</a></li>
-          <li><a href="javascript:;">01</a></li>
-          <li><a href="javascript:;">01</a></li>
-          <li><a href="javascript:;">01</a></li>
-          <li><a href="javascript:;">01</a></li>
+          <!-- <li><a href="javascript:;">01</a></li>
+          <li><a href="javascript:;">02</a></li>
+          <li><a href="javascript:;">03</a></li>
+          <li><a href="javascript:;">04</a></li> -->
+          
         </ul>
-        <input type="text" name="" placeholder="外卖" class="model-input" />
+        <!-- <input type="text" name="" placeholder="外卖" class="model-input" />
         <ul class="tang2">
-          <li><a href="javascript:;">01</a></li>
-          <li><a href="javascript:;">01</a></li>
-          <li><a href="javascript:;">01</a></li>
-          <li><a href="javascript:;">01</a></li>
-          <li><a href="javascript:;">01</a></li>
-          <li><a href="javascript:;">01</a></li>
-          <li><a href="javascript:;">01</a></li>
-          <li><a href="javascript:;">01</a></li>
           <li><a href="javascript:;">01</a></li>
           <li><a href="javascript:;">01</a></li>
           <li><a href="javascript:;">01</a></li>
@@ -557,25 +536,17 @@
           <li><a href="javascript:;">01</a></li>
           <li><a href="javascript:;">01</a></li>
           <li><a href="javascript:;">01</a></li>
-          <li><a href="javascript:;">01</a></li>
-          <li><a href="javascript:;">01</a></li>
-          <li><a href="javascript:;">01</a></li>
-          <li><a href="javascript:;">01</a></li>
-          <li><a href="javascript:;">01</a></li>
-          <li><a href="javascript:;">01</a></li>
-          <li><a href="javascript:;">01</a></li>
-          <li><a href="javascript:;">01</a></li>
-        </ul>
+        </ul> -->
       </div>
     </div>
     <!-- 弹出层，合单 -->
     <div class="model model3">
-      <div class="model-title">堂食 NO.01 合并为</div>
+      <div class="model-title">堂食 NO.01 合并</div>
       <img src="images/icon-06.png" alt="关闭弹出层" class="model-close" />
       <div class="model3-content">
         <input type="text" name="" placeholder="堂食" class="model-input" />
         <ul class="tang1">
-          <li><a href="javascript:;">01</a></li>
+          <!-- <li><a href="javascript:;">01</a></li>
           <li><a href="javascript:;">02</a></li>
           <li><a href="javascript:;">03</a></li>
           <li><a href="javascript:;">04</a></li>
@@ -591,7 +562,7 @@
           <li><a href="javascript:;">14</a></li>
           <li><a href="javascript:;">15</a></li>
           <li><a href="javascript:;">16</a></li>
-          <li><a href="javascript:;">17</a></li>
+          <li><a href="javascript:;">17</a></li> -->
         </ul>
       </div>
       <button type="button" class="model3_btn">确认合并</button>
@@ -854,12 +825,41 @@
           type: "post",
           success: function(data) {
               // reload the page
-              console.log(data);
-              console.log(data.split(";"));
+              // console.log(data);
+              // console.log(data.split(";"));
+              
 
               array = data.split(";");
+
+              var table_array = array[array.length-1].split("/")[0];
+              var cash_array = array[array.length-1].split("/")[1];
+              var time_array = array[array.length-1].split("/")[2];
+              
+              var table_status = table_array.split(" ");
+              var cash_amount = cash_array.split(" ");
+              var order_time = time_array.split(" ");
+
+              localStorage.setItem('table_array', table_array);
+              localStorage.setItem('cash_array', cash_array);
+              localStorage.setItem('time_array', time_array);
+
+              // console.log(table_status);
+              // console.log(cash_amount);
+              // console.log(order_time);
+
               for(var i = 0; i < (array.length/3 - 1); i++){
-                  $(".sit_left").append('<li class="sit_kong"  onclick="show_model(this)" style="' + array[3*i+1] + ";" + array[3*i+2] + ";" + array[3*i+3] + ";" + '"><div class="sit-title"><span>$</span>0.00</div><div class="sit-time"><span>00:00</span><p><small>No.</small><b>' + (i < 9 ? ('0' + (i+1)): (i+1)) + '</b></p></div></li>');
+                  var status = "";
+                  if(table_status[i] == ""){
+                    status = "sit_kong";
+                  }else if(table_status[i] == "N"){
+                    status = "sit_no";
+                  }else if(table_status[i] == "R"){
+                    status = "sit_dan";
+                  }else if(table_status[i] == "P"){
+                    status = "sit_yes";
+                  }
+
+                  $(".sit_left").append('<li class="' + status + '"  onclick="show_model(this)" style="' + array[3*i+1] + ";" + array[3*i+2] + ";" + array[3*i+3] + ";" + '"><div class="sit-title"><span>:  </span>' + cash_amount[i] + '</div><div class="sit-time"><span>' + (order_time[i]==''? "00:00":order_time[i]) + '</span><p><small>No.</small><b>' + (i < 9 ? ('0' + (i+1)): (i+1)) + '</b></p></div></li>');
               }
               
 
@@ -890,6 +890,7 @@
       $(".wbtn").on("click",function(){
         $(".content_right").animate({width:"40%"});
       });
+
       $(".wclose").on("click",function(){
         $(".content_right").animate({width:"0"});
       });
@@ -897,39 +898,39 @@
       $(".prompt img").on("click",function(){
         $(this).parent().css("display","none");
       });
+
       // 弹出层
       $(".model-close").on("click",function(){
         $(this).parents(".model").hide();
       });
+
       var $_this;
       $(".sit_no,.sit_yes,.sit_dan,.sit_kong").on("click",function(){
         $_this = $(this);
         $(".model1").show();
       });
-      // 变更
-      $(".model-nav3").on("click",function(){
-        // $(".model1").hide();
-        $(".model2").show();
-      });
+
+      
       // 管理员密码
       $(".login_right span").on("click",function(){
         $("#admin").show();
       });
+
       $(".a_no").on("click",function(){
         $("#admin").hide();
         $(".key").hide();
       });
+
       $(".a_yes").on("click",function(){
         $(".key").show();
       });
+
       $(".key_img").on("click",function(){
         $(".key").hide();
       });
-      // 变空桌
-      $(".model-nav4").on("click",function(){
-        $(".model").hide();
-        $("#admin").addClass("adminCss").show();
-      });
+
+      
+
       // 回车,跳转到管理员界面      
       $(".return").on("click",function(){
         hrefG();
@@ -940,6 +941,7 @@
         hrefG();
        }
       }
+
       function hrefG(){
         var aVal = $("#write").val(),
             adminCss = $("#admin").attr("class");
@@ -949,8 +951,9 @@
           window.location.href="admin.html";         
         }else if(aVal == 1 && adminCss == "adminCss"){
           // 变空桌
-          alert("成功变空桌！");
+          //alert("成功变空桌！");
           $("#admin,.key").hide();
+
           $("#write").val("");
           // 改变点击的li的class变成空桌的class名
           $_this.attr("class","sit_kong");
@@ -958,6 +961,7 @@
           alert("解锁密码错误！");
         }
       }
+      
       // 会员
       $(".member").on("click",function(){
         $("#member").show();
@@ -999,21 +1003,25 @@
             $_this = $(this).html();
         $(".r_member .keyboard").val(inputVal+$_this);
       });
+
       // 清空
       $(".r_member .empty").on("click",function(){
         $(".r_member .keyboard").val("");
       });
+
       // 后退
       $(".r_member .retreat").on("click",function(){
         var leng = $(".r_member .keyboard").val().toString(),valIn = "";
         valIn = leng.substring(0,leng.length-1);
         $(".r_member .keyboard").val(valIn);
       });
+
       // 默认
       $(".r_member .payde").on("click",function(){
         // 365为现有的默认金额
         $(".r_member .keyboard").val(365);
       });
+
       // 会员充值
       $(".xiang_btnL").on("click",function(){
         var winW = $(window).width();
@@ -1025,12 +1033,15 @@
           $(".r_member").css("width","320px");
         }
       });
+
       $(".member-close5").on("click",function(){
         $("#member_C").animate({width:'0'},200);
       });
+
       $(".payM li").click(function(){
       	$(this).addClass("active-li").siblings().removeClass('active-li');
       })
+
       // 充值情况
       $(".c_btn").on("click",function(){
         $("#mer").fadeIn();
@@ -1038,13 +1049,118 @@
           $("#mer").fadeOut(1000);
         },1500);
       });
+
+
+      $(".model-nav2").on("click",function(){
+
+        var stats = localStorage.getItem("table_array").split(" ");
+        var seq = localStorage.getItem("sequence") < 10 ? localStorage.getItem("sequence").slice(1) : localStorage.getItem("sequence");
+
+
+        if(stats[(seq-1)] == "" || stats[(seq-1)] == "P"){
+            alert("请重新选择桌号.");
+        }else{
+            window.location.href = "page2.html";
+        }
+      });
+
+      // 变更
+      $(".model-nav3").on("click",function(){
+        // $(".model1").hide();
+
+        var stats = localStorage.getItem("table_array").split(" ");
+        var seq = localStorage.getItem("sequence") < 10 ? localStorage.getItem("sequence").slice(1) : localStorage.getItem("sequence");
+        
+
+        if(stats[(seq-1)] == "" || stats[(seq-1)] == "P"){
+            alert("请重新选择桌号.");
+        }else{
+            $(".model2").show();
+            
+            $(".tang1").empty();
+            for(var i = 1; i < (stats.length - 1); i++){
+              if(stats[i] == ""){
+                $(".tang1").append('<li><a href="javascript:;">' + (i+1) + '</a></li>');
+              }
+              
+            }
+        }
+
+        
+
+      });
+
+
+      // 变空桌
+      $(".model-nav4").on("click",function(){
+
+        $(".model").hide();
+
+        var stats = localStorage.getItem("table_array").split(" ");
+        var seq = localStorage.getItem("sequence") < 10 ? localStorage.getItem("sequence").slice(1) : localStorage.getItem("sequence");
+        
+
+        if(stats[(seq-1)] == "" || stats[(seq-1)] == "P"){
+            alert("请重新选择桌号.");
+        }else{
+            $("#admin").addClass("adminCss").show();
+        }
+        
+      });
+
       // 合并
       $(".model-nav5").on("click",function(){
         $(".model3").show();
+
+        var stats = localStorage.getItem("table_array").split(" ");
+        var seq = localStorage.getItem("sequence") < 10 ? localStorage.getItem("sequence").slice(1) : localStorage.getItem("sequence");
+
+        // console.log(stats);
+        // console.log(stats[(seq-1)]);
+
+        if(stats[(seq-1)] == "" || stats[(seq-1)] == "P"){
+            alert("请重新选择桌号.");
+            $(".model3").hide();
+        }else{
+            $(".tang1").empty();
+            for(var i = 0; i < (stats.length - 1); i++){
+
+              if(stats[i] == "N" || stats[i] == "R"){
+                $(".tang1").append('<li><a href="javascript:;">' + (i+1) + '</a></li>');
+              }
+              
+            }
+        }
+
       });
+
+      $(".model-nav6").on("click",function(){
+        var stats = localStorage.getItem("table_array").split(" ");
+        var seq = localStorage.getItem("sequence") < 10 ? localStorage.getItem("sequence").slice(1) : localStorage.getItem("sequence");
+
+        if(stats[(seq-1)] == "" || stats[(seq-1)] == "P"){
+            alert("请重新选择桌号.");
+        }else{
+            window.location.href = "page6.html";
+        }
+      });
+
+      $(".model-nav8").on("click",function(){
+        var stats = localStorage.getItem("table_array").split(" ");
+        var seq = localStorage.getItem("sequence") < 10 ? localStorage.getItem("sequence").slice(1) : localStorage.getItem("sequence");
+
+        if(stats[(seq-1)] == "" || stats[(seq-1)] == "P"){
+            alert("请重新选择桌号.");
+        }else{
+            alert("打印账单.");
+        }
+      });
+
+
       $(".model3 li").on("click",function(){
         $(this).toggleClass("hover");
       });
+
       $(".model3_btn").on("click",function(){
         var claB = $(".hover").length;
         if(claB > 1){

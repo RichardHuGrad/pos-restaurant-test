@@ -2364,7 +2364,7 @@ a.add_zhe{
     }
 
 /*管理员密码*/
-#admin, #dialog{
+#admin{
   display: none;
   position: fixed;
   right: 41%;
@@ -2382,7 +2382,7 @@ a.add_zhe{
   width: 372px;
   margin-left: -286px;
 }
-  #admin, #dialog p{
+  #admin p{
     padding-left: 150px;
     background: url(../images/icon-11.png) no-repeat 103px center;
     font-size: 24px;
@@ -2390,7 +2390,7 @@ a.add_zhe{
     color: #00cdef;
     line-height: 80px;
   }
-  #admin, #dialog input{
+  #admin input{
     width: 92%;
     height: 55px;
     margin: 0 2%;
