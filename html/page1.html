@@ -50,8 +50,8 @@
           <div class="page2-left-c">
             <!-- 左侧菜单 -->
             <ul class="page2-tabnav">
-              <li class="tab-active" data-index="1"><a href="javascript:;">招牌菜</a> </li>
-              <li data-index="2"><a href="javascript:;">钵钵鸡</a> </li>
+              <!-- <li class="tab-active" data-index="1"><a href="javascript:;"></a> </li> -->
+              <!-- <li data-index="2"><a href="javascript:;">钵钵鸡</a> </li>
               <li data-index="3"><a href="javascript:;">饮料</a> </li>
               <li data-index="4"><a href="javascript:;">传奇老卤</a> </li>
               <li data-index="5"><a href="javascript:;">饭类</a> </li>
@@ -59,7 +59,7 @@
               <li data-index="7"><a href="javascript:;">小菜</a> </li>
               <li data-index="8"><a href="javascript:;">火锅米线</a> </li>
               <li data-index="9"><a href="javascript:;">火锅米线</a> </li>
-              <li data-index="10"><a href="javascript:;">火锅米线</a> </li>
+              <li data-index="10"><a href="javascript:;">火锅米线</a> </li> -->
             </ul>
             <a href="javascript:;" class="tab-bot">
               <img src="images/btn01.png" alt="向下按钮">
@@ -71,20 +71,28 @@
               <img src="images/icon-08.png" alt="去除搜索内容" class="tab-close" />
               <!-- 内容 -->
               <ul class="tabright tab1">
-                <li class="select">
-                  <a href="javascript:;">
-                    <p title="A1 宋嫂牛肉面">A1 宋嫂牛肉面</p>
-                    <span>$ 12.99</span>
-                  </a>
-                </li>
-              </ul>
-              <ul class="tabright tab10">
-                <li>
+                <!-- <li>
                   <a href="javascript:;">
                     <p>A1 宋嫂牛肉面</p>
                     <span>$ 12.99</span>
                   </a>
-                </li>
+                </li> -->
+              </ul>
+              <ul class="tabright tab2">
+                <!-- <li>
+                  <a href="javascript:;">
+                    <p>A1 宋嫂牛肉面</p>
+                    <span>$ 11.99</span>
+                  </a>
+                </li> -->
+              </ul>
+              <ul class="tabright tab3">
+                <!-- <li>
+                  <a href="javascript:;">
+                    <p>A1 宋嫂牛肉面</p>
+                    <span>$ 10.99</span>
+                  </a>
+                </li> -->
               </ul>
             </div>
           </div>
@@ -125,7 +133,7 @@
               </ul>
               <ul class="right-list">
                 <!-- 背景色 class="rig-act" data-state="1" 表示已送厨-->
-                <li data-state="1">
+                <!-- <li data-state="1">
                   <a href="javascript:;">
                     <div class="list-left">
                       <h4>宋嫂牛肉面 </h4>
@@ -136,7 +144,7 @@
                     </div>
                     <div class="list-right">1</div>
                   </a>
-                </li>
+                </li> -->
               </ul>
             </div>
             <div class="right-tab">
@@ -504,7 +512,7 @@
       var sequence = localStorage.getItem("sequence");
       var seq = localStorage.getItem("sequence") < 10 ? localStorage.getItem("sequence").slice(1) : localStorage.getItem("sequence");
 
-      $(".page2-top > h4")[0].innerText = "堂食订单 订单号 #,  桌 #" + sequence;
+      //$(".page2-top > h4")[0].innerText = "堂食订单 订单号 #,  桌 #" + sequence;
 
 
       $.ajax({
@@ -512,14 +520,117 @@
           type: "post",
           success: function(data) {
               // reload the page
-              console.log(data);
+              //console.log(data);
               // console.log(data.split(";"));
-              
 
+              array = data.replace(/[\r\n]/g,"").split("/");
+
+              var order_no = array[0].split(" ")[0];
+              var order_phone = array[0].split(" ")[1];
+              var category_array = array[1].split(" ");
+              var cuisine_array = array[2].split("<").slice(1);
+
+              // console.log(order_no);
+              // console.log(order_phone);
+              // console.log(category_array);
+              // console.log(cuisine_array);
+
+
+              $(".page2-top > h4")[0].innerText = "堂食订单 订单号 #" + order_no + ",  桌 #" + sequence;
               
+              for(var i = 0; i < (category_array.length/3-1); i++){
+                if(i == 0){
+                  $(".page2-tabnav").append('<li class="tab-active" data-index="' + (i+1) +'"><a href="javascript:;">' + category_array[i*3+2] + '</a> </li>');
+                }else{
+                  $(".page2-tabnav").append('<li data-index="' + (i+1) +'"><a href="javascript:;">' + category_array[i*3+2] + '</a> </li>');
+                }
+                
+              }
+
+              for(var i = 0; i < cuisine_array.length/5; i++){
+                //if(cuisine_array[5*i] == $(".page2-tabnav li").attr("data-index")){
+                  $(".tab" + cuisine_array[5*i]).append('<li class="add_items"><a href="javascript:;"><p>' + cuisine_array[5*i+3] + '</p><span>$ ' + cuisine_array[5*i+2] + '</span></a></li>');
+                //}
+
+              }
+
+
+              $(".page2-content .page2-tabnav li").on("click",function(){
+                var index = $(this).data("index");
+                $(".page2-content .tabright").hide();
+                $(".page2-content .tab"+index).show();
+                $(this).addClass("tab-active");
+                $(this).siblings().removeClass("tab-active");
+              });
+              $("#change .page2-tabnav li").on("click",function(){
+                var index = $(this).data("index");
+                $("#change .tabright").hide();
+                $("#change .chan"+index).show();
+                $(this).addClass("tab-active");
+                $(this).siblings().removeClass("tab-active");
+              });
+              
+              //添加菜品
+              $(".add_items").on("click", function () {
+                var item_id = $(this).attr("alt");
+                console.log(item_id);
+
+                $(".right-list").append('<li data-state="1" style="background-color: rgb(240, 240, 240);"><a href="javascript:;"><div class="list-left"><h4>' + $(this)[0].innerText + '</h4><p>Option: </p></div><div class="list-center"><span>(15%off)</span></div><div class="list-right">1</div></a></li>');
+
+              });
+
+              //删除已选菜品
+              $('#delete-btn').on('click', function () {
+                  var selected_item_id_list = getSelectedItem();
+
+                  if (selected_item_id_list.length == 0) {
+                      // alert("No item selected 没有选择菜");
+                       $.notify("No item selected 没有选择菜",  { position: "top center", className:"warn"});
+                      return false;
+                  }
+
+              });
+
+              var getSelectedItem = function () {
+                  var order_item_id_list = [];
+
+                  $('.right-list .order-item.selected').each(function() {
+                      order_item_id_list.push(parseInt($(this).attr('data-order-item-id')));
+                      // console.log($(this).attr('data-order-item-id'));
+                  });
+
+                  return order_item_id_list;
+              }
+
           }
       });
 
+
+      $.ajax({
+          url: "/pos/order/index/table:" + seq + "/type:D",
+          type: "post",
+          success: function(data) {
+              // reload the page
+              //console.log(data);
+              // console.log(data.split(";"));
+
+              array = data.replace(/[\r\n]/g,"").split("/");
+
+              var order_no = array[0].split(" ")[0];
+              var order_phone = array[0].split(" ")[1];
+              var category_array = array[1].split(" ");
+              var cuisine_array = array[2].split("<").slice(1);
+
+              // console.log(order_no);
+              // console.log(order_phone);
+              // console.log(category_array);
+              // console.log(cuisine_array);
+
+
+              
+
+          }
+      });
 
 
 
@@ -550,9 +661,11 @@
       if(winW > 768){
         $(".page2-content .page2-left,.page2-content .page2-right").css("height",winH+"px");
         $(".page2-content .page2-left-c").css("height",winH1+"px");
+        $(".right-list").css("height",winH1+"px");
       }else{
         $(".page2-content .page2-left").css({"height":"500px"});
         $(".page2-content .page2-left-c").css("height","410px");
+        $(".right-list").css("height","410px");
       }
 
       // 菜单向下滑动

@@ -818,8 +818,6 @@
     	
     $(document).ready(function(){
 
-
-      //获取餐桌信息
       $.ajax({
           url: "/pos/homes/dashboard",
           type: "post",
@@ -829,42 +827,173 @@
               // console.log(data.split(";"));
               
 
-              array = data.split(";");
+              //array = data.split(";");
+              var obj = JSON.parse(data);
+              console.log(obj);
+              console.log(JSON.parse(obj[1].Admin.table_order));
+              var table_position = JSON.parse(obj[1].Admin.table_order);
 
-              var table_array = array[array.length-1].split("/")[0];
-              var cash_array = array[array.length-1].split("/")[1];
-              var time_array = array[array.length-1].split("/")[2];
+              var table_status = obj[2];
+              var table_stat = obj[3];
+              //console.log(table_stat);
               
-              var table_status = table_array.split(" ");
-              var cash_amount = cash_array.split(" ");
-              var order_time = time_array.split(" ");
 
-              localStorage.setItem('table_array', table_array);
-              localStorage.setItem('cash_array', cash_array);
-              localStorage.setItem('time_array', time_array);
+              // var table_array = array[array.length-1].split("/")[0];
+              // var cash_array = array[array.length-1].split("/")[1];
+              // var time_array = array[array.length-1].split("/")[2];
+              
+              // var table_status = table_array.split(" ");
+              // var cash_amount = cash_array.split(" ");
+              // var order_time = time_array.split(" ");
 
               // console.log(table_status);
               // console.log(cash_amount);
               // console.log(order_time);
 
-              for(var i = 0; i < (array.length/3 - 1); i++){
-                  var status = "";
-                  if(table_status[i] == ""){
-                    status = "sit_kong";
-                  }else if(table_status[i] == "N"){
-                    status = "sit_no";
-                  }else if(table_status[i] == "R"){
-                    status = "sit_dan";
-                  }else if(table_status[i] == "P"){
-                    status = "sit_yes";
-                  }
+              for(var i = 0; i < table_position.length; i++){
+                //console.log(table_position[i]);
+                //console.log(table_status[i].split(",")[0], table_status[i].split(",")[1]);
+                //var status = "";
 
-                  $(".sit_left").append('<li class="' + status + '"  onclick="show_model(this)" style="' + array[3*i+1] + ";" + array[3*i+2] + ";" + array[3*i+3] + ";" + '"><div class="sit-title"><span>:  </span>' + cash_amount[i] + '</div><div class="sit-time"><span>' + (order_time[i]==''? "00:00":order_time[i]) + '</span><p><small>No.</small><b>' + (i < 9 ? ('0' + (i+1)): (i+1)) + '</b></p></div></li>');
+                // for(var j = 0; j < table_position.length; j++){
+                //   if(table_status[i].split(",")[0] == i){
+                //     if(table_status[i].split(",")[1] == null){
+                //       status = "sit_kong";
+                //     }else if(table_status[i].split(",")[1] == "N"){
+                //       status = "sit_no";
+                //     }else if(table_status[i].split(",")[1] == "R"){
+                //       status = "sit_dan";
+                //     }else if(table_status[i].split(",")[1] == "P"){
+                //       status = "sit_yes";
+                //     }
+                //   }
+                // }
+
+                // if(table_status[i].split(",")[0] == i){
+                //   if(table_status[i].split(",")[1] == null){
+                //     status = "sit_kong";
+                //   }else if(table_status[i].split(",")[1] == "N"){
+                //     status = "sit_no";
+                //   }else if(table_status[i].split(",")[1] == "R"){
+                //     status = "sit_dan";
+                //   }else if(table_status[i].split(",")[1] == "P"){
+                //     status = "sit_yes";
+                //   }
+                // }
+
+                $(".sit_left").append('<li class="sit_kong"  onclick="show_model(this)" style="' + table_position[i] + '"><div class="sit-title"><span>:  </span>  </div><div class="sit-time"><span></span><p><small>No.</small><b></b></p></div></li>');
+
+
+                for(var j = 0; j < Object.keys(obj[11]).length; j++){
+
+                  //console.log(Object.keys(obj[11])[j], obj[11][Object.keys(obj[11])[j]]["D"]);
+
+                  localStorage.setItem(Object.keys(obj[11])[j], obj[11][Object.keys(obj[11])[j]]["D"]);
+                  console.log(parseInt(Object.keys(obj[11])[j]));
+
+                  if(i == parseInt(Object.keys(obj[11])[j])){
+                    $(".sit_left > li:eq(" + parseInt(Object.keys(obj[11])[j]) + ")")[0].innerHTML = '<div class="sit-title"><span>:  </span> '+ localStorage.getItem(Object.keys(obj[11])[j]) +'</div><div class="sit-time"><span></span><p><small>No.</small><b></b></p></div>';
+                  }
+                }
+
+
               }
+
+              var order_number = obj[14];
+
+              for(var i = 0; i < Object.keys(order_number).length; i++){
+                //console.log(Object.keys(order_number)[i], order_number[Object.keys(order_number)[i]]);
+                localStorage.setItem(Object.keys(order_number)[i], order_number[Object.keys(order_number)[i]]);
+                
+              }
+
+
+              
+
+              var status;
+
+
+              for(var i = 0; i < Object.keys(table_stat).length; i++){
+
+                //onsole.log(table_stat[i]);
+                
+                if(table_stat[parseInt(Object.keys(table_stat)[i])] == null){
+                  status = "sit_kong";
+                }else if(table_stat[parseInt(Object.keys(table_stat)[i])] == "N"){
+                  status = "sit_no";
+                }else if(table_stat[parseInt(Object.keys(table_stat)[i])] == "R"){
+                  status = "sit_dan";
+                }else if(table_stat[parseInt(Object.keys(table_stat)[i])] == "P"){
+                  status = "sit_yes";
+                }
+
+                //console.log(table_stat[i]);
+                // console.log(typeof(Object.keys(table_stat)[i]));
+                // console.log(status);
+                function isInteger(obj) {
+                    return obj%1 === 0
+                }
+
+                if(isInteger(parseInt(Object.keys(table_stat)[i]))){
+                  //console.log(parseInt(Object.keys(table_stat)[i]));
+                  $(".sit_left > li:eq(" + (parseInt(Object.keys(table_stat)[i]) - 1) + ")").addClass(status);
+                }
+
+                
+              }
+              //$(".sit_left").append('<li class="' + status + '"  onclick="show_model(this)" style="' + array[3*i+1] + ";" + array[3*i+2] + ";" + array[3*i+3] + ";" + '"><div class="sit-title"><span>:  </span>' + cash_amount[i] + '</div><div class="sit-time"><span>' + (order_time[i]==''? "00:00":order_time[i]) + '</span><p><small>No.</small><b>' + (i < 9 ? ('0' + (i+1)): (i+1)) + '</b></p></div></li>');
               
 
           }
       });
+
+
+      //获取餐桌信息
+      // $.ajax({
+      //     url: "/pos/homes/dashboard",
+      //     type: "post",
+      //     success: function(data) {
+      //         // reload the page
+      //         // console.log(data);
+      //         // console.log(data.split(";"));
+              
+
+      //         array = data.split(";");
+
+      //         var table_array = array[array.length-1].split("/")[0];
+      //         var cash_array = array[array.length-1].split("/")[1];
+      //         var time_array = array[array.length-1].split("/")[2];
+              
+      //         var table_status = table_array.split(" ");
+      //         var cash_amount = cash_array.split(" ");
+      //         var order_time = time_array.split(" ");
+
+      //         localStorage.setItem('table_array', table_array);
+      //         localStorage.setItem('cash_array', cash_array);
+      //         localStorage.setItem('time_array', time_array);
+
+      //         // console.log(table_status);
+      //         // console.log(cash_amount);
+      //         // console.log(order_time);
+
+      //         for(var i = 0; i < (array.length/3 - 1); i++){
+      //             var status = "";
+      //             if(table_status[i] == ""){
+      //               status = "sit_kong";
+      //             }else if(table_status[i] == "N"){
+      //               status = "sit_no";
+      //             }else if(table_status[i] == "R"){
+      //               status = "sit_dan";
+      //             }else if(table_status[i] == "P"){
+      //               status = "sit_yes";
+      //             }
+
+      //             $(".sit_left").append('<li class="' + status + '"  onclick="show_model(this)" style="' + array[3*i+1] + ";" + array[3*i+2] + ";" + array[3*i+3] + ";" + '"><div class="sit-title"><span>:  </span>' + cash_amount[i] + '</div><div class="sit-time"><span>' + (order_time[i]==''? "00:00":order_time[i]) + '</span><p><small>No.</small><b>' + (i < 9 ? ('0' + (i+1)): (i+1)) + '</b></p></div></li>');
+      //         }
+              
+
+      //     }
+      // });
 
 
       // nav

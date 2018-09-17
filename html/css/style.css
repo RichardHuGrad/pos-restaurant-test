@@ -715,7 +715,7 @@ a {
         font-size: 1.8rem;
       }
       .page2-top button{
-        float: left;
+        float: right;
         width: auto;
         margin-left: 13px;
         background: #00cdef;
