@@ -1,7 +1,6 @@
+
+
 <?php
-
-                
-
                     $i = 0;
                     foreach ($Order_detail['OrderItem'] as $key => $value) {
 
@@ -18,34 +17,39 @@
                                 $selected_extras_id[] = $v['id'];
                             }
                         }
-                    // }
-                
-                        // var temp_item = new Item(
-                        //         item_id = 'echo $i',
-                        //         image= 'if ($value['image']) { echo $value['image']; } else { echo 'no_image.jpg';};',
-                        //         name_en = 'echo $value['name_en']; ',
-                        //         name_zh = 'echo $value['name_xh']; ',
-                        //         selected_extras_name = 'echo implode(",", $selected_extras_name);', // can be extend to json object
-                        //         price = 'echo $value['price']',
-                        //         extras_amount = 'echo $value['extras_amount']',
-                        //         quantity = 'echo $value['qty']',
-                        //         order_item_id = 'echo $value['id']',
-                        //         state = "keep",
-                        //         shared_suborders = null,
-                        //         assigned_suborder = null,
-                        //         is_takeout = 'echo $value["is_takeout"]',
-                        //         comb_id = 'echo $value["comb_id"]',
-                        //         selected_extras_json = 'echo $value['selected_extras']',
-                        //         is_print = 'echo $value['is_print']',
-                        //         special = 'echo  $value["special_instruction"]',
-                        //         cousine_id = 'echo $value['item_id']');
+                        
+                        $arr = array('i' => $i, 'name_en' => $value['name_en'], 'name_xh' => $value['name_xh']);
+                        echo json_encode($arr);
 
-                        // tempOrder.addItem(temp_item);
+                        //$arr = '{"' . $i . '": {"name_en":"' . $value['name_en'] . '","name_xh":"' . $value['name_xh'] . '"}';
 
-                        echo $value['price'];
-                        echo $value['name_xh'];
+                        //echo $arr;
+
+                        // echo $i;
+                        // //if ($value['image']) { echo $value['image']; } else { echo 'no_image.jpg';};
+                        // echo $value['name_en'];
+                        // echo $value['name_xh'];
+                        // echo implode(",", $selected_extras_name);
+                        // echo $value['price'];
+                        // echo $value['extras_amount'];
+                        // echo $value['qty'];
+                        // echo $value['id'];
+                        // echo $value["is_takeout"];
+                        // echo $value["comb_id"];
+                        // echo $value['selected_extras'];
+                        // echo $value['is_print'];
+                        // echo $value["special_instruction"];
+                        // echo $value['item_id'];
+
+
+
                 
                         $i++;
                     }
+              
 
-?>
+           
+          
+
+
+</script>
