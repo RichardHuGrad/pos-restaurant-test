@@ -51,7 +51,17 @@
   }
 
 
+  echo @$Order_detail['Order']['order_no'];
   //echo $Order_detail['OrderItem'];
+
+  //print_r($Order_detail['Order']['order_no']);
+
+  // $num = count(@$Order_detail['OrderItem']);
+  // echo $num;
+  // for($i = 0;$i < $num; ++$i){
+  //     echo $Order_detail['OrderItem'][$i];
+  // }
+  
 
   $i = 0;
   foreach ($Order_detail['OrderItem'] as $key => $value) {
@@ -92,6 +102,7 @@
 
       // tempOrder.addItem(temp_item);
 
+      echo $i;
       echo $value['name_xh'];
 
       $i++;

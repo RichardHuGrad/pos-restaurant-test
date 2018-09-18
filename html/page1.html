@@ -606,31 +606,33 @@
       });
 
 
-      $.ajax({
-          url: "/pos/order/index/table:" + seq + "/type:D",
-          type: "post",
-          success: function(data) {
-              // reload the page
-              //console.log(data);
-              // console.log(data.split(";"));
+      // $.ajax({
+      //     url: "/pos/order/index/table:" + seq + "/type:D",
+      //     type: "post",
+      //     success: function(data) {
+      //         // reload the page
+      //         //console.log(data);
+      //         // console.log(data.split(";"));
 
-              array = data.replace(/[\r\n]/g,"").split("/");
+      //         array = data.replace(/[\r\n]/g,"").split("/");
 
-              var order_no = array[0].split(" ")[0];
-              var order_phone = array[0].split(" ")[1];
-              var category_array = array[1].split(" ");
-              var cuisine_array = array[2].split("<").slice(1);
+      //         var order_no = array[0].split(" ")[0];
+      //         var order_phone = array[0].split(" ")[1];
+      //         var category_array = array[1].split(" ");
+      //         var cuisine_array = array[2].split("<").slice(1);
 
-              // console.log(order_no);
-              // console.log(order_phone);
-              // console.log(category_array);
-              // console.log(cuisine_array);
+      //         // console.log(order_no);
+      //         // console.log(order_phone);
+      //         // console.log(category_array);
+      //         // console.log(cuisine_array);
 
 
               
 
-          }
-      });
+      //     }
+      // });
+
+      
 
 
 
