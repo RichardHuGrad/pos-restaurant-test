@@ -521,7 +521,7 @@
           success: function(data) {
               // reload the page
               //console.log(data);
-              // console.log(data.split(";"));
+              //console.log(data.split(";"));
 
               array = data.replace(/[\r\n]/g,"").split("/");
 
@@ -530,10 +530,10 @@
               var category_array = array[1].split(" ");
               var cuisine_array = array[2].split("<").slice(1);
 
-              // console.log(order_no);
-              // console.log(order_phone);
-              // console.log(category_array);
-              // console.log(cuisine_array);
+              console.log(order_no);
+              console.log(order_phone);
+              console.log(category_array);
+              console.log(cuisine_array);
 
 
               $(".page2-top > h4")[0].innerText = "堂食订单 订单号 #" + order_no + ",  桌 #" + sequence;
