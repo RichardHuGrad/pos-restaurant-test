@@ -226,19 +226,9 @@ class HomesController extends AppController {
         $time=time();
         // print_r($tables);exit;
         // print_r($orders_no[$takeway_tables_key[0]]);exit;
-        //$this->set(compact('time','tables','table_size','dinein_tables_status','dinein_tables_key','takeway_tables_status', 'takeway_tables_key','waiting_tables_status','waiting_tables_key','online_tables_status','colors','orders_no','orders_phone','orders_time','orders_total','admin_passwd'));
+        $this->set(compact('time','tables','table_size','dinein_tables_status','dinein_tables_key','takeway_tables_status', 'takeway_tables_key','waiting_tables_status','waiting_tables_key','online_tables_status','colors','orders_no','orders_phone','orders_time','orders_total','admin_passwd'));
 
-        $dine_table = @explode(",", $tables['Admin']['table_size']);
-        $dine_table_order = @$tables['Admin']['table_order']?@json_decode($tables['Admin']['table_order'], true):array();
-
-        $no_of_tables = $tables['Admin']['no_of_tables'];
-        
-
-        // for($i = 1; $i <= $tables['Admin']['no_of_tables']; $i++) {
-        //     $ordertotal += @round($orders_total[$orders_no[$i]['D']], 2);
-        // }
-
-        echo json_encode(array($time,$tables,$table_size,$dinein_tables_status,$dinein_tables_key,$takeway_tables_status, $takeway_tables_key,$waiting_tables_status,$waiting_tables_key,$online_tables_status,$colors,$orders_no,$orders_phone,$orders_time,$orders_total,$admin_passwd));
+        //echo json_encode(array($time,$tables,$table_size,$dinein_tables_status,$dinein_tables_key,$takeway_tables_status, $takeway_tables_key,$waiting_tables_status,$waiting_tables_key,$online_tables_status,$colors,$orders_no,$orders_phone,$orders_time,$orders_total,$admin_passwd));
     }
 
 
