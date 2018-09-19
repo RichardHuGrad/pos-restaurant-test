@@ -764,6 +764,16 @@
       });
       
     $(document).ready(function(){
+
+      var sequence = localStorage.getItem("sequence");
+      var seq = localStorage.getItem("sequence") < 10 ? localStorage.getItem("sequence").slice(1) : localStorage.getItem("sequence");
+
+      $('.page2-top > h4')[0].innerText = '堂食订单 订单号 #,  桌 #' + seq;
+
+
+
+
+
       // nav
       $(".barnav").hover(function(){
         $(this).find("ul").slideDown();

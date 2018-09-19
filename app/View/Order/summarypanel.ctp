@@ -23,10 +23,10 @@
                         //$arr = array('i' => $i, 'name_en' => $value['name_en'], 'name_xh' => $value['name_xh']);
                         //count($Order_detail['OrderItem']);
 
-                        $arr = '"' . $i . '": {"name_en":"' . $value['name_en'] . '","name_xh":"' . $value['name_xh'] . '"},';
+                        $arr = '"' . $i . '": {"name_en":"' . $value['name_en'] . '","name_xh":"' . $value['name_xh'] . '","price":"' . $value['price'] . '","extras_amount":"' . $value['extras_amount'] . '","qty":"' . $value['qty'] . '","id":"' . $value['id'] . '","is_print":"' . $value['is_print'] . '","is_takeout":"' . $value['is_takeout'] . '","comb_id":"' . $value['comb_id'] . '","selected_extras":"' . $value['selected_extras'] . '","special_instruction":"' . $value['special_instruction'] . '","item_id":"' . $value['item_id'] . '"},';
 
                         if($i == (count($Order_detail['OrderItem']) - 1)){
-                            $arr = '"' . $i . '": {"name_en":"' . $value['name_en'] . '","name_xh":"' . $value['name_xh'] . '"}';
+                            $arr = '"' . $i . '": {"name_en":"' . $value['name_en'] . '","name_xh":"' . $value['name_xh'] . '","price":"' . $value['price'] . '","extras_amount":"' . $value['extras_amount'] . '","qty":"' . $value['qty'] . '","id":"' . $value['id'] . '","is_print":"' . $value['is_print'] . '","is_takeout":"' . $value['is_takeout'] . '","comb_id":"' . $value['comb_id'] . '","selected_extras":"' . $value['selected_extras'] . '","special_instruction":"' . $value['special_instruction'] . '","item_id":"' . $value['item_id'] . '"}';
                         }
                         
                         echo $arr;

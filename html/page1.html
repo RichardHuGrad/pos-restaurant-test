@@ -501,9 +501,15 @@
     <script type="text/javascript">
     	//我就在想这里的折扣有什么用，到付款的时候不是有折扣吗
     	$(".butt").click(function(){
-      	var basic = $(this).text();
-      	basic =parseFloat( basic.substr(0, basic.length - 1));
-      	$("#txt2").val(basic);
+      	 var basic = $(this).text();
+      	 basic =parseFloat( basic.substr(0, basic.length - 1));
+      	 $("#txt2").val(basic);
+      })
+
+
+      $(".rightBtn01").click(function(){
+
+          window.location.href="page2.html"; 
       })
     	
     	
@@ -611,9 +617,16 @@
           type: "post",
           success: function(data) {
               // reload the page
-              console.log(data);
+              //console.log(data);
+              obj = JSON.parse(data);
+              var length = Object.keys(obj).length;
+              localStorage.setItem('cuisine', data);
+              console.log(obj);
 
-              console.log(JSON.parse(data));
+              for(var i = 0; i < length; i++){
+                $(".right-list").append('<li data-state="1" style="background-color: rgb(240, 240, 240);"><a href="javascript:;"><div class="list-left"><h4>' + obj[i].name_xh + '</h4><p>Option:' + obj[i].special_instruction + '</p></div><div class="list-center">$' + obj[i].price + '<span>(15%off)</span></div><div class="list-right">' + obj[i].qty + '</div></a></li>');
+              }
+
               // console.log(data.split(";"));
 
               // array = data.replace(/[\r\n]/g,"").split("/");
