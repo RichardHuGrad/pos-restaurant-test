@@ -40,7 +40,7 @@
       <div class="page2-content payment">
         <div class="page2-left">
           <div class="page2-top">
-            <h4>堂食订单 订单号 #D31803211631,  桌 #3</h4>
+            <h4>堂食订单 订单号 #,  桌 #</h4>
             <button type="button" name="button">换&nbsp;桌</button>
           </div>
           <div class="page2-left-c">
@@ -51,7 +51,7 @@
                 <div class="pay-title">Order Summary 订单摘要</div>
                 <ul class="right-list">
                   <!-- 背景色 class="rig-act" -->
-                  <li>
+                  <!-- <li>
                     <a href="javascript:;">
                       <div class="list-left">
                         <h4>宋嫂牛肉面 </h4>
@@ -62,31 +62,7 @@
                       </div>
                       <div class="list-right">1</div>
                     </a>
-                  </li>
-                  <li>
-                    <a href="javascript:;">
-                      <div class="list-left">
-                        <h4>宋嫂牛肉面 </h4>
-                        <p>Option: 中辣；少麻；去葱；加卤蛋；加面；加肉；改米线；多花生</p>
-                      </div>
-                      <div class="list-center">
-                        <i class="pri">12.99</i> <span>(15%off)</span>
-                      </div>
-                      <div class="list-right">1</div>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="javascript:;">
-                      <div class="list-left">
-                        <h4>宋嫂牛肉面 </h4>
-                        <p>Option: 中辣；少麻；去葱；加卤蛋；加面；加肉；改米线；多花生</p>
-                      </div>
-                      <div class="list-center">
-                        <i class="pri">12.99</i> <span>(15%off)</span>
-                      </div>
-                      <div class="list-right">1</div>
-                    </a>
-                  </li>
+                  </li> -->
                 </ul>
               </div>
               <div class="pay-right">
@@ -103,7 +79,7 @@
                           <li>折扣</li>
                         </ul>
                         <ul class="contR">
-                          <li>D31710311432</li>
+                          <li></li>
                           <li>$<span id="subtotal">0.00</span></li>
                           <!--<li class="fixed">$<span class="subtotal">0.00</span>*<span class="discount">0.00</span>%</li>-->
                           <li class="fixed">--</li>
@@ -509,7 +485,12 @@
      
       $(function(){     
 	      //整理所有价格显示
-	    	var totalMoney = 0;//菜品总额
+
+        var sequence = localStorage.getItem("sequence");
+        var seq = localStorage.getItem("sequence") < 10 ? localStorage.getItem("sequence").slice(1) : localStorage.getItem("sequence");
+
+        var subtotal = localStorage.getItem('cash_array').split(" ");
+	    	var totalMoney = subtotal[seq - 1].substring(1);//菜品总额
 	    	var unitPrice;//单价
 	    	var n;//数量
 	    	var totalQuantity = $(".pri").length;//取所有菜品的类别的个数	   
@@ -768,9 +749,57 @@
       var sequence = localStorage.getItem("sequence");
       var seq = localStorage.getItem("sequence") < 10 ? localStorage.getItem("sequence").slice(1) : localStorage.getItem("sequence");
 
-      $('.page2-top > h4')[0].innerText = '堂食订单 订单号 #,  桌 #' + seq;
+      var subtotal = localStorage.getItem('cash_array').split(" ");
+      console.log(subtotal[seq - 1]);
+      $('#subtotal').innerText = subtotal[seq - 1];
+
+      //$('.page2-top > h4')[0].innerText = '堂食订单 订单号 #,  桌 #' + seq;
+
+      $.ajax({
+          url: "/pos/order/index/table:" + seq + "/type:D",
+          type: "post",
+          success: function(data) {
+              // reload the page
+              console.log(data);
+              //console.log(data.split(";"));
+
+              array = data.replace(/[\r\n]/g,"").split("/");
+
+              var order_no = array[0].split(" ")[0];
+              var order_phone = array[0].split(" ")[1];
+              var category_array = array[1].split(" ");
+              var cuisine_array = array[2].split("<").slice(1);
+
+              // console.log(order_no);
+              // console.log(order_phone);
+              // console.log(category_array);
+              // console.log(cuisine_array);
+
+              $(".page2-top > h4")[0].innerText = "堂食订单 订单号 #" + order_no + ",  桌 #" + sequence;
+              $(".contR > li")[0].innerText = order_no;
+             
+          }
+      });
 
 
+      $.ajax({
+          url: "/pos/order/summarypanel/" + seq + "/D",
+          type: "post",
+          success: function(data) {
+              // reload the page
+              //console.log(data);
+              obj = JSON.parse(data);
+              var length = Object.keys(obj).length;
+              localStorage.setItem('cuisine', data);
+              console.log(obj);
+
+              for(var i = 0; i < length; i++){
+                $(".right-list").append('<li data-state="1"><a href="javascript:;"><div class="list-left"><h4>' + obj[i].name_xh + '</h4><p>Option:' + obj[i].special_instruction + '</p></div><div class="list-center">$' + obj[i].price + '<span>(15%off)</span></div><div class="list-right">' + obj[i].qty + '</div></a></li>');
+              }
+
+              
+          }
+      });
 
 
 
