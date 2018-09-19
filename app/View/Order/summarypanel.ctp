@@ -2,6 +2,8 @@
 
 <?php
                     $i = 0;
+                    $arr = '';
+                    echo '{';
                     foreach ($Order_detail['OrderItem'] as $key => $value) {
 
                         $selected_extras_name = [];
@@ -18,12 +20,16 @@
                             }
                         }
                         
-                        $arr = array('i' => $i, 'name_en' => $value['name_en'], 'name_xh' => $value['name_xh']);
-                        echo json_encode($arr);
+                        //$arr = array('i' => $i, 'name_en' => $value['name_en'], 'name_xh' => $value['name_xh']);
+                        //count($Order_detail['OrderItem']);
 
-                        //$arr = '{"' . $i . '": {"name_en":"' . $value['name_en'] . '","name_xh":"' . $value['name_xh'] . '"}';
+                        $arr = '"' . $i . '": {"name_en":"' . $value['name_en'] . '","name_xh":"' . $value['name_xh'] . '"},';
 
-                        //echo $arr;
+                        if($i == (count($Order_detail['OrderItem']) - 1)){
+                            $arr = '"' . $i . '": {"name_en":"' . $value['name_en'] . '","name_xh":"' . $value['name_xh'] . '"}';
+                        }
+                        
+                        echo $arr;
 
                         // echo $i;
                         // //if ($value['image']) { echo $value['image']; } else { echo 'no_image.jpg';};
@@ -42,14 +48,9 @@
                         // echo $value['item_id'];
 
 
-
-                
                         $i++;
                     }
-              
-
-           
-          
-
-
-</script>
+                    
+                    //echo substr($arr, 0, -1);
+                    echo '}';
+?>
