@@ -500,49 +500,49 @@
     <script type="text/javascript" src="js/keyboard.js"></script>
     <script type="text/javascript">
     	//我就在想这里的折扣有什么用，到付款的时候不是有折扣吗
-    	$(".butt").click(function(){
-      	 var basic = $(this).text();
-      	 basic =parseFloat( basic.substr(0, basic.length - 1));
-      	 $("#txt2").val(basic);
-      })
+  	$(".butt").click(function(){
+    	 var basic = $(this).text();
+    	 basic =parseFloat( basic.substr(0, basic.length - 1));
+    	 $("#txt2").val(basic);
+    })
 
-      $(".rightBtn01").click(function(){
+    $(".rightBtn01").click(function(){
 
-          window.location.href="page2.html"; 
-      })
+        window.location.href="page2.html"; 
+    })
 
 
-      $(".rightBtn02").click(function(){
+    $(".rightBtn02").click(function(){
 
-          var sequence = localStorage.getItem("sequence");
-          var seq = localStorage.getItem("sequence") < 10 ? localStorage.getItem("sequence").slice(1) : localStorage.getItem("sequence");
+        var sequence = localStorage.getItem("sequence");
+        var seq = localStorage.getItem("sequence") < 10 ? localStorage.getItem("sequence").slice(1) : localStorage.getItem("sequence");
 
-          var add_item_id = localStorage.getItem('add_item_id').split(",");
+        var add_item_id = localStorage.getItem('add_item_id').split(",");
 
-          for(var i = 0; i < add_item_id.length; i++){
+        for(var i = 0; i < add_item_id.length; i++){
 
-              var data = {
-                  "item_id": add_item_id[i],
-                  "table": seq,
-                  "type": "D"
-              }
+            var data = {
+                "item_id": add_item_id[i],
+                "table": seq,
+                "type": "D"
+            }
 
-              $.ajax({
-                  url: "/pos/order/addItem",
-                  data: data,
-                  type: 'post',
-                  success: function(data) {
-                      // reload the page
-                      console.log(data);
-                      
+            $.ajax({
+                url: "/pos/order/addItem",
+                data: data,
+                type: 'post',
+                success: function(data) {
+                    // reload the page
+                    console.log(data);
+                    
 
-                      window.location.href="index.html"; 
-                  }
-              });
+                    window.location.href="index.html"; 
+                }
+            });
 
-          }
+        }
 
-      })
+    });
     	
     	
     $(document).ready(function(){
@@ -672,8 +672,118 @@
               for(var i = 0; i < length; i++){
                 $(".right-list").append('<li data-state="1" style="background-color: rgb(240, 240, 240);"><a href="javascript:;"><div class="list-left"><h4>' + obj[i].name_xh + '</h4><p>Option:' + obj[i].special_instruction + '</p></div><div class="list-center">$' + obj[i].price + '<span>(15%off)</span></div><div class="list-right">' + obj[i].qty + '</div></a></li>');
               }
+
+
+              $(".right-list > li").click(function(){
+        
+                if($(this).hasClass("select")){
+                  $(this).removeClass("select");
+                }else{
+                  $(this).addClass("select");
+                }
+              })
+
           }
       });
+
+      $(".rBtn01").click(function(){
+          $(".right-list > li.select").remove();
+
+          $.ajax({
+              url: "/pos/order/removeitem",
+              type: "post",
+              success: function(data) {
+                  // reload the page
+                  //console.log(data);
+                  
+              }
+          });
+      })
+
+      //判断哪个菜品被选中
+      // $(".right-list > li").click(function(){
+        
+      //   if($(this).hasClass("select")){
+      //     $(this).removeClass("select");
+      //   }else{
+      //     $(this).addClass("select");
+      //   }
+      // })
+      
+      //取消选择的菜品
+      $(".cancel").click(function(){
+        $(".right-list li").removeClass("select");
+      })
+      //订单列表
+      $(".firstLi").click(function(){
+        $(".right-list li").removeClass("select");
+        
+      })
+      //全选
+      $(".totalSelection").click(function(){
+        $(".right-list li").addClass("select");
+        
+      })
+      //送厨与未送厨背景颜色区分
+      $(function(){
+        $(".right-list li").each(function(){
+          var state = $(this).attr("data-state");
+          if(state==1){
+            $(this).css('background-color','#f0f0f0');
+          }
+        })
+      })
+      //未送厨
+      $(".not_yet").click(function(){
+        $(".right-list li").each(function(){
+          var state = $(this).attr("data-state");
+          if(state==0){
+            $(this).addClass("select");
+          }else{
+            $(this).removeClass("select");
+          }
+          
+        })
+      
+      })
+      //已送厨
+      $(".already").click(function(){
+        $(".right-list li").each(function(){
+          var state = $(this).attr("data-state");
+          if(state==1){
+            $(this).addClass("select");
+          }else{
+            $(this).removeClass("select");
+          }
+          
+        })
+      })
+      //反选()
+      $(".reverseSelection").click(function(){
+        $(".right-list li").each(function(){
+          var selected = $(this).attr("class");
+          if(selected == 'select'){                     
+            $(this).removeClass("select");
+          }else if(selected != 'select'){
+            $(this).addClass("select");
+          }
+        })
+      })
+      //右侧已选菜品选中操作
+      $(".right-list li").click(function(){
+          var selected = $(this).attr("class");
+          if(selected =='select'){
+            $(this).removeClass("select");
+    
+          }else if(selected !='select'){
+            $(this).addClass("select");
+    
+          }
+      })
+      //类似选项卡样式切换
+      $(".right-top li").click(function(){
+        $(this).addClass("right-active").siblings().removeClass("right-active");
+      })
 
 
       // nav
@@ -751,89 +861,7 @@
       });
       
       
-      //判断哪个菜品被选中
-      $(".tabright li").click(function(){
-      	
-      	if($(this).hasClass("select")){
-      		$(this).removeClass("select");
-      	}else{
-      		$(this).addClass("select");
-      	}
-      })    
-      //取消选择的菜品
-      $(".cancel").click(function(){
-      	$(".right-list li").removeClass("select");
-      })
-      //订单列表
-      $(".firstLi").click(function(){
-      	$(".right-list li").removeClass("select");
-      	
-      })
-      //全选
-      $(".totalSelection").click(function(){
-      	$(".right-list li").addClass("select");
-      	
-      })
-      //送厨与未送厨背景颜色区分
-      $(function(){
-      	$(".right-list li").each(function(){
-      		var state = $(this).attr("data-state");
-      		if(state==1){
-      			$(this).css('background-color','#f0f0f0');
-      		}
-      	})
-      })
-      //未送厨
-      $(".not_yet").click(function(){
-      	$(".right-list li").each(function(){
-      		var state = $(this).attr("data-state");
-      		if(state==0){
-      			$(this).addClass("select");
-      		}else{
-      			$(this).removeClass("select");
-      		}
-      		
-      	})
-     	
-      })
-      //已送厨
-      $(".already").click(function(){
-      	$(".right-list li").each(function(){
-      		var state = $(this).attr("data-state");
-      		if(state==1){
-      			$(this).addClass("select");
-      		}else{
-      			$(this).removeClass("select");
-      		}
-      		
-      	})
-      })
-      //反选()
-      $(".reverseSelection").click(function(){
-        $(".right-list li").each(function(){
-        	var selected = $(this).attr("class");
-      		if(selected == 'select'){     			      		
-	      		$(this).removeClass("select");
-      		}else if(selected != 'select'){
-      			$(this).addClass("select");
-      		}
-      	})
-      })
-      //右侧已选菜品选中操作
-      $(".right-list li").click(function(){
-      		var selected = $(this).attr("class");
-		  		if(selected =='select'){
-		  			$(this).removeClass("select");
-		
-		  		}else if(selected !='select'){
-		  			$(this).addClass("select");
-		
-		  		}
-      })
-      //类似选项卡样式切换
-      $(".right-top li").click(function(){
-      	$(this).addClass("right-active").siblings().removeClass("right-active");
-      })
+
       	
      //电话号码弹窗
      $(".newPhone").click(function(){
