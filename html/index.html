@@ -977,7 +977,7 @@
           type: "post",
           success: function(data) {
               // reload the page
-              console.log(data);
+              //console.log(data);
               console.log(data.split(";"));
               
 
@@ -1303,8 +1303,11 @@
           }else{
 
               $.ajax({
-                url: "/pos/pay/printBill/order:" + order_no ,
+                url: "/pos/pay/printBill/" ,
                 type: 'post',
+                data: {
+                  order_num: order_no
+                },
                 success: function(data) {
                     // reload the page
                     console.log(data);

@@ -102,12 +102,21 @@ class PayController extends AppController {
         $this->loadModel('Cashier');
         $this->loadModel('Order');
 
-        $order_no = $this->data['order_no'];
+        $order_no = '';
+
+        if ($_POST){
+            $order_no = $_POST['order_num'];
+        } else {
+            throw new Exception('Missing argument: order_no');
+        }
+
+        //$order_no = $this->data['order_no'];
         if(!$this->request->is('ajax')){
            $order_no = $this->request->params['named']['order'];
         }
         
         $order_id = $this->Order->getOrderIdByOrderNo($order_no);
+
         $restaurant_id = $this->Cashier->getRestaurantId($this->Session->read('Front.id'));
 
         $this->Print->printPayBill(array('restaurant_id'=> $restaurant_id, 'order_id'=>$order_id));

@@ -743,6 +743,8 @@
 //	      $(".surplus").text("0.00");
 //	      $(".tip").text("0.00");
       });
+
+    var order_no = "";
       
     $(document).ready(function(){
 
@@ -754,6 +756,7 @@
       $('#subtotal').innerText = subtotal[seq - 1];
 
       //$('.page2-top > h4')[0].innerText = '堂食订单 订单号 #,  桌 #' + seq;
+      
 
       $.ajax({
           url: "/pos/order/index/table:" + seq + "/type:D",
@@ -765,7 +768,7 @@
 
               array = data.replace(/[\r\n]/g,"").split("/");
 
-              var order_no = array[0].split(" ")[0];
+              order_no = array[0].split(" ")[0].replace(/\s+/g,"");
               var order_phone = array[0].split(" ")[1];
               var category_array = array[1].split(" ");
               var cuisine_array = array[2].split("<").slice(1);
@@ -802,6 +805,70 @@
       });
 
 
+      $(".pay02").on("click", function(){
+          var stats = localStorage.getItem("table_array").split(" ");
+          var seq = localStorage.getItem("sequence") < 10 ? localStorage.getItem("sequence").slice(1) : localStorage.getItem("sequence");
+
+          console.log(order_no);
+
+
+          $.ajax({
+            url: "/pos/pay/printBill/" ,
+            type: 'post',
+            data: {
+              order_num: order_no
+            },
+            success: function(data) {
+                // reload the page
+                console.log(data);
+                
+
+                window.location.href="index.html"; 
+            }
+          });
+
+      });
+
+      $(".pay01").on("click", function(){
+          var stats = localStorage.getItem("table_array").split(" ");
+          var seq = localStorage.getItem("sequence") < 10 ? localStorage.getItem("sequence").slice(1) : localStorage.getItem("sequence");
+
+          $.ajax({
+              url: "/pos/pay/printBill/complete/",
+              type: "post",
+              data: {
+                  pay: $(".received_price").attr("amount"),
+                  paid_by: $("#selected_card").val(),
+                  change: $(".change_price").attr("amount"),
+                  table: "<?php echo $table ?>",
+                  type: "<?php echo $type ?>",
+                  order_id: "<?php echo $Order_detail['Order']['id'] ?>",
+                  card_val: $("#card_val").val(),
+                  cash_val: $("#cash_val").val(),
+                  tip_val: $("#tip_val").val(),
+                  tip_paid_by: $("#tip_paid_by").val(),
+              },
+              success: function (html) {
+                  $(".alert-warning").hide();
+                  // $(".reprint").trigger("click");
+                  $.ajax({
+                      url: "<?php echo $this->Html->url(array('controller' => 'pay', 'action' => 'printReceipt')); ?>",
+                      method: "post",
+                      data: {
+                          order_no: "<?php echo $Order_detail['Order']['order_no']; ?>",
+                      },
+                      success: function (html) {
+                          window.location = "<?php echo $this->Html->url(array('controller' => 'homes', 'action' => 'dashboard')); ?>";
+                      }
+                  })
+              },
+              beforeSend: function () {
+                  $(".RIGHT-SECTION").addClass('load1 csspinner');
+                  $(".alert-warning").show();
+              }
+          })
+
+      });
 
       // nav
       $(".barnav").hover(function(){
