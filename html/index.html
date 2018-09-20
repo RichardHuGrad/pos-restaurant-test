@@ -803,12 +803,35 @@
     		$(".ulBox").find("ul").eq(i).show().siblings().hide();
     	})
 
-
+      var order_no = "";
       function show_model(o){
         var sequence = o.children[1].children[1].children[1].innerText;
+
+        var seq = sequence < 10 ? sequence.slice(1) : sequence;
+        console.log(seq);
+
         $(".model1").show();
 
         $(".model1").children()[0].innerText = "堂食 NO." + sequence;
+
+        $.ajax({
+          url: "/pos/order/index/table:" + seq + "/type:D",
+          type: "post",
+          success: function(data) {
+              // reload the page
+              //console.log(data);
+              //console.log(data.split(";"));
+
+              array = data.replace(/[\r\n]/g,"").split("/");
+
+              order_no = array[0].split(" ")[0].replace(/\s+/g,"");
+              // var order_phone = array[0].split(" ")[1];
+              // var category_array = array[1].split(" ");
+              // var cuisine_array = array[2].split("<").slice(1);
+              console.log(order_no);
+            }
+        })
+
 
         localStorage.setItem('sequence', sequence);
         //$(".model-content > li > a:eq(0)").attr("href", "../order/index/table:" + sequence + "/type:D");
@@ -1196,25 +1219,23 @@
       $(".model-nav3").on("click",function(){
         // $(".model1").hide();
 
-        var stats = localStorage.getItem("table_array").split(" ");
-        var seq = localStorage.getItem("sequence") < 10 ? localStorage.getItem("sequence").slice(1) : localStorage.getItem("sequence");
-        
+          var stats = localStorage.getItem("table_array").split(" ");
+          var seq = localStorage.getItem("sequence") < 10 ? localStorage.getItem("sequence").slice(1) : localStorage.getItem("sequence");
+          
 
-        if(stats[(seq-1)] == "" || stats[(seq-1)] == "P"){
-            alert("请重新选择桌号.");
-        }else{
-            $(".model2").show();
-            
-            $(".tang1").empty();
-            for(var i = 1; i < (stats.length - 1); i++){
-              if(stats[i] == ""){
-                $(".tang1").append('<li><a href="javascript:;">' + (i+1) + '</a></li>');
-              }
+          if(stats[(seq-1)] == "" || stats[(seq-1)] == "P"){
+              alert("请重新选择桌号.");
+          }else{
+              $(".model2").show();
               
-            }
-        }
-
-        
+              $(".tang1").empty();
+              for(var i = 1; i < (stats.length - 1); i++){
+                if(stats[i] == ""){
+                  $(".tang1").append('<li><a href="javascript:;">' + (i+1) + '</a></li>');
+                }
+                
+              }
+          }
 
       });
 
@@ -1222,66 +1243,78 @@
       // 变空桌
       $(".model-nav4").on("click",function(){
 
-        $(".model").hide();
+          $(".model").hide();
 
-        var stats = localStorage.getItem("table_array").split(" ");
-        var seq = localStorage.getItem("sequence") < 10 ? localStorage.getItem("sequence").slice(1) : localStorage.getItem("sequence");
-        
+          var stats = localStorage.getItem("table_array").split(" ");
+          var seq = localStorage.getItem("sequence") < 10 ? localStorage.getItem("sequence").slice(1) : localStorage.getItem("sequence");
+          
 
-        if(stats[(seq-1)] == "" || stats[(seq-1)] == "P"){
-            alert("请重新选择桌号.");
-        }else{
-            $("#admin").addClass("adminCss").show();
-        }
+          if(stats[(seq-1)] == "" || stats[(seq-1)] == "P"){
+              alert("请重新选择桌号.");
+          }else{
+              $("#admin").addClass("adminCss").show();
+          }
         
       });
 
       // 合并
       $(".model-nav5").on("click",function(){
-        $(".model3").show();
+          $(".model3").show();
 
-        var stats = localStorage.getItem("table_array").split(" ");
-        var seq = localStorage.getItem("sequence") < 10 ? localStorage.getItem("sequence").slice(1) : localStorage.getItem("sequence");
+          var stats = localStorage.getItem("table_array").split(" ");
+          var seq = localStorage.getItem("sequence") < 10 ? localStorage.getItem("sequence").slice(1) : localStorage.getItem("sequence");
 
-        // console.log(stats);
-        // console.log(stats[(seq-1)]);
+          // console.log(stats);
+          // console.log(stats[(seq-1)]);
 
-        if(stats[(seq-1)] == "" || stats[(seq-1)] == "P"){
-            alert("请重新选择桌号.");
-            $(".model3").hide();
-        }else{
-            $(".tang1").empty();
-            for(var i = 0; i < (stats.length - 1); i++){
+          if(stats[(seq-1)] == "" || stats[(seq-1)] == "P"){
+              alert("请重新选择桌号.");
+              $(".model3").hide();
+          }else{
+              $(".tang1").empty();
+              for(var i = 0; i < (stats.length - 1); i++){
 
-              if(stats[i] == "N" || stats[i] == "R"){
-                $(".tang1").append('<li><a href="javascript:;">' + (i+1) + '</a></li>');
+                if(stats[i] == "N" || stats[i] == "R"){
+                  $(".tang1").append('<li><a href="javascript:;">' + (i+1) + '</a></li>');
+                }
+                
               }
-              
-            }
-        }
+          }
 
       });
 
       $(".model-nav6").on("click",function(){
-        var stats = localStorage.getItem("table_array").split(" ");
-        var seq = localStorage.getItem("sequence") < 10 ? localStorage.getItem("sequence").slice(1) : localStorage.getItem("sequence");
+          var stats = localStorage.getItem("table_array").split(" ");
+          var seq = localStorage.getItem("sequence") < 10 ? localStorage.getItem("sequence").slice(1) : localStorage.getItem("sequence");
 
-        if(stats[(seq-1)] == "" || stats[(seq-1)] == "P"){
-            alert("请重新选择桌号.");
-        }else{
-            window.location.href = "page6.html";
-        }
+          if(stats[(seq-1)] == "" || stats[(seq-1)] == "P"){
+              alert("请重新选择桌号.");
+          }else{
+              window.location.href = "page6.html";
+          }
       });
 
       $(".model-nav8").on("click",function(){
-        var stats = localStorage.getItem("table_array").split(" ");
-        var seq = localStorage.getItem("sequence") < 10 ? localStorage.getItem("sequence").slice(1) : localStorage.getItem("sequence");
+          var stats = localStorage.getItem("table_array").split(" ");
+          var seq = localStorage.getItem("sequence") < 10 ? localStorage.getItem("sequence").slice(1) : localStorage.getItem("sequence");
 
-        if(stats[(seq-1)] == "" || stats[(seq-1)] == "P"){
-            alert("请重新选择桌号.");
-        }else{
-            alert("打印账单.");
-        }
+          if(stats[(seq-1)] == "" || stats[(seq-1)] == "P"){
+              alert("请重新选择桌号.");
+          }else{
+
+              $.ajax({
+                url: "/pos/pay/printBill/order:" + order_no ,
+                type: 'post',
+                success: function(data) {
+                    // reload the page
+                    console.log(data);
+                    
+
+                    window.location.href="index.html"; 
+                }
+            });
+
+          }
       });
 
 
