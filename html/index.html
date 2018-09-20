@@ -1085,6 +1085,7 @@
       // 回车,跳转到管理员界面      
       $(".return").on("click",function(){
         hrefG();
+
       });
       window.document.onkeydown= function(evt){
        evt = window.event || evt;
@@ -1103,11 +1104,15 @@
         }else if(aVal == 1 && adminCss == "adminCss"){
           // 变空桌
           //alert("成功变空桌！");
+
+          window.location.href="index.html";
           $("#admin,.key").hide();
 
           $("#write").val("");
           // 改变点击的li的class变成空桌的class名
           $_this.attr("class","sit_kong");
+
+          
         }else{
           alert("解锁密码错误！");
         }
@@ -1248,6 +1253,22 @@
           var stats = localStorage.getItem("table_array").split(" ");
           var seq = localStorage.getItem("sequence") < 10 ? localStorage.getItem("sequence").slice(1) : localStorage.getItem("sequence");
           
+          //Html->url(array('controller'=>'homes', 'action'=>'makeavailable', 'table'=>$i, 'type'=>'D', 'order'=>@$orders_no[$i]['D']))."')"
+
+          $.ajax({
+                  url: "/pos/homes/makeavailable/" ,
+                  type: 'post',
+                  data: {
+                    order_no: order_no
+                  },
+                  success: function(data) {
+                      // reload the page
+                      console.log(data);
+                      
+
+                      //window.location.href="index.html"; 
+                  }
+              });
 
           if(stats[(seq-1)] == "" || stats[(seq-1)] == "P"){
               alert("请重新选择桌号.");
@@ -1303,19 +1324,19 @@
           }else{
 
               $.ajax({
-                url: "/pos/pay/printBill/" ,
-                type: 'post',
-                data: {
-                  order_num: order_no
-                },
-                success: function(data) {
-                    // reload the page
-                    console.log(data);
-                    
+                  url: "/pos/pay/printBill/" ,
+                  type: 'post',
+                  data: {
+                    order_num: order_no
+                  },
+                  success: function(data) {
+                      // reload the page
+                      console.log(data);
+                      
 
-                    window.location.href="index.html"; 
-                }
-            });
+                      window.location.href="index.html"; 
+                  }
+              });
 
           }
       });

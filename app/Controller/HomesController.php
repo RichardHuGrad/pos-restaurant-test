@@ -657,10 +657,18 @@ class HomesController extends AppController {
         $this->layout = false;
         $this->autoRender = NULL;
 
-		    $res = $this->OrderHandler->makeavailable(array(
-		    	'order_no' => $this->params['named']['order'],
-		    	'cashier_id' => $this->Session->read('Front.id')
-		    ));
+        $order_no = '';
+        if ($_POST){
+            $order_no = $_POST['order_no'];
+        } else {
+            throw new Exception('Missing argument: order_no');
+        }
+
+	    $res = $this->OrderHandler->makeavailable(array(
+	    	//'order_no' => $this->params['named']['order'],
+            'order_no' => $order_no,
+	    	'cashier_id' => $this->Session->read('Front.id')
+	    ));
 
 /*
         // get all params
@@ -694,7 +702,7 @@ class HomesController extends AppController {
         	$this->Session->setFlash($res['message'], 'error');
         }
         
-        return $this->redirect(array('controller' => 'homes', 'action' => 'dashboard'));
+        //return $this->redirect(array('controller' => 'homes', 'action' => 'dashboard'));
     }
 
 

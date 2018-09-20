@@ -161,8 +161,8 @@ class PayController extends AppController {
             $paid_by = $_POST['paid_by'];
             $pay = $_POST['pay'];
             $change = $_POST['change'];
-            //$membercard_id = $_POST['membercard_id'];
-            //$membercard_val = $_POST['membercard_val'];
+            $membercard_id = $_POST['membercard_id'];
+            $membercard_val = $_POST['membercard_val'];
             $card_val = $_POST['card_val'];
             $cash_val = $_POST['cash_val'];
             $tip_paid_by = $_POST['tip_paid_by'];
@@ -178,8 +178,8 @@ class PayController extends AppController {
             'paid_by' => $paid_by,
             'pay' => $pay,
             'change' => $change,
-            //'membercard_id' => $membercard_id,
-        	//'membercard_val' => $membercard_val,
+            'membercard_id' => $membercard_id,
+        	'membercard_val' => $membercard_val,
             'card_val' => $card_val,
         	'cash_val' => $cash_val,
             'tip_paid_by' => $tip_paid_by,
