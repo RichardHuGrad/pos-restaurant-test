@@ -825,9 +825,9 @@
               array = data.replace(/[\r\n]/g,"").split("/");
 
               order_no = array[0].split(" ")[0].replace(/\s+/g,"");
-              // var order_phone = array[0].split(" ")[1];
-              // var category_array = array[1].split(" ");
-              // var cuisine_array = array[2].split("<").slice(1);
+              var order_phone = array[0].split(" ")[1];
+              var category_array = array[1].split(" ");
+              var cuisine_array = array[2].split("<").slice(1);
               console.log(order_no);
             }
         })
