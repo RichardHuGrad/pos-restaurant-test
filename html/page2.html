@@ -865,13 +865,27 @@
                               order_num: order_no,
                           },
                           success: function () {
-                              $.ajax({
-                                  url: "/pos/homes/dashboard/",
-                                  type: "post",
-                                  success: function () {
-                                      window.location.href="index.html";
-                                  }
-                              })
+                            $.ajax({
+                                url: "/pos/homes/makeavailable/" ,
+                                type: 'post',
+                                data: {
+                                  order_no: order_no
+                                },
+                                success: function(data) {
+                                    // reload the page
+                                    console.log(data);
+                                    
+
+                                    window.location.href="index.html"; 
+                                }
+                            });
+                              // $.ajax({
+                              //     url: "/pos/homes/dashboard/",
+                              //     type: "post",
+                              //     success: function () {
+                              //         window.location.href="index.html";
+                              //     }
+                              // })
                               //window.location.href="index.html";
                           }
                       })
