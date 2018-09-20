@@ -1,5 +1,5 @@
 <?php 
-
+  
   echo @$Order_detail['Order']['order_no'];
   echo " ";
   echo @$Order_detail['Order']['phone']!=''?(', Tel: '.$Order_detail['Order']['phone']):'';
@@ -56,8 +56,8 @@
   // //echo $Order_detail['OrderItem'];
 
   // print_r($Order_detail['OrderItem']);
-
-
+  echo '/';
+  echo @$Order_detail['Order']['id'];
   
 
 

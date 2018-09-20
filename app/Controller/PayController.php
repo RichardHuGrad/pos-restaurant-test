@@ -86,7 +86,15 @@ class PayController extends AppController {
         $this->loadModel('Cashier');
         $this->loadModel('Order');
 
-        $order_no = $this->data['order_no'];
+        $order_no = '';
+
+        if ($_POST){
+            $order_no = $_POST['order_num'];
+        } else {
+            throw new Exception('Missing argument: order_no');
+        }
+
+        //$order_no = $this->data['order_no'];
         $order_id = $this->Order->getOrderIdByOrderNo($order_no);
         $restaurant_id = $this->Cashier->getRestaurantId($this->Session->read('Front.id'));
 
@@ -133,19 +141,62 @@ class PayController extends AppController {
         $this->layout = false;
         $this->autoRender = NULL;
 
+        $order_id = '';
+        $table = '';
+        $type = '';
+        $paid_by = '';
+        $pay = '';
+        $change = '';
+        $membercard_id = '';
+        $membercard_val = '';
+        $card_val = '';
+        $cash_val = '';
+        $tip_paid_by = '';
+        $tip = '';
+
+        if ($_POST){
+            $order_id = $_POST['order_id'];
+            $table = $_POST['table'];
+            $type = $_POST['type'];
+            $paid_by = $_POST['paid_by'];
+            $pay = $_POST['pay'];
+            $change = $_POST['change'];
+            //$membercard_id = $_POST['membercard_id'];
+            //$membercard_val = $_POST['membercard_val'];
+            $card_val = $_POST['card_val'];
+            $cash_val = $_POST['cash_val'];
+            $tip_paid_by = $_POST['tip_paid_by'];
+            $tip = $_POST['tip'];
+        } else {
+            throw new Exception('Missing argument: order_no');
+        }
+
         $this->PayHandler->completeOrder(array(
-            'order_id' => $this->data['order_id'],
-            'table' => $this->data['table'],
-            'type' => $this->data['type'],
-            'paid_by' => strtoupper($this->data['paid_by']),
-            'pay' => $this->data['pay'],
-            'change' => $this->data['change'],
-            'membercard_id' => $this->data['membercard_id'],
-        	'membercard_val' => $this->data['membercard_val'],
-            'card_val' => $this->data['card_val'],
-        	'cash_val' => $this->data['cash_val'],
-            'tip_paid_by' => $this->data['tip_paid_by'],
-            'tip' => $this->data['tip_val'] ? $this->data['tip_val'] : 0
+            'order_id' => $order_id,
+            'table' => $table,
+            'type' => $type,
+            'paid_by' => $paid_by,
+            'pay' => $pay,
+            'change' => $change,
+            //'membercard_id' => $membercard_id,
+        	//'membercard_val' => $membercard_val,
+            'card_val' => $card_val,
+        	'cash_val' => $cash_val,
+            'tip_paid_by' => $tip_paid_by,
+            'tip' => $tip
+
+            // 'order_id' => $this->data['order_id'],
+            // 'table' => $this->data['table'],
+            // 'type' => $this->data['type'],
+            // 'paid_by' => strtoupper($this->data['paid_by']),
+            // 'pay' => $this->data['pay'],
+            // 'change' => $this->data['change'],
+            // 'membercard_id' => $this->data['membercard_id'],
+            // 'membercard_val' => $this->data['membercard_val'],
+            // 'card_val' => $this->data['card_val'],
+            // 'cash_val' => $this->data['cash_val'],
+            // 'tip_paid_by' => $this->data['tip_paid_by'],
+            // 'tip' => $this->data['tip_val'] ? $this->data['tip_val'] : 0
         ));
 
 

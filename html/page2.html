@@ -666,7 +666,7 @@
 										
 									}
 								})
-
+                payment = 'CASH';
 							console.log("现金支付")
 						}else if(mm==1){
 
@@ -692,7 +692,7 @@
 										
 									}
 								})
-
+                payment = 'CARD';
 							console.log("刷卡支付")
 						}else if(mm==2){
 
@@ -712,7 +712,7 @@
 										}
 									}
 								})
-
+                payment = 'MEMBERCARD';
 							console.log("会员支付")
 						}
 						
@@ -745,6 +745,7 @@
       });
 
     var order_no = "";
+    var order_id = "";
       
     $(document).ready(function(){
 
@@ -772,6 +773,9 @@
               var order_phone = array[0].split(" ")[1];
               var category_array = array[1].split(" ");
               var cuisine_array = array[2].split("<").slice(1);
+              order_id = array[3];
+
+              //console.log(order_id);
 
               // console.log(order_no);
               // console.log(order_phone);
@@ -833,40 +837,51 @@
           var stats = localStorage.getItem("table_array").split(" ");
           var seq = localStorage.getItem("sequence") < 10 ? localStorage.getItem("sequence").slice(1) : localStorage.getItem("sequence");
 
-          $.ajax({
-              url: "/pos/pay/printBill/complete/",
-              type: "post",
-              data: {
-                  pay: $(".received_price").attr("amount"),
-                  paid_by: $("#selected_card").val(),
-                  change: $(".change_price").attr("amount"),
-                  table: "<?php echo $table ?>",
-                  type: "<?php echo $type ?>",
-                  order_id: "<?php echo $Order_detail['Order']['id'] ?>",
-                  card_val: $("#card_val").val(),
-                  cash_val: $("#cash_val").val(),
-                  tip_val: $("#tip_val").val(),
-                  tip_paid_by: $("#tip_paid_by").val(),
-              },
-              success: function (html) {
-                  $(".alert-warning").hide();
-                  // $(".reprint").trigger("click");
-                  $.ajax({
-                      url: "<?php echo $this->Html->url(array('controller' => 'pay', 'action' => 'printReceipt')); ?>",
-                      method: "post",
-                      data: {
-                          order_no: "<?php echo $Order_detail['Order']['order_no']; ?>",
-                      },
-                      success: function (html) {
-                          window.location = "<?php echo $this->Html->url(array('controller' => 'homes', 'action' => 'dashboard')); ?>";
-                      }
-                  })
-              },
-              beforeSend: function () {
-                  $(".RIGHT-SECTION").addClass('load1 csspinner');
-                  $(".alert-warning").show();
-              }
-          })
+          if(payment == 0){
+            alert('请选择一种支付方式！');
+          }else{
+              $.ajax({
+                  url: "/pos/pay/complete/",
+                  type: "post",
+                  data: {
+                      pay: $(".received").innerText,
+                      paid_by: payment,
+                      change: $(".surplus").innerText,
+                      table: seq,
+                      type: "D",
+                      order_id: order_id,
+                      card_val: "",
+                      cash_val: "",
+                      tip_val: "",
+                      tip_paid_by: "",
+                  },
+                  success: function (html) {
+                      $(".alert-warning").hide();
+                      // $(".reprint").trigger("click");
+                      $.ajax({
+                          url: "/pos/pay/printReceipt/",
+                          type: "post",
+                          data: {
+                              order_num: order_no,
+                          },
+                          success: function () {
+                              $.ajax({
+                                  url: "/pos/homes/dashboard/",
+                                  type: "post",
+                                  success: function () {
+                                      window.location.href="index.html";
+                                  }
+                              })
+                              //window.location.href="index.html";
+                          }
+                      })
+                  },
+                  beforeSend: function () {
+                      $(".RIGHT-SECTION").addClass('load1 csspinner');
+                      $(".alert-warning").show();
+                  }
+              })
+          }
 
       });
 
