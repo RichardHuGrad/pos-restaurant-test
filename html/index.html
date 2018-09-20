@@ -797,45 +797,69 @@
     <script type="text/javascript">
     	
     	//外卖订单切换
-    	$(".fullOrder li").click(function(){
-    		$(this).addClass("on").siblings().removeClass("on");
-    		var i = $(this).index();
-    		$(".ulBox").find("ul").eq(i).show().siblings().hide();
-    	})
+  	$(".fullOrder li").click(function(){
+  		$(this).addClass("on").siblings().removeClass("on");
+  		var i = $(this).index();
+  		$(".ulBox").find("ul").eq(i).show().siblings().hide();
+  	})
 
-      var order_no = "";
-      function show_model(o){
-        var sequence = o.children[1].children[1].children[1].innerText;
+    var order_no = "";
+    function show_model(o){
+      var sequence = o.children[1].children[1].children[1].innerText;
 
-        var seq = sequence < 10 ? sequence.slice(1) : sequence;
-        console.log(seq);
+      var seq = sequence < 10 ? sequence.slice(1) : sequence;
+      console.log(seq);
 
-        $(".model1").show();
+      $(".model1").show();
 
-        $(".model1").children()[0].innerText = "堂食 NO." + sequence;
+      $(".model1").children()[0].innerText = "堂食 NO." + sequence;
+
+      $.ajax({
+        url: "/pos/order/index/table:" + seq + "/type:D",
+        type: "post",
+        success: function(data) {
+            // reload the page
+            //console.log(data);
+            //console.log(data.split(";"));
+
+            array = data.replace(/[\r\n]/g,"").split("/");
+
+            order_no = array[0].split(" ")[0].replace(/\s+/g,"");
+            var order_phone = array[0].split(" ")[1];
+            var category_array = array[1].split(" ");
+            var cuisine_array = array[2].split("<").slice(1);
+            console.log(order_no);
+          }
+      })
+
+
+      localStorage.setItem('sequence', sequence);
+      //$(".model-content > li > a:eq(0)").attr("href", "../order/index/table:" + sequence + "/type:D");
+    }
+
+
+    function moveorder(e){
+        
+        var table_num = parseInt($(e)[0].innerText) < 10? ('0' + $(e)[0].innerText) : $(e)[0].innerText;
+        console.log(table_num);
 
         $.ajax({
-          url: "/pos/order/index/table:" + seq + "/type:D",
-          type: "post",
-          success: function(data) {
-              // reload the page
-              //console.log(data);
-              //console.log(data.split(";"));
+              url: "/pos/homes/move_order",
+              type: 'post',
+              data: {
+                order_no: order_no,
+                table: table_num,
+                type: 'D'
+              },
+              success: function(data) {
+                  // reload the page
+                  console.log(data);
+                  
 
-              array = data.replace(/[\r\n]/g,"").split("/");
-
-              order_no = array[0].split(" ")[0].replace(/\s+/g,"");
-              var order_phone = array[0].split(" ")[1];
-              var category_array = array[1].split(" ");
-              var cuisine_array = array[2].split("<").slice(1);
-              console.log(order_no);
-            }
-        })
-
-
-        localStorage.setItem('sequence', sequence);
-        //$(".model-content > li > a:eq(0)").attr("href", "../order/index/table:" + sequence + "/type:D");
-      }
+                  window.location.href="index.html"; 
+              }
+          });
+    }
     	
     	
     	
@@ -1234,16 +1258,15 @@
               $(".model2").show();
               
               $(".tang1").empty();
-              for(var i = 1; i < (stats.length - 1); i++){
+              for(var i = 0; i < (stats.length - 1); i++){
                 if(stats[i] == ""){
-                  $(".tang1").append('<li><a href="javascript:;">' + (i+1) + '</a></li>');
+                  $(".tang1").append('<li><a href="javascript:;" onclick="moveorder(this)">' + (i+1) + '</a></li>');
                 }
                 
               }
           }
 
       });
-
 
       // 变空桌
       $(".model-nav4").on("click",function(){
@@ -1256,19 +1279,19 @@
           //Html->url(array('controller'=>'homes', 'action'=>'makeavailable', 'table'=>$i, 'type'=>'D', 'order'=>@$orders_no[$i]['D']))."')"
 
           $.ajax({
-                  url: "/pos/homes/makeavailable/" ,
-                  type: 'post',
-                  data: {
-                    order_no: order_no
-                  },
-                  success: function(data) {
-                      // reload the page
-                      console.log(data);
-                      
+              url: "/pos/homes/makeavailable/" ,
+              type: 'post',
+              data: {
+                order_no: order_no
+              },
+              success: function(data) {
+                  // reload the page
+                  console.log(data);
+                  
 
-                      //window.location.href="index.html"; 
-                  }
-              });
+                  //window.location.href="index.html"; 
+              }
+          });
 
           if(stats[(seq-1)] == "" || stats[(seq-1)] == "P"){
               alert("请重新选择桌号.");
