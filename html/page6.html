@@ -39,7 +39,7 @@
       <div class="page2-content payment">
         <div class="page2-left">
           <div class="page2-top">
-            <h4>堂食订单 订单号 #D31803211631,  桌#3  分单明细</h4>
+            <h4>堂食订单 订单号 #,  桌# 分单明细</h4>
             <button type="button" name="button">换桌</button>
           </div>
           <div class="page2-left-c">
@@ -50,7 +50,7 @@
                 <div class="pay-title pa1">Order Summary 订单摘要</div>
                 <ul class="menu right-list page6-list">
                   <!-- 背景色 class="rig-act" -->
-                  <li>
+                  <!-- <li>
                     <a href="javascript:;">
                       <div class="list-left">
                         <h4>宋嫂牛肉面 </h4>
@@ -85,7 +85,7 @@
                       </div>
                       <div class="list-right">1</div>
                     </a>
-                  </li>
+                  </li> -->
                 </ul>
                 <div class="pay-title2">
                   <div class="add-right">
@@ -530,8 +530,77 @@
       $(".average").on("click",function(){
         $("#average").fadeIn();
       });
- //    	我是分割线---------------------------------------------------------------------------     
+
+
+
+      var order_no = "";
+      var order_id = "";
+
+
+ // -------------------------------------------------------------------------------------------     
     $(document).ready(function(){
+
+      var sequence = localStorage.getItem("sequence");
+      var seq = localStorage.getItem("sequence") < 10 ? localStorage.getItem("sequence").slice(1) : localStorage.getItem("sequence");
+
+      var subtotal = localStorage.getItem('cash_array').split(" ");
+      console.log(subtotal[seq - 1]);
+      $('#subtotal').innerText = subtotal[seq - 1];
+
+      //$('.page2-top > h4')[0].innerText = '堂食订单 订单号 #,  桌 #' + seq;
+      
+
+      $.ajax({
+          url: "/pos/order/index/table:" + seq + "/type:D",
+          type: "post",
+          success: function(data) {
+              // reload the page
+              console.log(data);
+              //console.log(data.split(";"));
+
+              array = data.replace(/[\r\n]/g,"").split("/");
+
+              order_no = array[0].split(" ")[0].replace(/\s+/g,"");
+              var order_phone = array[0].split(" ")[1];
+              var category_array = array[1].split(" ");
+              var cuisine_array = array[2].split("<").slice(1);
+              order_id = array[3];
+
+              //console.log(order_id);
+
+              // console.log(order_no);
+              // console.log(order_phone);
+              // console.log(category_array);
+              // console.log(cuisine_array);
+
+              $(".page2-top > h4")[0].innerText = "堂食订单 订单号 #" + order_no + ",  桌 #" + sequence + " 分单明细" ;
+              $(".contR > li")[0].innerText = order_no;
+             
+          }
+      });
+
+      $.ajax({
+          url: "/pos/order/summarypanel/" + seq + "/D",
+          type: "post",
+          success: function(data) {
+              // reload the page
+              //console.log(data);
+              obj = JSON.parse(data);
+              var length = Object.keys(obj).length;
+              localStorage.setItem('cuisine', data);
+              console.log(obj);
+
+              for(var i = 0; i < length; i++){
+                $(".right-list").append('<li data-state="1"><a href="javascript:;"><div class="list-left"><h4>' + obj[i].name_xh + '</h4><p>Option:' + obj[i].special_instruction + '</p></div><div class="list-center">$' + obj[i].price + '<span>(15%off)</span></div><div class="list-right">' + obj[i].qty + '</div></a></li>');
+              }
+
+              
+          }
+      });
+
+      
+
+
       // nav
       $(".barnav").hover(function(){
         $(this).find("ul").slideDown();
