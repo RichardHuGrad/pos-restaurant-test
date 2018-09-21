@@ -517,6 +517,7 @@ a {
       overflow: hidden;
     }
       .sit li{
+        position: relative;
         float: left;
         width: 10%;
         height: 104px;
@@ -3474,7 +3475,7 @@ a.add_zhe{
     width: 77%;
   }
   .sit li:nth-child(6n+3),.sit li:nth-child(6n+5){
-    margin-left: 11%;
+    margin-left: 1%;
   }
 
   .login_right,.content_right{
