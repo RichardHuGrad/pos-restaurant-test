@@ -614,13 +614,13 @@
         <div class="member-center"><b>会员ID</b>ABC123</div>
         <div class="add_bot">
           <label>Card Number</label>
-          <input type="text" name="" placeholder="请添加备注信息" />
+          <input class="member_card_no" type="text" name="" placeholder="请添加备注信息" />
           <label>Name</label>
-          <input type="text" name="" placeholder="请添加备注信息" />
+          <input class="member_name" type="text" name="" placeholder="请添加备注信息" />
           <label>Phone Number</label>
-          <input type="text" name="" placeholder="请添加备注信息" />
+          <input class="member_phone" type="text" name="" placeholder="请添加备注信息" />
           <label>Note</label>
-          <input type="text" name="" placeholder="请添加备注信息" />
+          <input class="member_note" type="text" name="" placeholder="请添加备注信息" />
         </div>
         <button type="button" class="add_btn">保存信息</button>
       </div>
@@ -1166,6 +1166,10 @@
       // 会员
       $(".member").on("click",function(){
         $("#member").show();
+
+
+        
+
       });
       $(".member-close,.member-close4").on("click",function(){
         $("#member").hide();
@@ -1192,6 +1196,30 @@
       $(".member-close3").on("click",function(){
         $(".chong_member").animate({width:'0'},200);
       });
+
+      $(".add_btn").on("click", function(){
+        var member_array = localStorage.getItem("member_array");
+        if(member_array == null){
+          member_array = [];
+        }
+
+        var member_card_no = $(".member_card_no").val();
+        var member_name = $(".member_name").val();
+        var member_phone = $(".member_phone").val();
+        var member_note = $(".member_note").val();
+        var split = ";";
+
+        console.log(member_card_no, member_name, member_phone, member_note);
+        member_array += [member_card_no, member_name, member_phone, member_note + split];
+        localStorage.setItem("member_array", member_array);
+
+        var array = localStorage.getItem("member_array").split(";");
+        for(var i = 0; i < array.length; i++){
+            $('.memberLi').append('<li><a href="javascript:;"><span>' + array[i].split(",")[0] + '</span><span>' + array[i].split(",")[1] + '</span><span>$0</span></a></li>');
+        }
+      })
+
+
       var liW = parseFloat($(".r_member .num_left li").width()) ,
           liW1 = parseFloat($(".r_member .num_left li").width()*2 + 7),
           liW2 = parseInt((liW1 - 80)/2);
