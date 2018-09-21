@@ -889,7 +889,7 @@ a {
 .page2-right{
   float: right;
   width: 42.5%;
-  height: 100%;
+  height: 80%;
   padding-right: 1%;
   overflow-y: scroll;
 }
@@ -1905,7 +1905,7 @@ a.add_zhe{
       line-height: 40px;
   }
   .payment .page2-right{
-    overflow: hidden;
+    /*overflow: hidden;*/
   }
   .payF{
     width: 100%;
