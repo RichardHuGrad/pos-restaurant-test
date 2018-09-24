@@ -866,22 +866,35 @@
         var table_num = parseInt($(e)[0].innerText) < 10? ('0' + $(e)[0].innerText) : $(e)[0].innerText;
         console.log(table_num);
 
-        $.ajax({
-              url: "/pos/merge/index/table:1/tablemerge:3,4,2/type:D",
-              type: 'post',
-              data: {
-                order_no: order_no,
-                table: table_num,
-                type: 'D'
-              },
-              success: function(data) {
-                  // reload the page
-                  console.log(data);
-                  
+        
+        if($(e).parent().hasClass("select")){
+          $(e).parent().removeClass("select");
+          $(e).parent().css("");
+        }else{
+          $(e).parent().addClass("select");
+          $(e).parent().css("background: #405a8e;color: #fff;");
+        }
 
-                  window.location.href="page5.html"; 
-              }
-          });
+
+        console.log($(e).parent());
+        //$(e)[0].addClass('select');
+
+        // $.ajax({
+        //     url: "/pos/merge/index/table:1/tablemerge:3,4,2/type:D",
+        //     type: 'post',
+        //     data: {
+        //       order_no: order_no,
+        //       table: table_num,
+        //       type: 'D'
+        //     },
+        //     success: function(data) {
+        //         // reload the page
+        //         console.log(data);
+                
+
+        //         window.location.href="page5.html"; 
+        //     }
+        // });
     }	
     	
     $(document).ready(function(){
@@ -1377,6 +1390,7 @@
           }
 
       });
+
 
       $(".model-nav6").on("click",function(){
           var stats = localStorage.getItem("table_array").split(" ");

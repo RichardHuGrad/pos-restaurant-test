@@ -2363,6 +2363,10 @@ a.add_zhe{
       background: #405a8e;
       color: #fff;
     }
+    .model3 ul li:select a,.model3 ul li.select a{
+      background: #405a8e;
+      color: #fff;
+    }
 
 /*管理员密码*/
 #admin{
