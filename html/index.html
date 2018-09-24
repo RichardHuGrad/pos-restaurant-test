@@ -445,7 +445,7 @@
     </div>
     <!-- 弹出层 -->
     <div class="model model1">
-      <div class="model-title">堂食 NO.01</div>
+      <div class="model-title">堂食 NO.</div>
       <img src="images/icon-06.png" alt="关闭弹出层" class="model-close" />
       <ul class="model-content">
         <li>
@@ -500,7 +500,7 @@
     </div>
     <!-- 弹出层，变更 -->
     <div class="model model2">
-      <div class="model-title">堂食 NO.01 变更为</div>
+      <div class="model-title">堂食 NO. 变更为</div>
       <img src="images/icon-06.png" alt="关闭弹出层" class="model-close" />
       <div class="model2-content">
         <input type="text" name="" placeholder="堂食" class="model-input" />
@@ -541,7 +541,7 @@
     </div>
     <!-- 弹出层，合单 -->
     <div class="model model3">
-      <div class="model-title">堂食 NO.01 合并</div>
+      <div class="model-title">堂食 NO. 合并</div>
       <img src="images/icon-06.png" alt="关闭弹出层" class="model-close" />
       <div class="model3-content">
         <input type="text" name="" placeholder="堂食" class="model-input" />
@@ -813,7 +813,10 @@
       $(".model1").show();
 
       $(".model1").children()[0].innerText = "堂食 NO." + sequence;
-
+      for(var i = 0; i < $(".model-title").length; i++){
+        $(".model-title")[i].innerText = "堂食 NO." + sequence;
+      }
+      
       $.ajax({
         url: "/pos/order/index/table:" + seq + "/type:D",
         type: "post",
@@ -869,32 +872,10 @@
         
         if($(e).parent().hasClass("select")){
           $(e).parent().removeClass("select");
-          $(e).parent().css("");
         }else{
           $(e).parent().addClass("select");
-          $(e).parent().css("background: #405a8e;color: #fff;");
         }
 
-
-        console.log($(e).parent());
-        //$(e)[0].addClass('select');
-
-        // $.ajax({
-        //     url: "/pos/merge/index/table:1/tablemerge:3,4,2/type:D",
-        //     type: 'post',
-        //     data: {
-        //       order_no: order_no,
-        //       table: table_num,
-        //       type: 'D'
-        //     },
-        //     success: function(data) {
-        //         // reload the page
-        //         console.log(data);
-                
-
-        //         window.location.href="page5.html"; 
-        //     }
-        // });
     }	
     	
     $(document).ready(function(){
@@ -1435,10 +1416,34 @@
       });
 
       $(".model3_btn").on("click",function(){
-        var claB = $(".hover").length;
-        if(claB > 1){
-          window.location.href = "page5.html";
-        }
+          console.log($(".select"));
+
+          for(var i = 0; i < $(".select").length; i++){
+            
+          }
+
+        // var claB = $(".hover").length;
+        // if(claB > 1){
+        //   window.location.href = "page5.html";
+        // }
+
+
+        $.ajax({
+            url: "/pos/merge/index/table:1/tablemerge:3,4,2/type:D",
+            type: 'post',
+            data: {
+              order_no: order_no,
+              table: table_num,
+              type: 'D'
+            },
+            success: function(data) {
+                // reload the page
+                console.log(data);
+                
+
+                window.location.href="page5.html"; 
+            }
+        });
       });
 
 
