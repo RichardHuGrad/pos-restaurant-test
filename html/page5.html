@@ -91,8 +91,8 @@
                 <div class="notop">
                   <ul class="pay-ul"> 
                     <li class="noto-act" data-i="1">桌号.1</li>
-                    <li data-i="2">桌号.02</li>
-                    <li data-i="3">桌号.03</li>
+                    <!-- <li data-i="2">桌号.02</li>
+                    <li data-i="3">桌号.03</li> -->
                   </ul>
                   <div class="pay-right-c not01">
                     <div class="r-c-top">
@@ -679,7 +679,6 @@
                           var order_id = array[3];
 
                           $(".pay-h-t")[0].innerText += "#" + order_no + " ";
-                          $(".pay-ul li:eq(" + 0 + ")")[0].innerText = "桌号." + seq;
 
                       }
                   });
@@ -713,8 +712,8 @@
       
 
       for(var i = 0; i < merge_table.split(",").length; i++){
-          $(".pay-ul li:eq(" + (i+1) + ")")[0].innerText = "桌号." + merge_table.split(",")[i];
-          
+          $(".pay-ul li:eq(0)")[0].innerText = "桌号." + seq;
+          $(".pay-ul").append('<li data-i="' + i+1 + '" class="">桌号. ' + merge_table.split(",")[i] + '</li>');
 
 
           $.ajax({
