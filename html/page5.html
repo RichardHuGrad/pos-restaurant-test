@@ -646,10 +646,55 @@
       var stats = localStorage.getItem("table_array").split(" ");
           var seq = localStorage.getItem("sequence") < 10 ? localStorage.getItem("sequence").slice(1) : localStorage.getItem("sequence");
 
-      var merge_table = localStorage.getItem("merge_table");
+      var merge_table = localStorage.getItem("merge_table").replace(/\n/g,"");
 
-      $(".pay-h-t")[0].innerText = "堂食订单 订单号 #D3181 ,  桌 #" + seq + " #" + merge_table + "   合并明细";
+      $.ajax({
+          url: "/pos/order/index/table:" + seq + "/type:D",
+          type: "post",
+          success: function(data) {
 
+              var array = data.replace(/[\r\n]/g,"").split("/");
+
+              var order_no = array[0].split(" ")[0].replace(/\s+/g,"");
+              var order_phone = array[0].split(" ")[1];
+              var category_array = array[1].split(" ");
+              var cuisine_array = array[2].split("<").slice(1);
+              var order_id = array[3];
+
+              $(".pay-h-t")[0].innerText = "堂食订单 订单号 #" + order_no + " ,  桌 #" + seq + " #" + merge_table + "   合并明细";
+             
+          }
+      });
+
+      var order_num = "";
+      for(var i = 0; i < merge_table.split(",").length; i++){
+          var order_no = "";
+          $.ajax({
+              url: "/pos/order/index/table:" + merge_table.split(",")[i] + "/type:D",
+              type: "post",
+              success: function(data) {
+
+                  var array = data.replace(/[\r\n]/g,"").split("/");
+
+                  order_no = array[0].split(" ")[0].replace(/\s+/g,"");
+                  var order_phone = array[0].split(" ")[1];
+                  var category_array = array[1].split(" ");
+                  var cuisine_array = array[2].split("<").slice(1);
+                  var order_id = array[3];
+
+                  
+              }
+          });
+
+          order_num += order_no;
+          console.log(order_num);
+      }
+
+      
+      
+      //$(".pay-h-t")[0].innerText = "堂食订单 订单号 #" + order_no + " ,  桌 #" + seq + " #" + merge_table + "   合并明细";
+
+      
 
       // nav
       $(".barnav").hover(function(){
