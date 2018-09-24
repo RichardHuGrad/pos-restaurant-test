@@ -1416,40 +1416,31 @@
       });
 
       $(".model3_btn").on("click",function(){
-          console.log($(".select"));
+          var merge_table = "";
 
           for(var i = 0; i < $(".select").length; i++){
-            
-          }
+              merge_table = merge_table + $(".select")[i].innerText + ",";
+          };
 
-        // var claB = $(".hover").length;
-        // if(claB > 1){
-        //   window.location.href = "page5.html";
-        // }
+          merge_table = merge_table.substring(0, merge_table.length - 1);
 
+          var stats = localStorage.getItem("table_array").split(" ");
+          var seq = localStorage.getItem("sequence") < 10 ? localStorage.getItem("sequence").slice(1) : localStorage.getItem("sequence");
 
-        $.ajax({
-            url: "/pos/merge/index/table:1/tablemerge:3,4,2/type:D",
-            type: 'post',
-            data: {
-              order_no: order_no,
-              table: table_num,
-              type: 'D'
-            },
-            success: function(data) {
-                // reload the page
-                console.log(data);
-                
+          localStorage.setItem("merge_table", merge_table);
 
-                window.location.href="page5.html"; 
-            }
-        });
+          $.ajax({
+              url: "/pos/merge/index/table:" + seq + "/tablemerge:" + merge_table + "/type:D",
+              type: 'post',
+              success: function(data) {
+                  // reload the page
+                  //console.log(data);
+                  
+                  window.location.href="page5.html"; 
+              }
+          });
+
       });
-
-
-      
-
-
 
     });
     </script>
