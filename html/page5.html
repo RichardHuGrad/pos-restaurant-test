@@ -90,7 +90,7 @@
               <div class="pay-right">
                 <div class="notop">
                   <ul class="pay-ul"> 
-                    <li class="noto-act" data-i="1">桌号.01</li>
+                    <li class="noto-act" data-i="1">桌号.1</li>
                     <li data-i="2">桌号.02</li>
                     <li data-i="3">桌号.03</li>
                   </ul>
@@ -166,7 +166,7 @@
                       <p><span class="color1"></span>未支付</p>
                     </div>
                   </div>
-                  <div class="pay-right-c not02">
+                  <!-- <div class="pay-right-c not02">
                     <div class="r-c-top">
                       <div class="c-top-left">
                         <ul class="contL">
@@ -234,11 +234,10 @@
                     </div>
                     <div class="r-c-bot">
                       <h5>状态</h5>
-                      <!-- color1未支付，color2已付款，color3已打单 -->
                       <p><span class="color1"></span>未支付</p>
                     </div>
-                  </div>
-                  <div class="pay-right-c not03">
+                  </div> -->
+                  <!-- <div class="pay-right-c not03">
                     <div class="r-c-top">
                       <div class="c-top-left">
                         <ul class="contL">
@@ -306,10 +305,9 @@
                     </div>
                     <div class="r-c-bot">
                       <h5>状态</h5>
-                      <!-- color1未支付，color2已付款，color3已打单 -->
                       <p><span class="color1"></span>未支付</p>
                     </div>
-                  </div>
+                  </div> -->
                   <div class="right-con">
                     <div class="right-tab1">
                       <button type="button" name="button" class="pay01">确认付款</button>
@@ -662,6 +660,7 @@
               var order_id = array[3];
 
               $(".pay-h-t")[0].innerText = "堂食订单 " + "桌 #" + seq + " #" + merge_table + " 合并明细 订单号 #" + order_no + " , ";
+              $(".contR li:eq(0)")[0].innerText = order_no;
 
               for(var i = 0; i < merge_table.split(",").length; i++){
 
@@ -680,6 +679,8 @@
                           var order_id = array[3];
 
                           $(".pay-h-t")[0].innerText += "#" + order_no + " ";
+                          $(".pay-ul li:eq(" + 0 + ")")[0].innerText = "桌号." + seq;
+
                       }
                   });
 
@@ -709,7 +710,13 @@
           }
       });
 
+      
+
       for(var i = 0; i < merge_table.split(",").length; i++){
+          $(".pay-ul li:eq(" + (i+1) + ")")[0].innerText = "桌号." + merge_table.split(",")[i];
+          
+
+
           $.ajax({
               url: "/pos/order/summarypanel/" + merge_table.split(",")[i] + "/D",
               type: "post",
