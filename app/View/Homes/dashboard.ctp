@@ -35,4 +35,8 @@
 		echo @$orders_time[$i]['D']?date("H:i", strtotime(@$orders_time[$i]['D'])):"";
 		echo " ";
 	}
+
+
+	//echo '{"no_of_tables":"' + $tables['Admin']['no_of_tables'] + '", ';
+
 ?>
