@@ -573,8 +573,18 @@
         $("#average").fadeOut();
         $("#calculation").val('');$("#perCapita").val('');
       });
+
       $(".average").on("click",function(){
-        $("#average").fadeIn();
+
+        console.log(subtotal[seq - 1]);
+        for(var i = 0; i < $('.txt5').length; i++){
+            $('.txt1')[i].innerText = ((subtotal[seq - 1].replace(/[&\|\\\*^%$#@\-]/g,""))/1.13/$('.txt1').length).toFixed(2);
+            $('.txt4')[i].innerText = ((subtotal[seq - 1].replace(/[&\|\\\*^%$#@\-]/g,""))/1.13*0.13/$('.txt4').length).toFixed(2);
+            $('.txt5')[i].innerText = ((subtotal[seq - 1].replace(/[&\|\\\*^%$#@\-]/g,""))/$('.txt5').length).toFixed(2);
+        }
+        
+
+        //$("#average").fadeIn();
       });
  //     我是分割线---------------------------------------------------------------------------     
     $(document).ready(function(){
@@ -719,7 +729,7 @@
       var i=0;
       var meal;//餐品
       var order = order_no;//订单号
-      var percentage = 10;//折扣百分比
+      var percentage = 0;//折扣百分比
       var smallPlan=0, discount=0,rmb=0,tax=13,total=0,received=0,cash=0,card=0,member=0,surplus=0,tip=0;
       //小计/折扣/折后价/税/总计/已收到/现金/卡/会员/剩余/小费
      
@@ -745,7 +755,7 @@
         html2+="<li>订单号</li><li>小计</li><li>折扣</li>";
         html2+="</ul>";
         html2+="<ul class='contR'>";
-        html2+="<li>"+order+"-"+i+"</li><li>$<span class='txt1'>"+0+"</span></li><li class='fixed'>$<span class='txt2'>"+0+"</span>*"+percentage+"%</li>";
+        html2+="<li>"+order_no+"-"+i+"</li><li>$<span class='txt1'>"+0+"</span></li><li class='fixed'>$<span class='txt2'>"+0+"</span>*"+percentage+"%</li>";
         html2+="</ul>";
         html2+="</div>";
         html2+="<div class='right-tab'>";
@@ -808,7 +818,7 @@
           }
         })
 
-        $(".contR > li")[0].innerText = order;
+        //$(".contR > li")[0].innerText = order;
 
       })
 //      我是分割线---------------------------------------------------------------------------
