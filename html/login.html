@@ -53,6 +53,10 @@
       <p>签到成功</p>
       <button type="button" >确定</button>
     </div>
+    <div id="warn">
+      <p>请重新输入</p>
+      <button type="button" >确定</button>
+    </div>
 
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/amazeui.min.js"></script>
@@ -89,6 +93,10 @@
         $("#sign button").on("click",function(){
           $("#sign").hide();
         });
+
+        $("#warn button").on("click",function(){
+          $("#warn").hide();
+        });
         // 登录
 
         $(".loginA").on("click",function(){
@@ -105,9 +113,11 @@
              }, // serializes the form's elements.
              success: function(data){
                 console.log(data.indexOf("<div"));
-                
+
                 if(data.indexOf("<div") == -1){
                     window.location.href="index.html";
+                }else{
+                    $("#warn").show();
                 }
              }
           });
