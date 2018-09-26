@@ -80,7 +80,6 @@ class HomesController extends AppController {
 
         if ($this->Auth->loggedIn() || $this->Auth->login()) {
             return $this->redirect(array('controller' => 'homes', 'action' => 'dashboard'));
-            echo true;
         }
     }
 
