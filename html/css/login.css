@@ -194,6 +194,18 @@ a {
         outline: none;
         font-family: Nobel-Book;
     }
+    .password {
+        /*height: 6rem;*/
+        height: 5rem;
+        width: 84%;
+        margin: 15px 0 25px;
+        padding: 0 8%;
+        border: 0;
+        border-radius: 70px;
+        font-size: 27px;
+        outline: none;
+        font-family: Nobel-Book;
+    }
     .num_left{
       float: left;
       width: 74%;
@@ -304,6 +316,9 @@ a {
     width: 40%;
   }
   .keyboard{
+    height: 5rem;
+  }
+  .password{
     height: 5rem;
   }
   .english{

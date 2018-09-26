@@ -21,7 +21,11 @@
       <div class="am-vertical-align-middle login-align">
           <h3>Eatopia POS系统 登录</h3>
           <div class="formkey">
-          	<input type="text" value="" class="keyboard" placeholder="请输入账号" />
+            <form id="target" action="../../">
+              <input type="text" value="" class="keyboard" placeholder="请输入账号" />
+              <input type="text" value="" class="password" placeholder="请输入密码" />
+            </form>
+          	
             <!-- 左侧数字 -->
             <ul class="num_left">
               <li class="num">1</li>
@@ -66,16 +70,19 @@
           var inputVal = $(".keyboard").val(),
               $_this = $(this).html();
           $(".keyboard").val(inputVal+$_this);
+          $(".password").val(inputVal+$_this);
         });
         // 清空
         $(".empty").on("click",function(){
           $(".keyboard").val("");
+          $(".password").val("");
         });
         // 后退
         $(".retreat").on("click",function(){
           var leng = $(".keyboard").val().toString(),valIn = "";
           valIn = leng.substring(0,leng.length-1);
           $(".keyboard").val(valIn);
+          $(".password").val(valIn);
         });
         // 签到
         $(".sign").on("click",function(){
@@ -85,13 +92,29 @@
           $("#sign").hide();
         });
         // 登录
+
         $(".loginA").on("click",function(){
+
           var a = $(".keyboard").val();
-          if(a != ""){
-            window.location.href = "index.html";
-          }else{
-            alert("请输入正确的登录密码！");
-          }
+          var b = $(".password").val();
+
+          $.ajax({
+             type: "post",
+             url: "../homes/index",
+             data: {
+                 '_method': 'POST',
+                 'data[Cashier][username]': a,
+                 'data[Cashier][password]': b
+             }, // serializes the form's elements.
+             success: function(data){
+              console.log(data);
+              //console.log($.ajax.mostRecentCall.args[0]);
+                //setInterval(function(){ window.location.href="index.html"; }, 3000);
+                
+             }
+          });
+
+
         });
       })
     </script>
