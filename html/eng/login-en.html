@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" />
     <meta name="format-detection" content="telephone=no" />
     <title>Eatopia</title>
-    <link rel="stylesheet" href="css/login.css" />
+    <link rel="stylesheet" href="../css/login.css" />
 </head>
   <body>
     <!-- 中英文转换 -->
@@ -13,16 +13,16 @@
     <!-- logo -->
     <div class="am-vertical-align logo" style="height: 100%;">
       <div class="am-vertical-align-middle login-align">
-          <img src="images/logo.png" alt="logo">
+          <img src="../images/logo.png" alt="logo">
       </div>
     </div>
     <!-- 登录 -->
     <div class="am-vertical-align login" style="height: 100%;">
       <div class="am-vertical-align-middle login-align">
-          <h3>Eatopia POS系统 登录</h3>
+          <h3>Eatopia POS Login</h3>
           <div class="formkey">
             <form id="target" action="../../">
-              <input type="text" value="" class="keyboard" placeholder="请输入账号" />
+              <input type="text" value="" class="keyboard" placeholder="Please Enter" />
             </form>
           	
             <!-- 左侧数字 -->
@@ -36,30 +36,30 @@
               <li class="num">7</li>
               <li class="num">8</li>
               <li class="num">9</li>
-              <li class="empty">清空</li>
+              <li class="empty">CE</li>
               <li class="num">0</li>
-              <li class="retreat">后退</li>
+              <li class="retreat">C</li>
             </ul>
             <!-- 右侧操作 -->
             <div class="num_right">
-              <a href="javascript:;" class="sign">签到<br />签退</a>
-              <a href="javascript:;" class="loginA">登录<br />POS</a>
+              <a href="javascript:;" class="sign">checkin<br />checkout</a>
+              <a href="javascript:;" class="loginA">login<br />POS</a>
             </div>
           </div>
       </div>
     </div>
     <!-- 签到弹出层 -->
     <div id="sign">
-      <p>签到成功</p>
-      <button type="button" >确定</button>
+      <p>checkin successful</p>
+      <button type="button" >OK</button>
     </div>
     <div id="warn">
-      <p>请重新输入</p>
-      <button type="button" >确定</button>
+      <p>Please Re-enter</p>
+      <button type="button" >OK</button>
     </div>
 
-    <script type="text/javascript" src="js/jquery.js"></script>
-    <script type="text/javascript" src="js/amazeui.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../js/amazeui.min.js"></script>
     <script type="text/javascript">
 
       $(function(){
@@ -105,7 +105,7 @@
 
           $.ajax({
              type: "post",
-             url: "../homes/index",
+             url: "../../homes/index",
              data: {
                  '_method': 'POST',
                  'data[Cashier][username]': a,
@@ -115,18 +115,16 @@
                 console.log(data.indexOf("<div"));
 
                 if(data.indexOf("<div") == -1){
-                    window.location.href="index.html";
+                    window.location.href="../index.html";
                 }else{
                     $("#warn").show();
                 }
              }
           });
-
-
         });
 
         $('.english').on('click', function(){
-            window.location.href="./eng/login-en.html";
+            window.location.href="../login.html";
         })
       })
     </script>
