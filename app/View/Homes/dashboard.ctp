@@ -1,4 +1,7 @@
 <?php
+
+	echo $this->Session->flash();
+	
 	$dine_table = @explode(",", $tables['Admin']['table_size']);
     $dine_table_order = @$tables['Admin']['table_order']?@json_decode($tables['Admin']['table_order'], true):array();
 

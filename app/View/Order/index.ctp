@@ -1,4 +1,6 @@
 <?php 
+
+  echo $this->Session->flash();
   
   echo @$Order_detail['Order']['order_no'];
   echo " ";

@@ -1,6 +1,8 @@
 
 
 <?php
+                    echo $this->Session->flash();
+
                     $i = 0;
                     $arr = '';
                     echo '{';
