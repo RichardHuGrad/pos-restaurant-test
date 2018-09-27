@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>付款</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/jianpan.css" />
+    <link rel="icon" href="favicon.ico"/>
+  </head>
+  <body>
+    <div class="container">
+      <!-- 头部 -->
+      <div class="header">
+        <!-- logo -->
+        <img src="../images/logo.png" alt="logo" class="logo" />
+        <!-- 导航 -->
+        <ul class="nav">
+          <li><a href="index-en.html" class="nav-a">Main Page</a></li>
+        </ul>
+        <img src="../images/nav.png" class="smalllogo" alt="pad Menu" />
+        <!-- 登录按钮 -->
+        <div class="login_right">
+          <button type="button" name="button">Logout</button>
+        </div>
+      </div>
+      <!-- 主体 -->
+      <div class="page2-content payment">
+        <div class="page2-left">
+          <div class="page2-top">
+            <h4>Dine-in Order Order No. #,  Table #</h4>
+            <button type="button" name="button">Change&nbsp;Table</button>
+          </div>
+          <div class="page2-left-c">
+            <!-- 右侧菜品选择 -->
+            <div class="page2-tavright">
+              <!-- 内容 -->
+              <div class="pay-left">
+                <div class="pay-title">Order Summary</div>
+                <ul class="right-list">
+                  <!-- 背景色 class="rig-act" -->
+                  <!-- <li>
+                    <a href="javascript:;">
+                      <div class="list-left">
+                        <h4>宋嫂牛肉面 </h4>
+                        <p>Option: 中辣；少麻；去葱；加卤蛋；加面；加肉；改米线；多花生</p>
+                      </div>
+                      <div class="list-center">
+                        <i class="pri">12.99</i> <span>(15%off)</span>
+                      </div>
+                      <div class="list-right">1</div>
+                    </a>
+                  </li> -->
+                </ul>
+              </div>
+              <div class="pay-right">
+                <div class="notop">
+                  <ul class="pay-ul"> 
+                    <li class="noto-act">Customer.01</li>
+                  </ul>
+                  <div class="pay-right-c">
+                    <div class="r-c-top">
+                      <div class="c-top-left">
+                        <ul class="contL">
+                          <li>Order No.</li>
+                          <li>Subtotal</li>
+                          <li>Discount</li>
+                        </ul>
+                        <ul class="contR">
+                          <li></li>
+                          <li>$<span id="subtotal">0.00</span></li>
+                          <!--<li class="fixed">$<span class="subtotal">0.00</span>*<span class="discount">0.00</span>%</li>-->
+                          <li class="fixed">--</li>
+                        </ul>
+                      </div>
+                      <div class="right-tab">
+                      	<div class="topOpen">
+                        	<a href="javascript:;" class="add_zhe">Add discount</a>
+                        	<a href="javascript:;" class="add_shou"> - close</a>
+                       	</div>
+                        <div class="add-content">
+                          <ul class="add-ul">
+                            <li>
+                              <span>Fixed discount</span>
+                              <input type="text" id="discount1" class="visible">
+                            </li>
+                            <li>
+                              <span>%discount</span>
+                              <input type="text" id="discount2" class="visible">
+                            </li>
+                            <li>
+                              <span>Coupon code</span>
+                              <input type="text" id="discount3" class="visible">
+                            </li>
+                          </ul>
+                          <div class="add-right">
+                            <span>Coupon code shortcut</span>
+                            <p class="btn">
+	                            <button type="button" name="button" class="butt">15%</button>
+	                            <button type="button" name="button" class="butt">20%</button>
+	                            <button type="button" name="button" class="butt">25%</button>
+	                            <i class="application">应用折扣</i>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="c-top-left">
+                        <ul class="contL">
+                          <li>Price after discount</li>
+                          <li>Tax(<span class="tax">0.00</span>%):</li>
+                          <li>Total:</li>
+                        </ul>
+                        <ul class="contR">
+                          <li><span class="discountMoney">0.00</span></li>
+                          <li>$<span class="taxMoney">0.00</span></li>
+                          <li>$<span id="total">0.00</span></li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="r-c-center">
+                        <ul class="cenL">
+                          <li>Received:</li>
+                          <li class="cen-col">Cash：$<span class="cash">0.00</span></li>
+                          <li class="cen-col">Member：$<span class="member">0.00</span></li>
+                          <li class="change">Change:</li>
+                          <li>Tips:</li>
+                        </ul>
+                        <ul class="cenC">
+                          <li>$<span class="received">0.00</span></li>
+                          <li class="cen-col">Card：$<span class="card">0.00</span></li>
+                          <li class="cen-col"></li>
+                          <li>$<span class="surplus">0.00</span></li>
+                          <li>$<span class="tip">0.00</span></li>
+                        </ul>
+                        
+                    </div>
+                    <div class="r-c-bot">
+                      <h5>Status</h5>
+                      <!-- color1未支付，color2已付款，color3已打单 -->
+                      <p><span class="color1"></span>Not paid</p>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="page2-right">
+          <!-- ipad关闭付款块 -->
+          <img src="../images/icon-06.png" alt="ipad关闭付款块" class="pay_close" />
+          <!-- 登录 -->
+          <div class="login">
+            <div class="login-align">
+                <h4>Choose payment method</h4>
+                <ul class="payF">
+                  <li>
+                    <a href="javascript:;"><img src="../images/btn02.png"></a>
+                  </li>
+                  <li>
+                    <a href="javascript:;"><img src="../images/btn03.png"></a>
+                  </li>
+                  <li>
+                    <a href="javascript:;"><img src="../images/btn04.png"></a>
+                  </li>
+                </ul>
+                <h4>Cash</h4>
+                <div class="formkey">
+                  <input type="text" value="" class="keyboard" placeholder="0.00" />
+                  <!-- 左侧数字 -->
+                  <ul class="num_left">
+                    <li class="num">1</li>
+                    <li class="num">2</li>
+                    <li class="num">3</li>
+                    <li class="num">4</li>
+                    <li class="num">5</li>
+                    <li class="num">6</li>
+                    <li class="num">7</li>
+                    <li class="num">8</li>
+                    <li class="num">9</li>
+                    <li class="empty">Empty</li>
+                    <li class="num">0</li>
+                    <!--<li class="retreat">后退</li>-->
+                    <li class="num">.</li>
+                  </ul>
+                  <!-- 右侧操作 -->
+                  <div class="num_right">
+                    <a href="javascript:;" class="payde">Default<br />Amound</a>
+                    <a href="javascript:;" class="paymo">Input</a>
+                  </div>
+                </div>
+                
+                <div class="right-con">
+                    <div class="right-tab1">
+                      <button type="button" name="button" class="pay01">Confirm payment</button>
+                      <button type="button" name="button" class="pay02">Print Receipt</button>
+                    </div>
+                  </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- ipad付款块按钮 -->
+    <button type="button" name="button" class="pay_play">Choose/Input amount</button>
+    <!-- 付款虚拟键盘 -->
+    <div class="key" id="pay_key">
+      <img src="../images/icon-14.png" alt="Close virtual keyboard" class="key_img" />
+      <ul id="keyboard">
+        <li class="esc">Esc</li>
+        <li class="symbol"><span class="off">1</span><span class="on">!</span></li>
+
+        <li class="symbol"><span class="off">2</span><span class="on">@</span></li>
+
+        <li class="symbol"><span class="off">3</span><span class="on">#</span></li>
+
+        <li class="symbol"><span class="off">4</span><span class="on">$</span></li>
+
+        <li class="symbol"><span class="off">5</span><span class="on">%</span></li>
+
+        <li class="symbol"><span class="off">6</span><span class="on">^</span></li>
+
+        <li class="symbol"><span class="off">7</span><span class="on">&amp;</span></li>
+
+        <li class="symbol"><span class="off">8</span><span class="on">*</span></li>
+
+        <li class="symbol"><span class="off">9</span><span class="on">(</span></li>
+
+        <li class="symbol"><span class="off">0</span><span class="on">)</span></li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="delete lastitem">Delete</li>
+
+        <li class="tab no"></li>
+
+        <li class="letter">Q</li>
+
+        <li class="letter">W</li>
+
+        <li class="letter">E</li>
+
+        <li class="letter">R</li>
+
+        <li class="letter">T</li>
+
+        <li class="letter">Y</li>
+
+        <li class="letter">U</li>
+
+        <li class="letter">I</li>
+
+        <li class="letter">O</li>
+
+        <li class="letter">P</li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="symbol lastitem"><span class="off">\</span><span class="on">|</span></li>
+
+        <li class="capslock no"></li>
+
+        <li class="letter">A</li>
+
+        <li class="letter">S</li>
+
+        <li class="letter">D</li>
+
+        <li class="letter">F</li>
+
+        <li class="letter">G</li>
+
+        <li class="letter">H</li>
+
+        <li class="letter">J</li>
+
+        <li class="letter">K</li>
+
+        <li class="letter">L</li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="return lastitem">Enter</li>
+
+        <li class="left-shift">SHIFT</li>
+
+        <li class="letter">Z</li>
+
+        <li class="letter">X</li>
+
+        <li class="letter">C</li>
+
+        <li class="letter">V</li>
+
+        <li class="letter">B</li>
+
+        <li class="letter">N</li>
+
+        <li class="letter">M</li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="right-shift no"></li>
+
+        <li class="no b1"></li>
+
+        <li class="no b2"></li>
+
+        <li class="no b3"></li>
+
+        <li class="no b4"></li>
+
+        <li class="space lastitem">&nbsp;</li>
+
+        <li class="no b5"></li>
+
+        <li class="no b5"></li>
+
+        <li class=" b6"></li>
+      </ul>
+    </div>
+    <!-- 管理员虚拟键盘 -->
+    <div class="key" id="admin_key">
+      <img src="../images/icon-14.png" alt="Close virtual keyboard" class="key_img" />
+      <ul id="keyboard">
+        <li class="esc">Esc</li>
+        <li class="symbol"><span class="off">1</span><span class="on">!</span></li>
+
+        <li class="symbol"><span class="off">2</span><span class="on">@</span></li>
+
+        <li class="symbol"><span class="off">3</span><span class="on">#</span></li>
+
+        <li class="symbol"><span class="off">4</span><span class="on">$</span></li>
+
+        <li class="symbol"><span class="off">5</span><span class="on">%</span></li>
+
+        <li class="symbol"><span class="off">6</span><span class="on">^</span></li>
+
+        <li class="symbol"><span class="off">7</span><span class="on">&amp;</span></li>
+
+        <li class="symbol"><span class="off">8</span><span class="on">*</span></li>
+
+        <li class="symbol"><span class="off">9</span><span class="on">(</span></li>
+
+        <li class="symbol"><span class="off">0</span><span class="on">)</span></li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="delete lastitem">Delete</li>
+
+        <li class="tab no"></li>
+
+        <li class="letter">Q</li>
+
+        <li class="letter">W</li>
+
+        <li class="letter">E</li>
+
+        <li class="letter">R</li>
+
+        <li class="letter">T</li>
+
+        <li class="letter">Y</li>
+
+        <li class="letter">U</li>
+
+        <li class="letter">I</li>
+
+        <li class="letter">O</li>
+
+        <li class="letter">P</li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="symbol lastitem"><span class="off">\</span><span class="on">|</span></li>
+
+        <li class="capslock no"></li>
+
+        <li class="letter">A</li>
+
+        <li class="letter">S</li>
+
+        <li class="letter">D</li>
+
+        <li class="letter">F</li>
+
+        <li class="letter">G</li>
+
+        <li class="letter">H</li>
+
+        <li class="letter">J</li>
+
+        <li class="letter">K</li>
+
+        <li class="letter">L</li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="return lastitem">Enter</li>
+
+        <li class="left-shift">SHIFT</li>
+
+        <li class="letter">Z</li>
+
+        <li class="letter">X</li>
+
+        <li class="letter">C</li>
+
+        <li class="letter">V</li>
+
+        <li class="letter">B</li>
+
+        <li class="letter">N</li>
+
+        <li class="letter">M</li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="right-shift no"></li>
+
+        <li class="no b1"></li>
+
+        <li class="no b2"></li>
+
+        <li class="no b3"></li>
+
+        <li class="no b4"></li>
+
+        <li class="space lastitem">&nbsp;</li>
+
+        <li class="no b5"></li>
+
+        <li class="no b5"></li>
+
+        <li class=" b6"></li>
+      </ul>
+    </div>
+    <!-- 管理员密码 -->
+    <div id="admin">
+      <p>Unlock</p>
+      <input type="text" name="" id="write" class="adminInp" placeholder="Input passward" />
+      <div class="admin-btn">
+        <button type="button" class="a_no">Cancel</button>
+        <button type="button" class="a_yes">Input</button>
+      </div>
+    </div>
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../js/keyboard.js"></script>
+    <script type="text/javascript">
+     //写了这么多关于计算的，可能也没什么用，不如意直接调用旧版的计算方法吧
+     
+     
+      $(function(){     
+	      //整理所有价格显示
+
+        var sequence = localStorage.getItem("sequence");
+        var seq = localStorage.getItem("sequence") < 10 ? localStorage.getItem("sequence").slice(1) : localStorage.getItem("sequence");
+
+        var subtotal = localStorage.getItem('cash_array').split(" ");
+	    	var totalMoney = subtotal[seq - 1].substring(1);//菜品总额
+	    	var unitPrice;//单价
+	    	var n;//数量
+	    	var totalQuantity = $(".pri").length;//取所有菜品的类别的个数	   
+	    	for(var m=0;m<totalQuantity;m++){
+	    		$(".pri").eq(m).each(function(){
+		    		unitPrice = parseFloat($(this).text());
+		    		n = parseInt($(this).parents(".list-center").next(".list-right").text());
+		    		unitPrice = unitPrice*n;   		
+		    	})  
+		    	totalMoney=unitPrice+totalMoney;
+	    	}
+	    	$("#subtotal").text(totalMoney);
+	    	$(".subtotal").text(totalMoney);
+	    	var discount=15;//这个百分比后台调取
+	    	$(".discount").text(discount);//这是折扣百分比 啊
+	    	
+	    	$(".discountMoney").text('--');
+	    	var tax=13;//这个百分比后台调取
+	    	$(".tax").text(tax);
+	    	var taxMoney = parseFloat(tax*totalMoney/100);
+	    	taxMoney = taxMoney.toFixed(2);//这是税 啊
+	    	$(".taxMoney").text(taxMoney);
+	    	var total;
+	    	total = parseFloat(totalMoney)+parseFloat(taxMoney);
+	    	total = total.toFixed(2);//这是总计 啊
+	    	$("#total").text(total);
+    	})
+    	
+    	//添加折扣
+      $(".add_zhe").click(function(){
+      	$(this).parent(".topOpen").next(".add-content").slideDown();
+      	$(this).parent(".topOpen").find(".add_shou").show();
+      })
+       $(".add_shou").click(function(){
+      	$(this).parent(".topOpen").next(".add-content").slideUp();
+      	$(this).hide();
+      })
+      $(".butt").click(function(){
+      	var basic = $(this).text();
+      	basic =parseFloat( basic.substr(0, basic.length - 1));
+      	$("#discount2").val(basic);
+      	$(".discount").text(basic);
+      	
+      })
+    	
+    	
+    	//计算折扣
+    		
+      $(".application").click(function(){
+      	var txt1 = parseFloat($("#discount1").val());
+      	var txt2 = parseFloat($("#discount2").val());
+      	var txt3 = parseFloat($("#discount3").val());
+      	var subtotal = parseFloat($("#subtotal").text());//小计
+      	
+				var tax2=parseFloat($(".tax").text());
+				var total2;
+				var taxMoney2;
+				var last;
+				
+				var html="$";
+				html+="<span class='subtotal'>";
+				html+=subtotal;
+				html+="</span>*<span class='discount'>";
+				html+=txt2;
+				html+="</span>";
+				html+="%";
+				
+				if(!txt1&&!txt2&&!txt3){//无折扣
+					alert("Please choose one discount！");
+				}else if(!txt1&&!txt3){//按照百分比算
+					$(".fixed").text('');
+					$(".fixed").append(html);
+      		total2 = subtotal - subtotal*txt2/100;
+      		total2 = total2.toFixed(2)//这是折后价 啊
+      		taxMoney2 = parseFloat(tax2*total2/100);
+	    		taxMoney2 = taxMoney2.toFixed(2);//这是税 啊
+	    		last = parseFloat(total2)+parseFloat(taxMoney2);
+	    		last = last.toFixed(2);
+      		console.log('Caculate by percentage')
+      	}else if(!txt2&&!txt3){//按照固定折扣算
+      		$(".fixed").text(-txt1);
+      		total2 = parseFloat(subtotal) - parseFloat(txt1);
+      		total2 = total2.toFixed(2)//这是折后价 啊
+      		taxMoney2 = parseFloat(tax2*total2/100);
+	    		taxMoney2 = taxMoney2.toFixed(2);//这是税 啊
+	    		last = parseFloat(total2)+parseFloat(taxMoney2);
+	    		last = last.toFixed(2);
+      		console.log('Caculate fixed discount')
+      	}else if(!txt1&&!txt2){
+      		//这里是优惠码，具体怎么算不知
+					console.log('Caculate by coupon code')
+      	}else{
+      		alert("Please only choose one discount！");
+      		$(".add-ul").find("input").val('');
+      		
+      		//只能选择一种折扣，清空处理
+	      	$(".fixed").text("--");
+	      	$(".discountMoney").text('$'+subtotal);
+	      	var tax = parseFloat($(".tax").text());
+		    	var taxMoney = parseFloat(tax*subtotal/100);
+		    	taxMoney = taxMoney.toFixed(2);
+	      	$(".taxMoney").text(taxMoney);
+      		
+      	}
+      	$(".discountMoney").text('$'+total2);
+      	$(".taxMoney").text(taxMoney2);
+      	$("#total").text(last);
+      	
+      	
+      })
+
+			//默认金额
+			
+			$(".payde").on("click",function(){       
+				if($(".payF .active").length==0){
+							alert("Please only choose one payment method！");		
+							$(".payment .keyboard").val('');
+						}else{
+							$(".payment .keyboard").val(parseFloat($("#total").text()));
+						}
+        
+      });
+
+			//点击键盘
+			
+			$(".num_left li").not(".empty").on("click",function(){       
+				if($(".payF .active").length==0){
+							alert("Please choose one payment method！");		
+							$(".payment .keyboard").val('');
+						}else{
+							var inputVal = $(".payment .keyboard").val(),
+	            $_this = $(this).html();
+	        		$(".keyboard").val(inputVal+$_this);
+						}
+        
+      });
+          
+
+      //判断什么支付方式
+      var payment = 0;	
+      var mm = 0;
+      var received = 0;
+			
+			$(".payF li").click(function(){			
+				mm = $(this).index();
+			});
+			
+
+
+      //'输入'键 
+      $(".paymo").on("click",function(){       
+				if($(".payF .active").length==0){
+							alert("Please choose one payment method！");		
+							$(".payment .keyboard").val('');
+						}else{
+							var num = parseFloat($(".payment .keyboard").val());
+							if(mm==0){
+
+								$(".pay-right-c").each(function(){
+									if($(this).css("display")=="block"){
+										var all = parseFloat($(this).find("#total").text());//总计
+										$(this).find(".received").text(num);//实收金额
+										$(this).find(".cash").text(num);//现金
+										var balance = num-all;//相差值
+										balance = balance.toFixed(2);
+										if(num>=all){//判断输入的金额是否大于总金额
+											$(this).find(".surplus").text(balance);
+											$(this).find(".change").text('change:');
+										}else{
+											$(this).find(".surplus").text(-1*balance);
+											$(this).find(".change").text('balance:');
+										}
+										
+									}
+								})
+                payment = 'CASH';
+							console.log("Cash")
+						}else if(mm==1){
+
+								$(".pay-right-c").each(function(){
+									if($(this).css("display")=="block"){
+										var all = parseFloat($(this).find("#total").text());//总金额
+										var rest = parseFloat($(this).find(".surplus").text());//剩下的金额
+										$(this).find(".received").text(num);//实收金额
+										$(this).find(".card").text(num);//银行卡
+										//如果首选其他支付，有剩余金额时，刷卡金额减去剩余金额等于小费；首选刷卡支付时，刷卡金额减去总金额等于小费，那剩余金额怎么变化？
+//										if(){}
+										
+										
+										var balance = num-all;//相差值
+										balance = balance.toFixed(2);
+										if(num>=all){//判断输入的金额是否大于总金额
+											$(this).find(".surplus").text("0.00");
+											$(this).find(".tip").text(balance);
+										}else{
+											$(this).find(".surplus").text(-1*balance);
+											$(this).find(".tip").text("0.00");
+										}
+										
+									}
+								})
+                payment = 'CARD';
+							console.log("pay by card")
+						}else if(mm==2){
+
+								$(".pay-right-c").each(function(){
+									if($(this).css("display")=="block"){
+										var all = parseFloat($(this).find("#total").text());//总计
+										$(this).find(".received").text(num);//实收
+										$(this).find(".member").text(num);//会员卡
+										var balance = num-all;//相差值
+										balance = balance.toFixed(2);
+										if(num>=all){//判断输入的金额是否大于总金额
+											$(this).find(".surplus").text("0.00");
+											$(this).find(".tip").text(balance);
+										}else{
+											$(this).find(".surplus").text(-1*balance);
+											$(this).find(".tip").text("0.00");
+										}
+									}
+								})
+                payment = 'MEMBERCARD';
+							console.log("Member payment")
+						}
+						
+						}
+        
+      });
+      
+      //清空处理
+      $(".payment .empty").on("click",function(){
+        $(".payment .keyboard").val("");
+        
+        $(".fixed").text("--");
+        $(".visible").val('');
+        $(".discountMoney").text("--");
+        var subtotal = parseFloat($("#subtotal").text());//小计
+      	var tax = parseFloat($(".tax").text());
+	    	var taxMoney = parseFloat(tax*subtotal/100);
+	    	taxMoney = taxMoney.toFixed(2);
+      	$(".taxMoney").text(taxMoney);
+      	var tal = parseFloat(subtotal)+parseFloat(taxMoney);
+      	$("#total").text(tal);
+      	
+        
+//      $(".received").text("0.00");
+//	      $(".cash").text("0.00");
+//	      $(".card").text("0.00");
+//	      $(".member").text("0.00");
+//	      $(".surplus").text("0.00");
+//	      $(".tip").text("0.00");
+      });
+
+    var order_no = "";
+    var order_id = "";
+      
+    $(document).ready(function(){
+
+      var sequence = localStorage.getItem("sequence");
+      var seq = localStorage.getItem("sequence") < 10 ? localStorage.getItem("sequence").slice(1) : localStorage.getItem("sequence");
+
+      var subtotal = localStorage.getItem('cash_array').split(" ");
+      console.log(subtotal[seq - 1]);
+      $('#subtotal').innerText = subtotal[seq - 1];
+
+      //$('.page2-top > h4')[0].innerText = '堂食订单 订单号 #,  桌 #' + seq;
+      
+
+      $.ajax({
+          url: "../../../pos/order/index/table:" + seq + "/type:D",
+          type: "post",
+          success: function(data) {
+              // reload the page
+              console.log(data);
+              //console.log(data.split(";"));
+
+              array = data.replace(/[\r\n]/g,"").split("/");
+
+              order_no = array[0].split(" ")[0].replace(/\s+/g,"");
+              var order_phone = array[0].split(" ")[1];
+              var category_array = array[1].split(" ");
+              var cuisine_array = array[2].split("<").slice(1);
+              order_id = array[3];
+
+              //console.log(order_id);
+
+              // console.log(order_no);
+              // console.log(order_phone);
+              // console.log(category_array);
+              // console.log(cuisine_array);
+
+              $(".page2-top > h4")[0].innerText = "Dine-in Order Order No. #" + order_no + ",  Table #" + sequence;
+              $(".contR > li")[0].innerText = order_no;
+             
+          }
+      });
+
+
+      $.ajax({
+          url: "../../../pos/order/summarypanel/" + seq + "/D",
+          type: "post",
+          success: function(data) {
+              // reload the page
+              //console.log(data);
+              obj = JSON.parse(data);
+              var length = Object.keys(obj).length;
+              localStorage.setItem('cuisine', data);
+              console.log(obj);
+
+              for(var i = 0; i < length; i++){
+                $(".right-list").append('<li data-state="1"><a href="javascript:;"><div class="list-left"><h4>' + obj[i].name_xh + '</h4><p>Option:' + obj[i].special_instruction + '</p></div><div class="list-center">$' + obj[i].price + '<span>(15%off)</span></div><div class="list-right">' + obj[i].qty + '</div></a></li>');
+              }
+
+              
+          }
+      });
+
+
+      $(".pay02").on("click", function(){
+          var stats = localStorage.getItem("table_array").split(" ");
+          var seq = localStorage.getItem("sequence") < 10 ? localStorage.getItem("sequence").slice(1) : localStorage.getItem("sequence");
+
+          console.log(order_no);
+
+
+          $.ajax({
+            url: "../../../pos/pay/printBill/" ,
+            type: 'post',
+            data: {
+              order_num: order_no
+            },
+            success: function(data) {
+                // reload the page
+                console.log(data);
+                
+
+                window.location.href="index.html"; 
+            }
+          });
+
+      });
+
+      $(".pay01").on("click", function(){
+          var stats = localStorage.getItem("table_array").split(" ");
+          var seq = localStorage.getItem("sequence") < 10 ? localStorage.getItem("sequence").slice(1) : localStorage.getItem("sequence");
+
+          if(payment == 0){
+            alert('请选择一种支付方式！');
+          }else{
+              $.ajax({
+                  url: "../../../pos/pay/complete/",
+                  type: "post",
+                  data: {
+                      pay: $(".received").innerText,
+                      paid_by: payment,
+                      change: $(".surplus").innerText,
+                      table: seq,
+                      type: "D",
+                      order_id: order_id,
+                      card_val: "",
+                      cash_val: "",
+                      tip_val: "",
+                      tip_paid_by: "",
+                  },
+                  success: function (html) {
+                      $(".alert-warning").hide();
+                      // $(".reprint").trigger("click");
+                      $.ajax({
+                          url: "../../../pos/pay/printReceipt/",
+                          type: "post",
+                          data: {
+                              order_num: order_no,
+                          },
+                          success: function () {
+                            $.ajax({
+                                url: "../../../pos/homes/makeavailable/" ,
+                                type: 'post',
+                                data: {
+                                  order_no: order_no
+                                },
+                                success: function(data) {
+                                    // reload the page
+                                    console.log(data);
+                                    
+
+                                    window.location.href="index-en.html"; 
+                                }
+                            });
+                              // $.ajax({
+                              //     url: "/pos/homes/dashboard/",
+                              //     type: "post",
+                              //     success: function () {
+                              //         window.location.href="index.html";
+                              //     }
+                              // })
+                              //window.location.href="index.html";
+                          }
+                      })
+                  },
+                  beforeSend: function () {
+                      $(".RIGHT-SECTION").addClass('load1 csspinner');
+                      $(".alert-warning").show();
+                  }
+              })
+          }
+
+      });
+
+      // nav
+      $(".barnav").hover(function(){
+        $(this).find("ul").slideDown();
+      },function(){
+        $(this).find("ul").slideUp();
+      });
+      $(".barnav").on("click",function(){
+        var ulD = $(this).find("ul").css("display");
+        if(ulD == "none"){
+          $(this).find("ul").slideDown();
+        }else{
+          $(this).find("ul").slideUp();
+        }
+      });
+      // content
+      var winH = $(window).height() - 100, //100是导航
+          winH1 = $(window).height() - 190,
+          winW = $(window).width();//可是宽度
+      $(".content").css("height",winH+"px");
+      // if(winW > 768){
+        $(".page2-left,.page2-right").css("height",winH+"px");
+        $(".page2-left-c").css("height",winH1+"px");
+      // }else{
+      //   $(".page2-left").css({"height":"500px"});
+      //   $(".page2-left-c").css("height","410px");
+      // }
+
+      // 菜单向下滑动
+      $(".tab-bot").on("click",function(){
+        var scroll = $(".page2-tabnav").scrollTop() + 70;
+        console.log(scroll);
+        $(".page2-tabnav").scrollTop(scroll);
+      });
+      $(".page2-tabnav li").on("click",function(){
+        var index = $(this).data("index");
+        $(".tabright").hide();
+        $(".tab"+index).show();
+        $(this).addClass("tab-active");
+        $(this).siblings().removeClass("tab-active");
+      });
+      // 去除搜索框中的内容
+      $(".tab-close").on("click",function(){
+        $(".tab-input").val("");
+      });
+      // 管理员密码
+      $(".login_right span").on("click",function(){
+        $("#admin").show();
+      });
+      $(".a_no").on("click",function(){
+        $("#admin").hide();
+        $("#admin_key").hide();
+        $("#write").val("");
+      });
+      $(".a_yes").on("click",function(){
+        $("#admin_key").show();
+      });
+      $(".key_img").on("click",function(){
+        $(this).parents(".key").hide();
+      });
+      // 回车,跳转到管理员界面      
+      $("#admin_key .return").on("click",function(){
+        var aVal = $("#write").val();
+        if(aVal == 1){//如果取到的键值是回车
+          window.location.href="admin.html";         
+        }else{
+          alert("解锁密码错误！");
+        }
+      });
+      window.document.onkeydown= function(evt){
+       evt = window.event || evt;
+       var aVal = $("#write").val();
+       if(evt.keyCode == 13){//如果取到的键值是回车
+        if(aVal == 1){         
+          window.location.href="admin.html";         
+        }else if(aVal != "" && aVal != 1){
+          alert("Password is incorrect！");
+        }
+       }
+     }
+      var liW = parseFloat($(".payment .num_left li").width()) ,
+          liW1 = parseFloat($(".payment .num_left li").width()*2 + 7),
+          liW2 = parseInt((liW1 - 80)/2);
+      $(".payment .num_left li").css({"height":liW+"px","line-height":liW+"px"});
+      $(".payment .num_right a").css({"padding-top":liW2+"px","padding-bottom":liW2+"px"});
+
+      // 输入密码
+//    $(".payment .num_left li.num").on("click",function(){
+//      var inputVal = $(".payment .keyboard").val(),
+//          $_this = $(this).html();
+//      $(".keyboard").val(inputVal+$_this);
+//    });
+      // 清空
+//    $(".payment .empty").on("click",function(){
+//      $(".payment .keyboard").val("");
+//    });
+      // 后退
+      $(".payment .retreat").on("click",function(){
+        var leng = $(".payment .keyboard").val().toString(),valIn = "";
+        valIn = leng.substring(0,leng.length-1);
+        $(".payment .keyboard").val(valIn);
+      });
+      // 默认
+//    $(".payde").on("click",function(){
+//      // 365为现有的默认金额
+//      $(".payment .keyboard").val(365);
+//    });
+      // 关闭ipad付款块
+      $(".pay_close").on("click",function(){
+        $('.payment .page2-right').hide();
+      });
+      $(".pay_play").on("click",function(){
+        $('.payment .page2-right').css("z-index","20");
+      });
+      //付款方式
+      $(".payF li").click(function(){
+      	$(this).addClass("active").siblings().removeClass("active");
+      })
+    });
+    </script>
+  </body>
+</html>

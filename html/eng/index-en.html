@@ -4,35 +4,35 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" />
     <meta name="format-detection" content="telephone=no" />
-    <title>主页</title>
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/jianpan.css" />
+    <title>main</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/jianpan.css" />
   </head>
   <body  onload="show()">
     <div class="container">
       <!-- 头部 -->
       <div class="header">
         <!-- logo -->
-        <img src="images/logo.png" alt="logo" class="logo" />
+        <img src="../images/logo.png" alt="logo" class="logo" />
         <!-- 导航 -->
         <ul class="nav">
-          <li><a href="index.html" class="nav-a">主页</a></li>
+          <li><a href="javascript:;" class="nav-a">Main</a></li>
           <li class="barnav">
-            <a href="javascript:;" class="nav-a">语言</a>
+            <a href="javascript:;" class="nav-a">Lang</a>
             <ul style="display: none;">
               <li class='english'><a href="javascript:;">English</a></li>
               <li class='chinese'><a href="javascript:;">中文</a></li>
             </ul>
           </li>
-          <li><a href="javascript:;" class="nav-a member">会员</a></li>
-          <li><a href="paidui.html" class="nav-a">排队</a></li>
-          <li><a href="quhao.html" class="nav-a">取号</a></li>
+          <li><a href="javascript:;" class="nav-a member">member</a></li>
+          <li><a href="../paidui.html" class="nav-a">queue</a></li>
+          <li><a href="../quhao.html" class="nav-a">waiting</a></li>
         </ul>
-        <img src="images/nav.png" class="smalllogo" alt="pad菜单" />
+        <img src="../images/nav.png" class="smalllogo" alt="pad菜单" />
         <!-- 登录按钮 -->
         <div class="login_right">
-          <button class="logout" type="button" name="button">登出</button>
-          <span>管理员</span>
+          <button class="logout" type="button" name="button">logout</button>
+          <span>Admin</span>
         </div>
       </div>
       <!-- 主体 -->
@@ -41,8 +41,8 @@
           <div class="c_area">
             <!-- 提示 -->
             <div class="prompt c1" style="display: none;">
-              <span>错误：请重新选择</span>
-              <img src="images/icon-02.png" alt="关闭提示" />
+              <span>Error：Try select again</span>
+              <img src="../images/icon-02.png" alt="关闭提示" />
             </div>
             <!-- 占桌情况 -->
             <div class="sit">
@@ -93,24 +93,24 @@
           </div>
           <!-- 状态 -->
            <div class="static">
-             <h4>状态栏</h4>
+             <h4>status bar</h4>
              <ul>
-               <li><span></span>空桌</li>
-               <li><span></span>未支付</li>
-               <li><span></span>已付款</li>
-               <li><span></span>已打单</li>
+               <li><span></span>empty</li>
+               <li><span></span>not paid</li>
+               <li><span></span>paid</li>
+               <li><span></span>printed</li>
              </ul>
              <p id="nowDiv"></p>
               <script>
                function show(){ 
                   var date = new Date(); //日期对象 
                   var now = ""; 
-                  now = date.getFullYear()+"年"; //读英文就行了 
-                  now = now + (date.getMonth()+1)+"月"; //取月的时候取的是当前月-1如果想取当前月+1就可以了 
-                  now = now + date.getDate()+"日"; 
-                  now = now + date.getHours()+"时"; 
-                  now = now + date.getMinutes()+"分"; 
-                  now = now + date.getSeconds()+"秒"; 
+                  now = date.getFullYear()+"/"; //读英文就行了 
+                  now = now + (date.getMonth()+1)+"/"; //取月的时候取的是当前月-1如果想取当前月+1就可以了 
+                  now = now + date.getDate()+"  "; 
+                  now = now + date.getHours()+":"; 
+                  now = now + date.getMinutes()+":"; 
+                  now = now + date.getSeconds()+""; 
                   document.getElementById("nowDiv").innerHTML = now; //div的html是now这个字符串 
                   setTimeout("show()",1000); //设置过1000毫秒就是1秒，调用show方法 
                } 
@@ -121,12 +121,12 @@
         <!-- 右侧外卖送餐 -->
         <div class="content_right">
           <div class="c_right_title">
-            <img src="images/icon-02.png" alt="关闭外卖" class="wclose" />
-            <div class="p"><small>外卖送餐</small><span>2</span></div>
+            <img src="../images/icon-02.png" alt="关闭外卖" class="wclose" />
+            <div class="p"><small>Delivery</small><span>2</span></div>
             <div class="fullOrder">
-            	<img src="images/fullOrder.png" class="img"/>
+            	<img src="../images/fullOrder.png" class="img"/>
             	<ul>
-            		<li class="on">全部订单</li><li>外卖</li><li>自取</li>
+            		<li class="on">All Orders</li><li>Delivery</li><li>Takeout</li>
             	</ul>
             </div>
             <div class="ulBox">
@@ -304,12 +304,12 @@
       </div>
     </div>
     <!-- 外卖按钮 -->
-    <button type="button" name="button" class="wbtn">外卖送餐</button>
+    <button type="button" name="button" class="wbtn">Delivery</button>
 
 
     <!-- 管理员,虚拟键盘 -->
     <div class="key" id="key_admin">
-      <img src="images/icon-14.png" alt="关闭虚拟键盘" class="key_img" />
+      <img src="../images/icon-14.png" alt="关闭虚拟键盘" class="key_img" />
       <ul id="keyboard">
         <li class="esc">Esc</li>
         <li class="symbol"><span class="off">1</span><span class="on">!</span></li>
@@ -436,74 +436,74 @@
 
     <!-- 管理员密码 -->
     <div id="admin">
-      <p>密码解锁</p>
-      <input type="text" name="" id="write" class="adminInp" placeholder="请输入密码解锁" />
+      <p>password unlock</p>
+      <input type="text" name="" id="write" class="adminInp" placeholder="Please Enter password" />
       <div class="admin-btn">
-        <button type="button" class="a_no">取消</button>
-        <button type="button" class="a_yes">输入</button>
+        <button type="button" class="a_no">cancel</button>
+        <button type="button" class="a_yes">enter</button>
       </div>
     </div>
     <!-- 弹出层 -->
     <div class="model model1">
-      <div class="model-title">堂食 NO.</div>
-      <img src="images/icon-06.png" alt="关闭弹出层" class="model-close" />
+      <div class="model-title">Dinein NO.</div>
+      <img src="../images/icon-06.png" alt="关闭弹出层" class="model-close" />
       <ul class="model-content">
         <li>
-          <a href="page1.html">
+          <a href="./page1-en.html">
             <div class="model-img"></div>
-            <span>订单</span>
+            <span>Order</span>
           </a>
         </li>
         <li>
           <a class="model-nav2">
             <div class="model-img"></div>
-            <span>付款</span>
+            <span>Pay</span>
           </a>
         </li>
         <li class="model-nav3">
           <a href="javascript:;">
             <div class="model-img"></div>
-            <span>换桌</span>
+            <span>Change</span>
           </a>
         </li>
         <li class="model-nav4">
           <a href="javascript:;">
             <div class="model-img"></div>
-            <span>变空桌</span>
+            <span>Empty</span>
           </a>
         </li>
         <li class="model-nav5">
           <a href="javascript:;">
             <div class="model-img"></div>
-            <span>合单</span>
+            <span>Merge</span>
           </a>
         </li>
         <li>
           <a class="model-nav6">
             <div class="model-img"></div>
-            <span>分单</span>
+            <span>Split</span>
           </a>
         </li>
         <li>
-          <a href="page7.html">
+          <a href="./page7-en.html">
             <div class="model-img"></div>
-            <span>历史订单</span>
+            <span>History</span>
           </a>
         </li>
         <li>
           <a class="model-nav8">
             <div class="model-img"></div>
-            <span>打印账单</span>
+            <span>PrintBill</span>
           </a>
         </li>
       </ul>
     </div>
     <!-- 弹出层，变更 -->
     <div class="model model2">
-      <div class="model-title">堂食 NO. 变更为</div>
-      <img src="images/icon-06.png" alt="关闭弹出层" class="model-close" />
+      <div class="model-title">Dinein NO. Switch</div>
+      <img src="../images/icon-06.png" alt="Close" class="model-close" />
       <div class="model2-content">
-        <input type="text" name="" placeholder="堂食" class="model-input" />
+        <input type="text" name="" placeholder="Dinein" class="model-input" />
         <ul class="tang1">
           <!-- <li><a href="javascript:;">01</a></li>
           <li><a href="javascript:;">02</a></li>
@@ -541,10 +541,10 @@
     </div>
     <!-- 弹出层，合单 -->
     <div class="model model3">
-      <div class="model-title">堂食 NO. 合并</div>
-      <img src="images/icon-06.png" alt="关闭弹出层" class="model-close" />
+      <div class="model-title">Dinein NO. Merge</div>
+      <img src="../images/icon-06.png" alt="关闭弹出层" class="model-close" />
       <div class="model3-content">
-        <input type="text" name="" placeholder="堂食" class="model-input" />
+        <input type="text" name="" placeholder="Dinein" class="model-input" />
         <ul class="tang1">
           <!-- <li><a href="javascript:;">01</a></li>
           <li><a href="javascript:;">02</a></li>
@@ -565,17 +565,17 @@
           <li><a href="javascript:;">17</a></li> -->
         </ul>
       </div>
-      <button type="button" class="model3_btn">确认合并</button>
+      <button type="button" class="model3_btn">Submit</button>
     </div>
     <!-- 弹出层，会员 -->
     <div id="member">
       <div class="member-top">
-        <button type="button" class="member-btn">新&nbsp;增</button>
-        <h2>会员列表</h2>
-        <img src="images/icon-06.png" alt="关闭弹出层" class="member-close" />
+        <button type="button" class="member-btn">add&nbsp;</button>
+        <h2>member list</h2>
+        <img src="../images/icon-06.png" alt="关闭弹出层" class="member-close" />
       </div>
       <div class="member-bot">
-        <input type="text" name="" class="member-input" placeholder="搜索卡号/ID/姓名/电话" />
+        <input type="text" name="" class="member-input" placeholder="search" />
         <p>
           <span>Card Number</span>
           <span>ID</span>
@@ -608,10 +608,10 @@
       <!-- 新增会员 -->
       <div class="add_member">
         <div class="member-top">
-          <img src="images/icon-07.png" alt="关闭新增会员" class="member-close1" />
-          <h2>添加新会员</h2>
+          <img src="../images/icon-07.png" alt="关闭新增会员" class="member-close1" />
+          <h2>Add New Member</h2>
         </div>
-        <div class="member-center"><b>会员ID</b>ABC123</div>
+        <div class="member-center"><b>Member ID</b>ABC123</div>
         <div class="add_bot">
           <label>Card Number</label>
           <input class="member_card_no" type="text" name="" placeholder="请添加备注信息" />
@@ -622,14 +622,14 @@
           <label>Note</label>
           <input class="member_note" type="text" name="" placeholder="请添加备注信息" />
         </div>
-        <button type="button" class="add_btn">保存信息</button>
+        <button type="button" class="add_btn">Save</button>
       </div>
       <!-- 会员详情 -->
       <div class="xiang_member">
         <div class="member-top">
-          <img src="images/icon-07.png" alt="关闭会员详情" class="member-close2" />
-          <h2>会员页面</h2>
-          <button type="button" class="member-btn1">信息修改</button>
+          <img src="../images/icon-07.png" alt="关闭会员详情" class="member-close2" />
+          <h2>Member Info</h2>
+          <button type="button" class="member-btn1">Edit</button>
         </div>
         <div class="member-bot">
           <p>
@@ -648,68 +648,60 @@
           </p>
           <p class="p_color p_span">
             <span>647-123-4567</span>
-            <span>聚餐 家庭 面食 少盐</span>
+            <span></span>
           </p>
           <div class="p_back">
             <p class="p_color p_span">
-              <span>单号：D51710171215</span>
-              <span>2017/12/2 15:58</span>
-            </p>
-            <p class="p_color p_span">
-              <span>账单金额<small>$44.5</small></span>
-              <span>支付：<small>$50</small></span>
-            </p>
-            <p class="p_color p_span">
-              <span>账单金额<small>$449</small></span>
+              <span>total<small>$449</small></span>
               <span></span>
             </p>
           </div>
           <div class="p_back">
             <p class="p_color p_span">
-              <span>单号：D51710171215</span>
+              <span>order：D51710171215</span>
               <span>2017/12/2 15:58</span>
             </p>
             <p class="p_color p_span">
-              <span>账单金额<small>$44.5</small></span>
-              <span>支付：<small>$50</small></span>
+              <span>order total<small>$44.5</small></span>
+              <span>pay：<small>$50</small></span>
             </p>
             <p class="p_color p_span">
-              <span>账单金额<small>$449</small></span>
+              <span>order total<small>$449</small></span>
               <span></span>
             </p>
           </div>
           <div class="p_back">
             <p class="p_color">
-              <span>总消费<small>$449</small></span>
-              <span>总充值<small>$449</small></span>
-              <span>账户余额<small>$449</small></span>
+              <span>total<small>$449</small></span>
+              <span>charge<small>$449</small></span>
+              <span>left<small>$449</small></span>
             </p>
           </div>
         </div>
         <div class="x_btn">
-          <button type="button" class="xiang_btnL">会员充值</button>
-          <button type="button" class="xiang_btnR">查看充值记录</button>        
+          <button type="button" class="xiang_btnL">charge</button>
+          <button type="button" class="xiang_btnR">charge history</button>        
         </div>
       </div>
       <!-- 充值记录 -->
       <div class="chong_member">
         <div class="member-top">
-          <img src="images/icon-07.png" alt="关闭新增会员" class="member-close3" />
-          <h2>会员充值历史记录</h2>
-          <img src="images/icon-06.png" alt="关闭弹出层" class="member-close4" />
+          <img src="../images/icon-07.png" alt="关闭新增会员" class="member-close3" />
+          <h2>history</h2>
+          <img src="../images/icon-06.png" alt="关闭弹出层" class="member-close4" />
         </div>
         <div class="member-bot">
           <p>
-            <span>充值时间</span>
-            <span>充值余额</span>
-            <span>类型</span>
+            <span>time</span>
+            <span>balance</span>
+            <span>type</span>
           </p>
           <ul class="memberLi">
             <li>
               <a href="javascript:;">
                 <span>2018/05/08</span>
                 <span>$558</span>
-                <span>现金</span>
+                <span>cash</span>
               </a>
             </li>
           </ul>
@@ -720,11 +712,11 @@
     <div id="member_C">
       <div class="c_member">
         <div class="member-top">
-          <img src="images/icon-07.png" alt="关闭会员详情" class="member-close5">
-          <h2>会员充值页面</h2>
+          <img src="../images/icon-07.png" alt="关闭会员详情" class="member-close5">
+          <h2>charge</h2>
         </div>
         <div class="member-bot">
-          <label>充值信息</label>
+          <label>charge info</label>
           <p>
             <span>Card Number</span>
             <span>ID</span>
@@ -738,16 +730,16 @@
         </div>
         <ul class="payM">
           <li class="active-li">
-            <a href="javascript:;"><img src="images/c1.png"></a>
+            <a href="javascript:;"><img src="../images/c1.png"></a>
           </li>
           <li>
-            <a href="javascript:;"><img src="images/c2.png"></a>
+            <a href="javascript:;"><img src="../images/c2.png"></a>
           </li>
           <li>
-            <a href="javascript:;"><img src="images/c3.png"></a>
+            <a href="javascript:;"><img src="../images/c3.png"></a>
           </li>
         </ul>
-        <button type="button" class="c_btn">确认充值</button>
+        <button type="button" class="c_btn">submit</button>
       </div>
       <div class="r_member">
         <div class="formkey">
@@ -763,39 +755,41 @@
             <li class="num" style="height: 112px; line-height: 112px;">7</li>
             <li class="num" style="height: 112px; line-height: 112px;">8</li>
             <li class="num" style="height: 112px; line-height: 112px;">9</li>
-            <li class="empty" style="height: 112px; line-height: 112px;">清空</li>
+            <li class="empty" style="height: 112px; line-height: 112px;">empty</li>
             <li class="num" style="height: 112px; line-height: 112px;">0</li>
             <!--<li class="retreat" style="height: 112px; line-height: 112px;">后退</li>-->
             <li class="num" style="height: 112px; line-height: 112px;">.</li>
           </ul>
           <!-- 右侧操作 -->
           <div class="num_right">
-            <a href="javascript:;" class="payde" style="padding-top: 75px; padding-bottom: 75px;">默认<br>金额</a>
-            <a href="javascript:;" class="paymo" style="padding-top: 75px; padding-bottom: 75px;">输入</a>
+            <a href="javascript:;" class="payde" style="padding-top: 75px; padding-bottom: 75px;">default<br>amount</a>
+            <a href="javascript:;" class="paymo" style="padding-top: 75px; padding-bottom: 75px;">enter</a>
           </div>
         </div>
       </div>
     </div>
     <!-- 充值成功 -->
     <div id="mer" >
-      <p>充值已成功!</p>
+      <p>success!</p>
       <div class="p_back">
-        <span>充值金额<small>$44.5</small></span>
-        <span>账户余额<small>$44.5</small></span>
+        <span>amount<small>$44.5</small></span>
+        <span>balance<small>$44.5</small></span>
       </div>
     </div>
     <!-- 充值未成功 -->
     <div id="mer1">
-      <p>余额不足!</p>
+      <p>insufficient fund!</p>
       <div class="p_back">
-        <span>应付金额<small>$44.5</small></span>
-        <span>账户余额<small>$44.5</small></span>
+        <span>total due<small>$44.5</small></span>
+        <span>balance<small>$44.5</small></span>
       </div>
     </div>
-    <script type="text/javascript" src="js/jquery.js"></script>
-    <script type="text/javascript" src="js/keyboard.js"></script>
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../js/keyboard.js"></script>
     <script type="text/javascript">
 
+    
+    	
     	//外卖订单切换
   	$(".fullOrder li").click(function(){
   		$(this).addClass("on").siblings().removeClass("on");
@@ -812,13 +806,13 @@
 
       $(".model1").show();
 
-      $(".model1").children()[0].innerText = "堂食 NO." + sequence;
+      $(".model1").children()[0].innerText = "Dinein NO." + sequence;
       for(var i = 0; i < $(".model-title").length; i++){
-        $(".model-title")[i].innerText = "堂食 NO." + sequence;
+        $(".model-title")[i].innerText = "Dinein NO." + sequence;
       }
       
       $.ajax({
-        url: "/pos/order/index/table:" + seq + "/type:D",
+        url: "../../../pos/order/index/table:" + seq + "/type:D",
         type: "post",
         success: function(data) {
             // reload the page
@@ -847,7 +841,7 @@
         console.log(table_num);
 
         $.ajax({
-              url: "/pos/homes/move_order",
+              url: "../../../pos/homes/move_order",
               type: 'post',
               data: {
                 order_no: order_no,
@@ -859,7 +853,7 @@
                   console.log(data);
                   
 
-                  window.location.href="index.html"; 
+                  window.location.href="index-en.html"; 
               }
           });
     }
@@ -882,12 +876,12 @@
 
 
       $('.english').on('click', function(){
-          window.location.href="./eng/index-en.html"; 
+          window.location.href="index-en.html"; 
       })
 
       $('.chinese').on('click', function(){
-          window.location.href="index.html"; 
-      });
+          window.location.href="../index.html"; 
+      })
 
       // $.ajax({
       //     url: "/pos/homes/dashboard",
@@ -1021,11 +1015,11 @@
 
       //获取餐桌信息
       $.ajax({
-          url: "/pos/homes/dashboard",
+          url: "../../../pos/homes/dashboard",
           type: "post",
           statusCode: {
              403: function() {
-                window.location.href="login.html";
+                window.location.href="login-en.html";
              }
           },
           success: function(data) {
@@ -1072,10 +1066,10 @@
 
       $(".logout").click(function(){
           $.ajax({
-            url: "/pos/homes/logout",
+            url: "../../../pos/homes/logout",
             type: "post",
             success: function(data) {
-              window.location.href="login.html";
+              window.location.href="login-en.html";
             }
           })
       })
@@ -1162,12 +1156,12 @@
         // 1是管理员解锁密码
         if(aVal == 1 && adminCss == null){ 
           // 跳转管理员界面
-          window.location.href="admin.html";         
+          window.location.href="admin-en.html";         
         }else if(aVal == 1 && adminCss == "adminCss"){
           // 变空桌
           //alert("成功变空桌！");
 
-          window.location.href="index.html";
+          window.location.href="index-en.html";
           $("#admin,.key").hide();
 
           $("#write").val("");
@@ -1304,9 +1298,9 @@
 
 
         if(stats[(seq-1)] == "" || stats[(seq-1)] == "P"){
-            alert("请重新选择桌号.");
+            alert("Please Reselect.");
         }else{
-            window.location.href = "page2.html";
+            window.location.href = "./page2-en.html";
         }
       });
 
@@ -1319,7 +1313,7 @@
           
 
           if(stats[(seq-1)] == "" || stats[(seq-1)] == "P"){
-              alert("请重新选择桌号.");
+              alert("Please Reselect.");
           }else{
               $(".model2").show();
               
@@ -1345,7 +1339,7 @@
           //Html->url(array('controller'=>'homes', 'action'=>'makeavailable', 'table'=>$i, 'type'=>'D', 'order'=>@$orders_no[$i]['D']))."')"
 
           $.ajax({
-              url: "/pos/homes/makeavailable/" ,
+              url: "../../../pos/homes/makeavailable/" ,
               type: 'post',
               data: {
                 order_no: order_no
@@ -1360,7 +1354,7 @@
           });
 
           if(stats[(seq-1)] == "" || stats[(seq-1)] == "P"){
-              alert("请重新选择桌号.");
+              alert("Please Reselect.");
           }else{
               $("#admin").addClass("adminCss").show();
           }
@@ -1378,7 +1372,7 @@
           // console.log(stats[(seq-1)]);
 
           if(stats[(seq-1)] == "" || stats[(seq-1)] == "P"){
-              alert("请重新选择桌号.");
+              alert("Please Reselect.");
               $(".model3").hide();
           }else{
               $(".tang1").empty();
@@ -1401,9 +1395,9 @@
           var seq = localStorage.getItem("sequence") < 10 ? localStorage.getItem("sequence").slice(1) : localStorage.getItem("sequence");
 
           if(stats[(seq-1)] == "" || stats[(seq-1)] == "P"){
-              alert("请重新选择桌号.");
+              alert("Please Reselect.");
           }else{
-              window.location.href = "page6.html";
+              window.location.href = "./page6-en.html";
           }
       });
 
@@ -1412,11 +1406,11 @@
           var seq = localStorage.getItem("sequence") < 10 ? localStorage.getItem("sequence").slice(1) : localStorage.getItem("sequence");
 
           if(stats[(seq-1)] == "" || stats[(seq-1)] == "P"){
-              alert("请重新选择桌号.");
+              alert("Please Reselect.");
           }else{
 
               $.ajax({
-                  url: "/pos/pay/printBill/" ,
+                  url: "../../../pos/pay/printBill/" ,
                   type: 'post',
                   data: {
                     order_num: order_no
@@ -1426,7 +1420,7 @@
                       console.log(data);
                       
 
-                      window.location.href="index.html"; 
+                      window.location.href="./index-en.html"; 
                   }
               });
 
@@ -1453,13 +1447,13 @@
           localStorage.setItem("merge_table", merge_table);
 
           $.ajax({
-              url: "/pos/merge/index/table:" + seq + "/tablemerge:" + merge_table + "/type:D",
+              url: "../../../pos/merge/index/table:" + seq + "/tablemerge:" + merge_table + "/type:D",
               type: 'post',
               success: function(data) {
                   // reload the page
                   //console.log(data);
                   
-                  window.location.href="page5.html"; 
+                  window.location.href="./page5-en.html"; 
               }
           });
 

@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>合单</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/jianpan.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- 头部 -->
+      <div class="header">
+        <!-- logo -->
+        <img src="images/logo.png" alt="logo" class="logo" />
+        <!-- 导航 -->
+        <ul class="nav">
+          <li><a href="index.html" class="nav-a">Main Page</a></li>
+        </ul>
+        <img src="images/nav.png" class="smalllogo" alt="pad Menu" />
+        <!-- 登录按钮 -->
+        <div class="login_right">
+          <button type="button" name="button">Logout</button>
+          <span>Administrator</span>
+        </div>
+      </div>
+      <!-- 主体 -->
+      <div class="page2-content payment pay-h">
+        <div class="page2-left">
+          <div class="page2-top">
+            <h4 class="pay-h-t">Dine-in Order Order No. #,  桌 #   Summary</h4>
+          </div>
+          <div class="page2-left-c">
+            <!-- 右侧菜品选择 -->
+            <div class="page2-tavright">
+              <!-- 内容 -->
+              <div class="pay-left">
+                <div class="pay-title">Order Summary Order Summary</div>
+                <ul class="right-list">
+                  <!-- 背景色 class="rig-act" -->
+                  <!-- <li>
+                    <a href="javascript:;">
+                      <div class="list-left">
+                        <h4>宋嫂牛肉面 </h4>
+                        <p>Option: 中辣；少麻；去葱；加卤蛋；加面；加肉；改米线；多花生</p>
+                      </div>
+                      <div class="list-center">
+                        12.99 <span>(15%off)</span>
+                      </div>
+                      <div class="list-right">1</div>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="javascript:;">
+                      <div class="list-left">
+                        <h4>宋嫂牛肉面 </h4>
+                        <p>Option: 中辣；少麻；去葱；加卤蛋；加面；加肉；改米线；多花生</p>
+                      </div>
+                      <div class="list-center">
+                        12.99 <span>(15%off)</span>
+                      </div>
+                      <div class="list-right">1</div>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="javascript:;">
+                      <div class="list-left">
+                        <h4>宋嫂牛肉面 </h4>
+                        <p>Option: 中辣；少麻；去葱；加卤蛋；加面；加肉；改米线；多花生</p>
+                      </div>
+                      <div class="list-center">
+                        12.99 <span>(15%off)</span>
+                      </div>
+                      <div class="list-right">1</div>
+                    </a>
+                  </li> -->
+                </ul>
+              </div>
+              <div class="pay-right">
+                <div class="notop">
+                  <ul class="pay-ul"> 
+                    <li class="noto-act" data-i="1">Table No.1</li>
+                    <!-- <li data-i="2">桌号.02</li>
+                    <li data-i="3">桌号.03</li> -->
+                  </ul>
+                  <div class="pay-right-c not01">
+                    <div class="r-c-top">
+                      <div class="c-top-left">
+                        <ul class="contL">
+                          <li>Order No 1</li>
+                          <li>Subtotal</li>
+                          <li>Discount</li>
+                          <li>After Discount</li>
+                          <li>Tax(13%):</li>
+                          <li>Total:</li>
+                        </ul>
+                        <ul class="contR">
+                          <li>D31710311432</li>
+                          <li>$73.94</li>
+                          <li>$11.09*15%</li>
+                          <li>$62.85</li>
+                          <li>$9.61</li>
+                          <li>$83.55</li>
+                        </ul>
+                      </div>
+                      <div class="right-tab">
+                        <a href="javascript:;" class="add_zhe">Add discount</a>
+                        <div class="add-content">
+                          <ul class="add-ul">
+                            <li>
+                              <span>Fixed discount</span>
+                              <input type="text">
+                            </li>
+                            <li>
+                              <span>%discount</span>
+                              <input type="text">
+                            </li>
+                            <li>
+                              <span>Coupon code</span>
+                              <input type="text">
+                            </li>
+                          </ul>
+                          <div class="add-right">
+                            <span>Coupon code shortcut</span>
+                            <button type="button" name="button">15%</button>
+                            <button type="button" name="button">20%</button>
+                            <button type="button" name="button">25%</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="r-c-center">
+                        <ul class="cenL">
+                          <li>Received:</li>
+                          <li class="cen-col">现金：$00.00</li>
+                          <li>Balance:</li>
+                          <li>Tips:</li>
+                        </ul>
+                        <ul class="cenC">
+                          <li>$62.85</li>
+                          <li class="cen-col">卡：$00.00</li>
+                          <li>$9.61</li>
+                          <li>$83.55</li>
+                        </ul>
+                        <ul class="cenR">
+                          <li></li>
+                          <li class="cen-col">会员：$00.00</li>
+                          <li></li>
+                          <li></li>
+                        </ul>
+                    </div>
+                    <div class="r-c-bot">
+                      <h5>Status</h5>
+                      <!-- color1未支付，color2已付款，color3已打单 -->
+                      <p><span class="color1"></span>Not paid</p>
+                    </div>
+                  </div>
+                  <!-- <div class="pay-right-c not02">
+                    <div class="r-c-top">
+                      <div class="c-top-left">
+                        <ul class="contL">
+                          <li>订单号2</li>
+                          <li>小计</li>
+                          <li>折扣</li>
+                          <li>折后价</li>
+                          <li>税(13%):</li>
+                          <li>总计:</li>
+                        </ul>
+                        <ul class="contR">
+                          <li>D31710311432</li>
+                          <li>$73.94</li>
+                          <li>$11.09*15%</li>
+                          <li>$62.85</li>
+                          <li>$9.61</li>
+                          <li>$83.55</li>
+                        </ul>
+                      </div>
+                      <div class="right-tab">
+                        <a href="javascript:;" class="add_zhe">加入折扣</a>
+                        <div class="add-content">
+                          <ul class="add-ul">
+                            <li>
+                              <span>固定折扣</span>
+                              <input type="text">
+                            </li>
+                            <li>
+                              <span>%折扣</span>
+                              <input type="text">
+                            </li>
+                            <li>
+                              <span>优惠码</span>
+                              <input type="text">
+                            </li>
+                          </ul>
+                          <div class="add-right">
+                            <span>折扣快捷按钮</span>
+                            <button type="button" name="button">15%</button>
+                            <button type="button" name="button">20%</button>
+                            <button type="button" name="button">25%</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="r-c-center">
+                        <ul class="cenL">
+                          <li>已收到:</li>
+                          <li class="cen-col">现金：$00.00</li>
+                          <li>剩余:</li>
+                          <li>小费:</li>
+                        </ul>
+                        <ul class="cenC">
+                          <li>$62.85</li>
+                          <li class="cen-col">卡：$00.00</li>
+                          <li>$9.61</li>
+                          <li>$83.55</li>
+                        </ul>
+                        <ul class="cenR">
+                          <li></li>
+                          <li class="cen-col">会员：$00.00</li>
+                          <li></li>
+                          <li></li>
+                        </ul>
+                    </div>
+                    <div class="r-c-bot">
+                      <h5>状态</h5>
+                      <p><span class="color1"></span>未支付</p>
+                    </div>
+                  </div> -->
+                  <!-- <div class="pay-right-c not03">
+                    <div class="r-c-top">
+                      <div class="c-top-left">
+                        <ul class="contL">
+                          <li>订单号3</li>
+                          <li>小计</li>
+                          <li>折扣</li>
+                          <li>折后价</li>
+                          <li>税(13%):</li>
+                          <li>总计:</li>
+                        </ul>
+                        <ul class="contR">
+                          <li>D31710311432</li>
+                          <li>$73.94</li>
+                          <li>$11.09*15%</li>
+                          <li>$62.85</li>
+                          <li>$9.61</li>
+                          <li>$83.55</li>
+                        </ul>
+                      </div>
+                      <div class="right-tab">
+                        <a href="javascript:;" class="add_zhe">加入折扣</a>
+                        <div class="add-content">
+                          <ul class="add-ul">
+                            <li>
+                              <span>固定折扣</span>
+                              <input type="text">
+                            </li>
+                            <li>
+                              <span>%折扣</span>
+                              <input type="text">
+                            </li>
+                            <li>
+                              <span>优惠码</span>
+                              <input type="text">
+                            </li>
+                          </ul>
+                          <div class="add-right">
+                            <span>折扣快捷按钮</span>
+                            <button type="button" name="button">15%</button>
+                            <button type="button" name="button">20%</button>
+                            <button type="button" name="button">25%</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="r-c-center">
+                        <ul class="cenL">
+                          <li>已收到:</li>
+                          <li class="cen-col">现金：$00.00</li>
+                          <li>剩余:</li>
+                          <li>小费:</li>
+                        </ul>
+                        <ul class="cenC">
+                          <li>$62.85</li>
+                          <li class="cen-col">卡：$00.00</li>
+                          <li>$9.61</li>
+                          <li>$83.55</li>
+                        </ul>
+                        <ul class="cenR">
+                          <li></li>
+                          <li class="cen-col">会员：$00.00</li>
+                          <li></li>
+                          <li></li>
+                        </ul>
+                    </div>
+                    <div class="r-c-bot">
+                      <h5>状态</h5>
+                      <p><span class="color1"></span>未支付</p>
+                    </div>
+                  </div> -->
+                  <div class="right-con">
+                    <div class="right-tab1">
+                      <button type="button" name="button" class="pay01">Confirmed payment</button>
+                      <button type="button" name="button" class="pay02">Print receipt</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="page2-right">
+          <!-- ipad关闭付款块 -->
+          <img src="images/icon-06.png" alt="ipad关闭付款块" class="pay_close" />
+          <!-- 登录 -->
+          <div class="login">
+            <div class="login-align">
+                <h4>Please choose payment method</h4>
+                <ul class="payF">
+                  <li class="active">
+                    <a href="javascript:;"><img src="images/btn02.png"></a>
+                  </li>
+                  <li>
+                    <a href="javascript:;"><img src="images/btn03.png"></a>
+                  </li>
+                  <li>
+                    <a href="javascript:;"><img src="images/btn04.png"></a>
+                  </li>
+                </ul>
+                <h4>payment amount</h4>
+                <div class="formkey">
+                  <input type="text" value="" class="keyboard" placeholder="0.00" />
+                  <!-- 左侧数字 -->
+                  <ul class="num_left">
+                    <li class="num">1</li>
+                    <li class="num">2</li>
+                    <li class="num">3</li>
+                    <li class="num">4</li>
+                    <li class="num">5</li>
+                    <li class="num">6</li>
+                    <li class="num">7</li>
+                    <li class="num">8</li>
+                    <li class="num">9</li>
+                    <li class="empty">Empty</li>
+                    <li class="num">0</li>
+                    <!--<li class="retreat">后退</li>-->
+                    <li class="num">.</li>
+                  </ul>
+                  <!-- 右侧操作 -->
+                  <div class="num_right">
+                    <a href="javascript:;" class="payde">Default<br />Amount</a>
+                    <a href="javascript:;" class="paymo">Input</a>
+                  </div>
+                </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- ipad付款块按钮 -->
+    <button type="button" name="button" class="pay_play">Choose/Input payment amount</button>
+    <!-- 付款虚拟键盘 -->
+    <div class="key" id="pay_key">
+      <img src="images/icon-14.png" alt="Close virtual keyboard" class="key_img" />
+      <ul id="keyboard">
+        <li class="esc">Esc</li>
+        <li class="symbol"><span class="off">1</span><span class="on">!</span></li>
+
+        <li class="symbol"><span class="off">2</span><span class="on">@</span></li>
+
+        <li class="symbol"><span class="off">3</span><span class="on">#</span></li>
+
+        <li class="symbol"><span class="off">4</span><span class="on">$</span></li>
+
+        <li class="symbol"><span class="off">5</span><span class="on">%</span></li>
+
+        <li class="symbol"><span class="off">6</span><span class="on">^</span></li>
+
+        <li class="symbol"><span class="off">7</span><span class="on">&amp;</span></li>
+
+        <li class="symbol"><span class="off">8</span><span class="on">*</span></li>
+
+        <li class="symbol"><span class="off">9</span><span class="on">(</span></li>
+
+        <li class="symbol"><span class="off">0</span><span class="on">)</span></li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="delete lastitem">Delete</li>
+
+        <li class="tab no"></li>
+
+        <li class="letter">Q</li>
+
+        <li class="letter">W</li>
+
+        <li class="letter">E</li>
+
+        <li class="letter">R</li>
+
+        <li class="letter">T</li>
+
+        <li class="letter">Y</li>
+
+        <li class="letter">U</li>
+
+        <li class="letter">I</li>
+
+        <li class="letter">O</li>
+
+        <li class="letter">P</li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="symbol lastitem"><span class="off">\</span><span class="on">|</span></li>
+
+        <li class="capslock no"></li>
+
+        <li class="letter">A</li>
+
+        <li class="letter">S</li>
+
+        <li class="letter">D</li>
+
+        <li class="letter">F</li>
+
+        <li class="letter">G</li>
+
+        <li class="letter">H</li>
+
+        <li class="letter">J</li>
+
+        <li class="letter">K</li>
+
+        <li class="letter">L</li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="return lastitem">Enter</li>
+
+        <li class="left-shift">SHIFT</li>
+
+        <li class="letter">Z</li>
+
+        <li class="letter">X</li>
+
+        <li class="letter">C</li>
+
+        <li class="letter">V</li>
+
+        <li class="letter">B</li>
+
+        <li class="letter">N</li>
+
+        <li class="letter">M</li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="right-shift no"></li>
+
+        <li class="no b1"></li>
+
+        <li class="no b2"></li>
+
+        <li class="no b3"></li>
+
+        <li class="no b4"></li>
+
+        <li class="space lastitem">&nbsp;</li>
+
+        <li class="no b5"></li>
+
+        <li class="no b5"></li>
+
+        <li class=" b6"></li>
+      </ul>
+    </div>
+    <!-- 管理员虚拟键盘 -->
+    <div class="key" id="admin_key">
+      <img src="images/icon-14.png" alt="Close virtual keyboard" class="key_img" />
+      <ul id="keyboard">
+        <li class="esc">Esc</li>
+        <li class="symbol"><span class="off">1</span><span class="on">!</span></li>
+
+        <li class="symbol"><span class="off">2</span><span class="on">@</span></li>
+
+        <li class="symbol"><span class="off">3</span><span class="on">#</span></li>
+
+        <li class="symbol"><span class="off">4</span><span class="on">$</span></li>
+
+        <li class="symbol"><span class="off">5</span><span class="on">%</span></li>
+
+        <li class="symbol"><span class="off">6</span><span class="on">^</span></li>
+
+        <li class="symbol"><span class="off">7</span><span class="on">&amp;</span></li>
+
+        <li class="symbol"><span class="off">8</span><span class="on">*</span></li>
+
+        <li class="symbol"><span class="off">9</span><span class="on">(</span></li>
+
+        <li class="symbol"><span class="off">0</span><span class="on">)</span></li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="delete lastitem">Delete</li>
+
+        <li class="tab no"></li>
+
+        <li class="letter">Q</li>
+
+        <li class="letter">W</li>
+
+        <li class="letter">E</li>
+
+        <li class="letter">R</li>
+
+        <li class="letter">T</li>
+
+        <li class="letter">Y</li>
+
+        <li class="letter">U</li>
+
+        <li class="letter">I</li>
+
+        <li class="letter">O</li>
+
+        <li class="letter">P</li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="symbol lastitem"><span class="off">\</span><span class="on">|</span></li>
+
+        <li class="capslock no"></li>
+
+        <li class="letter">A</li>
+
+        <li class="letter">S</li>
+
+        <li class="letter">D</li>
+
+        <li class="letter">F</li>
+
+        <li class="letter">G</li>
+
+        <li class="letter">H</li>
+
+        <li class="letter">J</li>
+
+        <li class="letter">K</li>
+
+        <li class="letter">L</li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="return lastitem">Enter</li>
+
+        <li class="left-shift">SHIFT</li>
+
+        <li class="letter">Z</li>
+
+        <li class="letter">X</li>
+
+        <li class="letter">C</li>
+
+        <li class="letter">V</li>
+
+        <li class="letter">B</li>
+
+        <li class="letter">N</li>
+
+        <li class="letter">M</li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="no"></li>
+
+        <li class="right-shift no"></li>
+
+        <li class="no b1"></li>
+
+        <li class="no b2"></li>
+
+        <li class="no b3"></li>
+
+        <li class="no b4"></li>
+
+        <li class="space lastitem">&nbsp;</li>
+
+        <li class="no b5"></li>
+
+        <li class="no b5"></li>
+
+        <li class=" b6"></li>
+      </ul>
+    </div>
+    <!-- 管理员密码 -->
+    <div id="admin">
+      <p>Unlock</p>
+      <input type="text" name="" id="write" class="adminInp" placeholder="Input Password" />
+      <div class="admin-btn">
+        <button type="button" class="a_no">Cancel</button>
+        <button type="button" class="a_yes">Input</button>
+      </div>
+    </div>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/keyboard.js"></script>
+    <script type="text/javascript">
+    	//添加折扣
+      $(".add_zhe").click(function(){
+      	$(this).next(".add-content").slideToggle();
+      })
+
+    $(document).ready(function(){
+
+      var stats = localStorage.getItem("table_array").split(" ");
+          var seq = localStorage.getItem("sequence") < 10 ? localStorage.getItem("sequence").slice(1) : localStorage.getItem("sequence");
+
+      var merge_table = localStorage.getItem("merge_table").replace(/\n/g,"");
+
+      $.ajax({
+          url: "/pos/order/index/table:" + seq + "/type:D",
+          type: "post",
+          success: function(data) {
+
+              var array = data.replace(/[\r\n]/g,"").split("/");
+
+              var order_no = array[0].split(" ")[0].replace(/\s+/g,"");
+              var order_phone = array[0].split(" ")[1];
+              var category_array = array[1].split(" ");
+              var cuisine_array = array[2].split("<").slice(1);
+              var order_id = array[3];
+
+              $(".pay-h-t")[0].innerText = "Dine-in Order " + "Table #" + seq + " #" + merge_table + " Summary Order No #" + order_no + " , ";
+              $(".contR li:eq(0)")[0].innerText = order_no;
+
+              for(var i = 0; i < merge_table.split(",").length; i++){
+
+                  var order_no = "";
+                  $.ajax({
+                      url: "/pos/order/index/table:" + merge_table.split(",")[i] + "/type:D",
+                      type: "post",
+                      success: function(data) {
+
+                          var array = data.replace(/[\r\n]/g,"").split("/");
+
+                          order_no = array[0].split(" ")[0].replace(/\s+/g,"");
+                          var order_phone = array[0].split(" ")[1];
+                          var category_array = array[1].split(" ");
+                          var cuisine_array = array[2].split("<").slice(1);
+                          var order_id = array[3];
+
+                          $(".pay-h-t")[0].innerText += "#" + order_no + " ";
+
+                      }
+                  });
+
+              };
+             
+          }
+      });
+
+      $.ajax({
+          url: "/pos/order/summarypanel/" + seq + "/D",
+          type: "post",
+          success: function(data) {
+              // reload the page
+              //console.log(data);
+              obj = JSON.parse(data);
+              var length = Object.keys(obj).length;
+              localStorage.setItem('cuisine', data);
+              //console.log(obj);
+
+              $(".right-list").append('<li><h1>#Bill' + seq + '</h1></li>');
+
+              for(var j = 0; j < length; j++){
+                $(".right-list").append('<li data-state="1"><a href="javascript:;"><div class="list-left"><h4>' + obj[j].name_xh + '</h4><p>Option:' + obj[j].special_instruction + '</p></div><div class="list-center">$' + obj[j].price + '<span>(15%off)</span></div><div class="list-right">' + obj[j].qty + '</div></a></li>');
+              }
+
+              
+          }
+      });
+
+      
+
+      // for(var i = 0; i < merge_table.split(",").length; i++){
+          
+      //     $(".pay-ul").append('<li data-i="' + i+1 + '" class="">桌号. ' + merge_table.split(",")[i] + '</li>');
+
+          // $.ajax({
+          //     url: "/pos/order/summarypanel/" + merge_table.split(",")[i] + "/D",
+          //     type: "post",
+          //     success: function(data) {
+          //         // reload the page
+          //         //console.log(data);
+          //         obj = JSON.parse(data);
+          //         var length = Object.keys(obj).length;
+          //         localStorage.setItem('cuisine', data);
+          //         //console.log(obj);
+
+          //         var merge_table = localStorage.getItem("merge_table").replace(/\n/g,"");
+          //         console.log(merge_table, i);
+
+
+          //         var n = 0;
+          //         for(var k = 0; k < merge_table.split(",").length; k++){
+          //             $(".right-list").append('<li><h1>#Bill' + merge_table.split(",")[k] + '</h1></li>');
+                      
+          //             for(var j = n; j < length; j++){
+          //                 $(".right-list").append('<li data-state="1"><a href="javascript:;"><div class="list-left"><h4>' + obj[j].name_xh + '</h4><p>Option:' + obj[j].special_instruction + '</p></div><div class="list-center">$' + obj[j].price + '<span>(15%off)</span></div><div class="list-right">' + obj[j].qty + '</div></a></li>');
+          //             }
+          //             n += 1;
+          //         }
+
+                  
+
+      //             //$(".notop").append('<div class="pay-right-c not01" style="display: block;"><div class="r-c-top"><div class="c-top-left"><ul class="contL"><li>订单号1</li><li>小计</li><li>折扣</li><li>折后价</li><li>税(13%):</li><li>总计:</li></ul><ul class="contR"><li>D81809240005</li><li>$73.94</li><li>$11.09*15%</li><li>$62.85</li><li>$9.61</li><li>$83.55</li></ul></div><div class="right-tab"><a href="javascript:;" class="add_zhe">加入折扣</a><div class="add-content"><ul class="add-ul"><li><span>固定折扣</span><input type="text"></li><li><span>%折扣</span><input type="text"></li><li><span>优惠码</span><input type="text"></li></ul><div class="add-right"><span>折扣快捷按钮</span><button type="button" name="button">15%</button><button type="button" name="button">20%</button><button type="button" name="button">25%</button></div></div></div></div><div class="r-c-center"><ul class="cenL"><li>已收到:</li><li class="cen-col">现金：$00.00</li><li>剩余:</li><li>小费:</li></ul><ul class="cenC"><li>$62.85</li><li class="cen-col">卡：$00.00</li><li>$9.61</li><li>$83.55</li></ul><ul class="cenR"><li></li><li class="cen-col">会员：$00.00</li><li></li><li></li></ul></div><div class="r-c-bot"><h5>状态</h5><p><span class="color1"></span>未支付</p></div></div>');
+
+                  
+      //         }
+      //     });
+      // }
+
+
+      $.each(merge_table.split(","), function( i, value ) {
+
+          $(".pay-ul li:eq(0)")[0].innerText = "Table No." + seq;
+          $(".pay-ul").append('<li class="noto-act" data-i="' + (i+2) + '" class="">Table No. ' + value + '</li>');
+          //console.log( i + ": " + value );
+
+          $.ajax({
+              url: "/pos/order/summarypanel/" + value + "/D",
+              type: "post",
+              success: function(data) {
+                  // reload the page
+                  //console.log(data);
+                  obj = JSON.parse(data);
+                  var length = Object.keys(obj).length;
+                  localStorage.setItem('cuisine', data);
+                  //console.log(obj);
+
+                  var merge_table = localStorage.getItem("merge_table").replace(/\n/g,"");
+                  //console.log(merge_table, i);
+                  
+                  $(".right-list").append('<li><h1>#Bill' + value + '</h1></li>');
+                  
+                  for(var j = 0; j < length; j++){
+                      $(".right-list").append('<li data-state="1"><a href="javascript:;"><div class="list-left"><h4>' + obj[j].name_xh + '</h4><p>Option:' + obj[j].special_instruction + '</p></div><div class="list-center">$' + obj[j].price + '<span>(15%off)</span></div><div class="list-right">' + obj[j].qty + '</div></a></li>');
+                  }
+
+                  $(".notop").append('<div class="pay-right-c not' + i + '" style="display: block;"><div class="r-c-top"><div class="c-top-left"><ul class="contL"><li>订单号1</li><li>小计</li><li>折扣</li><li>折后价</li><li>税(13%):</li><li>总计:</li></ul><ul class="contR"><li>D81809240005</li><li>$73.94</li><li>$11.09*15%</li><li>$62.85</li><li>$9.61</li><li>$83.55</li></ul></div><div class="right-tab"><a href="javascript:;" class="add_zhe">加入折扣</a><div class="add-content"><ul class="add-ul"><li><span>固定折扣</span><input type="text"></li><li><span>%折扣</span><input type="text"></li><li><span>优惠码</span><input type="text"></li></ul><div class="add-right"><span>折扣快捷按钮</span><button type="button" name="button">15%</button><button type="button" name="button">20%</button><button type="button" name="button">25%</button></div></div></div></div><div class="r-c-center"><ul class="cenL"><li>已收到:</li><li class="cen-col">现金：$00.00</li><li>剩余:</li><li>小费:</li></ul><ul class="cenC"><li>$62.85</li><li class="cen-col">卡：$00.00</li><li>$9.61</li><li>$83.55</li></ul><ul class="cenR"><li></li><li class="cen-col">会员：$00.00</li><li></li><li></li></ul></div><div class="r-c-bot"><h5>状态</h5><p><span class="color1"></span>未支付</p></div></div>');
+                     
+              }
+          })
+      });
+
+
+      // nav
+      $(".barnav").hover(function(){
+        $(this).find("ul").slideDown();
+      },function(){
+        $(this).find("ul").slideUp();
+      });
+      $(".barnav").on("click",function(){
+        var ulD = $(this).find("ul").css("display");
+        if(ulD == "none"){
+          $(this).find("ul").slideDown();
+        }else{
+          $(this).find("ul").slideUp();
+        }
+      });
+      // content
+      var winH = $(window).height() - 100, //100是导航
+          winH1 = $(window).height() - 190,
+          winW = $(window).width();//可是宽度
+      $(".content").css("height",winH+"px");
+      // if(winW > 768){
+        $(".page2-left,.page2-right").css("height",winH+"px");
+        $(".page2-left-c").css("height",winH1+"px");
+      // }else{
+      //   $(".page2-left").css({"height":"500px"});
+      //   $(".page2-left-c").css("height","410px");
+      // }
+
+      // 菜单向下滑动
+      $(".tab-bot").on("click",function(){
+        var scroll = $(".page2-tabnav").scrollTop() + 70;
+        console.log(scroll);
+        $(".page2-tabnav").scrollTop(scroll);
+      });
+      $(".page2-tabnav li").on("click",function(){
+        var index = $(this).data("index");
+        $(".tabright").hide();
+        $(".tab"+index).show();
+        $(this).addClass("tab-active");
+        $(this).siblings().removeClass("tab-active");
+      });
+      // 去除搜索框中的内容
+      $(".tab-close").on("click",function(){
+        $(".tab-input").val("");
+      });
+      // 管理员密码
+      $(".login_right span").on("click",function(){
+        $("#admin").show();
+      });
+      $(".a_no").on("click",function(){
+        $("#admin").hide();
+        $("#admin_key").hide();
+        $("#write").val("");
+      });
+      $(".a_yes").on("click",function(){
+        $("#admin_key").show();
+      });
+      $(".key_img").on("click",function(){
+        $(this).parents(".key").hide();
+      });
+      // 回车,跳转到管理员界面      
+      $("#admin_key .return").on("click",function(){
+        var aVal = $("#write").val();
+        if(aVal == 1){//如果取到的键值是回车
+          window.location.href="admin.html";         
+        }else{
+          alert("Password is invalid！");
+        }
+      });
+      window.document.onkeydown= function(evt){
+       evt = window.event || evt;
+       var aVal = $("#write").val();
+       if(evt.keyCode == 13){//如果取到的键值是回车
+        if(aVal == 1){         
+          window.location.href="admin.html";         
+        }else if(aVal != "" && aVal != 1){
+          alert("Password is invalid！");
+        }
+       }
+     }
+      var liW = parseFloat($(".payment .num_left li").width()) ,
+          liW1 = parseFloat($(".payment .num_left li").width()*2 + 7),
+          liW2 = parseInt((liW1 - 80)/2);
+      $(".payment .num_left li").css({"height":liW+"px","line-height":liW+"px"});
+      $(".payment .num_right a").css({"padding-top":liW2+"px","padding-bottom":liW2+"px"});
+
+      // 输入密码
+      $(".payment .num_left li.num").on("click",function(){
+        var inputVal = $(".payment .keyboard").val(),
+            $_this = $(this).html();
+        $(".keyboard").val(inputVal+$_this);
+      });
+      // 清空
+      $(".payment .empty").on("click",function(){
+        $(".payment .keyboard").val("");
+      });
+      // 后退
+      $(".payment .retreat").on("click",function(){
+        var leng = $(".payment .keyboard").val().toString(),valIn = "";
+        valIn = leng.substring(0,leng.length-1);
+        $(".payment .keyboard").val(valIn);
+      });
+      // 默认
+      $(".payde").on("click",function(){
+        // 365为现有的默认金额
+        $(".payment .keyboard").val(365);
+      });
+      // 关闭ipad付款块
+      $(".pay_close").on("click",function(){
+        $('.payment .page2-right').hide();
+      });
+      $(".pay_play").on("click",function(){
+        $('.payment .page2-right').css("z-index","20");
+      });
+      // 桌号账单
+      $(".notop .pay-ul li").on("click",function(){
+        var i = $(this).data("i");
+        $(this).addClass("noto-act");
+        $(this).siblings().removeClass("noto-act");
+        $(".pay-right-c").hide();
+        $(".not0"+i).show();
+      });
+       //付款方式
+      $(".payF li").click(function(){
+      	$(this).addClass("active").siblings().removeClass("active");
+      })
+    });
+    </script>
+  </body>
+</html>
