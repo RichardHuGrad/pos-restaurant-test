@@ -67,7 +67,7 @@
           }
 
           
-          if(count($key) != $count+1){
+          if($key+1 != count($records)){
             echo '],';
           }else{
             echo ']';
