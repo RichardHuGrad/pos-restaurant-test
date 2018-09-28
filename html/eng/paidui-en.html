@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" />
     <meta name="format-detection" content="telephone=no" />
-    <title>Eatopia排队系统</title>
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/paidui.css" />
-    <link rel="stylesheet" href="css/jianpan.css" />
+    <title>Eatopia Queuing System</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/paidui.css" />
+    <link rel="stylesheet" href="../css/jianpan.css" />
     <style type="text/css">
       body{background: #26dfff;}
     </style>
@@ -17,26 +17,25 @@
       <!-- 头部 -->
       <div class="header">
         <!-- logo -->
-        <img src="images/logo.png" alt="logo" class="logo" />
+        <img src="../images/logo.png" alt="logo" class="logo" />
         <!-- 导航 -->
         <ul class="nav">
-          <li><a href="index.html" class="nav-a">主页</a></li>
+          <li><a href="index-en.html" class="nav-a">Main Page</a></li>
           <li class="barnav">
-            <a href="javascript:;" class="nav-a">语言</a>
+            <a href="javascript:;" class="nav-a">Lang</a>
             <ul style="display: none;">
               <li><a href="javascript:;">English</a></li>
               <li><a href="javascript:;">中文</a></li>
             </ul>
           </li>
-          <li><a href="javascript:;" class="nav-a">会员</a></li>
-          <li class="active"><a href="paidui.html" class="nav-a">排队</a></li>
-          <li><a href="quhao.html" class="nav-a">取号</a></li>
+          <li><a href="javascript:;" class="nav-a">Member</a></li>
+          <li class="active"><a href="paidui-en.html" class="nav-a">Queue</a></li>
+          <li><a href="quhao-en.html" class="nav-a">Take a No.</a></li>
         </ul>
-        <img src="images/nav.png" class="smalllogo" alt="pad菜单" />
+        <img src="../images/nav.png" class="smalllogo" alt="pad菜单" />
         <!-- 登录按钮 -->
         <div class="login_right">
-          <button type="button" name="button">登出</button>
-          <span>管理员</span>
+          <button type="button" name="button">Logout</button>
         </div>
       </div>
 
@@ -47,41 +46,41 @@
         	
           <div class="am-vertical-align-middle right-align">
             <div class="right-content">
-              <h6>添加排队信息</h6>
-              <div class="close"><img src="images/icon-06.png"></div>
+              <h6>Add Queue Info</h6>
+              <div class="close"><img src="../images/icon-06.png"></div>
               <form class="">
-                <input type="text" class="r-name" value="" placeholder="请输入您的姓名" />
-                <input type="tel" class="r-tel" value="" placeholder="请输入您的联系电话" />
-                <input type="text" class="r-number" value="" placeholder="请输入您的就餐人数" />
-                <button type="button" class="r-btn" name="button">添&nbsp;加</button>
+                <input type="text" class="r-name" value="" placeholder="Name" />
+                <input type="tel" class="r-tel" value="" placeholder="Phone" />
+                <input type="text" class="r-number" value="" placeholder="How Many" />
+                <button type="button" class="r-btn" name="button">add &nbsp;</button>
               </form>
             </div>
           </div>
           
           <div class="mask"></div>
           
-          <div class="addLineUp"><img src="images/add.png"></div>
+          <div class="addLineUp"><img src="../images/add.png"></div>
           
         </div> 
         <div class="paidui-right">
           <div class="paidui-top">
-            <h4>排队搜索</h4>
+            <h4>Queue Search</h4>
             <form action="" class="am-form" data-am-validator>
-              <input type="button" class="am-form-field rili" value="2018年05月16日" data-am-datepicker />
-              <input type="text" name="" class="paidi-seach" placeholder="请输入姓名/电话进行搜索" />
+              <input type="button" class="am-form-field rili" value="2018/05/16" data-am-datepicker />
+              <input type="text" name="" class="paidi-seach" placeholder="name/phone" />
               <img src="images/icon-08.png" class="pai-close" />  <!--搜索框中的叉-->
-              <input type="submit" value="搜 索" class="lineUpSearch"/>
+              <input type="submit" value="Search" class="lineUpSearch"/>
             </form>
           </div>
           <div class="paidui-bot">
           	<div class="left">
-          		<h4>排队列表</h4>
+          		<h4>Queue List</h4>
 	            <table class="lineUpTable">
 	            	<tr>
-	            		<th width="12%">号码</th>
-	            		<th >姓名</th>
-	            		<th width="32%">电话</th>
-	            		<th width="16%">人数</th>
+	            		<th width="12%">No.</th>
+	            		<th >Name</th>
+	            		<th width="32%">Phone</th>
+	            		<th width="16%">Person</th>
 	            	</tr>
 	            </table>
 	            <div  class="lineUpTable">
@@ -188,28 +187,28 @@
           	<div class="right">
           		<div class="sixBlock">
           			<div class="list">
-          				<img src="images/i01.png">
-          				<span class="txt">入座</span>
+          				<img src="../images/i01.png">
+          				<span class="txt">Seat</span>
           			</div>
           			<div class="list">
-          				<img src="images/i02.png">
-          				<span class="txt">短信提醒</span>
+          				<img src="../images/i02.png">
+          				<span class="txt">Text Message</span>
           			</div>
           			<div class="list">
-          				<img src="images/i03.png">
-          				<span class="txt">过号</span>
+          				<img src="../images/i03.png">
+          				<span class="txt">Passed</span>
           			</div>
           			<div class="list">
-          				<img src="images/i04.png">
-          				<span class="txt">修改</span>
+          				<img src="../images/i04.png">
+          				<span class="txt">Change</span>
           			</div>
           			<div class="list">
-          				<img src="images/i05.png">
-          				<span class="txt">删除</span>
+          				<img src="../images/i05.png">
+          				<span class="txt">Delete</span>
           			</div>
           			<div class="list">
-          				<img src="images/i06.png">
-          				<span class="txt">完成</span>
+          				<img src="../images/i06.png">
+          				<span class="txt">Complete</span>
           			</div>
           		</div>
           	</div>
@@ -222,7 +221,7 @@
 
     <!-- 虚拟键盘 -->
     <div class="key">
-      <img src="images/icon-14.png" alt="关闭虚拟键盘" class="key_img" />
+      <img src="../images/icon-14.png" alt="关闭虚拟键盘" class="key_img" />
       <ul id="keyboard">
         <li class="esc">Esc</li>
         <li class="symbol"><span class="off">1</span><span class="on">!</span></li>
@@ -349,16 +348,16 @@
 
     <!-- 管理员密码 -->
     <div id="admin">
-      <p>密码解锁</p>
-      <input type="text" name="" id="write" class="adminInp" placeholder="请输入密码解锁" />
+      <p>Password Unlock</p>
+      <input type="text" name="" id="write" class="adminInp" placeholder="Please Enter Password" />
       <div class="admin-btn">
-        <button type="button" class="a_no">取消</button>
-        <button type="button" class="a_yes">输入</button>
+        <button type="button" class="a_no">Cancel</button>
+        <button type="button" class="a_yes">Enter</button>
       </div>
     </div>
-    <script type="text/javascript" src="js/jquery.js"></script>
-    <script type="text/javascript" src="js/amazeui.min.js"></script>
-    <script type="text/javascript" src="js/keyboard.js"></script>
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../js/amazeui.min.js"></script>
+    <script type="text/javascript" src="../js/keyboard.js"></script>
     <script type="text/javascript">
       $(function(){
       	//表格排队信息选中
@@ -414,7 +413,7 @@
           if(aVal == 1){//如果取到的键值是回车
             window.location.href="admin.html";         
           }else{
-            alert("解锁密码错误！");
+            alert("Password Error");
           }
         });
         window.document.onkeydown= function(evt){
@@ -424,7 +423,7 @@
           if(aVal == 1){
             window.location.href="admin.html";         
           }else{
-            alert("解锁密码错误！");
+            alert("Password Error");
           }
          }
         }

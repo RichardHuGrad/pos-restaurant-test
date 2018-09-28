@@ -4,13 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" />
     <meta name="format-detection" content="telephone=no" />
-    <title>Eatopia排队系统</title>
-    <link rel="stylesheet" href="css/paidui.css" />
-    <link rel="stylesheet" href="css/jianpan.css" />
+    <title>Eatopia Take a No.</title>
+    <link rel="stylesheet" href="../css/paidui.css" />
+    <link rel="stylesheet" href="../css/jianpan.css" />
 </head>
   <body>
     <!-- logo -->
-    <img src="images/logo_1.png" alt="logo" class="logo1">
+    <img src="../images/logo_1.png" alt="logo" class="logo1">
     <!-- 中英文转换 -->
     <button type="button" class="english" name="button">EN/中文</button>
     <button type="button" class="lock" name="button"></button>
@@ -21,29 +21,29 @@
     <!-- logo -->
     <div class="am-vertical-align left" style="height: 100%;">
       <div class="am-vertical-align-middle left-align">
-        <span>店铺信息</span>
-        <h3>欢迎来到</h3>
+        <span>Store Info</span>
+        <h3>Welcome to</h3>
         <h3>嘿小面(north york店)</h3>
         <hr>
-        <span>现在时间</span>
-        <h3>2018年 05 月 08 日</h3>
+        <span>Time</span>
+        <h3>2018/ 05 / 08 /</h3>
         <h3>PM 2:52</h3>
         <hr>
-        <span>排队状态</span>
-        <h3>在您前面还有12桌</h3>
-        <h3>请您耐心等待</h3>
+        <span>Status</span>
+        <h3>12 tables before you</h3>
+        <h3>Please be patient</h3>
       </div>
     </div>
     <!-- 登录 -->
     <div class="am-vertical-align right" style="height: 100%;">
       <div class="am-vertical-align-middle right-align">
         <div class="right-content">
-          <h6>添加排队信息</h6>
+          <h6>Add Line Info</h6>
           <form class="">
-            <input type="text" class="r-name" value="" placeholder="请输入您的姓名" />
-            <input type="tel" class="r-tel" value="" placeholder="请输入您的联系电话" />
-            <input type="text" class="r-number" value="" placeholder="请输入您的就餐人数" />
-            <button type="button" class="r-btn" name="button">排队取号</button>
+            <input type="text" class="r-name" value="" placeholder="Please Enter Your Name" />
+            <input type="tel" class="r-tel" value="" placeholder="Please Enter Your Phone" />
+            <input type="text" class="r-number" value="" placeholder="Please Enter How Many" />
+            <button type="button" class="r-btn" name="button">Take a No.</button>
           </form>
           <p>排号即将到位，我们会提前短信通知到您的手机</p>
         </div>
@@ -52,7 +52,7 @@
 
     <!-- 管理员,虚拟键盘 -->
     <div class="key" id="key_admin">
-      <img src="images/icon-14.png" alt="关闭虚拟键盘" class="key_img" />
+      <img src="../images/icon-14.png" alt="关闭虚拟键盘" class="key_img" />
       <ul id="keyboard">
         <li class="esc">Esc</li>
         <li class="symbol"><span class="off">1</span><span class="on">!</span></li>
@@ -179,16 +179,16 @@
 
     <!-- 管理员密码 -->
     <div id="admin">
-      <p>密码解锁</p>
-      <input type="text" name="" id="write" class="adminInp" placeholder="请输入密码解锁" />
+      <p>Password Unlock</p>
+      <input type="text" name="" id="write" class="adminInp" placeholder="Please Enter Password" />
       <div class="admin-btn">
-        <button type="button" class="a_no">取消</button>
-        <button type="button" class="a_yes">输入</button>
+        <button type="button" class="a_no">Cancel</button>
+        <button type="button" class="a_yes">Enter</button>
       </div>
     </div>
-    <script type="text/javascript" src="js/jquery.js"></script>
-    <script type="text/javascript" src="js/amazeui.min.js"></script>
-    <script type="text/javascript" src="js/keyboard.js"></script>
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../js/amazeui.min.js"></script>
+    <script type="text/javascript" src="../js/keyboard.js"></script>
     <script type="text/javascript">
       $(function(){
         var liW = parseFloat($(".num_left li").width()) ,
@@ -231,9 +231,9 @@
         function hrefG(){
           var aVal = $("#write").val();
           // 1是管理员解锁密码
-          if(aVal == 1){ 
+          if(aVal == 1){
             // 跳转管理员界面
-            window.location.href="admin.html";         
+            window.location.href="admin.html";
           }else{
             alert("解锁密码错误！");
           }
