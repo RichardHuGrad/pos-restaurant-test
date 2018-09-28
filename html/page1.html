@@ -551,116 +551,117 @@
               // reload the page
               console.log(data);
               obj = JSON.parse(data);
+              console.log(obj);
               //console.log(data.split(";"));
 
-              // array = data.replace(/[\r\n]/g,"").split("/");
-
-              // order_no = array[0].split(" ")[0].replace(/\s+/g,"");
-              // var order_phone = array[0].split(" ")[1];
+              order_no = obj.order_no;
+              var order_phone = obj.order_phone;
               // var category_array = array[1].split(" ");
               // var cuisine_array = array[2].split("<").slice(1);
 
-              // console.log(order_no);
+              console.log(obj.order_no);
               // console.log(order_phone);
               // console.log(category_array);
               // console.log(cuisine_array);
 
 
-              // $(".page2-top > h4")[0].innerText = "堂食订单 订单号 #" + order_no + ",  桌 #" + sequence;
+              $(".page2-top > h4")[0].innerText = "堂食订单 订单号 #" + order_no + ",  桌 #" + sequence;
               
-              // for(var i = 0; i < (category_array.length/3-1); i++){
-              //     if(i == 0){
-              //         $(".page2-tabnav").append('<li class="tab-active" data-index="' + (i+1) +'"><a href="javascript:;">' + category_array[i*3+2] + '</a> </li>');
-              //     }else{
-              //         $(".page2-tabnav").append('<li data-index="' + (i+1) +'"><a href="javascript:;">' + category_array[i*3+2] + '</a> </li>');
-              //     }
+              for(var i = 0; i < Object.keys(obj.Category).length; i++){
+                  if(i == 0){
+                      $(".page2-tabnav").append('<li class="tab-active" data-index="' + (i+1) +'"><a href="javascript:;">' + obj.Category[i].zh_name + obj.Category[i].eng_name + '</a> </li>');
+                  }else{
+                      $(".page2-tabnav").append('<li data-index="' + (i+1) +'"><a href="javascript:;">' + obj.Category[i].zh_name + obj.Category[i].eng_name + '</a> </li>');
+                  }
                 
-              // }
+              }
 
-              // localStorage.setItem('cuisine_array', cuisine_array);
-
-
-              // for(var i = 0; i < cuisine_array.length/5; i++){
-              //     //console.log(cuisine_array);
-              //     $(".tab" + cuisine_array[5*i]).append('<li class="add_items" item_id=' + cuisine_array[5*i+1] + '><a href="javascript:;"><p>' + cuisine_array[5*i+3] + '</p><span>$ ' + cuisine_array[5*i+2] + '</span></a></li>');
-              // }
+              //localStorage.setItem('cuisine_array', cuisine_array);
 
 
-              // $(".page2-content .page2-tabnav li").on("click",function(){
-              //     var index = $(this).data("index");
-              //     $(".page2-content .tabright").hide();
-              //     $(".page2-content .tab"+index).show();
-              //     $(this).addClass("tab-active");
-              //     $(this).siblings().removeClass("tab-active");
-              // });
+              for(var i = 0; i < Object.keys(obj.Category).length; i++){
+                  for(var j = 0; j < obj[i].length; j++){
+                      $(".tab" + (i+1)).append('<li class="add_items" item_id=' + obj[i][j].items_id + '><a href="javascript:;"><p>' + obj[i][j].zh_name + '</p><span>$ ' + obj[i][j].price + '</span></a></li>');
+                  }
+                  
+              }
 
-              // $("#change .page2-tabnav li").on("click",function(){
-              //     var index = $(this).data("index");
-              //     $("#change .tabright").hide();
-              //     $("#change .chan"+index).show();
-              //     $(this).addClass("tab-active");
-              //     $(this).siblings().removeClass("tab-active");
-              // });
+
+              $(".page2-content .page2-tabnav li").on("click",function(){
+                  var index = $(this).data("index");
+                  $(".page2-content .tabright").hide();
+                  $(".page2-content .tab"+index).show();
+                  $(this).addClass("tab-active");
+                  $(this).siblings().removeClass("tab-active");
+              });
+
+              $("#change .page2-tabnav li").on("click",function(){
+                  var index = $(this).data("index");
+                  $("#change .tabright").hide();
+                  $("#change .chan"+index).show();
+                  $(this).addClass("tab-active");
+                  $(this).siblings().removeClass("tab-active");
+              });
               
-              // var add_item_id = [];
+              var add_item_id = [];
 
-              // //添加菜品
-              // $(".add_items").on("click", function () {
-              //     var item_id = $(this).attr("item_id");
-              //     //console.log($(this).attr("item_id"));
+              //添加菜品
+              $(".add_items").on("click", function () {
+                  var item_id = $(this).attr("item_id");
+                  //console.log($(this).attr("item_id"));
 
-              //     add_item_id.push(item_id);
+                  add_item_id.push(item_id);
 
-              //     console.log(add_item_id);
+                  console.log(add_item_id);
 
-              //     localStorage.setItem('add_item_id', add_item_id);
+                  localStorage.setItem('add_item_id', add_item_id);
 
-              //     var cuisine_arr = localStorage.getItem('cuisine_array').split(",");
-              //     //console.log(cuisine_arr);
-              //     console.log(cuisine_arr[5*(item_id - 1) + 3]);
+                  var cuisine_arr = localStorage.getItem('cuisine_array').split(",");
+                  //console.log(cuisine_arr);
+                  console.log(cuisine_arr[5*(item_id - 1) + 3]);
 
-              //     $(".right-list").append('<li data-state="1" style="background-color: rgb(240, 240, 240);"><a href="javascript:;"><div class="list-left"><h4>' + cuisine_arr[5*(item_id - 1) + 3] + '</h4><p>Option: </p></div><div class="list-center">$' + cuisine_arr[5*(item_id - 1) + 2] + '<span>(15%off)</span></div><div class="list-right">1</div></a></li>');
-              // });
-
-
-              // $(".rBtn01").click(function(){
-              //     var selected_item_id_list = [];
-
-              //     console.log($(".right-list > li.select").attr("item_id"));
-
-              //     for(var i = 0; i < document.getElementsByClassName("select").length; i++){
-
-              //         console.log(document.getElementsByClassName("select")[i].getAttribute("item_id"));
-              //         selected_item_id_list.push(document.getElementsByClassName("select")[i].getAttribute("item_id"));
-
-              //     }
-
-              //     console.log(selected_item_id_list);
-
-              //     var sequence = localStorage.getItem("sequence");
-              //     var seq = localStorage.getItem("sequence") < 10 ? localStorage.getItem("sequence").slice(1) : localStorage.getItem("sequence");
-
-              //     var data = {
-              //         selected_item_id_list: selected_item_id_list,
-              //         "table": seq,
-              //         "type": "D",
-              //         "order_no": order_no
-              //     }
-
-              //     $.ajax({
-              //         url: "/pos/order/removeitem",
-              //         data: data,
-              //         type: 'post',
-              //         success: function(data) {
-              //             // reload the page
-              //             console.log(data);
-
-              //             $(".right-list > li.select").remove();
-              //         }
-              //     });
+                  $(".right-list").append('<li data-state="1" style="background-color: rgb(240, 240, 240);"><a href="javascript:;"><div class="list-left"><h4>' + cuisine_arr[5*(item_id - 1) + 3] + '</h4><p>Option: </p></div><div class="list-center">$' + cuisine_arr[5*(item_id - 1) + 2] + '<span>(15%off)</span></div><div class="list-right">1</div></a></li>');
+              });
 
 
-              // })
+              $(".rBtn01").click(function(){
+                  var selected_item_id_list = [];
+
+                  console.log($(".right-list > li.select").attr("item_id"));
+
+                  for(var i = 0; i < document.getElementsByClassName("select").length; i++){
+
+                      console.log(document.getElementsByClassName("select")[i].getAttribute("item_id"));
+                      selected_item_id_list.push(document.getElementsByClassName("select")[i].getAttribute("item_id"));
+
+                  }
+
+                  console.log(selected_item_id_list);
+
+                  var sequence = localStorage.getItem("sequence");
+                  var seq = localStorage.getItem("sequence") < 10 ? localStorage.getItem("sequence").slice(1) : localStorage.getItem("sequence");
+
+                  var data = {
+                      selected_item_id_list: selected_item_id_list,
+                      "table": seq,
+                      "type": "D",
+                      "order_no": order_no
+                  }
+
+                  $.ajax({
+                      url: "/pos/order/removeitem",
+                      data: data,
+                      type: 'post',
+                      success: function(data) {
+                          // reload the page
+                          console.log(data);
+
+                          $(".right-list > li.select").remove();
+                      }
+                  });
+
+
+              })
 
               
           }

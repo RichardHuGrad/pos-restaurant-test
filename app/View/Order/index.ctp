@@ -2,9 +2,9 @@
 
   echo $this->Session->flash();
   
-  echo '{"oeder_id": "';
+  echo '{"order_id": "';
   echo @$Order_detail['Order']['id'];
-  echo '", "oeder_no": "';
+  echo '", "order_no": "';
   echo @$Order_detail['Order']['order_no'];
   echo '", "order_phone": "';
   echo @$Order_detail['Order']['phone']!=''?(', Tel: '.$Order_detail['Order']['phone']):'';
