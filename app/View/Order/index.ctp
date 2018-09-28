@@ -46,7 +46,7 @@
             foreach ($category['Cousine'] as $items) {
                 echo '{"id": "';
                 echo $category['Category']['id'];
-                echo '", "itmes_id": "';
+                echo '", "items_id": "';
                 echo $items['id'];
                 echo '", "price": "';
                 echo number_format($items['price'], 2); 

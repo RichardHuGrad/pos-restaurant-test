@@ -757,13 +757,13 @@
               console.log(data);
               //console.log(data.split(";"));
 
-              array = data.replace(/[\r\n]/g,"").split("/");
+              obj = JSON.parse(data);
+              console.log(obj);
+              //console.log(data.split(";"));
 
-              order_no = array[0].split(" ")[0].replace(/\s+/g,"");
-              var order_phone = array[0].split(" ")[1];
-              var category_array = array[1].split(" ");
-              var cuisine_array = array[2].split("<").slice(1);
-              order_id = array[3];
+              order_no = obj.order_no;
+              var order_phone = obj.order_phone;
+              order_id = obj.order_id;
 
               //console.log(order_id);
 

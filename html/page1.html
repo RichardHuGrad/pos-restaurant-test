@@ -589,15 +589,17 @@
               }
 
               //localStorage.setItem('cuisine_array', cuisine_array);
-
+              var cuisine_array = [];
 
               for(var i = 0; i < Object.keys(obj.Category).length; i++){
                   for(var j = 0; j < obj[i].length; j++){
                       $(".tab" + (i+1)).append('<li class="add_items" item_id=' + obj[i][j].items_id + '><a href="javascript:;"><p>' + obj[i][j].zh_name + '</p><span>$ ' + obj[i][j].price + '</span></a></li>');
+
+                      cuisine_array.push(obj[i][j].items_id, obj[i][j].zh_name, obj[i][j].eng_name, obj[i][j].price);
                   }
-                  
               }
 
+              localStorage.setItem('cuisine_array', cuisine_array);
 
               $(".page2-content .page2-tabnav li").on("click",function(){
                   var index = $(this).data("index");
@@ -630,9 +632,9 @@
 
                   var cuisine_arr = localStorage.getItem('cuisine_array').split(",");
                   //console.log(cuisine_arr);
-                  console.log(cuisine_arr[5*(item_id - 1) + 3]);
+                  //console.log(cuisine_arr[5*(item_id - 1) + 3]);
 
-                  $(".right-list").append('<li data-state="1" style="background-color: rgb(240, 240, 240);"><a href="javascript:;"><div class="list-left"><h4>' + cuisine_arr[5*(item_id - 1) + 3] + '</h4><p>Option: </p></div><div class="list-center">$' + cuisine_arr[5*(item_id - 1) + 2] + '<span>(15%off)</span></div><div class="list-right">1</div></a></li>');
+                  $(".right-list").append('<li data-state="1" style="background-color: rgb(240, 240, 240);"><a href="javascript:;"><div class="list-left"><h4>' + cuisine_arr[4*(item_id - 1) + 1] + '</h4><p>Option: </p></div><div class="list-center">$' + cuisine_arr[4*(item_id - 1) + 3] + '<span>(15%off)</span></div><div class="list-right">1</div></a></li>');
               });
 
 
