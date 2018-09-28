@@ -253,13 +253,17 @@
               //console.log(data);
               //console.log(data.split(";"));
 
-              array = data.replace(/[\r\n]/g,"").split("/");
+              // array = data.replace(/[\r\n]/g,"").split("/");
 
-              order_no = array[0].split(" ")[0].replace(/\s+/g,"");
-              var order_phone = array[0].split(" ")[1];
-              var category_array = array[1].split(" ");
-              var cuisine_array = array[2].split("<").slice(1);
-              order_id = array[3];
+              // order_no = array[0].split(" ")[0].replace(/\s+/g,"");
+              // var order_phone = array[0].split(" ")[1];
+              // var category_array = array[1].split(" ");
+              // var cuisine_array = array[2].split("<").slice(1);
+              // order_id = array[3];
+
+              obj = JSON.parse(data);
+              order_no = obj.order_no;
+              order_id = obj.order_id;
 
               //console.log(order_id);
 
@@ -286,7 +290,7 @@
               //console.log(data.split(";"));
               for(var i = 0; i < length; i++){
                 $(".item_list").append('<tr><td class="w1">' + obj[i].created + '</td><td class="w2">' + obj[i].order_no + '</td><td class="w3">' + obj[i].subtotal + '</td><td class="w3">' + (obj[i].total - obj[i].subtotal).toFixed(2) + '</td><td class="w3">' + obj[i].total + '</td><td class="w4"><a href="page9-en.html">Details</a></td></tr>');
-              } 
+              }
           }
       });
 
