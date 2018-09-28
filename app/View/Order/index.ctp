@@ -2,65 +2,80 @@
 
   echo $this->Session->flash();
   
+  echo '{"oeder_id": "';
+  echo @$Order_detail['Order']['id'];
+  echo '", "oeder_no": "';
   echo @$Order_detail['Order']['order_no'];
-  echo " ";
+  echo '", "order_phone": "';
   echo @$Order_detail['Order']['phone']!=''?(', Tel: '.$Order_detail['Order']['phone']):'';
-  echo "/";
+  echo '", "Category": { "';
 
-
+  $i = 0;
   if (!empty($records)) {
       foreach ($records as $key => $category) {
+          echo $i;
+          echo '": {"id": "';
           echo $category['Category']['id'];
-          echo " ";
+          echo '", "eng_name": "';
           echo $category['Category']['eng_name'];
-          echo " ";
+          echo '", "zh_name": "';
           echo $category['Category']['zh_name'];
-          echo " ";
+          if(count($records) != $i+1){
+            echo '"},"';
+          }else{
+            echo '"}';
+          }
+          $i++;
       }
-      echo "/";
   }
 
+  echo '  },';
 
   if (!empty($records)) {
       $count = 0;
       foreach ($records as $key => $category) {
+          echo '"';
+          echo $key;
+          echo '":[';
           $count++;
           //echo $category['Category']['id'];
           // if ($key == 0) 
           // echo "active";
           if (!empty($category['Cousine'])) {
+            $i = 0;
             foreach ($category['Cousine'] as $items) {
-                echo "<";
+                echo '{"id": "';
                 echo $category['Category']['id'];
-                echo "<";
+                echo '", "itmes_id": "';
                 echo $items['id'];
-                echo "<";
+                echo '", "price": "';
                 echo number_format($items['price'], 2); 
-                echo "<";
+                echo '", "zh_name": "';
                 echo $items['zh_name'];
-                echo "<";
+                echo '", "eng_name": "';
                 echo $items['eng_name'];
-
-
-                // echo "{'" + $category['Category']['id'] + "':{'" + $items['id'] + "': {'price':'" + number_format($items['price'], 2) + "'}} " +"}";
-
-
+                if(count($category['Cousine']) != $i+1){
+                  echo '"},';
+                }else{
+                  echo '"}';
+                }
+                
+                $i++;
             }
           } else {
               echo "No Items Available";
           }
 
+          
+          if(count($key) != $count+1){
+            echo '],';
+          }else{
+            echo ']';
+          }
+
       }
   }
 
-
-  // echo @$Order_detail['Order']['order_no'];
-  // //echo $Order_detail['OrderItem'];
-
-  // print_r($Order_detail['OrderItem']);
-  echo '/';
-  echo @$Order_detail['Order']['id'];
-  
-
+  echo ' }';
 
 ?>
