@@ -156,148 +156,7 @@
                       <p><span class="color1"></span>未支付</p>
                     </div>
                   </div>
-                  <!-- <div class="pay-right-c not02">
-                    <div class="r-c-top">
-                      <div class="c-top-left">
-                        <ul class="contL">
-                          <li>订单号2</li>
-                          <li>小计</li>
-                          <li>折扣</li>
-                          <li>折后价</li>
-                          <li>税(13%):</li>
-                          <li>总计:</li>
-                        </ul>
-                        <ul class="contR">
-                          <li>D31710311432</li>
-                          <li>$73.94</li>
-                          <li>$11.09*15%</li>
-                          <li>$62.85</li>
-                          <li>$9.61</li>
-                          <li>$83.55</li>
-                        </ul>
-                      </div>
-                      <div class="right-tab">
-                        <a href="javascript:;" class="add_zhe">加入折扣</a>
-                        <div class="add-content">
-                          <ul class="add-ul">
-                            <li>
-                              <span>固定折扣</span>
-                              <input type="text">
-                            </li>
-                            <li>
-                              <span>%折扣</span>
-                              <input type="text">
-                            </li>
-                            <li>
-                              <span>优惠码</span>
-                              <input type="text">
-                            </li>
-                          </ul>
-                          <div class="add-right">
-                            <span>折扣快捷按钮</span>
-                            <button type="button" name="button">15%</button>
-                            <button type="button" name="button">20%</button>
-                            <button type="button" name="button">25%</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="r-c-center">
-                        <ul class="cenL">
-                          <li>已收到:</li>
-                          <li class="cen-col">现金：$00.00</li>
-                          <li>剩余:</li>
-                          <li>小费:</li>
-                        </ul>
-                        <ul class="cenC">
-                          <li>$62.85</li>
-                          <li class="cen-col">卡：$00.00</li>
-                          <li>$9.61</li>
-                          <li>$83.55</li>
-                        </ul>
-                        <ul class="cenR">
-                          <li></li>
-                          <li class="cen-col">会员：$00.00</li>
-                          <li></li>
-                          <li></li>
-                        </ul>
-                    </div>
-                    <div class="r-c-bot">
-                      <h5>状态</h5>
-                      <p><span class="color1"></span>未支付</p>
-                    </div>
-                  </div> -->
-                  <!-- <div class="pay-right-c not03">
-                    <div class="r-c-top">
-                      <div class="c-top-left">
-                        <ul class="contL">
-                          <li>订单号3</li>
-                          <li>小计</li>
-                          <li>折扣</li>
-                          <li>折后价</li>
-                          <li>税(13%):</li>
-                          <li>总计:</li>
-                        </ul>
-                        <ul class="contR">
-                          <li>D31710311432</li>
-                          <li>$73.94</li>
-                          <li>$11.09*15%</li>
-                          <li>$62.85</li>
-                          <li>$9.61</li>
-                          <li>$83.55</li>
-                        </ul>
-                      </div>
-                      <div class="right-tab">
-                        <a href="javascript:;" class="add_zhe">加入折扣</a>
-                        <div class="add-content">
-                          <ul class="add-ul">
-                            <li>
-                              <span>固定折扣</span>
-                              <input type="text">
-                            </li>
-                            <li>
-                              <span>%折扣</span>
-                              <input type="text">
-                            </li>
-                            <li>
-                              <span>优惠码</span>
-                              <input type="text">
-                            </li>
-                          </ul>
-                          <div class="add-right">
-                            <span>折扣快捷按钮</span>
-                            <button type="button" name="button">15%</button>
-                            <button type="button" name="button">20%</button>
-                            <button type="button" name="button">25%</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="r-c-center">
-                        <ul class="cenL">
-                          <li>已收到:</li>
-                          <li class="cen-col">现金：$00.00</li>
-                          <li>剩余:</li>
-                          <li>小费:</li>
-                        </ul>
-                        <ul class="cenC">
-                          <li>$62.85</li>
-                          <li class="cen-col">卡：$00.00</li>
-                          <li>$9.61</li>
-                          <li>$83.55</li>
-                        </ul>
-                        <ul class="cenR">
-                          <li></li>
-                          <li class="cen-col">会员：$00.00</li>
-                          <li></li>
-                          <li></li>
-                        </ul>
-                    </div>
-                    <div class="r-c-bot">
-                      <h5>状态</h5>
-                      <p><span class="color1"></span>未支付</p>
-                    </div>
-                  </div> -->
+                  
                   <div class="right-con">
                     <div class="right-tab1">
                       <button type="button" name="button" class="pay01">确认付款</button>
@@ -667,13 +526,8 @@
                       type: "post",
                       success: function(data) {
 
-                          var array = data.replace(/[\r\n]/g,"").split("/");
-
-                          order_no = array[0].split(" ")[0].replace(/\s+/g,"");
-                          var order_phone = array[0].split(" ")[1];
-                          var category_array = array[1].split(" ");
-                          var cuisine_array = array[2].split("<").slice(1);
-                          var order_id = array[3];
+                          obj = JSON.parse(data);
+                          var order_no = obj.order_no;
 
                           $(".pay-h-t")[0].innerText += "#" + order_no + " ";
 
@@ -773,7 +627,7 @@
                       $(".right-list").append('<li data-state="1"><a href="javascript:;"><div class="list-left"><h4>' + obj[j].name_xh + '</h4><p>Option:' + obj[j].special_instruction + '</p></div><div class="list-center">$' + obj[j].price + '<span>(15%off)</span></div><div class="list-right">' + obj[j].qty + '</div></a></li>');
                   }
 
-                  $(".notop").append('<div class="pay-right-c not' + i + '" style="display: block;"><div class="r-c-top"><div class="c-top-left"><ul class="contL"><li>订单号1</li><li>小计</li><li>折扣</li><li>折后价</li><li>税(13%):</li><li>总计:</li></ul><ul class="contR"><li>D81809240005</li><li>$73.94</li><li>$11.09*15%</li><li>$62.85</li><li>$9.61</li><li>$83.55</li></ul></div><div class="right-tab"><a href="javascript:;" class="add_zhe">加入折扣</a><div class="add-content"><ul class="add-ul"><li><span>固定折扣</span><input type="text"></li><li><span>%折扣</span><input type="text"></li><li><span>优惠码</span><input type="text"></li></ul><div class="add-right"><span>折扣快捷按钮</span><button type="button" name="button">15%</button><button type="button" name="button">20%</button><button type="button" name="button">25%</button></div></div></div></div><div class="r-c-center"><ul class="cenL"><li>已收到:</li><li class="cen-col">现金：$00.00</li><li>剩余:</li><li>小费:</li></ul><ul class="cenC"><li>$62.85</li><li class="cen-col">卡：$00.00</li><li>$9.61</li><li>$83.55</li></ul><ul class="cenR"><li></li><li class="cen-col">会员：$00.00</li><li></li><li></li></ul></div><div class="r-c-bot"><h5>状态</h5><p><span class="color1"></span>未支付</p></div></div>');
+                  //$(".pay-right-c").after('<div class="pay-right-c not' + i + '" style="display: block;"><div class="r-c-top"><div class="c-top-left"><ul class="contL"><li>订单号1</li><li>小计</li><li>折扣</li><li>折后价</li><li>税(13%):</li><li>总计:</li></ul><ul class="contR"><li>D81809240005</li><li>$73.94</li><li>$11.09*15%</li><li>$62.85</li><li>$9.61</li><li>$83.55</li></ul></div><div class="right-tab"><a href="javascript:;" class="add_zhe">加入折扣</a><div class="add-content"><ul class="add-ul"><li><span>固定折扣</span><input type="text"></li><li><span>%折扣</span><input type="text"></li><li><span>优惠码</span><input type="text"></li></ul><div class="add-right"><span>折扣快捷按钮</span><button type="button" name="button">15%</button><button type="button" name="button">20%</button><button type="button" name="button">25%</button></div></div></div></div><div class="r-c-center"><ul class="cenL"><li>已收到:</li><li class="cen-col">现金：$00.00</li><li>剩余:</li><li>小费:</li></ul><ul class="cenC"><li>$62.85</li><li class="cen-col">卡：$00.00</li><li>$9.61</li><li>$83.55</li></ul><ul class="cenR"><li></li><li class="cen-col">会员：$00.00</li><li></li><li></li></ul></div><div class="r-c-bot"><h5>状态</h5><p><span class="color1"></span>未支付</p></div></div>');
                      
               }
           })
