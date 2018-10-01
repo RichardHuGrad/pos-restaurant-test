@@ -761,7 +761,7 @@ a {
     }
       .page2-tabnav li{
         width: 100%;
-        padding: 4px 0;
+        padding: 9px 0;
         border-top: 1px dashed #efefef;
       }
       .page2-tabnav li:first-child{
