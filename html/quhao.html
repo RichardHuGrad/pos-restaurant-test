@@ -228,6 +228,14 @@
           hrefG();
          }
         }
+
+        $(".r-btn").on("click", function(){
+          var name = $(".r-name").val();
+          var tel = $(".r-tel").val();
+          var num = $(".r-number").val();
+          alert(name + "/" + tel + "/" + num);
+        })
+
         function hrefG(){
           var aVal = $("#write").val();
           // 1是管理员解锁密码

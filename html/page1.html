@@ -21,7 +21,7 @@
         <img src="images/nav.png" class="smalllogo" alt="pad菜单" />
         <!-- 登录按钮 -->
         <div class="login_right">
-          <button type="button" name="button">登出</button>
+          <button type="button" class="logout"name="button">登出</button>
           <span>管理员</span>
         </div>
       </div>
@@ -511,6 +511,16 @@
     $(".rightBtn01").click(function(){
 
         window.location.href="page2.html"; 
+    })
+
+    $(".logout").click(function(){
+        $.ajax({
+          url: "/pos/homes/logout",
+          type: "post",
+          success: function(data) {
+            window.location.href="login.html";
+          }
+        })
     })
 
 
