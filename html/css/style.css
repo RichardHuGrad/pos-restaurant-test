@@ -700,9 +700,9 @@ a {
       clear:both;
     }
     .page2-top .lock-div{
-  top: 70px;
-  display: none;
-}
+      top: 70px;
+      display: none;
+    }
       .page2-top h4{
         float: left;
         width: auto;
@@ -710,7 +710,7 @@ a {
         font-family: Nobel-Book;
             font-weight: normal;
         color: #000;
-        line-height: 50px;
+        line-height: 35px;
       }
       .pay-h h4.pay-h-t{
         font-size: 1.8rem;
@@ -2141,7 +2141,7 @@ a.add_zhe{
   top: 21%;
   z-index: 20;
   width: 90%;
-  max-width: 838px;
+  max-width: 800px;
   margin-left: -419px;
   background: #fff;
   border-radius: 10px;

@@ -21,7 +21,7 @@
         <img src="images/nav.png" class="smalllogo" alt="pad菜单" />
         <!-- 登录按钮 -->
         <div class="login_right">
-          <button type="button" name="button">登出</button>
+          <button class="logout" type="button" name="button">登出</button>
           <span>管理员</span>
         </div>
       </div>
@@ -79,16 +79,16 @@
               </div>
               <div class="pay-right">
                 <div class="notop">
-                  <ul class="pay-ul"> 
+                  <ul class="pay-ul">
                     <li class="noto-act" data-i="1">桌号.1</li>
                     <!-- <li data-i="2">桌号.02</li>
                     <li data-i="3">桌号.03</li> -->
                   </ul>
-                  <div class="pay-right-c not01">
+                  <div id="pay_summary" class="pay-right-c not01">
                     <div class="r-c-top">
                       <div class="c-top-left">
                         <ul class="contL">
-                          <li>订单号1</li>
+                          <li>订单号</li>
                           <li>小计</li>
                           <li>折扣</li>
                           <li>折后价</li>
@@ -490,6 +490,16 @@
 
     $(document).ready(function(){
 
+      $(".logout").click(function(){
+          $.ajax({
+            url: "/pos/homes/logout",
+            type: "post",
+            success: function(data) {
+              window.location.href="login.html";
+            }
+          })
+      })
+
       var stats = localStorage.getItem("table_array").split(" ");
           var seq = localStorage.getItem("sequence") < 10 ? localStorage.getItem("sequence").slice(1) : localStorage.getItem("sequence");
 
@@ -604,7 +614,7 @@
       $.each(merge_table.split(","), function( i, value ) {
 
           $(".pay-ul li:eq(0)")[0].innerText = "桌号." + seq;
-          $(".pay-ul").append('<li class="noto-act" data-i="' + (i+2) + '" class="">桌号. ' + value + '</li>');
+          $(".pay-ul").append('<li data-i="' + (i+2) + '" class="">桌号. ' + value + '</li>');
           //console.log( i + ": " + value );
 
           $.ajax({
@@ -616,7 +626,7 @@
                   obj = JSON.parse(data);
                   var length = Object.keys(obj).length;
                   localStorage.setItem('cuisine', data);
-                  //console.log(obj);
+                  console.log(obj);
 
                   var merge_table = localStorage.getItem("merge_table").replace(/\n/g,"");
                   //console.log(merge_table, i);
@@ -627,9 +637,12 @@
                       $(".right-list").append('<li data-state="1"><a href="javascript:;"><div class="list-left"><h4>' + obj[j].name_xh + '</h4><p>Option:' + obj[j].special_instruction + '</p></div><div class="list-center">$' + obj[j].price + '<span>(15%off)</span></div><div class="list-right">' + obj[j].qty + '</div></a></li>');
                   }
 
-                  console.log(i);
+                  //console.log(i);
 
-                  //$(".pay-right-c").after('<div class="pay-right-c not0' + (i+2) + '" style="display: none;"><div class="r-c-top"><div class="c-top-left"><ul class="contL"><li>订单号1</li><li>小计</li><li>折扣</li><li>折后价</li><li>税(13%):</li><li>总计:</li></ul><ul class="contR"><li>D81809240005</li><li>$73.94</li><li>$11.09*15%</li><li>$62.85</li><li>$9.61</li><li>$83.55</li></ul></div><div class="right-tab"><a href="javascript:;" class="add_zhe">加入折扣</a><div class="add-content"><ul class="add-ul"><li><span>固定折扣</span><input type="text"></li><li><span>%折扣</span><input type="text"></li><li><span>优惠码</span><input type="text"></li></ul><div class="add-right"><span>折扣快捷按钮</span><button type="button" name="button">15%</button><button type="button" name="button">20%</button><button type="button" name="button">25%</button></div></div></div></div><div class="r-c-center"><ul class="cenL"><li>已收到:</li><li class="cen-col">现金：$00.00</li><li>剩余:</li><li>小费:</li></ul><ul class="cenC"><li>$62.85</li><li class="cen-col">卡：$00.00</li><li>$9.61</li><li>$83.55</li></ul><ul class="cenR"><li></li><li class="cen-col">会员：$00.00</li><li></li><li></li></ul></div><div class="r-c-bot"><h5>状态</h5><p><span class="color1"></span>未支付</p></div></div>');
+                  //$(".not0" + (i+1)).after('<div class="pay-right-c not0' + (i+2) + '" style="display: none;"><div class="r-c-top"><div class="c-top-left"><ul class="contL"><li>订单号1</li><li>小计</li><li>折扣</li><li>折后价</li><li>税(13%):</li><li>总计:</li></ul><ul class="contR"><li>D81809240005</li><li>$73.94</li><li>$11.09*15%</li><li>$62.85</li><li>$9.61</li><li>$83.55</li></ul></div><div class="right-tab"><a href="javascript:;" class="add_zhe">加入折扣</a><div class="add-content"><ul class="add-ul"><li><span>固定折扣</span><input type="text"></li><li><span>%折扣</span><input type="text"></li><li><span>优惠码</span><input type="text"></li></ul><div class="add-right"><span>折扣快捷按钮</span><button type="button" name="button">15%</button><button type="button" name="button">20%</button><button type="button" name="button">25%</button></div></div></div></div><div class="r-c-center"><ul class="cenL"><li>已收到:</li><li class="cen-col">现金：$00.00</li><li>剩余:</li><li>小费:</li></ul><ul class="cenC"><li>$62.85</li><li class="cen-col">卡：$00.00</li><li>$9.61</li><li>$83.55</li></ul><ul class="cenR"><li></li><li class="cen-col">会员：$00.00</li><li></li><li></li></ul></div><div class="r-c-bot"><h5>状态</h5><p><span class="color1"></span>未支付</p></div></div>');
+
+                  $("#pay_summary").after('<div class="pay-right-c not0' + (i+2) + '" style="display: none;"><div class="r-c-top"><div class="c-top-left"><ul class="contL"><li>订单号</li><li>小计</li><li>折扣</li><li>折后价</li><li>税(13%):</li><li>总计:</li></ul><ul class="contR"><li>D81809240005</li><li>$73.94</li><li>$11.09*15%</li><li>$62.85</li><li>$9.61</li><li>$83.55</li></ul></div><div class="right-tab"><a href="javascript:;" class="add_zhe">加入折扣</a><div class="add-content"><ul class="add-ul"><li><span>固定折扣</span><input type="text"></li><li><span>%折扣</span><input type="text"></li><li><span>优惠码</span><input type="text"></li></ul><div class="add-right"><span>折扣快捷按钮</span><button type="button" name="button">15%</button><button type="button" name="button">20%</button><button type="button" name="button">25%</button></div></div></div></div><div class="r-c-center"><ul class="cenL"><li>已收到:</li><li class="cen-col">现金：$00.00</li><li>剩余:</li><li>小费:</li></ul><ul class="cenC"><li>$62.85</li><li class="cen-col">卡：$00.00</li><li>$9.61</li><li>$83.55</li></ul><ul class="cenR"><li></li><li class="cen-col">会员：$00.00</li><li></li><li></li></ul></div><div class="r-c-bot"><h5>状态</h5><p><span class="color1"></span>未支付</p></div></div>');
+                  
                      
               }
           })

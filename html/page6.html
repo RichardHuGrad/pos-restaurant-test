@@ -21,7 +21,7 @@
         <img src="images/nav.png" class="smalllogo" alt="pad菜单" />
         <!-- 登录按钮 -->
         <div class="login_right">
-          <button type="button" name="button">登出</button>
+          <button class="logout" type="button" name="button">登出</button>
           <span>管理员</span>
         </div>
       </div>
@@ -583,6 +583,16 @@
       });
  //     我是分割线---------------------------------------------------------------------------     
     $(document).ready(function(){
+
+      $(".logout").click(function(){
+          $.ajax({
+            url: "/pos/homes/logout",
+            type: "post",
+            success: function(data) {
+              window.location.href="login.html";
+            }
+          })
+      });
       // nav
       $(".barnav").hover(function(){
         $(this).find("ul").slideDown();

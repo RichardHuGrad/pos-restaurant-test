@@ -6,6 +6,18 @@
   echo @$Order_detail['Order']['id'];
   echo '", "order_no": "';
   echo @$Order_detail['Order']['order_no'];
+  echo '", "order_subtotal": "';
+  if(!empty($Order_detail) and !empty(@$Order_detail['OrderItem'] )) {
+      echo number_format($Order_detail['Order']['subtotal'], 2);
+  } else {
+      echo '0.00';
+  }
+  echo '", "order_tax": "';
+  if(!empty($Order_detail) and !empty(@$Order_detail['OrderItem'] )) echo number_format(@$Order_detail['Order']['tax_amount'], 2); else echo '0.00';
+  echo '", "order_tip": "';
+  if(!empty(@$Order_detail['OrderItem'] )) echo $Order_detail['Order']['default_tip_amount']; else echo '0.00';
+  echo '", "order_total": "';
+  if(!empty($Order_detail) and !empty(@$Order_detail['OrderItem'] )) echo number_format($Order_detail['Order']['total'], 2); else echo '0.00';
   echo '", "order_phone": "';
   echo @$Order_detail['Order']['phone']!=''?(', Tel: '.$Order_detail['Order']['phone']):'';
   echo '", "Category": { "';

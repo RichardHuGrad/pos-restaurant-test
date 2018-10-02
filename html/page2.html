@@ -22,7 +22,7 @@
         <img src="images/nav.png" class="smalllogo" alt="pad菜单" />
         <!-- 登录按钮 -->
         <div class="login_right">
-          <button type="button" name="button">登出</button>
+          <button class="logout" type="button" name="button">登出</button>
           <span>管理员</span>
         </div>
       </div>
@@ -739,6 +739,16 @@
       
     $(document).ready(function(){
 
+      $(".logout").click(function(){
+          $.ajax({
+            url: "/pos/homes/logout",
+            type: "post",
+            success: function(data) {
+              window.location.href="login.html";
+            }
+          })
+      });
+
       var sequence = localStorage.getItem("sequence");
       var seq = localStorage.getItem("sequence") < 10 ? localStorage.getItem("sequence").slice(1) : localStorage.getItem("sequence");
 
@@ -817,7 +827,7 @@
                 console.log(data);
                 
 
-                window.location.href="index.html"; 
+                window.location.href="index.html";
             }
           });
 
