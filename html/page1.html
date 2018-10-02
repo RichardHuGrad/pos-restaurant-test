@@ -608,8 +608,6 @@
                   //console.log(cuisine_arr[5*(item_id - 1) + 3]);
         				  //console.log(4*(item_id - 1) + 1);
         				  
-        				  
-
                   var sequence = localStorage.getItem("sequence");
                   var seq = localStorage.getItem("sequence") < 10 ? localStorage.getItem("sequence").slice(1) : localStorage.getItem("sequence");
 
@@ -638,14 +636,13 @@
                               }
                           };
 
-                          $(".right-list > li").click(function(){
-                    
-                            if($(this).hasClass("select")){
-                              $(this).removeClass("select");
-                            }else{
-                              $(this).addClass("select");
-                            }
-                          });
+                          // $(".right-list > li").click(function(){
+                          //   if($(this).hasClass("select")){
+                          //     $(this).removeClass("select");
+                          //   }else{
+                          //     $(this).addClass("select");
+                          //   }
+                          // });
 
                           $.ajax({
                               url: "/pos/order/index/table:" + seq + "/type:D",
@@ -697,11 +694,7 @@
                           $(".right-list > li.select").remove();
                       }
                   });
-
-
               })
-
-              
           }
       });
 
@@ -720,11 +713,18 @@
               for(var i = 0; i < length; i++){
                 $(".right-list").append('<li data-state="1" item_id="' + obj[i].id + '" style="background-color: rgb(240, 240, 240);"><a href="javascript:;"><div class="list-left"><h4>' + obj[i].name_xh + '</h4><p>Option:' + obj[i].special_instruction + '</p></div><div class="list-center">$' + obj[i].price + '<span>(15%off)</span></div><div class="list-right">' + obj[i].qty + '</div></a></li>');
               }
+
+              $(".right-list > li").click(function(){
+                if($(this).hasClass("select")){
+                  $(this).removeClass("select");
+                }else{
+                  $(this).addClass("select");
+                }
+              });
           }
       });
 
       $(".right-list > li").click(function(){
-
         if($(this).hasClass("select")){
           $(this).removeClass("select");
         }else{
@@ -816,16 +816,7 @@
         })
       })
       //右侧已选菜品选中操作
-      $(".right-list li").click(function(){
-          var selected = $(this).attr("class");
-          if(selected =='select'){
-            $(this).removeClass("select");
-    
-          }else if(selected !='select'){
-            $(this).addClass("select");
-    
-          }
-      })
+      
       //类似选项卡样式切换
       $(".right-top li").click(function(){
         $(this).addClass("right-active").siblings().removeClass("right-active");
