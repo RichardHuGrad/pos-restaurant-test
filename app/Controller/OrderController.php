@@ -288,12 +288,14 @@ class OrderController extends AppController {
 
         $order_no = '';
         if ($_POST){
+            if($_POST['order_no'] == ""){
+                $order_no = $this->data['order_no'];
+            }
             $order_no = $_POST['order_no'];
         } else {
             throw new Exception('Missing argument: order_no');
         }
-
-        //$order_no = $this->data['order_no'];
+        
         $order_id = $this->Order->getOrderIdByOrderNo($order_no);
         $restaurant_id = $this->Cashier->getRestaurantId($this->Session->read('Front.id'));
 
