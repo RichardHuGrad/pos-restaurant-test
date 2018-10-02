@@ -715,11 +715,12 @@
       $(".rightBtn02").click(function(){
           $.ajax({
               url: "/pos/order/printTokitchen/",
-              method: "post",
-              
+              type: "post",
+              data: {
+                  order_no: order_no
+              },
               success: function(data) {
-                console.log(data);
-                  //window.location.href="index.html";   
+                  window.location.href="index.html";
               }
           });
       });
