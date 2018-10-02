@@ -714,15 +714,12 @@
       //送厨按钮
       $(".rightBtn02").click(function(){
           $.ajax({
-              url: "/pos/order/printToKitchen",
+              url: "/pos/order/printTokitchen/",
               method: "post",
-              data: {
-                  order_no: order_no,
-                  type: "D",
-                  table: seq,
-              },
-              success: function(html) {
-                  window.location.href="index.html";   
+              
+              success: function(data) {
+                console.log(data);
+                  //window.location.href="index.html";   
               }
           });
       });
