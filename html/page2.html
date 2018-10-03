@@ -762,6 +762,11 @@
       $.ajax({
           url: "/pos/order/index/table:" + seq + "/type:D",
           type: "post",
+          statusCode: {
+             403: function() {
+                window.location.href="login.html";
+             }
+          },
           success: function(data) {
               // reload the page
               console.log(data);

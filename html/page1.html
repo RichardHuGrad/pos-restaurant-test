@@ -521,7 +521,15 @@
             window.location.href="login.html";
           }
         })
-    })
+    });
+
+    function isSelect(e){
+      if($(e).hasClass("select")){
+        $(e).removeClass("select");
+      }else{
+        $(e).addClass("select");
+      }
+    }
     	
     $(document).ready(function(){
 
@@ -535,6 +543,11 @@
       $.ajax({
           url: "/pos/order/index/table:" + seq + "/type:D",
           type: "post",
+          statusCode: {
+             403: function() {
+                window.location.href="login.html";
+             }
+          },
           success: function(data) {
               // reload the page
               //console.log(data);
@@ -632,7 +645,7 @@
                               console.log(cuisine_arr[4*i + 2]);
                               if(cuisine_arr[4*i] == item_id){
                               
-                                $(".right-list").append('<li data-state="1" item_id="' + obj.order_item_id + '" style="background-color: rgb(240, 240, 240);"><a href="javascript:;"><div class="list-left"><h4>' + cuisine_arr[4*i + 1] + '</h4><p>Option: </p></div><div class="list-center">$' + cuisine_arr[4*i + 3] + '<span>(15%off)</span></div><div class="list-right">1</div></a></li>');
+                                $(".right-list").append('<li data-state="1" onclick="isSelect(this)" item_id="' + obj.order_item_id + '" style="background-color: rgb(240, 240, 240);"><a href="javascript:;"><div class="list-left"><h4>' + cuisine_arr[4*i + 1] + '</h4><p>Option: </p></div><div class="list-center">$' + cuisine_arr[4*i + 3] + '<span>(15%off)</span></div><div class="list-right">1</div></a></li>');
                               }
                           };
 
@@ -711,26 +724,27 @@
               //console.log(obj);
 
               for(var i = 0; i < length; i++){
-                $(".right-list").append('<li data-state="1" item_id="' + obj[i].id + '" style="background-color: rgb(240, 240, 240);"><a href="javascript:;"><div class="list-left"><h4>' + obj[i].name_xh + '</h4><p>Option:' + obj[i].special_instruction + '</p></div><div class="list-center">$' + obj[i].price + '<span>(15%off)</span></div><div class="list-right">' + obj[i].qty + '</div></a></li>');
+                $(".right-list").append('<li data-state="1" onclick="isSelect(this)" item_id="' + obj[i].id + '" style="background-color: rgb(240, 240, 240);"><a href="javascript:;"><div class="list-left"><h4>' + obj[i].name_xh + '</h4><p>Option:' + obj[i].special_instruction + '</p></div><div class="list-center">$' + obj[i].price + '<span>(15%off)</span></div><div class="list-right">' + obj[i].qty + '</div></a></li>');
               }
 
-              $(".right-list > li").click(function(){
-                if($(this).hasClass("select")){
-                  $(this).removeClass("select");
-                }else{
-                  $(this).addClass("select");
-                }
-              });
+              // $(".right-list > li").click(function(){
+              //   if($(this).hasClass("select")){
+              //     $(this).removeClass("select");
+              //   }else{
+              //     $(this).addClass("select");
+              //   }
+              // });
           }
       });
 
-      $(".right-list > li").click(function(){
-        if($(this).hasClass("select")){
-          $(this).removeClass("select");
-        }else{
-          $(this).addClass("select");
-        }
-      });
+      // $(".right-list > li").click(function(){
+      //   if($(this).hasClass("select")){
+      //     $(this).removeClass("select");
+      //   }else{
+      //     $(this).addClass("select");
+      //   }
+      // });
+      
 
       //送厨按钮
       $(".rightBtn02").click(function(){
